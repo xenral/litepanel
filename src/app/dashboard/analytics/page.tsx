@@ -17,6 +17,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { AreaChartComponent, LineChartComponent, PieChartComponent } from '@/components/ui/chart';
 
 export const metadata: Metadata = {
   title: 'Analytics Dashboard',
@@ -171,27 +172,15 @@ export default function AnalyticsPage() {
 
         <TabsContent value="overview" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Revenue Chart Placeholder */}
-            <Card className="lg:col-span-2">
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <BarChart3 className="h-5 w-5" />
-                  <span>Revenue Trend</span>
-                </CardTitle>
-                <CardDescription>
-                  Monthly revenue over the last 6 months
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="h-80 flex items-center justify-center bg-muted/20 rounded-lg border-2 border-dashed border-muted-foreground/25">
-                  <div className="text-center">
-                    <BarChart3 className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                    <p className="text-muted-foreground">Revenue Chart</p>
-                    <p className="text-sm text-muted-foreground">ECharts integration coming soon</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            {/* Revenue Chart */}
+            <AreaChartComponent
+              title="Revenue Trend"
+              description="Monthly revenue over the last 6 months"
+              data={chartData.revenue}
+              xAxisKey="month"
+              areaKey="value"
+              className="lg:col-span-2"
+            />
 
             {/* Top Pages */}
             <Card>
@@ -227,26 +216,17 @@ export default function AnalyticsPage() {
 
         <TabsContent value="traffic" className="space-y-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Visitor Chart Placeholder */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <Activity className="h-5 w-5" />
-                  <span>Visitor Traffic</span>
-                </CardTitle>
-                <CardDescription>
-                  Desktop vs Mobile visitors
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="h-64 flex items-center justify-center bg-muted/20 rounded-lg border-2 border-dashed border-muted-foreground/25">
-                  <div className="text-center">
-                    <Activity className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
-                    <p className="text-sm text-muted-foreground">Line Chart</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            {/* Visitor Chart */}
+            <LineChartComponent
+              title="Visitor Traffic"
+              description="Desktop vs Mobile visitors"
+              data={chartData.visitors}
+              xAxisKey="date"
+              lines={[
+                { key: 'desktop', color: '#3b82f6', name: 'Desktop' },
+                { key: 'mobile', color: '#8b5cf6', name: 'Mobile' }
+              ]}
+            />
 
             {/* Traffic Sources */}
             <Card>

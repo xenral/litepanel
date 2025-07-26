@@ -88,13 +88,8 @@ import {
   Upload,
   Download,
   Share,
-  Calendar,
   User,
-  Lock,
   Mail,
-  Phone,
-  MapPin,
-  Camera,
   Star,
   Heart,
   Menu,
@@ -103,69 +98,40 @@ import {
   MoreHorizontal,
 } from 'lucide-react';
 
-// Mock data for examples
-const users = [
-  {
-    id: 1,
-    name: 'Alice Johnson',
-    email: 'alice@example.com',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=40&h=40&fit=crop&crop=face',
-    role: 'Admin',
-    status: 'Active',
-  },
-  {
-    id: 2,
-    name: 'Bob Smith',
-    email: 'bob@example.com',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face',
-    role: 'Editor',
-    status: 'Active',
-  },
-  {
-    id: 3,
-    name: 'Carol Davis',
-    email: 'carol@example.com',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face',
-    role: 'Viewer',
-    status: 'Inactive',
-  },
-];
+// Import extracted data and utilities
+import {
+  modalUsers,
+  departmentOptions,
+  roleOptions,
+  planOptions,
+  categoryOptions,
+  modalTypes,
+  projectData,
+  shareOptions,
+  navigationItems,
+  uploadConfig,
+} from '@/data/modals.data';
+import {
+  simulateUpload,
+  toggleUserSelection,
+  getUserInitials,
+  validateUserForm,
+  resetFormData,
+} from '@/utils/modals.util';
 
 export default function ModalsComponentPage() {
   const [confirmationOpen, setConfirmationOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-    role: '',
-    department: '',
-  });
+  const [formData, setFormData] = useState(resetFormData());
   const [selectedUsers, setSelectedUsers] = useState<number[]>([]);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
 
   const handleUserSelect = (userId: number) => {
-    setSelectedUsers(prev => 
-      prev.includes(userId) 
-        ? prev.filter(id => id !== userId)
-        : [...prev, userId]
-    );
+    toggleUserSelection(selectedUsers, userId, setSelectedUsers);
   };
 
-  const simulateUpload = () => {
-    setIsUploading(true);
-    setUploadProgress(0);
-    
-    const interval = setInterval(() => {
-      setUploadProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setIsUploading(false);
-          return 100;
-        }
-        return prev + 10;
-      });
-    }, 200);
+  const handleSimulateUpload = () => {
+    simulateUpload(setUploadProgress, setIsUploading);
   };
 
   return (
@@ -363,7 +329,7 @@ export default function ModalsComponentPage() {
                       <div>
                         <h3 className="font-semibold mb-3">Team Members</h3>
                         <div className="space-y-2">
-                          {users.map((user) => (
+                          {modalUsers.map((user) => (
                             <div key={user.id} className="flex items-center space-x-3 p-2 border rounded">
                               <Avatar className="h-8 w-8">
                                 <AvatarImage src={user.avatar} alt={user.name} />
@@ -448,7 +414,7 @@ export default function ModalsComponentPage() {
                     </div>
                     <DialogFooter>
                       <Button variant="outline">Cancel</Button>
-                      <Button onClick={simulateUpload} disabled={isUploading}>
+                      <Button onClick={handleSimulateUpload} disabled={isUploading}>
                         {isUploading ? 'Uploading...' : 'Upload'}
                       </Button>
                     </DialogFooter>
@@ -486,8 +452,8 @@ export default function ModalsComponentPage() {
                         <Input placeholder="Search users..." className="pl-9" />
                       </div>
                       
-                      <div className="space-y-2 max-h-60 overflow-y-auto">
-                        {users.map((user) => (
+                                              <div className="space-y-2 max-h-60 overflow-y-auto">
+                          {modalUsers.map((user) => (
                           <div key={user.id} className="flex items-center space-x-3 p-2 hover:bg-muted rounded">
                             <Checkbox
                               id={`user-${user.id}`}
@@ -583,12 +549,12 @@ export default function ModalsComponentPage() {
                         </TabsContent>
                         <TabsContent value="members" className="space-y-4 p-1">
                           <div className="space-y-3">
-                            {users.map((user) => (
+                            {modalUsers.map((user) => (
                               <div key={user.id} className="flex items-center justify-between p-2 border rounded">
                                 <div className="flex items-center space-x-3">
                                   <Avatar className="h-8 w-8">
                                     <AvatarImage src={user.avatar} alt={user.name} />
-                                    <AvatarFallback>{user.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                                    <AvatarFallback>{getUserInitials(user.name)}</AvatarFallback>
                                   </Avatar>
                                   <div>
                                     <div className="font-medium text-sm">{user.name}</div>
@@ -1192,7 +1158,7 @@ export default function ModalsComponentPage() {
                       <div className="space-y-2">
                         <div className="flex items-center space-x-2">
                           <Avatar className="h-6 w-6">
-                            <AvatarImage src={users[0].avatar} />
+                            <AvatarImage src={modalUsers[0].avatar} />
                             <AvatarFallback>AJ</AvatarFallback>
                           </Avatar>
                           <span className="font-medium text-sm">Alice Johnson</span>
