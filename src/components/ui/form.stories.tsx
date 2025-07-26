@@ -39,6 +39,7 @@ const basicSchema = z.object({
 });
 
 export const BasicForm: Story = {
+  args: {},
   render: () => (
     <Form
       schema={basicSchema}
