@@ -266,7 +266,7 @@ export function FilterPopover({
                           className="flex items-center space-x-2 cursor-pointer hover:bg-accent/50 rounded p-2 -m-2"
                           onClick={() => handleFilterToggle(category.id, option)}
                         >
-                          <Checkbox checked={isSelected} readOnly />
+                          <Checkbox checked={isSelected} />
                           <div className="flex-1 flex items-center justify-between">
                             <span className="text-sm">{option.label}</span>
                             {option.count && (
