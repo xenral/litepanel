@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   Dialog,
@@ -50,48 +50,106 @@ import {
   Smartphone,
   MapPin,
 } from 'lucide-react';
+import { UserService, User as UserType, handleApiError } from '@/lib/api';
 
 interface UserSettingsDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
-// Mock user data - in a real app, this would come from your auth/user management system
-const mockUser = {
-  id: '1',
-  name: 'John Doe',
-  email: 'john@example.com',
-  avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
-  bio: 'Product designer passionate about creating intuitive user experiences.',
-  title: 'Senior Product Designer',
-  company: 'Acme Corp',
-  location: 'San Francisco, CA',
-  timezone: 'America/Los_Angeles',
-  language: 'en',
-  phone: '+1 (555) 123-4567',
-  website: 'https://johndoe.com',
-  joinedAt: '2023-01-15',
-  lastActive: '2024-01-20T10:30:00Z',
-};
-
 export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogProps) {
-  const [user, setUser] = useState(mockUser);
+  const [user, setUser] = useState<UserType | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [savedMessage, setSavedMessage] = useState('');
+  const [error, setError] = useState('');
+  const [uploadingAvatar, setUploadingAvatar] = useState(false);
+
+  // Load user data when dialog opens
+  useEffect(() => {
+    if (open && !user) {
+      loadUserData();
+    }
+  }, [open]);
+
+  const loadUserData = async () => {
+    try {
+      setIsLoading(true);
+      const userData = await UserService.getCurrentUser();
+      setUser(userData);
+    } catch (err) {
+      setError(handleApiError(err));
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleSave = async () => {
-    setIsLoading(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setIsLoading(false);
-    setSavedMessage('Settings saved successfully!');
-    setTimeout(() => setSavedMessage(''), 3000);
+    if (!user) return;
+    
+    try {
+      setIsLoading(true);
+      setError('');
+      const updatedUser = await UserService.updateUser(user.id, user);
+      setUser(updatedUser);
+      setSavedMessage('Settings saved successfully!');
+      setTimeout(() => setSavedMessage(''), 3000);
+    } catch (err) {
+      setError(handleApiError(err));
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleAvatarUpload = () => {
-    // In a real app, this would open a file picker and upload the image
-    console.log('Avatar upload clicked');
+  const handleAvatarUpload = async () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = async (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (!file || !user) return;
+
+      try {
+        setUploadingAvatar(true);
+        const result = await UserService.uploadAvatar(file);
+        setUser({ ...user, avatar: result.url });
+      } catch (err) {
+        setError(handleApiError(err));
+      } finally {
+        setUploadingAvatar(false);
+      }
+    };
+    input.click();
   };
+
+  const updateUserField = (field: keyof UserType, value: any) => {
+    if (!user) return;
+    setUser({ ...user, [field]: value });
+  };
+
+  const updateUserPreference = (field: keyof UserType['preferences'], value: any) => {
+    if (!user) return;
+    setUser({
+      ...user,
+      preferences: { ...user.preferences, [field]: value }
+    });
+  };
+
+  if (!user && isLoading) {
+    return (
+      <Dialog open={open} onOpenChange={onOpenChange}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden">
+          <div className="flex items-center justify-center py-12">
+            <Loader2 className="h-8 w-8 animate-spin" />
+            <span className="ml-2">Loading user settings...</span>
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  }
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
