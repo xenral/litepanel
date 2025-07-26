@@ -179,7 +179,7 @@ export function FormSelect<T extends Record<string, any>>({
  */
 interface FormCheckboxProps<T extends Record<string, any>> {
   name: FieldPath<T>;
-  label?: string;
+  label?: string | React.ReactNode;
   description?: string;
   required?: boolean;
   className?: string;

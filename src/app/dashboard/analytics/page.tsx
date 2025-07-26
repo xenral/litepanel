@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import type { Metadata } from 'next';
 import { 
   BarChart3, 
   TrendingUp, 
@@ -28,11 +27,6 @@ import { DatePicker } from '@/components/ui/calendar';
 import { RevenueAnalytics } from '@/components/dashboard/revenue-analytics';
 import { ConversionFunnel } from '@/components/dashboard/conversion-funnel';
 import { AnalyticsService, AnalyticsData, handleApiError } from '@/lib/api';
-
-export const metadata: Metadata = {
-  title: 'Analytics Dashboard',
-  description: 'View detailed analytics, charts, and business insights',
-};
 
 // Transform API data to display format
 const transformAnalyticsData = (data: AnalyticsData) => ({
