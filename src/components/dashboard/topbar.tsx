@@ -194,24 +194,7 @@ export function Topbar({ onCommandPaletteOpen, className }: TopbarProps) {
         </Button>
 
         {/* Notifications */}
-        <NotificationPopover notificationCount={notificationCount}>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="relative h-9 w-9 p-0"
-            aria-label="Notifications"
-          >
-            <Bell className="h-4 w-4" />
-            {notificationCount > 0 && (
-              <Badge
-                variant="destructive"
-                className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-xs flex items-center justify-center min-w-[1.25rem] animate-pulse"
-              >
-                {notificationCount > 9 ? '9+' : notificationCount}
-              </Badge>
-            )}
-          </Button>
-        </NotificationPopover>
+        <NotificationPopover />
 
         {/* User Menu */}
         <DropdownMenu>
