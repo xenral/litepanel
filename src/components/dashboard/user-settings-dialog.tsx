@@ -49,6 +49,7 @@ import {
   Clock,
   Smartphone,
   MapPin,
+  Loader2,
 } from 'lucide-react';
 import { UserService, User as UserType, handleApiError } from '@/lib/api';
 

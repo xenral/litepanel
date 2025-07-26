@@ -96,6 +96,13 @@ export interface User {
   status: 'active' | 'inactive' | 'pending';
   createdAt: string;
   lastLoginAt?: string;
+  bio?: string;
+  title?: string;
+  company?: string;
+  location?: string;
+  phone?: string;
+  website?: string;
+  joinedAt?: string;
   preferences: {
     theme: string;
     language: string;
