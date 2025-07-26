@@ -19,7 +19,7 @@ import {
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
+import { Badge, BadgeProps } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
@@ -73,7 +73,11 @@ import {
   RotateCcw,
   Ban,
   Key,
-  Settings,
+  CheckCircle2,
+  Clock,
+  Shield,
+  User,
+  Crown,
 } from 'lucide-react';
 
 // Import extracted data and utilities
@@ -566,7 +570,7 @@ export default function UsersListPage() {
                           <Avatar className="h-8 w-8">
                             <AvatarImage src={user.avatar} alt={user.name} />
                             <AvatarFallback>
-                              {user.name.split(' ').map(n => n[0]).join('')}
+                              {user.name.split(' ').map((n: string) => n[0]).join('')}
                             </AvatarFallback>
                           </Avatar>
                           <div>
@@ -586,7 +590,7 @@ export default function UsersListPage() {
                       <TableCell>
                         <div className="flex items-center space-x-2">
                           <StatusIcon className="h-4 w-4" />
-                          <Badge variant={getStatusColor(user.status)}>
+                          <Badge variant={getStatusColor(user.status) as BadgeProps['variant']}>
                             {user.status}
                           </Badge>
                         </div>
@@ -700,7 +704,7 @@ export default function UsersListPage() {
                   <p className="text-muted-foreground">{selectedUser.email}</p>
                   <p className="text-sm text-muted-foreground">{selectedUser.id}</p>
                   <div className="flex items-center space-x-2 mt-2">
-                    <Badge variant={getStatusColor(selectedUser.status)}>
+                    <Badge variant={getStatusColor(selectedUser.status) as BadgeProps['variant']}>
                       {selectedUser.status}
                     </Badge>
                     <Badge variant="outline">{selectedUser.role}</Badge>
