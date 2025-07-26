@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Metadata } from 'next';
 import { 
   BarChart3, 
@@ -18,6 +19,10 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { AreaChartComponent, LineChartComponent, PieChartComponent } from '@/components/ui/chart';
+import { FilterPopover, DEFAULT_ANALYTICS_FILTERS } from '@/components/ui/filter-popover';
+import { DatePicker } from '@/components/ui/calendar';
+import { RevenueAnalytics } from '@/components/dashboard/revenue-analytics';
+import { ConversionFunnel } from '@/components/dashboard/conversion-funnel';
 
 export const metadata: Metadata = {
   title: 'Analytics Dashboard',
@@ -103,6 +108,10 @@ const chartData = {
  * Analytics dashboard page component
  */
 export default function AnalyticsPage() {
+  // State for filters and date selection
+  const [activeFilters, setActiveFilters] = React.useState<any[]>([]);
+  const [selectedDate, setSelectedDate] = React.useState<Date>();
+
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -114,14 +123,19 @@ export default function AnalyticsPage() {
           </p>
         </div>
         <div className="flex items-center space-x-2">
-          <Button variant="outline" className="flex items-center space-x-2">
-            <Filter className="h-4 w-4" />
-            <span>Filter</span>
-          </Button>
-          <Button variant="outline" className="flex items-center space-x-2">
-            <Calendar className="h-4 w-4" />
-            <span>Last 30 days</span>
-          </Button>
+          <FilterPopover
+            categories={DEFAULT_ANALYTICS_FILTERS}
+            activeFilters={activeFilters}
+            onFiltersChange={setActiveFilters}
+            triggerText="Filter"
+            showCount={true}
+          />
+          <DatePicker
+            selected={selectedDate}
+            onSelect={setSelectedDate}
+            placeholder="Select date range"
+            className="w-40"
+          />
           <Button variant="outline" className="flex items-center space-x-2">
             <RefreshCw className="h-4 w-4" />
             <span>Refresh</span>
@@ -136,7 +150,7 @@ export default function AnalyticsPage() {
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {analyticsData.summary.map((metric) => (
-          <Card key={metric.title} className="hover:shadow-lg transition-shadow">
+          <Card key={metric.title}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 {metric.title}
@@ -258,43 +272,11 @@ export default function AnalyticsPage() {
         </TabsContent>
 
         <TabsContent value="revenue" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Revenue Analytics</CardTitle>
-              <CardDescription>
-                Detailed revenue breakdown and forecasting
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="h-96 flex items-center justify-center bg-muted/20 rounded-lg border-2 border-dashed border-muted-foreground/25">
-                <div className="text-center">
-                  <DollarSign className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-lg font-medium text-muted-foreground">Revenue Dashboard</p>
-                  <p className="text-sm text-muted-foreground">Advanced revenue analytics coming soon</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <RevenueAnalytics />
         </TabsContent>
 
         <TabsContent value="conversion" className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Conversion Funnel</CardTitle>
-              <CardDescription>
-                Track user journey and conversion points
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="h-96 flex items-center justify-center bg-muted/20 rounded-lg border-2 border-dashed border-muted-foreground/25">
-                <div className="text-center">
-                  <Target className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-                  <p className="text-lg font-medium text-muted-foreground">Conversion Analytics</p>
-                  <p className="text-sm text-muted-foreground">Funnel analysis and optimization tools</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <ConversionFunnel />
         </TabsContent>
       </Tabs>
     </div>
