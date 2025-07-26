@@ -12,7 +12,7 @@ import {
   CheckCircle,
   Clock,
   Trash2,
-  MarkAsRead
+  Eye
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -290,7 +290,7 @@ export default function NotificationsPage() {
                         <DropdownMenuContent align="end">
                           <DropdownMenuLabel>Actions</DropdownMenuLabel>
                           <DropdownMenuItem className="cursor-pointer">
-                            <MarkAsRead className="mr-2 h-4 w-4" />
+                            <Eye className="mr-2 h-4 w-4" />
                             {notification.read ? 'Mark as unread' : 'Mark as read'}
                           </DropdownMenuItem>
                           <DropdownMenuSeparator />
