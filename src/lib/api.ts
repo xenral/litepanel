@@ -124,6 +124,13 @@ export const UserService = {
         status: 'active',
         createdAt: '2023-01-15T00:00:00Z',
         lastLoginAt: new Date().toISOString(),
+        bio: 'Product designer passionate about creating intuitive user experiences.',
+        title: 'Senior Product Designer',
+        company: 'Acme Corp',
+        location: 'San Francisco, CA',
+        phone: '+1 (555) 123-4567',
+        website: 'https://johndoe.com',
+        joinedAt: '2023-01-15',
         preferences: {
           theme: 'system',
           language: 'en',

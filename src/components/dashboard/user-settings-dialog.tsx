@@ -316,7 +316,7 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                       <div>
                         <p className="text-sm font-medium">Member since</p>
                         <p className="text-sm text-muted-foreground">
-                          {new Date(user.joinedAt).toLocaleDateString()}
+                          {user.joinedAt ? new Date(user.joinedAt).toLocaleDateString() : 'N/A'}
                         </p>
                       </div>
                     </div>
@@ -325,7 +325,7 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                       <div>
                         <p className="text-sm font-medium">Last active</p>
                         <p className="text-sm text-muted-foreground">
-                          {new Date(user.lastActive).toLocaleDateString()}
+                          {user.lastLoginAt ? new Date(user.lastLoginAt).toLocaleDateString() : 'N/A'}
                         </p>
                       </div>
                     </div>
