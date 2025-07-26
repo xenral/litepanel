@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import type { Metadata } from 'next';
 import { 
   BarChart3, 
@@ -12,7 +12,9 @@ import {
   Calendar,
   Download,
   Filter,
-  RefreshCw
+  RefreshCw,
+  Loader2,
+  AlertCircle
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -23,28 +25,27 @@ import { FilterPopover, DEFAULT_ANALYTICS_FILTERS } from '@/components/ui/filter
 import { DatePicker } from '@/components/ui/calendar';
 import { RevenueAnalytics } from '@/components/dashboard/revenue-analytics';
 import { ConversionFunnel } from '@/components/dashboard/conversion-funnel';
+import { AnalyticsService, AnalyticsData, handleApiError } from '@/lib/api';
 
 export const metadata: Metadata = {
   title: 'Analytics Dashboard',
   description: 'View detailed analytics, charts, and business insights',
 };
 
-/**
- * Mock analytics data
- */
-const analyticsData = {
+// Transform API data to display format
+const transformAnalyticsData = (data: AnalyticsData) => ({
   summary: [
     {
       title: 'Total Visitors',
-      value: '124,832',
-      change: '+12.5%',
+      value: data.metrics.totalVisitors.toLocaleString(),
+      change: '+12.5%', // Would be calculated from historical data
       changeType: 'positive' as const,
       icon: Users,
       period: 'vs last month'
     },
     {
       title: 'Revenue',
-      value: '$89,432',
+      value: `$${data.metrics.revenue.toLocaleString()}`,
       change: '+8.2%',
       changeType: 'positive' as const,
       icon: DollarSign,
@@ -52,7 +53,7 @@ const analyticsData = {
     },
     {
       title: 'Conversion Rate',
-      value: '3.24%',
+      value: `${data.metrics.conversionRate}%`,
       change: '-0.8%',
       changeType: 'negative' as const,
       icon: Target,
@@ -60,7 +61,7 @@ const analyticsData = {
     },
     {
       title: 'Avg. Session',
-      value: '4m 32s',
+      value: formatDuration(data.metrics.avgSessionDuration),
       change: '+15.3%',
       changeType: 'positive' as const,
       icon: Clock,
@@ -74,34 +75,13 @@ const analyticsData = {
     { path: '/forms', views: 4523, change: '+18%' },
     { path: '/table', views: 3891, change: '+7%' }
   ],
-  trafficSources: [
-    { source: 'Direct', visitors: 45230, percentage: 36.2 },
-    { source: 'Organic Search', visitors: 32840, percentage: 26.3 },
-    { source: 'Social Media', visitors: 28100, percentage: 22.5 },
-    { source: 'Referral', visitors: 12450, percentage: 9.9 },
-    { source: 'Email', visitors: 6212, percentage: 5.1 }
-  ]
-};
+  trafficSources: data.charts.trafficSources
+});
 
-/**
- * Mock chart data for visualization
- */
-const chartData = {
-  revenue: [
-    { month: 'Jan', value: 65000 },
-    { month: 'Feb', value: 72000 },
-    { month: 'Mar', value: 68000 },
-    { month: 'Apr', value: 85000 },
-    { month: 'May', value: 91000 },
-    { month: 'Jun', value: 89432 }
-  ],
-  visitors: [
-    { date: '1 Dec', desktop: 4200, mobile: 2800 },
-    { date: '8 Dec', desktop: 4800, mobile: 3200 },
-    { date: '15 Dec', desktop: 5100, mobile: 3600 },
-    { date: '22 Dec', desktop: 4900, mobile: 3400 },
-    { date: '29 Dec', desktop: 5300, mobile: 3800 }
-  ]
+const formatDuration = (seconds: number) => {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return `${minutes}m ${remainingSeconds}s`;
 };
 
 /**
@@ -109,8 +89,84 @@ const chartData = {
  */
 export default function AnalyticsPage() {
   // State for filters and date selection
-  const [activeFilters, setActiveFilters] = React.useState<any[]>([]);
-  const [selectedDate, setSelectedDate] = React.useState<Date>();
+  const [activeFilters, setActiveFilters] = useState<any[]>([]);
+  const [selectedDate, setSelectedDate] = useState<Date>();
+  const [analyticsData, setAnalyticsData] = useState<AnalyticsData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  // Load analytics data
+  useEffect(() => {
+    loadAnalyticsData();
+  }, []);
+
+  const loadAnalyticsData = async (timeRange = '30d') => {
+    try {
+      setLoading(true);
+      setError('');
+      const data = await AnalyticsService.getAnalytics(timeRange);
+      setAnalyticsData(data);
+    } catch (err) {
+      setError(handleApiError(err));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleExportData = async (format: 'csv' | 'xlsx' | 'pdf') => {
+    try {
+      const blob = await AnalyticsService.exportData(format);
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `analytics-data.${format}`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (err) {
+      setError(handleApiError(err));
+    }
+  };
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="space-y-8">
+        <div className="flex items-center justify-center py-12">
+          <Loader2 className="h-8 w-8 animate-spin" />
+          <span className="ml-2">Loading analytics data...</span>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="space-y-8">
+        <div className="flex items-center justify-center py-12">
+          <div className="text-center">
+            <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-gray-900 mb-2">Failed to load analytics</h3>
+            <p className="text-gray-500 mb-4">{error}</p>
+            <Button onClick={() => loadAnalyticsData()}>
+              <RefreshCw className="h-4 w-4 mr-2" />
+              Try Again
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!analyticsData) return null;
+
+  const displayData = transformAnalyticsData(analyticsData);
+  const chartData = {
+    revenue: analyticsData.charts.revenue,
+    visitors: analyticsData.charts.visitors
+  };
 
   return (
     <div className="space-y-8">
@@ -140,7 +196,10 @@ export default function AnalyticsPage() {
             <RefreshCw className="h-4 w-4" />
             <span>Refresh</span>
           </Button>
-          <Button className="flex items-center space-x-2">
+          <Button 
+            className="flex items-center space-x-2"
+            onClick={() => handleExportData('csv')}
+          >
             <Download className="h-4 w-4" />
             <span>Export</span>
           </Button>
@@ -149,7 +208,7 @@ export default function AnalyticsPage() {
 
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {analyticsData.summary.map((metric) => (
+        {displayData.summary.map((metric) => (
           <Card key={metric.title}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
@@ -205,7 +264,7 @@ export default function AnalyticsPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                {analyticsData.topPages.map((page, index) => (
+                {displayData.topPages.map((page, index) => (
                   <div key={page.path} className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                       <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted text-sm font-medium">
@@ -254,7 +313,7 @@ export default function AnalyticsPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                {analyticsData.trafficSources.map((source) => (
+                {displayData.trafficSources.map((source) => (
                   <div key={source.source} className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                       <div className="h-3 w-3 rounded-full bg-primary" />

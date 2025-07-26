@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   Popover,
@@ -15,7 +15,6 @@ import {
   Bell,
   X,
   Check,
-  User,
   AlertTriangle,
   Info,
   CheckCircle,
@@ -23,279 +22,259 @@ import {
   Settings,
   Trash2,
   Eye,
+  Loader2,
+  ExternalLink,
 } from 'lucide-react';
+import { NotificationService, Notification, handleApiError } from '@/lib/api';
 
-interface Notification {
-  id: string;
-  type: 'info' | 'success' | 'warning' | 'error' | 'user';
-  title: string;
-  message: string;
-  timestamp: string;
-  read: boolean;
-  priority: 'low' | 'medium' | 'high';
-}
+export function NotificationPopover() {
+  const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
 
-const mockNotifications: Notification[] = [
-  {
-    id: '1',
-    type: 'user',
-    title: 'New user registered',
-    message: 'sarah.chen@example.com joined your workspace',
-    timestamp: '5 minutes ago',
-    read: false,
-    priority: 'medium',
-  },
-  {
-    id: '2',
-    type: 'warning',
-    title: 'System maintenance',
-    message: 'Scheduled maintenance this Sunday 2-4 AM UTC',
-    timestamp: '1 hour ago',
-    read: false,
-    priority: 'high',
-  },
-  {
-    id: '3',
-    type: 'success',
-    title: 'Backup completed',
-    message: 'Daily backup completed successfully',
-    timestamp: '2 hours ago',
-    read: true,
-    priority: 'low',
-  },
-  {
-    id: '4',
-    type: 'info',
-    title: 'New feature available',
-    message: 'Advanced analytics dashboard is now live',
-    timestamp: '1 day ago',
-    read: false,
-    priority: 'medium',
-  },
-  {
-    id: '5',
-    type: 'error',
-    title: 'Storage warning',
-    message: 'You are using 85% of your storage quota',
-    timestamp: '2 days ago',
-    read: true,
-    priority: 'high',
-  },
-];
+  useEffect(() => {
+    loadNotifications();
+  }, []);
 
-const getNotificationIcon = (type: Notification['type']) => {
-  switch (type) {
-    case 'user':
-      return User;
-    case 'warning':
-      return AlertTriangle;
-    case 'success':
-      return CheckCircle;
-    case 'info':
-      return Info;
-    case 'error':
-      return AlertTriangle;
-    default:
-      return Bell;
-  }
-};
-
-const getNotificationColor = (type: Notification['type']) => {
-  switch (type) {
-    case 'user':
-      return 'text-blue-600 bg-blue-100 dark:bg-blue-900/30';
-    case 'warning':
-      return 'text-orange-600 bg-orange-100 dark:bg-orange-900/30';
-    case 'success':
-      return 'text-green-600 bg-green-100 dark:bg-green-900/30';
-    case 'info':
-      return 'text-purple-600 bg-purple-100 dark:bg-purple-900/30';
-    case 'error':
-      return 'text-red-600 bg-red-100 dark:bg-red-900/30';
-    default:
-      return 'text-gray-600 bg-gray-100 dark:bg-gray-900/30';
-  }
-};
-
-const getPriorityVariant = (priority: Notification['priority']) => {
-  switch (priority) {
-    case 'high':
-      return 'destructive' as const;
-    case 'medium':
-      return 'default' as const;
-    case 'low':
-      return 'secondary' as const;
-    default:
-      return 'default' as const;
-  }
-};
-
-interface NotificationPopoverProps {
-  children: React.ReactNode;
-  notificationCount?: number;
-}
-
-export function NotificationPopover({ 
-  children, 
-  notificationCount = mockNotifications.filter(n => !n.read).length 
-}: NotificationPopoverProps) {
-  const [notifications, setNotifications] = React.useState(mockNotifications);
-
-  const handleMarkAsRead = (id: string) => {
-    setNotifications(prev => 
-      prev.map(notification => 
-        notification.id === id 
-          ? { ...notification, read: true }
-          : notification
-      )
-    );
+  const loadNotifications = async () => {
+    try {
+      setLoading(true);
+      const data = await NotificationService.getNotifications();
+      setNotifications(data);
+    } catch (err) {
+      setError(handleApiError(err));
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleMarkAllAsRead = () => {
-    setNotifications(prev => 
-      prev.map(notification => ({ ...notification, read: true }))
-    );
+  const handleMarkAsRead = async (id: string) => {
+    try {
+      await NotificationService.markAsRead(id);
+      setNotifications(prev => 
+        prev.map(notification => 
+          notification.id === id 
+            ? { ...notification, read: true }
+            : notification
+        )
+      );
+    } catch (err) {
+      setError(handleApiError(err));
+    }
   };
 
-  const handleDelete = (id: string) => {
-    setNotifications(prev => prev.filter(notification => notification.id !== id));
+  const handleMarkAllAsRead = async () => {
+    try {
+      await NotificationService.markAllAsRead();
+      setNotifications(prev => 
+        prev.map(notification => ({ ...notification, read: true }))
+      );
+    } catch (err) {
+      setError(handleApiError(err));
+    }
   };
 
   const unreadCount = notifications.filter(n => !n.read).length;
 
+  const getNotificationIcon = (type: Notification['type']) => {
+    switch (type) {
+      case 'warning':
+        return AlertTriangle;
+      case 'success':
+        return CheckCircle;
+      case 'info':
+        return Info;
+      case 'error':
+        return AlertTriangle;
+      default:
+        return Bell;
+    }
+  };
+
+  const getNotificationColor = (type: Notification['type']) => {
+    switch (type) {
+      case 'warning':
+        return 'text-orange-600 bg-orange-100 dark:bg-orange-900/30';
+      case 'success':
+        return 'text-green-600 bg-green-100 dark:bg-green-900/30';
+      case 'info':
+        return 'text-blue-600 bg-blue-100 dark:bg-blue-900/30';
+      case 'error':
+        return 'text-red-600 bg-red-100 dark:bg-red-900/30';
+      default:
+        return 'text-gray-600 bg-gray-100 dark:bg-gray-900/30';
+    }
+  };
+
+  const formatTimestamp = (createdAt: string) => {
+    const date = new Date(createdAt);
+    const now = new Date();
+    const diffMinutes = Math.floor((now.getTime() - date.getTime()) / (1000 * 60));
+    
+    if (diffMinutes < 1) return 'Just now';
+    if (diffMinutes < 60) return `${diffMinutes}m ago`;
+    
+    const diffHours = Math.floor(diffMinutes / 60);
+    if (diffHours < 24) return `${diffHours}h ago`;
+    
+    const diffDays = Math.floor(diffHours / 24);
+    return `${diffDays}d ago`;
+  };
+
   return (
-    <Popover>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
-        {children}
+        <Button variant="outline" size="icon" className="relative">
+          <Bell className="h-4 w-4" />
+          {unreadCount > 0 && (
+            <Badge
+              variant="destructive"
+              className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs"
+            >
+              {unreadCount > 99 ? '99+' : unreadCount}
+            </Badge>
+          )}
+        </Button>
       </PopoverTrigger>
-      <PopoverContent 
-        className="w-96 p-0" 
-        align="end" 
-        sideOffset={8}
-      >
+
+      <PopoverContent className="w-80 p-0" align="end">
         <div className="flex items-center justify-between p-4 border-b">
+          <h3 className="font-semibold">Notifications</h3>
           <div className="flex items-center space-x-2">
-            <Bell className="h-5 w-5" />
-            <h3 className="font-semibold">Notifications</h3>
-            {unreadCount > 0 && (
-              <Badge variant="destructive" className="text-xs">
-                {unreadCount}
-              </Badge>
-            )}
-          </div>
-          <div className="flex items-center space-x-1">
             {unreadCount > 0 && (
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={handleMarkAllAsRead}
-                className="text-xs h-8 px-2"
+                className="text-xs"
               >
-                <Check className="h-3 w-3 mr-1" />
                 Mark all read
               </Button>
             )}
-            <Button
-              variant="ghost"
-              size="sm"
-              className="h-8 w-8 p-0"
-            >
-              <Settings className="h-3 w-3" />
+            <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)}>
+              <X className="h-4 w-4" />
             </Button>
           </div>
         </div>
 
+        {error && (
+          <div className="p-4 border-b">
+            <div className="text-sm text-red-600 bg-red-50 dark:bg-red-900/20 p-2 rounded">
+              {error}
+            </div>
+          </div>
+        )}
+
         <ScrollArea className="h-96">
-          <div className="p-2">
-            {notifications.length === 0 ? (
-              <div className="flex flex-col items-center justify-center py-8 text-center">
-                <Bell className="h-12 w-12 text-muted-foreground mb-2" />
-                <p className="text-muted-foreground">No notifications</p>
-                <p className="text-xs text-muted-foreground">
-                  You're all caught up!
-                </p>
-              </div>
-            ) : (
-              <div className="space-y-1">
-                {notifications.map((notification, index) => {
-                  const Icon = getNotificationIcon(notification.type);
-                  const colorClass = getNotificationColor(notification.type);
-                  
-                  return (
-                    <motion.div
-                      key={notification.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.05 }}
-                      className={`group relative flex items-start space-x-3 p-3 rounded-lg hover:bg-muted/50 transition-colors ${
-                        !notification.read ? 'bg-muted/30' : ''
-                      }`}
-                    >
-                      <div className={`p-2 rounded-lg ${colorClass} shrink-0`}>
+          {loading ? (
+            <div className="flex items-center justify-center py-8">
+              <Loader2 className="h-6 w-6 animate-spin" />
+              <span className="ml-2 text-sm text-muted-foreground">
+                Loading notifications...
+              </span>
+            </div>
+          ) : notifications.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-8 text-center">
+              <Bell className="h-8 w-8 text-muted-foreground mb-2" />
+              <p className="text-sm text-muted-foreground">No notifications</p>
+            </div>
+          ) : (
+            <div className="divide-y">
+              {notifications.map((notification) => {
+                const Icon = getNotificationIcon(notification.type);
+                const colorClass = getNotificationColor(notification.type);
+
+                return (
+                  <motion.div
+                    key={notification.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className={`p-4 hover:bg-muted/50 cursor-pointer ${
+                      !notification.read ? 'bg-blue-50/50 dark:bg-blue-900/10' : ''
+                    }`}
+                    onClick={() => !notification.read && handleMarkAsRead(notification.id)}
+                  >
+                    <div className="flex items-start space-x-3">
+                      <div className={`rounded-full p-2 ${colorClass}`}>
                         <Icon className="h-4 w-4" />
                       </div>
                       
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between">
-                          <div className="space-y-1">
-                            <div className="flex items-center space-x-2">
-                              <h4 className="text-sm font-medium">
-                                {notification.title}
-                              </h4>
-                              {!notification.read && (
-                                <div className="h-2 w-2 rounded-full bg-primary" />
-                              )}
-                              <Badge 
-                                variant={getPriorityVariant(notification.priority)} 
-                                className="text-xs"
+                        <div className="flex items-center justify-between">
+                          <p className="text-sm font-medium text-foreground line-clamp-1">
+                            {notification.title}
+                          </p>
+                          {!notification.read && (
+                            <div className="h-2 w-2 bg-blue-600 rounded-full ml-2" />
+                          )}
+                        </div>
+                        
+                        <p className="text-sm text-muted-foreground line-clamp-2 mt-1">
+                          {notification.message}
+                        </p>
+                        
+                        <div className="flex items-center justify-between mt-2">
+                          <div className="flex items-center text-xs text-muted-foreground">
+                            <Clock className="h-3 w-3 mr-1" />
+                            {formatTimestamp(notification.createdAt)}
+                          </div>
+                          
+                          <div className="flex items-center space-x-1">
+                            {notification.actionUrl && (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="h-6 px-2 text-xs"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  window.open(notification.actionUrl, '_blank');
+                                }}
                               >
-                                {notification.priority}
-                              </Badge>
-                            </div>
-                            <p className="text-sm text-muted-foreground">
-                              {notification.message}
-                            </p>
-                            <p className="text-xs text-muted-foreground">
-                              {notification.timestamp}
-                            </p>
+                                <ExternalLink className="h-3 w-3 mr-1" />
+                                View
+                              </Button>
+                            )}
+                            
+                            {!notification.read && (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="h-6 px-2 text-xs"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleMarkAsRead(notification.id);
+                                }}
+                              >
+                                <Check className="h-3 w-3" />
+                              </Button>
+                            )}
                           </div>
                         </div>
                       </div>
-
-                      <div className="flex items-center space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                        {!notification.read && (
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleMarkAsRead(notification.id)}
-                            className="h-8 w-8 p-0"
-                          >
-                            <Eye className="h-3 w-3" />
-                          </Button>
-                        )}
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleDelete(notification.id)}
-                          className="h-8 w-8 p-0 text-destructive hover:text-destructive"
-                        >
-                          <X className="h-3 w-3" />
-                        </Button>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          )}
         </ScrollArea>
 
-        <Separator />
-        <div className="p-3">
-          <Button variant="outline" className="w-full text-sm">
-            View all notifications
-          </Button>
-        </div>
+        {notifications.length > 0 && (
+          <div className="p-4 border-t">
+            <Button
+              variant="ghost"
+              className="w-full text-sm"
+              onClick={() => {
+                setIsOpen(false);
+                // Navigate to notifications page
+                window.location.href = '/dashboard/notifications';
+              }}
+            >
+              View all notifications
+            </Button>
+          </div>
+        )}
       </PopoverContent>
     </Popover>
   );
