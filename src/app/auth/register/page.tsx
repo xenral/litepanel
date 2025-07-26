@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { 
   Form, 
@@ -175,7 +174,6 @@ export default function RegisterPage() {
               </Link>
             </span>
           }
-          required
         />
 
         <FormSuccess message={success} show={!!success} />

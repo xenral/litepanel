@@ -91,6 +91,9 @@ web_modules/
 # Optional npm cache directory
 .npm
 
+# Cursor rules
+.cursor/
+
 # Optional eslint cache
 .eslintcache
 
