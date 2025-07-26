@@ -199,7 +199,6 @@ export function RevenueAnalytics() {
                   data={monthlyRevenueData}
                   xAxisKey="month"
                   areaKey="revenue"
-                  showGrid
                 />
               </div>
             </CardContent>
