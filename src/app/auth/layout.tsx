@@ -29,7 +29,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
                 "The most comprehensive admin template with advanced theming
                 capabilities and modern architecture."
               </p>
-              <footer className="text-sm">LiteControl Team</footer>
+              <footer className="text-sm">Ali Morshedzadeh</footer>
             </blockquote>
           </div>
         </div>

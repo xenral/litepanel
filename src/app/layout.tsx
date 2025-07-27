@@ -30,11 +30,11 @@ export const metadata: Metadata = {
   ],
   authors: [
     {
-      name: 'LiteControl Team',
+      name: 'Ali Morshedzadeh',
       url: 'https://github.com/xenral/litepanel',
     },
   ],
-  creator: 'LiteControl Team',
+  creator: 'Ali Morshedzadeh',
   openGraph: {
     type: 'website',
     locale: 'en_US',
