@@ -218,7 +218,7 @@ export function CodeSnippetShowcase() {
           </h2>
           
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Explore the high-quality, well-documented code that powers ThemeCraft Admin. 
+            Explore the high-quality, well-documented code that powers LiteControl Admin. 
             Every component is crafted with TypeScript, accessibility, and maintainability in mind.
           </p>
         </motion.div>

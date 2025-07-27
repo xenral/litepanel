@@ -29,9 +29,9 @@ export function ThemeDebug() {
 
   const handleReset = () => {
     // Clear all theme-related localStorage
-    localStorage.removeItem('themecraft-theme-storage');
-    localStorage.removeItem('themecraft-theme');
-    localStorage.removeItem('themecraft-customization');
+    localStorage.removeItem('litecontrol-theme-storage');
+    localStorage.removeItem('litecontrol-theme');
+    localStorage.removeItem('litecontrol-customization');
     
     // Reload page to start fresh
     window.location.reload();

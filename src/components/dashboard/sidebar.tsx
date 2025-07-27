@@ -208,7 +208,7 @@ export function Sidebar({ isCollapsed, onToggleCollapse, className }: SidebarPro
                 <Palette className="h-5 w-5 text-primary-foreground" />
               </div>
               <div className="flex flex-col">
-                <span className="text-sm font-semibold">ThemeCraft</span>
+                <span className="text-sm font-semibold">LiteControl</span>
                 <span className="text-xs text-muted-foreground">Admin</span>
               </div>
             </motion.div>
@@ -484,7 +484,7 @@ export function Sidebar({ isCollapsed, onToggleCollapse, className }: SidebarPro
               transition={{ duration: 0.2 }}
               className="text-center text-xs text-muted-foreground"
             >
-              <div className="mb-1">ThemeCraft Admin</div>
+              <div className="mb-1">LiteControl Admin</div>
               <div className="text-[10px]">v0.1.0</div>
             </motion.div>
           )}

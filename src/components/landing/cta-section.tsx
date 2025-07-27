@@ -57,7 +57,7 @@ const deploymentOptions = [
     name: 'Vercel',
     description: 'Deploy with zero configuration',
     icon: '▲',
-    url: 'https://vercel.com/new/clone?repository-url=https://github.com/yourusername/themecraft-admin',
+          url: 'https://vercel.com/new/clone?repository-url=https://github.com/xenral/litepanel',
     color: 'bg-black text-white hover:bg-gray-800',
     primary: true
   },
@@ -65,14 +65,14 @@ const deploymentOptions = [
     name: 'Netlify',
     description: 'One-click deployment',
     icon: '◆',
-    url: 'https://app.netlify.com/start/deploy?repository=https://github.com/yourusername/themecraft-admin',
+          url: 'https://app.netlify.com/start/deploy?repository=https://github.com/xenral/litepanel',
     color: 'bg-teal-600 text-white hover:bg-teal-700'
   },
   {
     name: 'Railway',
     description: 'Deploy from GitHub',
     icon: '🚂',
-    url: 'https://railway.app/new/template?template=https://github.com/yourusername/themecraft-admin',
+          url: 'https://railway.app/new/template?template=https://github.com/xenral/litepanel',
     color: 'bg-purple-600 text-white hover:bg-purple-700'
   }
 ];
@@ -139,7 +139,7 @@ export function CTASection() {
           </h2>
           
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Join thousands of developers who trust ThemeCraft Admin for their projects. 
+            Join thousands of developers who trust LiteControl Admin for their projects. 
             Get started in minutes with our comprehensive documentation and examples.
           </p>
 
@@ -159,7 +159,7 @@ export function CTASection() {
               size="lg" 
               className="flex items-center space-x-2 min-w-[200px]"
             >
-              <Link href="https://github.com/yourusername/themecraft-admin" target="_blank">
+                             <Link href="https://github.com/xenral/litepanel" target="_blank">
                 <Github className="h-5 w-5" />
                 <span>View on GitHub</span>
                 {githubStars && (
@@ -298,7 +298,7 @@ export function CTASection() {
             </div>
             
             <p className="max-w-2xl mx-auto">
-              ThemeCraft Admin is built with modern tools and best practices. 
+              LiteControl Admin is built with modern tools and best practices. 
               Start with our template and customize it to fit your unique needs. 
               No vendor lock-in, no subscriptions, just great code.
             </p>

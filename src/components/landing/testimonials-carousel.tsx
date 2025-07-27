@@ -25,9 +25,9 @@ const testimonials = [
     id: 1,
     name: 'Sarah Chen',
     role: 'Senior Frontend Developer',
-    company: 'TechCorp Inc',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face',
-    content: 'ThemeCraft Admin has completely transformed how we build admin interfaces. The theme system is incredibly flexible, and the TypeScript support is top-notch. Our development velocity has increased by 40%.',
+    company: 'TechFlow Inc.',
+    avatar: '/avatars/sarah.jpg',
+    content: 'LiteControl Admin has completely transformed how we build admin interfaces. The theme system is incredibly flexible, and the TypeScript support is top-notch. Our development velocity has increased by 40%.',
     rating: 5,
     social: {
       twitter: '@sarahchen',
@@ -38,10 +38,10 @@ const testimonials = [
   {
     id: 2,
     name: 'Marcus Rodriguez',
-    role: 'Lead Product Designer',
-    company: 'Design Studio Pro',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face',
-    content: 'The attention to detail in the theme system is remarkable. Each theme feels carefully crafted, and the accessibility features are outstanding. This is exactly what modern admin templates should be.',
+    role: 'CTO',
+    company: 'StartupLabs',
+    avatar: '/avatars/marcus.jpg',
+    content: 'Setting up our admin dashboard used to take weeks. With LiteControl Admin, we had a production-ready interface in just a few days. The component library is extensive and well-documented.',
     rating: 5,
     social: {
       linkedin: 'marcus-rodriguez',
@@ -154,7 +154,7 @@ export function TestimonialsCarousel() {
           </h2>
           
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            See what developers and designers are saying about ThemeCraft Admin. 
+            See what developers and designers are saying about LiteControl Admin. 
             Join thousands of professionals who trust our template for their projects.
           </p>
         </motion.div>

@@ -7,7 +7,7 @@ test.describe('Landing Page', () => {
 
   test('should load and display hero section', async ({ page }) => {
     // Check if the hero section loads
-    await expect(page.locator('h1')).toContainText('ThemeCraft Admin');
+    await expect(page.locator('h1')).toContainText('LiteControl Admin');
     
     // Check if the tagline is visible
     await expect(page.locator('text=A fully-typed')).toBeVisible();
@@ -44,7 +44,7 @@ test.describe('Landing Page', () => {
 
   test('should have proper meta tags', async ({ page }) => {
     // Check title
-    await expect(page).toHaveTitle(/ThemeCraft Admin/);
+    await expect(page).toHaveTitle(/LiteControl Admin/);
     
     // Check meta description
     const metaDescription = page.locator('meta[name="description"]');

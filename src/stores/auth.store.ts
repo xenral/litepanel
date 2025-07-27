@@ -48,7 +48,7 @@ export const useAuthStore = create<AuthStore>()(
         }),
     }),
     {
-      name: 'themecraft-auth-storage',
+      name: 'litecontrol-auth-storage',
       partialize: (state) => ({
         token: state.token,
         user: state.user,

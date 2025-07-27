@@ -13,9 +13,9 @@ export const themeUtils = {
     const { setTheme, setIsDark, resetCustomization } = useThemeStore.getState();
     
     // Clear localStorage to prevent conflicts
-    localStorage.removeItem('themecraft-theme-storage');
-    localStorage.removeItem('themecraft-theme');
-    localStorage.removeItem('themecraft-customization');
+    localStorage.removeItem('litecontrol-theme-storage');
+    localStorage.removeItem('litecontrol-theme');
+    localStorage.removeItem('litecontrol-customization');
     
     setTheme('neutral-pro');
     setIsDark(true);

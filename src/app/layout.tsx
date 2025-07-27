@@ -11,10 +11,10 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://themecraft-admin.vercel.app'),
+  metadataBase: new URL('https://litepanel.vercel.app'),
   title: {
-    default: 'ThemeCraft Admin - Next.js Admin Dashboard Template',
-    template: '%s | ThemeCraft Admin',
+    default: 'LiteControl Admin - Next.js Admin Dashboard Template',
+    template: '%s | LiteControl Admin',
   },
   description: 'A fully-typed Next.js 15 admin template with hot-swappable themes, built with TypeScript, Tailwind CSS, and shadcn/ui components.',
   keywords: [
@@ -29,30 +29,30 @@ export const metadata: Metadata = {
   ],
   authors: [
     {
-      name: 'ThemeCraft Team',
-      url: 'https://github.com/yourusername/themecraft-admin',
+      name: 'LiteControl Team',
+      url: 'https://github.com/xenral/litepanel',
     },
   ],
-  creator: 'ThemeCraft Team',
+  creator: 'LiteControl Team',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://themecraft-admin.vercel.app',
-    title: 'ThemeCraft Admin - Next.js Admin Dashboard Template',
-    description: 'A fully-typed Next.js 15 admin template with hot-swappable themes',
-    siteName: 'ThemeCraft Admin',
+    url: 'https://litepanel.vercel.app',
+    title: 'LiteControl Admin - Next.js Admin Dashboard Template',
+    description: 'A modern, fully-customizable admin dashboard template with hot-swappable themes.',
+    siteName: 'LiteControl Admin',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'ThemeCraft Admin',
+        alt: 'LiteControl Admin',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ThemeCraft Admin - Next.js Admin Dashboard Template',
+    title: 'LiteControl Admin - Next.js Admin Dashboard Template',
     description: 'A fully-typed Next.js 15 admin template with hot-swappable themes',
     images: ['/og-image.png'],
     creator: '@yourusername',

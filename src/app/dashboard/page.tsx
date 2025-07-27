@@ -38,8 +38,8 @@ import {
 } from '@/data/dashboard';
 
 export const metadata: Metadata = {
-  title: 'Dashboard | ThemeCraft',
-  description: 'Overview of your ThemeCraft dashboard with analytics and insights.',
+  title: 'Dashboard | LiteControl',
+  description: 'Overview of your LiteControl dashboard with analytics and insights.',
 };
 
 export default function DashboardPage() {

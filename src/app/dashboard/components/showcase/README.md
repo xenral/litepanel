@@ -1,6 +1,6 @@
-# Enhanced UI Components Showcase
+# Component Showcase
 
-This page demonstrates all the enhanced UI components and fixes that have been added to the ThemeCraft project.
+This page demonstrates all the enhanced UI components and fixes that have been added to the LiteControl project.
 
 ## 🎯 Issues Fixed
 

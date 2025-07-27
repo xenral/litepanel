@@ -43,8 +43,8 @@ import {
 } from '@/data/docs';
 
 export const metadata: Metadata = {
-  title: 'Documentation | ThemeCraft',
-  description: 'Comprehensive documentation for ThemeCraft components and APIs.',
+  title: 'Documentation | LiteControl',
+  description: 'Comprehensive documentation for LiteControl components and APIs.',
 };
 
 export default function DocsPage() {

@@ -173,7 +173,7 @@ export const getPageMetadata = (pathname: string) => {
 
   return routeMetadata[pathname] || {
     title: 'Dashboard',
-    description: 'ThemeCraft Admin Dashboard',
+    description: 'LiteControl Admin Dashboard',
   };
 };
 

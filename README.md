@@ -1,10 +1,12 @@
-# 🎨 ThemeCraft Admin
+# 🎨 LiteControl Admin
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![Next.js](https://img.shields.io/badge/Next.js-15.4-black)](https://nextjs.org/)
+A modern, fully-customizable Next.js 15 admin dashboard template with **hot-swappable themes**, built with TypeScript, Tailwind CSS, and shadcn/ui components.
+
+[![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC)](https://tailwindcss.com/)
-[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen)](https://github.com/yourusername/themecraft-admin)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8)](https://tailwindcss.com/)
+[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen)](https://github.com/xenral/litepanel)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 > **🚀 Production-Ready Admin Template** - Not just examples, but **real implementations** with working authentication, forms, API integration, and more!
 
@@ -33,8 +35,8 @@ A **fully functional Next.js 15 admin dashboard** with hot-swappable themes, com
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/themecraft-admin.git
-cd themecraft-admin
+git clone https://github.com/xenral/litepanel.git
+cd litepanel
 
 # Install dependencies
 npm install
@@ -136,7 +138,7 @@ const notifications = await NotificationService.getNotifications();
 ## 📁 Project Structure
 
 ```
-themecraft-admin/
+litecontrol-admin/
 ├── 🔐 src/app/auth/                # Authentication System
 │   ├── login/page.tsx              # ✅ Login with validation
 │   ├── register/page.tsx           # ✅ Registration form
@@ -276,11 +278,11 @@ const recentActivity = await DashboardService.getRecentActivity();
 
 ---
 
-## 🚀 Deployment
+## 🚢 Deployment
 
-### **Deploy to Vercel** *(Recommended)*
+### One-Click Deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/themecraft-admin)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/xenral/litepanel)
 
 1. Connect GitHub repository to Vercel
 2. Deploy with zero configuration
@@ -303,7 +305,7 @@ npm run build
 npm start
 
 # Or with PM2
-pm2 start npm --name "themecraft" -- start
+pm2 start npm --name "litecontrol" -- start
 ```
 
 ---
@@ -393,8 +395,8 @@ We welcome contributions! Here's how to get started:
 
 1. **Fork & Clone**
    ```bash
-   git clone https://github.com/yourusername/themecraft-admin.git
-   cd themecraft-admin
+   git clone https://github.com/xenral/litepanel.git
+   cd litepanel
    npm install
    ```
 
@@ -486,13 +488,13 @@ See [LICENSE](./LICENSE) for full details.
 
 ---
 
-## 🔗 Links & Resources
+## 🔗 Links
 
-- 🌐 **[Live Demo](https://themecraft-admin.vercel.app)** - See it in action
-- 📚 **[Storybook](https://themecraft-admin.vercel.app/storybook)** - Component library
-- 🐙 **[GitHub](https://github.com/yourusername/themecraft-admin)** - Source code
-- 🐛 **[Issues](https://github.com/yourusername/themecraft-admin/issues)** - Bug reports & features
-- 💬 **[Discussions](https://github.com/yourusername/themecraft-admin/discussions)** - Community
+- 🌐 **[Live Demo](https://litepanel.vercel.app)** - See it in action
+- 📚 **[Storybook](https://litepanel.vercel.app/storybook)** - Component library
+- 🐙 **[GitHub](https://github.com/xenral/litepanel)** - Source code
+- 🐛 **[Issues](https://github.com/xenral/litepanel/issues)** - Bug reports & features
+- 💬 **[Discussions](https://github.com/xenral/litepanel/discussions)** - Community
 
 ---
 
@@ -500,7 +502,7 @@ See [LICENSE](./LICENSE) for full details.
 
 ### 🚀 Ready to build something amazing?
 
-**[⭐ Star on GitHub](https://github.com/yourusername/themecraft-admin)** • **[🚀 Deploy Now](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/themecraft-admin)** • **[💬 Join Community](https://discord.gg/themecraft)**
+**[⭐ Star on GitHub](https://github.com/xenral/litepanel)** • **[🚀 Deploy Now](https://vercel.com/new/clone?repository-url=https://github.com/xenral/litepanel)** • **[💬 Join Community](https://discord.gg/litecontrol)**
 
 **Built with ❤️ for the developer community**
 

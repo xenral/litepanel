@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
-  title: 'Authentication | ThemeCraft',
-  description: 'Sign in to your ThemeCraft dashboard',
+  title: 'Authentication | LiteControl',
+  description: 'Sign in to your LiteControl dashboard',
 };
 
 interface AuthLayoutProps {
@@ -21,14 +21,14 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
             <div className="mr-2 h-6 w-6 rounded bg-white/20 flex items-center justify-center">
               <div className="h-3 w-3 rounded bg-white" />
             </div>
-            ThemeCraft
+            LiteControl
           </div>
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2">
               <p className="text-lg">
                 "The most comprehensive admin template with advanced theming capabilities and modern architecture."
               </p>
-              <footer className="text-sm">ThemeCraft Team</footer>
+              <footer className="text-sm">LiteControl Team</footer>
             </blockquote>
           </div>
         </div>

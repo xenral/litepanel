@@ -7,12 +7,12 @@ import { TestimonialsCarousel } from '@/components/landing/testimonials-carousel
 import { CTASection } from '@/components/landing/cta-section';
 
 export const metadata: Metadata = {
-  title: 'ThemeCraft Admin - Next.js Admin Dashboard Template',
+  title: 'LiteControl Admin - Next.js Admin Dashboard Template',
   description: 'A fully-typed Next.js 15 admin template with hot-swappable themes, built with TypeScript, Tailwind CSS, and shadcn/ui components.',
 };
 
 /**
- * Landing page component showcasing the ThemeCraft Admin template
+ * Landing page component showcasing the LiteControl Admin template
  * Features hero section, theme preview, features, code examples, testimonials, and CTA
  */
 export default function LandingPage() {

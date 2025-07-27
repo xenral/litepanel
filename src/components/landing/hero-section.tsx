@@ -74,7 +74,7 @@ export function HeroSection() {
               <span className="text-2xl font-bold text-primary-foreground">T</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-gradient">
-              ThemeCraft Admin
+              LiteControl Admin
             </h1>
           </motion.div>
 
@@ -151,7 +151,7 @@ export function HeroSection() {
               size="lg"
               className="text-lg px-8 py-6 rounded-xl group"
             >
-              <Link href="https://github.com/yourusername/themecraft-admin" target="_blank">
+              <Link href="https://github.com/xenral/litepanel" target="_blank">
                 <Github className="mr-2 w-5 h-5" />
                 View on GitHub
                 <ExternalLink className="ml-2 w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />

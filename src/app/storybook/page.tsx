@@ -32,8 +32,8 @@ import {
 } from '@/data/storybook';
 
 export const metadata: Metadata = {
-  title: 'Storybook | ThemeCraft',
-  description: 'Interactive component documentation and testing environment.',
+  title: 'Storybook | LiteControl',
+  description: 'Interactive component library and design system documentation.',
 };
 
 export default function StorybookPage() {

@@ -8,6 +8,7 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
+  VisuallyHidden,
 } from '@/components/ui/dialog';
 import {
   Card,
@@ -139,6 +140,9 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden">
+          <VisuallyHidden>
+            <DialogTitle>Loading User Settings</DialogTitle>
+          </VisuallyHidden>
           <div className="flex items-center justify-center py-12">
             <Loader2 className="h-8 w-8 animate-spin" />
             <span className="ml-2">Loading user settings...</span>

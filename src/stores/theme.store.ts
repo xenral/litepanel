@@ -68,7 +68,7 @@ export const useThemeStore = create<ThemeStore>()(
       setHasHydrated: (hasHydrated) => set({ _hasHydrated: hasHydrated }),
     }),
     {
-      name: 'themecraft-theme-storage',
+      name: 'litecontrol-theme-storage',
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         theme: LOCKED_THEME, // Always save neutral-pro
