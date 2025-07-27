@@ -2,46 +2,42 @@
 
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Palette, Check, Monitor, Moon, Sun } from 'lucide-react';
+import { Palette, Check, Monitor, Moon, Sun, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { useThemeContext } from '@/context/theme-context';
-import { getAllThemes } from '@/lib/themes';
-import type { ThemeName } from '@/types/theme';
+import { getThemeConfig } from '@/lib/themes';
 
 /**
- * Mock component for theme preview
+ * Current theme preview card - showing only Neutral Pro
  */
-function ThemePreviewCard({ themeName, isActive }: { themeName: ThemeName; isActive: boolean }) {
-  const themes = getAllThemes();
-  const theme = themes.find(t => t.id === themeName);
+function CurrentThemePreviewCard({ isDark }: { isDark: boolean }) {
+  const theme = getThemeConfig('neutral-pro');
   
-  if (!theme) return null;
-
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
       className={cn(
-        'relative rounded-lg border-2 p-4 cursor-pointer transition-all',
-        isActive
-          ? 'border-primary shadow-lg ring-2 ring-primary/20'
-          : 'border-border hover:border-primary/50 hover:shadow-md'
+        'relative rounded-lg border-2 p-6 transition-all',
+        'border-primary shadow-lg ring-2 ring-primary/20'
       )}
       style={{
-        backgroundColor: theme.preview.background,
-        borderColor: isActive ? theme.preview.primary : undefined,
+        backgroundColor: isDark ? theme.cssVars.dark['--background'] : theme.cssVars.light['--background'],
       }}
     >
       {/* Theme Preview UI Elements */}
-      <div className="space-y-3">
+      <div className="space-y-4">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div
-            className="h-3 w-3 rounded-full"
-            style={{ backgroundColor: theme.preview.primary }}
+            className="h-4 w-4 rounded-full"
+            style={{ 
+              backgroundColor: isDark 
+                ? `hsl(${theme.cssVars.dark['--primary']})`
+                : `hsl(${theme.cssVars.light['--primary']})` 
+            }}
           />
           <div className="flex space-x-1">
             <div className="h-2 w-2 rounded-full bg-current opacity-40" />
@@ -51,25 +47,31 @@ function ThemePreviewCard({ themeName, isActive }: { themeName: ThemeName; isAct
         </div>
 
         {/* Content Area */}
-        <div className="space-y-2">
+        <div className="space-y-3">
           <div
-            className="h-2 w-full rounded"
+            className="h-3 w-full rounded"
             style={{
-              backgroundColor: theme.preview.primary,
+              backgroundColor: isDark 
+                ? `hsl(${theme.cssVars.dark['--primary']})`
+                : `hsl(${theme.cssVars.light['--primary']})`,
               opacity: 0.8,
             }}
           />
           <div
-            className="h-2 w-3/4 rounded"
+            className="h-3 w-3/4 rounded"
             style={{
-              backgroundColor: theme.preview.secondary,
+              backgroundColor: isDark 
+                ? `hsl(${theme.cssVars.dark['--secondary']})`
+                : `hsl(${theme.cssVars.light['--secondary']})`,
               opacity: 0.6,
             }}
           />
           <div
-            className="h-2 w-1/2 rounded"
+            className="h-3 w-1/2 rounded"
             style={{
-              backgroundColor: theme.preview.secondary,
+              backgroundColor: isDark 
+                ? `hsl(${theme.cssVars.dark['--muted']})`
+                : `hsl(${theme.cssVars.light['--muted']})`,
               opacity: 0.4,
             }}
           />
@@ -78,16 +80,24 @@ function ThemePreviewCard({ themeName, isActive }: { themeName: ThemeName; isAct
         {/* Button Area */}
         <div className="flex space-x-2">
           <div
-            className="h-6 w-16 rounded text-xs flex items-center justify-center text-white font-medium"
-            style={{ backgroundColor: theme.preview.primary }}
+            className="h-8 w-20 rounded text-xs flex items-center justify-center text-white font-medium"
+            style={{ 
+              backgroundColor: isDark 
+                ? `hsl(${theme.cssVars.dark['--primary']})`
+                : `hsl(${theme.cssVars.light['--primary']})` 
+            }}
           >
             Button
           </div>
           <div
-            className="h-6 w-16 rounded border text-xs flex items-center justify-center font-medium"
+            className="h-8 w-20 rounded border text-xs flex items-center justify-center font-medium"
             style={{
-              borderColor: theme.preview.primary,
-              color: theme.preview.primary,
+              borderColor: isDark 
+                ? `hsl(${theme.cssVars.dark['--primary']})`
+                : `hsl(${theme.cssVars.light['--primary']})`,
+              color: isDark 
+                ? `hsl(${theme.cssVars.dark['--primary']})`
+                : `hsl(${theme.cssVars.light['--primary']})`,
             }}
           >
             Outline
@@ -96,24 +106,73 @@ function ThemePreviewCard({ themeName, isActive }: { themeName: ThemeName; isAct
       </div>
 
       {/* Active Indicator */}
-      <AnimatePresence>
-        {isActive && (
-          <motion.div
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 0 }}
-            className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center"
-          >
-            <Check className="h-3 w-3" />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <motion.div
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center"
+      >
+        <Check className="h-3 w-3" />
+      </motion.div>
 
       {/* Theme Name */}
-      <div className="mt-3 text-center">
+      <div className="mt-4 text-center">
         <div className="text-sm font-medium">{theme.name}</div>
         <div className="text-xs text-muted-foreground mt-1">
-          {theme.description}
+          {isDark ? 'Dark Mode' : 'Light Mode'}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/**
+ * Coming soon theme cards
+ */
+function ComingSoonThemeCard({ name, description }: { name: string; description: string }) {
+  return (
+    <motion.div
+      whileHover={{ scale: 1.01 }}
+      className={cn(
+        'relative rounded-lg border-2 p-6 transition-all opacity-60',
+        'border-dashed border-border'
+      )}
+    >
+      {/* Coming Soon Preview */}
+      <div className="space-y-4">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div className="h-4 w-4 rounded-full bg-muted" />
+          <div className="flex space-x-1">
+            <div className="h-2 w-2 rounded-full bg-muted" />
+            <div className="h-2 w-2 rounded-full bg-muted" />
+            <div className="h-2 w-2 rounded-full bg-muted" />
+          </div>
+        </div>
+
+        {/* Content Area */}
+        <div className="space-y-3">
+          <div className="h-3 w-full rounded bg-muted" />
+          <div className="h-3 w-3/4 rounded bg-muted/70" />
+          <div className="h-3 w-1/2 rounded bg-muted/50" />
+        </div>
+
+        {/* Button Area */}
+        <div className="flex space-x-2">
+          <div className="h-8 w-20 rounded bg-muted" />
+          <div className="h-8 w-20 rounded border border-muted" />
+        </div>
+      </div>
+
+      {/* Coming Soon Badge */}
+      <div className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-muted text-muted-foreground flex items-center justify-center">
+        <Clock className="h-3 w-3" />
+      </div>
+
+      {/* Theme Name */}
+      <div className="mt-4 text-center">
+        <div className="text-sm font-medium text-muted-foreground">{name}</div>
+        <div className="text-xs text-muted-foreground mt-1">
+          {description}
         </div>
       </div>
     </motion.div>
@@ -127,8 +186,7 @@ export function ThemeSwitcherPreview() {
   const [mounted, setMounted] = React.useState(false);
   
   // Always call hooks at the top level
-  const { theme, setTheme, isDark, toggleDarkMode } = useThemeContext();
-  const themes = getAllThemes();
+  const { isDark, toggleDarkMode } = useThemeContext();
   
   React.useEffect(() => {
     setMounted(true);
@@ -148,7 +206,7 @@ export function ThemeSwitcherPreview() {
             </div>
             
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Hot-Swappable Themes
+              Beautiful Theme System
             </h2>
             
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
@@ -178,13 +236,13 @@ export function ThemeSwitcherPreview() {
           </div>
           
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Hot-Swappable Themes
+            Beautiful Theme System
           </h2>
           
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-8">
-            Switch between beautiful, carefully crafted themes instantly. Each theme 
-            includes light and dark modes with full accessibility support and custom 
-            CSS variables for easy customization.
+            Experience the clean, professional Neutral Pro theme with seamless 
+            dark and light modes. More exciting themes coming soon with full 
+            accessibility support and custom CSS variables.
           </p>
 
           {/* Dark Mode Toggle */}
@@ -219,21 +277,40 @@ export function ThemeSwitcherPreview() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
         >
-          {themes.map((themeConfig, index) => (
-            <motion.div
-              key={themeConfig.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 * index }}
-              onClick={() => setTheme(themeConfig.id)}
-            >
-              <ThemePreviewCard
-                themeName={themeConfig.id}
-                isActive={theme === themeConfig.id}
-              />
-            </motion.div>
-          ))}
+          {/* Current Theme */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <CurrentThemePreviewCard isDark={isDark} />
+          </motion.div>
+
+          {/* Coming Soon Themes */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <ComingSoonThemeCard 
+              name="Playful Pastel" 
+              description="Soft colors & rounded corners"
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <ComingSoonThemeCard 
+              name="High Contrast" 
+              description="Maximum accessibility"
+            />
+          </motion.div>
         </motion.div>
 
         {/* Features List */}
@@ -284,9 +361,26 @@ export function ThemeSwitcherPreview() {
           className="mt-8 flex justify-center"
         >
           <Badge variant="outline" className="text-sm px-4 py-2">
-            Currently using: {themes.find(t => t.id === theme)?.name} 
-            {isDark ? ' (Dark)' : ' (Light)'}
+            Currently using: Neutral Pro {isDark ? '(Dark)' : '(Light)'}
           </Badge>
+        </motion.div>
+
+        {/* Coming Soon Notice */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="mt-12 text-center"
+        >
+          <div className="flex items-center justify-center space-x-2 text-muted-foreground mb-2">
+            <Clock className="h-4 w-4" />
+            <span className="text-sm font-medium">More themes coming soon</span>
+          </div>
+          <p className="text-xs text-muted-foreground max-w-md mx-auto">
+            We're working on additional beautiful themes including custom theme builder. 
+            Stay tuned for updates!
+          </p>
         </motion.div>
       </div>
     </section>
