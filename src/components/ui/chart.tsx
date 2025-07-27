@@ -48,7 +48,7 @@ interface ChartProps {
   title?: string;
   description?: string;
   className?: string;
-  children: React.ReactNode;
+  children: React.ReactElement;
 }
 
 export function ChartContainer({
