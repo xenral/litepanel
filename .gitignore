@@ -252,5 +252,5 @@ Thumbs.db
 *.bak
 *.backup
 
-# Lock files (keep yarn.lock but ignore others)
-package-lock.json 
+# Lock files (keep all lock files for reproducible builds)
+# package-lock.json - now tracked for consistent installs 
