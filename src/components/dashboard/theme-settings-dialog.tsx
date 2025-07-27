@@ -24,17 +24,17 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useThemeContext } from '@/context/theme-context';
-import { getAllThemes } from '@/lib/themes';
+import { getThemeConfig } from '@/lib/themes';
 import {
   Palette,
   Sun,
   Moon,
-  Monitor,
   Check,
   RotateCcw,
-  Paintbrush,
   Type,
   FrameIcon,
+  Clock,
+  Lock,
 } from 'lucide-react';
 
 interface ThemeSettingsDialogProps {
@@ -42,103 +42,18 @@ interface ThemeSettingsDialogProps {
   onOpenChange: (open: boolean) => void;
 }
 
-/**
- * Color picker component for theme customization
- */
-const ColorPicker = ({ 
-  label, 
-  value, 
-  onChange 
-}: { 
-  label: string;
-  value: { h: number; s: number; l: number };
-  onChange: (color: { h: number; s: number; l: number }) => void;
-}) => {
-  return (
-    <div className="space-y-3">
-      <Label className="text-sm font-medium">{label}</Label>
-      <div className="space-y-2">
-        <div className="flex items-center space-x-2">
-          <div 
-            className="h-8 w-12 rounded border-2 border-border" 
-            style={{ 
-              backgroundColor: `hsl(${value.h}, ${value.s}%, ${value.l}%)` 
-            }} 
-          />
-          <span className="text-sm text-muted-foreground">
-            HSL({value.h}, {value.s}%, {value.l}%)
-          </span>
-        </div>
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <Label className="text-xs">Hue</Label>
-            <span className="text-xs text-muted-foreground">{value.h}°</span>
-          </div>
-          <Slider
-            value={[value.h]}
-            onValueChange={([h]) => onChange({ ...value, h })}
-            max={360}
-            step={1}
-            className="w-full"
-          />
-          
-          <div className="flex items-center justify-between">
-            <Label className="text-xs">Saturation</Label>
-            <span className="text-xs text-muted-foreground">{value.s}%</span>
-          </div>
-          <Slider
-            value={[value.s]}
-            onValueChange={([s]) => onChange({ ...value, s })}
-            max={100}
-            step={1}
-            className="w-full"
-          />
-          
-          <div className="flex items-center justify-between">
-            <Label className="text-xs">Lightness</Label>
-            <span className="text-xs text-muted-foreground">{value.l}%</span>
-          </div>
-          <Slider
-            value={[value.l]}
-            onValueChange={([l]) => onChange({ ...value, l })}
-            max={100}
-            step={1}
-            className="w-full"
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
-
 export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogProps) {
   const {
     theme,
     isDark,
-    setTheme,
     toggleDarkMode,
     customization,
     updateCustomization,
     resetCustomization,
   } = useThemeContext();
 
-  const themes = getAllThemes();
-  const [previewMode, setPreviewMode] = React.useState<'light' | 'dark' | 'system'>('system');
-
-  const handleThemeSelect = (themeName: any) => {
-    setTheme(themeName);
-  };
-
-  const handlePreviewModeChange = (mode: 'light' | 'dark' | 'system') => {
-    setPreviewMode(mode);
-    if (mode === 'light') {
-      // Force light mode
-    } else if (mode === 'dark') {
-      // Force dark mode
-    } else {
-      // Use system preference
-    }
-  };
+  // Get current theme config
+  const currentThemeConfig = getThemeConfig('neutral-pro');
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -149,14 +64,14 @@ export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogP
             Theme Settings
           </DialogTitle>
           <DialogDescription>
-            Customize your interface appearance and theme preferences
+            Customize your interface appearance and preferences
           </DialogDescription>
         </DialogHeader>
 
         <Tabs defaultValue="themes" className="h-full">
           <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="themes">Themes</TabsTrigger>
-            <TabsTrigger value="customize">Customize</TabsTrigger>
+            <TabsTrigger value="themes">Appearance</TabsTrigger>
+            <TabsTrigger value="customize">Layout</TabsTrigger>
             <TabsTrigger value="preferences">Preferences</TabsTrigger>
           </TabsList>
 
@@ -170,11 +85,11 @@ export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogP
                     Appearance Mode
                   </CardTitle>
                   <CardDescription>
-                    Choose how the interface should appear
+                    Choose between light and dark modes
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-2 gap-3">
                     <motion.div
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -202,119 +117,108 @@ export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogP
                         <span>Dark</span>
                       </Button>
                     </motion.div>
-                    
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <Button
-                        variant="outline"
-                        className="h-20 w-full flex-col space-y-2"
-                      >
-                        <Monitor className="h-6 w-6" />
-                        <span>System</span>
-                      </Button>
-                    </motion.div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Theme Selection */}
+              {/* Current Theme Display */}
               <Card>
                 <CardHeader>
-                  <CardTitle className="text-lg">Color Themes</CardTitle>
+                  <CardTitle className="text-lg">Current Theme</CardTitle>
                   <CardDescription>
-                    Choose from our curated color themes
+                    You're currently using the Neutral Pro theme
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid gap-4">
-                    {themes.map((themeConfig) => (
-                      <motion.div
-                        key={themeConfig.id}
-                        whileHover={{ scale: 1.01 }}
-                        whileTap={{ scale: 0.99 }}
-                      >
-                        <Card 
-                          className={`cursor-pointer transition-all hover:shadow-md ${
-                            theme === themeConfig.id ? 'ring-2 ring-primary' : ''
-                          }`}
-                          onClick={() => handleThemeSelect(themeConfig.id)}
-                        >
-                          <CardContent className="p-4">
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center space-x-3">
-                                <div className="flex space-x-1">
-                                  <div
-                                    className="h-4 w-4 rounded-full border"
-                                    style={{ backgroundColor: themeConfig.preview.primary }}
-                                  />
-                                  <div
-                                    className="h-4 w-4 rounded-full border"
-                                    style={{ backgroundColor: themeConfig.preview.secondary }}
-                                  />
-                                  <div
-                                    className="h-4 w-4 rounded-full border"
-                                    style={{ backgroundColor: themeConfig.preview.background }}
-                                  />
-                                </div>
-                                <div>
-                                  <h4 className="font-medium">{themeConfig.name}</h4>
-                                  <p className="text-sm text-muted-foreground">
-                                    {themeConfig.description}
-                                  </p>
-                                </div>
-                              </div>
-                              <div className="flex items-center space-x-2">
-                                {themeConfig.supportsDarkMode && (
-                                  <Badge variant="outline" className="text-xs">
-                                    Dark Mode
-                                  </Badge>
-                                )}
-                                {theme === themeConfig.id && (
-                                  <Check className="h-4 w-4 text-primary" />
-                                )}
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </motion.div>
-                    ))}
+                  <Card className="ring-2 ring-primary">
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-3">
+                          <div className="flex space-x-1">
+                            <div
+                              className="h-4 w-4 rounded-full border"
+                              style={{ backgroundColor: currentThemeConfig.preview.primary }}
+                            />
+                            <div
+                              className="h-4 w-4 rounded-full border"
+                              style={{ backgroundColor: currentThemeConfig.preview.secondary }}
+                            />
+                            <div
+                              className="h-4 w-4 rounded-full border"
+                              style={{ backgroundColor: currentThemeConfig.preview.background }}
+                            />
+                          </div>
+                          <div>
+                            <h4 className="font-medium">{currentThemeConfig.name}</h4>
+                            <p className="text-sm text-muted-foreground">
+                              {currentThemeConfig.description}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <Badge variant="outline" className="text-xs">
+                            Active
+                          </Badge>
+                          <Check className="h-4 w-4 text-primary" />
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CardContent>
+              </Card>
+
+              {/* Coming Soon Section */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center text-lg">
+                    <Clock className="mr-2 h-4 w-4" />
+                    More Themes Coming Soon
+                  </CardTitle>
+                  <CardDescription>
+                    Additional color themes will be available in a future update
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-center py-8">
+                    <div className="flex items-center justify-center space-x-2 text-muted-foreground mb-4">
+                      <Clock className="h-5 w-5" />
+                      <span>Additional themes in development</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      We're working on more beautiful themes including Playful Pastel, 
+                      High Contrast, and custom theme builder. Stay tuned!
+                    </p>
                   </div>
                 </CardContent>
               </Card>
             </TabsContent>
 
             <TabsContent value="customize" className="space-y-6 p-1">
-              {/* Color Customization */}
-              <Card>
+              {/* Color Customization - Disabled */}
+              <Card className="opacity-60">
                 <CardHeader>
                   <CardTitle className="flex items-center text-lg">
-                    <Paintbrush className="mr-2 h-4 w-4" />
+                    <Lock className="mr-2 h-4 w-4" />
                     Color Customization
+                    <Badge variant="secondary" className="ml-2 text-xs">
+                      Coming Soon
+                    </Badge>
                   </CardTitle>
                   <CardDescription>
-                    Fine-tune the colors to match your preferences
+                    Color customization is temporarily disabled to ensure consistent theme experience
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="grid gap-6 lg:grid-cols-2">
-                    <ColorPicker
-                      label="Primary Color"
-                      value={customization.primaryColor}
-                      onChange={(color) => updateCustomization({ primaryColor: color })}
-                    />
-                    <ColorPicker
-                      label="Secondary Color"
-                      value={customization.secondaryColor}
-                      onChange={(color) => updateCustomization({ secondaryColor: color })}
-                    />
+                <CardContent>
+                  <div className="text-center py-8">
+                    <div className="flex items-center justify-center space-x-2 text-muted-foreground mb-4">
+                      <Lock className="h-5 w-5" />
+                      <span>Custom colors will be available soon</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      We're working on a better color customization system that maintains 
+                      accessibility and theme consistency. This feature will return in a future update.
+                    </p>
                   </div>
-                  <ColorPicker
-                    label="Accent Color"
-                    value={customization.accentColor}
-                    onChange={(color) => updateCustomization({ accentColor: color })}
-                  />
                 </CardContent>
               </Card>
 
@@ -348,15 +252,15 @@ export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogP
                     <div className="flex space-x-2">
                       <div 
                         className="h-8 w-8 bg-primary"
-                        style={{ borderRadius: `${customization.borderRadius * 0.5}rem` }}
+                        style={{ borderRadius: `${customization.borderRadius * 0.25}rem` }}
                       />
                       <div 
                         className="h-8 w-12 bg-secondary"
-                        style={{ borderRadius: `${customization.borderRadius * 0.5}rem` }}
+                        style={{ borderRadius: `${customization.borderRadius * 0.25}rem` }}
                       />
                       <div 
                         className="h-8 w-16 bg-muted border"
-                        style={{ borderRadius: `${customization.borderRadius * 0.5}rem` }}
+                        style={{ borderRadius: `${customization.borderRadius * 0.25}rem` }}
                       />
                     </div>
                   </div>
@@ -395,7 +299,7 @@ export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogP
                   <div className="flex justify-end">
                     <Button variant="outline" onClick={resetCustomization}>
                       <RotateCcw className="mr-2 h-4 w-4" />
-                      Reset to Default
+                      Reset Layout
                     </Button>
                   </div>
                 </CardContent>

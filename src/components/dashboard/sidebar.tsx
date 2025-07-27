@@ -258,7 +258,10 @@ export function Sidebar({ isCollapsed, onToggleCollapse, className }: SidebarPro
                     <button
                       onClick={() => toggleSubmenu(item.href)}
                       className={cn(
-                        'group flex w-full items-center rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
+                        'group flex w-full items-center rounded-lg text-sm font-medium transition-all duration-200',
+                        isCollapsed 
+                          ? 'justify-center px-2 py-3' 
+                          : 'justify-start px-3 py-2',
                         isItemActive || isSubmenuItemActive
                           ? 'text-[hsl(var(--sidebar-active-foreground))] shadow-sm'
                           : 'text-foreground'
@@ -294,7 +297,7 @@ export function Sidebar({ isCollapsed, onToggleCollapse, className }: SidebarPro
                             transition={{ duration: 0.2 }}
                             className="flex flex-1 items-center justify-between overflow-hidden"
                           >
-                            <div className="flex flex-col">
+                            <div className="flex flex-col items-start text-left">
                               <span>{item.title}</span>
                               {item.description && (
                                 <span className="text-xs opacity-70">
@@ -327,7 +330,7 @@ export function Sidebar({ isCollapsed, onToggleCollapse, className }: SidebarPro
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                                 className={cn(
-                                  'flex items-center rounded-md px-3 py-1.5 text-sm transition-all duration-200',
+                                  'flex items-center justify-start rounded-md px-3 py-1.5 text-sm text-left transition-all duration-200',
                                   pathname === subItem.href
                                     ? 'text-[hsl(var(--sidebar-active-foreground))]'
                                     : 'text-muted-foreground'
@@ -364,7 +367,10 @@ export function Sidebar({ isCollapsed, onToggleCollapse, className }: SidebarPro
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       className={cn(
-                        'group flex items-center rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
+                        'group flex items-center rounded-lg text-sm font-medium transition-all duration-200',
+                        isCollapsed 
+                          ? 'justify-center px-2 py-3' 
+                          : 'justify-start px-3 py-2',
                         isItemActive
                           ? 'text-[hsl(var(--sidebar-active-foreground))] shadow-sm'
                           : 'text-foreground'
@@ -398,7 +404,7 @@ export function Sidebar({ isCollapsed, onToggleCollapse, className }: SidebarPro
                             animate={{ opacity: 1, width: 'auto' }}
                             exit={{ opacity: 0, width: 0 }}
                             transition={{ duration: 0.2 }}
-                            className="flex flex-col overflow-hidden"
+                            className="flex flex-col items-start text-left overflow-hidden"
                           >
                             <span>{item.title}</span>
                             {item.description && (
@@ -427,7 +433,12 @@ export function Sidebar({ isCollapsed, onToggleCollapse, className }: SidebarPro
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="group flex items-center rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground transition-all duration-200"
+                className={cn(
+                  'group flex items-center rounded-lg text-sm font-medium text-muted-foreground transition-all duration-200',
+                  isCollapsed 
+                    ? 'justify-center px-2 py-3' 
+                    : 'justify-start px-3 py-2'
+                )}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = 'hsl(var(--sidebar-hover))';
                   e.currentTarget.style.color = 'hsl(var(--foreground))';
@@ -450,7 +461,7 @@ export function Sidebar({ isCollapsed, onToggleCollapse, className }: SidebarPro
                       animate={{ opacity: 1, width: 'auto' }}
                       exit={{ opacity: 0, width: 0 }}
                       transition={{ duration: 0.2 }}
-                      className="overflow-hidden"
+                      className="overflow-hidden text-left"
                     >
                       {item.title}
                     </motion.span>

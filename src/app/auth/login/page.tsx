@@ -18,6 +18,7 @@ import {
   FormSuccess,
   ValidationSchemas 
 } from '@/components/ui/form';
+import { useAuthStore } from '@/stores/auth.store';
 
 // Login form schema
 const loginSchema = z.object({
@@ -30,6 +31,7 @@ type LoginFormData = z.infer<typeof loginSchema>;
 
 export default function LoginPage() {
   const router = useRouter();
+  const { setAuth } = useAuthStore();
   const [showPassword, setShowPassword] = useState(false);
   const [success, setSuccess] = useState('');
   const [socialLoading, setSocialLoading] = useState<'google' | 'github' | null>(null);
@@ -41,9 +43,10 @@ export default function LoginPage() {
         await new Promise(resolve => setTimeout(resolve, 1500));
         setSuccess('Login successful! Redirecting to dashboard...');
         
-        // Store auth token (in real app, would come from API)
-        localStorage.setItem('auth_token', 'demo_token_' + Date.now());
-        localStorage.setItem('user_email', data.email);
+        // Store auth token and user data using Zustand store
+        const token = 'demo_token_' + Date.now();
+        const user = { email: data.email };
+        setAuth(token, user);
         
         setTimeout(() => {
           router.replace('/dashboard');
@@ -63,7 +66,10 @@ export default function LoginPage() {
       }
 
       const result = await response.json();
-      localStorage.setItem('auth_token', result.token);
+      
+      // Store auth data using Zustand store
+      const user = { email: data.email, name: result.user?.name };
+      setAuth(result.token, user);
       
       setSuccess('Login successful! Redirecting...');
       setTimeout(() => router.replace('/dashboard'), 1000);
@@ -79,7 +85,12 @@ export default function LoginPage() {
       if (process.env.NODE_ENV === 'development') {
         await new Promise(resolve => setTimeout(resolve, 2000));
         setSuccess(`${provider} login successful! Redirecting...`);
-        localStorage.setItem('auth_token', `demo_${provider}_token_` + Date.now());
+        
+        // Store auth token using Zustand store
+        const token = `demo_${provider}_token_` + Date.now();
+        const user = { email: `user@${provider}.com`, name: `${provider} User` };
+        setAuth(token, user);
+        
         setTimeout(() => router.replace('/dashboard'), 1000);
         return;
       }

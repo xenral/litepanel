@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     title: 'ThemeCraft Admin - Next.js Admin Dashboard Template',
     description: 'A fully-typed Next.js 15 admin template with hot-swappable themes',
     images: ['/og-image.png'],
-    creator: '@themecraft',
+    creator: '@yourusername',
   },
   robots: {
     index: true,
@@ -90,8 +90,8 @@ export default function RootLayout({
       <body className={cn(inter.className, 'min-h-screen bg-background font-sans antialiased')}>
         <NextThemeProvider
           attribute="class"
-          defaultTheme="light"
-          enableSystem
+          defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange={false}
         >
           <ThemeProvider>
