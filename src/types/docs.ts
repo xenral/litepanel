@@ -67,4 +67,4 @@ export interface LearningResource {
   level: 'Beginner' | 'Intermediate' | 'Advanced' | 'All Levels';
   views: number;
   icon: LucideIcon;
-} 
+}

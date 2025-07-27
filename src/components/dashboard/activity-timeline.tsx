@@ -8,8 +8,13 @@ interface ActivityTimelineProps {
   maxItems?: number;
 }
 
-export function ActivityTimeline({ activities, maxItems = 5 }: ActivityTimelineProps) {
-  const displayedActivities = maxItems ? activities.slice(0, maxItems) : activities;
+export function ActivityTimeline({
+  activities,
+  maxItems = 5,
+}: ActivityTimelineProps) {
+  const displayedActivities = maxItems
+    ? activities.slice(0, maxItems)
+    : activities;
 
   return (
     <Card>
@@ -28,4 +33,4 @@ export function ActivityTimeline({ activities, maxItems = 5 }: ActivityTimelineP
       </CardContent>
     </Card>
   );
-} 
+}

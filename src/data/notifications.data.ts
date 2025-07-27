@@ -36,7 +36,7 @@ export const notifications: Notification[] = [
     read: false,
     priority: 'medium',
     icon: User,
-    color: 'text-blue-600 bg-blue-100 dark:bg-blue-900'
+    color: 'text-blue-600 bg-blue-100 dark:bg-blue-900',
   },
   {
     id: 2,
@@ -47,7 +47,7 @@ export const notifications: Notification[] = [
     read: false,
     priority: 'high',
     icon: AlertTriangle,
-    color: 'text-orange-600 bg-orange-100 dark:bg-orange-900'
+    color: 'text-orange-600 bg-orange-100 dark:bg-orange-900',
   },
   {
     id: 3,
@@ -58,7 +58,7 @@ export const notifications: Notification[] = [
     read: true,
     priority: 'low',
     icon: CheckCircle,
-    color: 'text-green-600 bg-green-100 dark:bg-green-900'
+    color: 'text-green-600 bg-green-100 dark:bg-green-900',
   },
   {
     id: 4,
@@ -69,7 +69,7 @@ export const notifications: Notification[] = [
     read: false,
     priority: 'medium',
     icon: Info,
-    color: 'text-purple-600 bg-purple-100 dark:bg-purple-900'
+    color: 'text-purple-600 bg-purple-100 dark:bg-purple-900',
   },
   {
     id: 5,
@@ -80,7 +80,7 @@ export const notifications: Notification[] = [
     read: true,
     priority: 'high',
     icon: AlertTriangle,
-    color: 'text-yellow-600 bg-yellow-100 dark:bg-yellow-900'
+    color: 'text-yellow-600 bg-yellow-100 dark:bg-yellow-900',
   },
   {
     id: 6,
@@ -91,12 +91,15 @@ export const notifications: Notification[] = [
     read: true,
     priority: 'medium',
     icon: User,
-    color: 'text-blue-600 bg-blue-100 dark:bg-blue-900'
-  }
+    color: 'text-blue-600 bg-blue-100 dark:bg-blue-900',
+  },
 ];
 
 // Priority badge mappings using Maps for better performance
-export const priorityVariantMap = new Map<string, "destructive" | "default" | "secondary" | "outline">([
+export const priorityVariantMap = new Map<
+  string,
+  'destructive' | 'default' | 'secondary' | 'outline'
+>([
   ['high', 'destructive'],
   ['medium', 'default'],
   ['low', 'secondary'],
@@ -105,6 +108,6 @@ export const priorityVariantMap = new Map<string, "destructive" | "default" | "s
 export const statsIconMap = new Map([
   ['total', Bell],
   ['unread', Bell],
-  ['highPriority', AlertTriangle], 
+  ['highPriority', AlertTriangle],
   ['today', Clock],
-]); 
+]);

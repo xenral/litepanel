@@ -64,7 +64,8 @@ export const permissionDefinitions = [
     id: 'users.read',
     name: 'View Users',
     category: 'User Management',
-    description: 'View user profiles, contact information, and basic account details',
+    description:
+      'View user profiles, contact information, and basic account details',
     risk: 'low',
     dependencies: [],
     grantedTo: ['admin', 'manager', 'lead'],
@@ -75,7 +76,8 @@ export const permissionDefinitions = [
     id: 'users.write',
     name: 'Edit Users',
     category: 'User Management',
-    description: 'Create, modify, and update user accounts and profile information',
+    description:
+      'Create, modify, and update user accounts and profile information',
     risk: 'medium',
     dependencies: ['users.read'],
     grantedTo: ['admin', 'manager'],
@@ -97,7 +99,8 @@ export const permissionDefinitions = [
     id: 'users.admin',
     name: 'Admin Users',
     category: 'User Management',
-    description: 'Full administrative control over user accounts and permissions',
+    description:
+      'Full administrative control over user accounts and permissions',
     risk: 'critical',
     dependencies: ['users.read', 'users.write', 'users.delete'],
     grantedTo: ['admin'],
@@ -207,7 +210,8 @@ export const permissionDefinitions = [
     id: 'system.admin',
     name: 'System Administration',
     category: 'System Administration',
-    description: 'Full system administration including database and server management',
+    description:
+      'Full system administration including database and server management',
     risk: 'critical',
     dependencies: ['settings.read', 'settings.write'],
     grantedTo: ['admin'],
@@ -266,39 +270,76 @@ export const usersWithPermissions = [
     id: 'USR-001',
     name: 'Alice Johnson',
     email: 'alice@company.com',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=40&h=40&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=40&h=40&fit=crop&crop=face',
     role: 'Administrator',
-    permissions: ['users.admin', 'content.delete', 'analytics.write', 'billing.write', 'settings.write', 'system.admin'],
+    permissions: [
+      'users.admin',
+      'content.delete',
+      'analytics.write',
+      'billing.write',
+      'settings.write',
+      'system.admin',
+    ],
     lastUpdated: '2024-01-15',
   },
   {
     id: 'USR-002',
     name: 'Bob Smith',
     email: 'bob@company.com',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face',
     role: 'Manager',
-    permissions: ['users.write', 'content.write', 'analytics.write', 'billing.read', 'settings.write'],
+    permissions: [
+      'users.write',
+      'content.write',
+      'analytics.write',
+      'billing.read',
+      'settings.write',
+    ],
     lastUpdated: '2024-01-18',
   },
   {
     id: 'USR-003',
     name: 'Carol Davis',
     email: 'carol@company.com',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face',
     role: 'Team Lead',
-    permissions: ['users.read', 'content.write', 'analytics.read', 'settings.read'],
+    permissions: [
+      'users.read',
+      'content.write',
+      'analytics.read',
+      'settings.read',
+    ],
     lastUpdated: '2024-01-19',
   },
 ];
 
 // Permission categories with stats
-export const permissionCategories = ['All Categories', 'User Management', 'Content Management', 'Analytics & Reports', 'Billing & Finance', 'Settings & Configuration', 'System Administration'];
-export const permissionRisks = ['All Risks', 'low', 'medium', 'high', 'critical'];
+export const permissionCategories = [
+  'All Categories',
+  'User Management',
+  'Content Management',
+  'Analytics & Reports',
+  'Billing & Finance',
+  'Settings & Configuration',
+  'System Administration',
+];
+export const permissionRisks = [
+  'All Risks',
+  'low',
+  'medium',
+  'high',
+  'critical',
+];
 
 // Permission stats
 export const permissionStats = {
   totalPermissions: permissionDefinitions.length,
-  highRiskPermissions: permissionDefinitions.filter(p => p.risk === 'high' || p.risk === 'critical').length,
+  highRiskPermissions: permissionDefinitions.filter(
+    (p) => p.risk === 'high' || p.risk === 'critical'
+  ).length,
   totalCategories: permissionCategories.length - 1,
   recentChanges: auditLog.length,
 };
@@ -306,8 +347,14 @@ export const permissionStats = {
 // Risk and icon mappings using Maps
 export const riskColorMap = new Map([
   ['low', 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'],
-  ['medium', 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'],
-  ['high', 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200'],
+  [
+    'medium',
+    'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
+  ],
+  [
+    'high',
+    'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200',
+  ],
   ['critical', 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'],
 ]);
 
@@ -325,4 +372,4 @@ export const categoryIconMap = new Map([
   ['Billing & Finance', DollarSign],
   ['Settings & Configuration', Settings],
   ['System Administration', Database],
-]); 
+]);

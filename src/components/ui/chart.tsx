@@ -18,7 +18,13 @@ import {
   ResponsiveContainer,
   Legend,
 } from 'recharts';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 
 // Chart color palette
 const COLORS = {
@@ -30,7 +36,13 @@ const COLORS = {
   muted: '#6b7280',
 };
 
-const CHART_COLORS = [COLORS.primary, COLORS.secondary, COLORS.success, COLORS.warning, COLORS.danger];
+const CHART_COLORS = [
+  COLORS.primary,
+  COLORS.secondary,
+  COLORS.success,
+  COLORS.warning,
+  COLORS.danger,
+];
 
 interface ChartProps {
   title?: string;
@@ -39,7 +51,12 @@ interface ChartProps {
   children: React.ReactNode;
 }
 
-export function ChartContainer({ title, description, className, children }: ChartProps) {
+export function ChartContainer({
+  title,
+  description,
+  className,
+  children,
+}: ChartProps) {
   return (
     <Card className={className}>
       {(title || description) && (
@@ -79,16 +96,20 @@ export function AreaChartComponent({
   className,
 }: AreaChartComponentProps) {
   return (
-    <ChartContainer title={title} description={description} className={className}>
+    <ChartContainer
+      title={title}
+      description={description}
+      className={className}
+    >
       <AreaChart data={data}>
         <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
         <XAxis dataKey={xAxisKey} className="text-muted-foreground" />
         <YAxis className="text-muted-foreground" />
-        <Tooltip 
-          contentStyle={{ 
-            backgroundColor: 'hsl(var(--background))', 
+        <Tooltip
+          contentStyle={{
+            backgroundColor: 'hsl(var(--background))',
             border: '1px solid hsl(var(--border))',
-            borderRadius: '6px'
+            borderRadius: '6px',
           }}
         />
         <Area
@@ -121,16 +142,20 @@ export function LineChartComponent({
   className,
 }: LineChartComponentProps) {
   return (
-    <ChartContainer title={title} description={description} className={className}>
+    <ChartContainer
+      title={title}
+      description={description}
+      className={className}
+    >
       <LineChart data={data}>
         <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
         <XAxis dataKey={xAxisKey} className="text-muted-foreground" />
         <YAxis className="text-muted-foreground" />
-        <Tooltip 
-          contentStyle={{ 
-            backgroundColor: 'hsl(var(--background))', 
+        <Tooltip
+          contentStyle={{
+            backgroundColor: 'hsl(var(--background))',
             border: '1px solid hsl(var(--border))',
-            borderRadius: '6px'
+            borderRadius: '6px',
           }}
         />
         <Legend />
@@ -167,16 +192,20 @@ export function BarChartComponent({
   className,
 }: BarChartComponentProps) {
   return (
-    <ChartContainer title={title} description={description} className={className}>
+    <ChartContainer
+      title={title}
+      description={description}
+      className={className}
+    >
       <BarChart data={data}>
         <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
         <XAxis dataKey={xAxisKey} className="text-muted-foreground" />
         <YAxis className="text-muted-foreground" />
-        <Tooltip 
-          contentStyle={{ 
-            backgroundColor: 'hsl(var(--background))', 
+        <Tooltip
+          contentStyle={{
+            backgroundColor: 'hsl(var(--background))',
             border: '1px solid hsl(var(--border))',
-            borderRadius: '6px'
+            borderRadius: '6px',
           }}
         />
         <Legend />
@@ -211,7 +240,11 @@ export function PieChartComponent({
   className,
 }: PieChartComponentProps) {
   return (
-    <ChartContainer title={title} description={description} className={className}>
+    <ChartContainer
+      title={title}
+      description={description}
+      className={className}
+    >
       <PieChart>
         <Pie
           data={data}
@@ -223,18 +256,21 @@ export function PieChartComponent({
           label={({ name, value }) => `${name}: ${value}`}
         >
           {data.map((entry, index) => (
-            <Cell key={`cell-${index}`} fill={CHART_COLORS[index % CHART_COLORS.length]} />
+            <Cell
+              key={`cell-${index}`}
+              fill={CHART_COLORS[index % CHART_COLORS.length]}
+            />
           ))}
         </Pie>
-        <Tooltip 
-          contentStyle={{ 
-            backgroundColor: 'hsl(var(--background))', 
+        <Tooltip
+          contentStyle={{
+            backgroundColor: 'hsl(var(--background))',
             border: '1px solid hsl(var(--border))',
-            borderRadius: '6px'
+            borderRadius: '6px',
           }}
         />
         <Legend />
       </PieChart>
     </ChartContainer>
   );
-} 
+}

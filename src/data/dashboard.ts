@@ -11,7 +11,7 @@ import {
   Activity,
   Cpu,
   HardDrive,
-  Wifi
+  Wifi,
 } from 'lucide-react';
 import type {
   KPIMetric,
@@ -24,7 +24,7 @@ import type {
   PerformanceMetric,
   RecentProject,
   SystemMetric,
-  ActivityItem
+  ActivityItem,
 } from '@/types/dashboard';
 
 export const kpiMetrics: KPIMetric[] = [
@@ -35,7 +35,7 @@ export const kpiMetrics: KPIMetric[] = [
     change: '+12.5%',
     trend: 'up',
     icon: 'Users',
-    color: 'text-blue-600'
+    color: 'text-blue-600',
   },
   {
     id: 'revenue',
@@ -44,7 +44,7 @@ export const kpiMetrics: KPIMetric[] = [
     change: '+8.2%',
     trend: 'up',
     icon: 'DollarSign',
-    color: 'text-green-600'
+    color: 'text-green-600',
   },
   {
     id: 'orders',
@@ -53,7 +53,7 @@ export const kpiMetrics: KPIMetric[] = [
     change: '+15.3%',
     trend: 'up',
     icon: 'ShoppingCart',
-    color: 'text-purple-600'
+    color: 'text-purple-600',
   },
   {
     id: 'growth',
@@ -62,8 +62,8 @@ export const kpiMetrics: KPIMetric[] = [
     change: '+2.4%',
     trend: 'up',
     icon: 'TrendingUp',
-    color: 'text-orange-600'
-  }
+    color: 'text-orange-600',
+  },
 ];
 
 export const quickStats: QuickStat[] = [
@@ -72,29 +72,29 @@ export const quickStats: QuickStat[] = [
     label: 'Page Views',
     value: '2.1M',
     change: '+12%',
-    changeType: 'positive'
+    changeType: 'positive',
   },
   {
     id: 'api-calls',
     label: 'API Calls',
     value: '847K',
     change: '+8%',
-    changeType: 'positive'
+    changeType: 'positive',
   },
   {
     id: 'downloads',
     label: 'Downloads',
     value: '34.5K',
     change: '+23%',
-    changeType: 'positive'
+    changeType: 'positive',
   },
   {
     id: 'sessions',
     label: 'Active Sessions',
     value: '1,249',
     change: '-3%',
-    changeType: 'negative'
-  }
+    changeType: 'negative',
+  },
 ];
 
 export const teamMembers: TeamMember[] = [
@@ -104,7 +104,7 @@ export const teamMembers: TeamMember[] = [
     role: 'Product Manager',
     avatar: '/avatars/sarah.jpg',
     status: 'online',
-    progress: 87
+    progress: 87,
   },
   {
     id: '2',
@@ -112,7 +112,7 @@ export const teamMembers: TeamMember[] = [
     role: 'Lead Developer',
     avatar: '/avatars/mike.jpg',
     status: 'online',
-    progress: 92
+    progress: 92,
   },
   {
     id: '3',
@@ -120,7 +120,7 @@ export const teamMembers: TeamMember[] = [
     role: 'UI/UX Designer',
     avatar: '/avatars/emily.jpg',
     status: 'away',
-    progress: 76
+    progress: 76,
   },
   {
     id: '4',
@@ -128,8 +128,8 @@ export const teamMembers: TeamMember[] = [
     role: 'DevOps Engineer',
     avatar: '/avatars/james.jpg',
     status: 'offline',
-    progress: 94
-  }
+    progress: 94,
+  },
 ];
 
 export const recentFiles: RecentFile[] = [
@@ -139,7 +139,7 @@ export const recentFiles: RecentFile[] = [
     type: 'Design',
     size: '2.4 MB',
     modified: '2 hours ago',
-    author: 'Emily Davis'
+    author: 'Emily Davis',
   },
   {
     id: '2',
@@ -147,7 +147,7 @@ export const recentFiles: RecentFile[] = [
     type: 'Documentation',
     size: '156 KB',
     modified: '4 hours ago',
-    author: 'Mike Chen'
+    author: 'Mike Chen',
   },
   {
     id: '3',
@@ -155,7 +155,7 @@ export const recentFiles: RecentFile[] = [
     type: 'Spreadsheet',
     size: '892 KB',
     modified: '1 day ago',
-    author: 'Sarah Johnson'
+    author: 'Sarah Johnson',
   },
   {
     id: '4',
@@ -163,8 +163,8 @@ export const recentFiles: RecentFile[] = [
     type: 'Configuration',
     size: '8 KB',
     modified: '2 days ago',
-    author: 'James Wilson'
-  }
+    author: 'James Wilson',
+  },
 ];
 
 export const upcomingEvents: UpcomingEvent[] = [
@@ -173,29 +173,29 @@ export const upcomingEvents: UpcomingEvent[] = [
     title: 'Sprint Planning Meeting',
     time: 'Today 2:00 PM',
     type: 'meeting',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: '2',
     title: 'Product Release Deadline',
     time: 'Tomorrow',
     type: 'deadline',
-    priority: 'high'
+    priority: 'high',
   },
   {
     id: '3',
     title: 'Client Presentation',
     time: 'Friday 10:00 AM',
     type: 'meeting',
-    priority: 'medium'
+    priority: 'medium',
   },
   {
     id: '4',
     title: 'Code Review Session',
     time: 'Monday 3:00 PM',
     type: 'reminder',
-    priority: 'low'
-  }
+    priority: 'low',
+  },
 ];
 
 export const socialMetrics: SocialMetric[] = [
@@ -205,7 +205,7 @@ export const socialMetrics: SocialMetric[] = [
     engagement: 4.2,
     growth: '+8%',
     icon: 'Twitter',
-    color: 'text-blue-400'
+    color: 'text-blue-400',
   },
   {
     platform: 'LinkedIn',
@@ -213,7 +213,7 @@ export const socialMetrics: SocialMetric[] = [
     engagement: 6.1,
     growth: '+12%',
     icon: 'Linkedin',
-    color: 'text-blue-600'
+    color: 'text-blue-600',
   },
   {
     platform: 'GitHub',
@@ -221,8 +221,8 @@ export const socialMetrics: SocialMetric[] = [
     engagement: 8.7,
     growth: '+15%',
     icon: 'Github',
-    color: 'text-gray-800'
-  }
+    color: 'text-gray-800',
+  },
 ];
 
 export const deviceAnalytics: DeviceAnalytic[] = [
@@ -231,22 +231,22 @@ export const deviceAnalytics: DeviceAnalytic[] = [
     percentage: 65,
     count: 34520,
     change: '+5%',
-    icon: 'Monitor'
+    icon: 'Monitor',
   },
   {
     device: 'Mobile',
     percentage: 28,
     count: 14880,
     change: '+12%',
-    icon: 'Smartphone'
+    icon: 'Smartphone',
   },
   {
     device: 'Tablet',
     percentage: 7,
     count: 3720,
     change: '-2%',
-    icon: 'Tablet'
-  }
+    icon: 'Tablet',
+  },
 ];
 
 export const performanceMetrics: PerformanceMetric[] = [
@@ -254,26 +254,26 @@ export const performanceMetrics: PerformanceMetric[] = [
     metric: 'Response Time',
     value: 245,
     target: 300,
-    status: 'good'
+    status: 'good',
   },
   {
     metric: 'Uptime',
     value: 99.9,
     target: 99.0,
-    status: 'good'
+    status: 'good',
   },
   {
     metric: 'Error Rate',
     value: 0.12,
     target: 0.5,
-    status: 'good'
+    status: 'good',
   },
   {
     metric: 'Load Time',
     value: 1.8,
     target: 2.0,
-    status: 'warning'
-  }
+    status: 'warning',
+  },
 ];
 
 export const recentProjects: RecentProject[] = [
@@ -284,7 +284,7 @@ export const recentProjects: RecentProject[] = [
     progress: 87,
     status: 'active',
     lastActivity: '2 hours ago',
-    team: ['Sarah Johnson', 'Mike Chen', 'Emily Davis']
+    team: ['Sarah Johnson', 'Mike Chen', 'Emily Davis'],
   },
   {
     id: '2',
@@ -293,7 +293,7 @@ export const recentProjects: RecentProject[] = [
     progress: 100,
     status: 'completed',
     lastActivity: '1 day ago',
-    team: ['Emily Davis', 'James Wilson']
+    team: ['Emily Davis', 'James Wilson'],
   },
   {
     id: '3',
@@ -302,8 +302,8 @@ export const recentProjects: RecentProject[] = [
     progress: 45,
     status: 'active',
     lastActivity: '5 hours ago',
-    team: ['Mike Chen', 'Sarah Johnson']
-  }
+    team: ['Mike Chen', 'Sarah Johnson'],
+  },
 ];
 
 export const systemMetrics: SystemMetric[] = [
@@ -311,26 +311,26 @@ export const systemMetrics: SystemMetric[] = [
     name: 'CPU Usage',
     value: 68,
     status: 'healthy',
-    icon: 'Cpu'
+    icon: 'Cpu',
   },
   {
     name: 'Memory',
     value: 74,
     status: 'warning',
-    icon: 'HardDrive'
+    icon: 'HardDrive',
   },
   {
     name: 'Disk Space',
     value: 45,
     status: 'healthy',
-    icon: 'HardDrive'
+    icon: 'HardDrive',
   },
   {
     name: 'Network',
     value: 12,
     status: 'healthy',
-    icon: 'Wifi'
-  }
+    icon: 'Wifi',
+  },
 ];
 
 export const activityItems: ActivityItem[] = [
@@ -340,7 +340,7 @@ export const activityItems: ActivityItem[] = [
     message: 'New version deployed to production',
     time: '2 hours ago',
     user: 'James Wilson',
-    icon: 'Zap'
+    icon: 'Zap',
   },
   {
     id: '2',
@@ -348,7 +348,7 @@ export const activityItems: ActivityItem[] = [
     message: '1,234 new users registered today',
     time: '4 hours ago',
     user: 'System',
-    icon: 'Users'
+    icon: 'Users',
   },
   {
     id: '3',
@@ -356,7 +356,7 @@ export const activityItems: ActivityItem[] = [
     message: 'Dashboard analytics updated',
     time: '6 hours ago',
     user: 'Mike Chen',
-    icon: 'BarChart3'
+    icon: 'BarChart3',
   },
   {
     id: '4',
@@ -364,6 +364,6 @@ export const activityItems: ActivityItem[] = [
     message: 'Database backup completed successfully',
     time: '8 hours ago',
     user: 'System',
-    icon: 'HardDrive'
-  }
-]; 
+    icon: 'HardDrive',
+  },
+];

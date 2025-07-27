@@ -10,17 +10,18 @@ export const themeUtils = {
    * Reset theme to default (Neutral Pro Dark) and clear any color customization
    */
   resetToDefault: () => {
-    const { setTheme, setIsDark, resetCustomization } = useThemeStore.getState();
-    
+    const { setTheme, setIsDark, resetCustomization } =
+      useThemeStore.getState();
+
     // Clear localStorage to prevent conflicts
     localStorage.removeItem('litecontrol-theme-storage');
     localStorage.removeItem('litecontrol-theme');
     localStorage.removeItem('litecontrol-customization');
-    
+
     setTheme('neutral-pro');
     setIsDark(true);
     resetCustomization();
-    
+
     console.log('Theme reset to Neutral Pro Dark with default settings');
   },
 
@@ -29,20 +30,20 @@ export const themeUtils = {
    */
   forceNeutralProColors: () => {
     if (typeof window === 'undefined') return;
-    
+
     const root = document.documentElement;
     const { isDark } = useThemeStore.getState();
-    
+
     console.log('Force applying Neutral Pro colors...');
-    
+
     // Clear existing classes and attributes
     root.classList.remove('light', 'dark');
     root.removeAttribute('data-theme');
-    
+
     // Apply correct theme
     root.classList.add(isDark ? 'dark' : 'light');
     root.setAttribute('data-theme', 'neutral-pro');
-    
+
     if (isDark) {
       // Neutral Pro Dark colors
       root.style.setProperty('--background', '240 10% 3.9%');
@@ -86,7 +87,7 @@ export const themeUtils = {
       root.style.setProperty('--input', '240 5.9% 90%');
       root.style.setProperty('--ring', '240 5.9% 10%');
     }
-    
+
     console.log('Neutral Pro colors force applied successfully');
   },
 
@@ -157,7 +158,7 @@ export const authUtils = {
 export const storeUtils = {
   theme: themeUtils,
   auth: authUtils,
-  
+
   /**
    * Reset all stores to default state
    */
@@ -165,7 +166,7 @@ export const storeUtils = {
     themeUtils.resetToDefault();
     authUtils.clearAuth();
   },
-  
+
   /**
    * Emergency theme fix - force apply correct colors
    */
@@ -177,25 +178,27 @@ export const storeUtils = {
       window.location.reload();
     }, 100);
   },
-  
+
   /**
    * Get application state summary
    */
   getAppState: () => {
     const themeState = useThemeStore.getState();
     const authState = useAuthStore.getState();
-    
+
     return {
       theme: {
         current: themeState.theme,
         isDark: themeState.isDark,
-        hasCustomization: JSON.stringify(themeState.customization) !== JSON.stringify({
-          primaryColor: { h: 0, s: 0, l: 98 },
-          secondaryColor: { h: 240, s: 4, l: 16 },
-          accentColor: { h: 240, s: 4, l: 16 },
-          borderRadius: 1,
-          fontSize: 1,
-        }),
+        hasCustomization:
+          JSON.stringify(themeState.customization) !==
+          JSON.stringify({
+            primaryColor: { h: 0, s: 0, l: 98 },
+            secondaryColor: { h: 240, s: 4, l: 16 },
+            accentColor: { h: 240, s: 4, l: 16 },
+            borderRadius: 1,
+            fontSize: 1,
+          }),
       },
       auth: {
         isAuthenticated: authState.isAuthenticated,
@@ -204,4 +207,4 @@ export const storeUtils = {
       },
     };
   },
-}; 
+};

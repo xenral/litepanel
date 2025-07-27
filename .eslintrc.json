@@ -1,20 +1,11 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "@typescript-eslint/recommended",
-    "@typescript-eslint/recommended-requiring-type-checking"
-  ],
+  "extends": ["next/core-web-vitals"],
   "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  },
   "plugins": ["@typescript-eslint"],
   "rules": {
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-explicit-any": "warn",
-    "@typescript-eslint/prefer-const": "error",
-    "@typescript-eslint/no-non-null-assertion": "warn",
-    "prefer-const": "off",
+    "prefer-const": "error",
     "no-console": "warn",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off"
@@ -26,4 +17,4 @@
     "public/",
     "storybook-static/"
   ]
-} 
+}

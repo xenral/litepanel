@@ -7,26 +7,39 @@ import { z } from 'zod';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { 
-  Form, 
-  FormInput, 
-  FormCheckbox, 
-  FormSubmit, 
+import {
+  Form,
+  FormInput,
+  FormCheckbox,
+  FormSubmit,
   FormSuccess,
-  ValidationSchemas 
+  ValidationSchemas,
 } from '@/components/ui/form';
 
 // Register form schema
-const registerSchema = z.object({
-  name: ValidationSchemas.required.min(2, 'Name must be at least 2 characters'),
-  email: ValidationSchemas.email,
-  password: ValidationSchemas.password.min(8, 'Password must be at least 8 characters'),
-  confirmPassword: z.string(),
-  acceptTerms: z.boolean().refine(val => val === true, 'You must accept the terms and conditions'),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"],
-});
+const registerSchema = z
+  .object({
+    name: ValidationSchemas.required.min(
+      2,
+      'Name must be at least 2 characters'
+    ),
+    email: ValidationSchemas.email,
+    password: ValidationSchemas.password.min(
+      8,
+      'Password must be at least 8 characters'
+    ),
+    confirmPassword: z.string(),
+    acceptTerms: z
+      .boolean()
+      .refine(
+        (val) => val === true,
+        'You must accept the terms and conditions'
+      ),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ['confirmPassword'],
+  });
 
 type RegisterFormData = z.infer<typeof registerSchema>;
 
@@ -40,12 +53,16 @@ export default function RegisterPage() {
     try {
       // In development, simulate registration
       if (process.env.NODE_ENV === 'development') {
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        setSuccess('Registration successful! Please check your email to verify your account.');
-        
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        setSuccess(
+          'Registration successful! Please check your email to verify your account.'
+        );
+
         // In real app, would redirect to email verification page
         setTimeout(() => {
-          router.replace('/auth/login?message=Please check your email to verify your account');
+          router.replace(
+            '/auth/login?message=Please check your email to verify your account'
+          );
         }, 2000);
         return;
       }
@@ -66,7 +83,9 @@ export default function RegisterPage() {
         throw new Error(error.message || 'Registration failed');
       }
 
-      setSuccess('Registration successful! Please check your email to verify your account.');
+      setSuccess(
+        'Registration successful! Please check your email to verify your account.'
+      );
       setTimeout(() => {
         router.replace('/auth/login?message=Registration successful');
       }, 2000);
@@ -78,8 +97,10 @@ export default function RegisterPage() {
   return (
     <div className="grid gap-6">
       <div className="flex flex-col space-y-2 text-center">
-        <h1 className="text-2xl font-semibold tracking-tight">Create an account</h1>
-        <p className="text-sm text-muted-foreground">
+        <h1 className="text-2xl font-semibold tracking-tight">
+          Create an account
+        </h1>
+        <p className="text-muted-foreground text-sm">
           Enter your details below to create your account
         </p>
       </div>
@@ -87,12 +108,12 @@ export default function RegisterPage() {
       <Form
         schema={registerSchema}
         onSubmit={handleRegister}
-        defaultValues={{ 
-          name: '', 
-          email: '', 
-          password: '', 
-          confirmPassword: '', 
-          acceptTerms: false 
+        defaultValues={{
+          name: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+          acceptTerms: false,
         }}
         className="space-y-4"
       >
@@ -178,12 +199,10 @@ export default function RegisterPage() {
 
         <FormSuccess message={success} show={!!success} />
 
-        <FormSubmit className="w-full">
-          Create Account
-        </FormSubmit>
+        <FormSubmit className="w-full">Create Account</FormSubmit>
       </Form>
 
-      <p className="px-8 text-center text-sm text-muted-foreground">
+      <p className="text-muted-foreground px-8 text-center text-sm">
         Already have an account?{' '}
         <Link
           href="/auth/login"
@@ -197,7 +216,7 @@ export default function RegisterPage() {
       <Alert>
         <AlertDescription>
           <strong>Password requirements:</strong>
-          <ul className="mt-2 text-xs space-y-1">
+          <ul className="mt-2 space-y-1 text-xs">
             <li>• At least 8 characters long</li>
             <li>• Include both letters and numbers</li>
             <li>• Use a mix of uppercase and lowercase</li>
@@ -206,4 +225,4 @@ export default function RegisterPage() {
       </Alert>
     </div>
   );
-} 
+}

@@ -7,7 +7,7 @@ export const simulateUpload = (
 ): void => {
   setIsUploading(true);
   setProgress(0);
-  
+
   const interval = setInterval(() => {
     setProgress((prev: number) => {
       if (prev >= 100) {
@@ -28,10 +28,10 @@ export const toggleUserSelection = (
   userId: number,
   setSelectedUsers: (users: number[]) => void
 ): void => {
-  const newSelection = selectedUsers.includes(userId) 
-    ? selectedUsers.filter(id => id !== userId)
+  const newSelection = selectedUsers.includes(userId)
+    ? selectedUsers.filter((id) => id !== userId)
     : [...selectedUsers, userId];
-  
+
   setSelectedUsers(newSelection);
 };
 
@@ -39,7 +39,10 @@ export const toggleUserSelection = (
  * Generate user initials from name
  */
 export const getUserInitials = (name: string): string => {
-  return name.split(' ').map(n => n[0]).join('');
+  return name
+    .split(' ')
+    .map((n) => n[0])
+    .join('');
 };
 
 /**
@@ -52,28 +55,28 @@ export const validateUserForm = (formData: {
   department: string;
 }): { valid: boolean; errors: string[] } => {
   const errors: string[] = [];
-  
+
   if (!formData.name.trim()) {
     errors.push('Name is required');
   }
-  
+
   if (!formData.email.trim()) {
     errors.push('Email is required');
   } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
     errors.push('Email is invalid');
   }
-  
+
   if (!formData.role) {
     errors.push('Role is required');
   }
-  
+
   if (!formData.department) {
     errors.push('Department is required');
   }
-  
+
   return {
     valid: errors.length === 0,
-    errors
+    errors,
   };
 };
 
@@ -82,18 +85,21 @@ export const validateUserForm = (formData: {
  */
 export const formatFileSize = (bytes: number): string => {
   if (bytes === 0) return '0 Bytes';
-  
+
   const k = 1024;
   const sizes = ['Bytes', 'KB', 'MB', 'GB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
-  
+
   return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 };
 
 /**
  * Check if file type is supported
  */
-export const isSupportedFileType = (fileName: string, supportedTypes: string[]): boolean => {
+export const isSupportedFileType = (
+  fileName: string,
+  supportedTypes: string[]
+): boolean => {
   const extension = fileName.split('.').pop()?.toLowerCase();
   return supportedTypes.includes(extension || '');
 };
@@ -145,10 +151,11 @@ export const calculateProgress = (current: number, total: number): number => {
  */
 export const filterUsers = (users: any[], searchTerm: string): any[] => {
   if (!searchTerm.trim()) return users;
-  
-  return users.filter(user =>
-    user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    user.role.toLowerCase().includes(searchTerm.toLowerCase())
+
+  return users.filter(
+    (user) =>
+      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.role.toLowerCase().includes(searchTerm.toLowerCase())
   );
-}; 
+};

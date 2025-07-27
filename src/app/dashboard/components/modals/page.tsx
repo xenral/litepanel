@@ -144,7 +144,9 @@ export default function ModalsComponentPage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/dashboard/components">UI Components</BreadcrumbLink>
+            <BreadcrumbLink href="/dashboard/components">
+              UI Components
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbPage>Modals</BreadcrumbPage>
@@ -154,7 +156,9 @@ export default function ModalsComponentPage() {
       {/* Header */}
       <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Modal Components</h1>
+          <h1 className="text-3xl font-bold tracking-tight">
+            Modal Components
+          </h1>
           <p className="text-muted-foreground">
             Dialogs, sheets, popovers, and overlays for user interactions
           </p>
@@ -183,7 +187,7 @@ export default function ModalsComponentPage() {
 
         <TabsContent value="dialogs" className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold mb-4">Dialog Components</h2>
+            <h2 className="mb-4 text-2xl font-bold">Dialog Components</h2>
             <p className="text-muted-foreground mb-6">
               Standard dialogs for forms, content display, and user interactions
             </p>
@@ -214,9 +218,9 @@ export default function ModalsComponentPage() {
                       </DialogDescription>
                     </DialogHeader>
                     <div className="py-4">
-                      <p className="text-sm text-muted-foreground">
-                        Dialog content goes here. You can include any React components,
-                        forms, or other interactive elements.
+                      <p className="text-muted-foreground text-sm">
+                        Dialog content goes here. You can include any React
+                        components, forms, or other interactive elements.
                       </p>
                     </div>
                     <DialogFooter>
@@ -258,7 +262,9 @@ export default function ModalsComponentPage() {
                           id="name"
                           placeholder="Enter full name"
                           value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, name: e.target.value })
+                          }
                         />
                       </div>
                       <div className="space-y-2">
@@ -268,12 +274,19 @@ export default function ModalsComponentPage() {
                           type="email"
                           placeholder="Enter email"
                           value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          onChange={(e) =>
+                            setFormData({ ...formData, email: e.target.value })
+                          }
                         />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="role">Role</Label>
-                        <Select value={formData.role} onValueChange={(value) => setFormData({ ...formData, role: value })}>
+                        <Select
+                          value={formData.role}
+                          onValueChange={(value) =>
+                            setFormData({ ...formData, role: value })
+                          }
+                        >
                           <SelectTrigger>
                             <SelectValue placeholder="Select role" />
                           </SelectTrigger>
@@ -310,7 +323,7 @@ export default function ModalsComponentPage() {
                       View Details
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                  <DialogContent className="max-h-[80vh] max-w-2xl overflow-y-auto">
                     <DialogHeader>
                       <DialogTitle>Project Details</DialogTitle>
                       <DialogDescription>
@@ -319,34 +332,50 @@ export default function ModalsComponentPage() {
                     </DialogHeader>
                     <div className="space-y-6">
                       <div>
-                        <h3 className="font-semibold mb-2">Overview</h3>
-                        <p className="text-sm text-muted-foreground">
-                          This project involves developing a comprehensive dashboard
-                          application with modern React components and TypeScript integration.
+                        <h3 className="mb-2 font-semibold">Overview</h3>
+                        <p className="text-muted-foreground text-sm">
+                          This project involves developing a comprehensive
+                          dashboard application with modern React components and
+                          TypeScript integration.
                         </p>
                       </div>
-                      
+
                       <div>
-                        <h3 className="font-semibold mb-3">Team Members</h3>
+                        <h3 className="mb-3 font-semibold">Team Members</h3>
                         <div className="space-y-2">
                           {modalUsers.map((user) => (
-                            <div key={user.id} className="flex items-center space-x-3 p-2 border rounded">
+                            <div
+                              key={user.id}
+                              className="flex items-center space-x-3 rounded border p-2"
+                            >
                               <Avatar className="h-8 w-8">
-                                <AvatarImage src={user.avatar} alt={user.name} />
-                                <AvatarFallback>{user.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                                <AvatarImage
+                                  src={user.avatar}
+                                  alt={user.name}
+                                />
+                                <AvatarFallback>
+                                  {user.name
+                                    .split(' ')
+                                    .map((n) => n[0])
+                                    .join('')}
+                                </AvatarFallback>
                               </Avatar>
                               <div className="flex-1">
-                                <div className="font-medium text-sm">{user.name}</div>
-                                <div className="text-xs text-muted-foreground">{user.role}</div>
+                                <div className="text-sm font-medium">
+                                  {user.name}
+                                </div>
+                                <div className="text-muted-foreground text-xs">
+                                  {user.role}
+                                </div>
                               </div>
                               <Badge variant="outline">{user.status}</Badge>
                             </div>
                           ))}
                         </div>
                       </div>
-                      
+
                       <div>
-                        <h3 className="font-semibold mb-2">Progress</h3>
+                        <h3 className="mb-2 font-semibold">Progress</h3>
                         <div className="space-y-2">
                           <div className="flex justify-between text-sm">
                             <span>Completion</span>
@@ -389,11 +418,13 @@ export default function ModalsComponentPage() {
                       </DialogDescription>
                     </DialogHeader>
                     <div className="space-y-4">
-                      <div className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-6 text-center">
-                        <Upload className="mx-auto h-12 w-12 text-muted-foreground" />
+                      <div className="border-muted-foreground/25 rounded-lg border-2 border-dashed p-6 text-center">
+                        <Upload className="text-muted-foreground mx-auto h-12 w-12" />
                         <div className="mt-4">
-                          <p className="text-sm font-medium">Drop files here or click to browse</p>
-                          <p className="text-xs text-muted-foreground mt-1">
+                          <p className="text-sm font-medium">
+                            Drop files here or click to browse
+                          </p>
+                          <p className="text-muted-foreground mt-1 text-xs">
                             Support for PDF, DOC, JPG, PNG up to 10MB
                           </p>
                         </div>
@@ -401,7 +432,7 @@ export default function ModalsComponentPage() {
                           Choose Files
                         </Button>
                       </div>
-                      
+
                       {(isUploading || uploadProgress > 0) && (
                         <div className="space-y-2">
                           <div className="flex items-center justify-between text-sm">
@@ -414,7 +445,10 @@ export default function ModalsComponentPage() {
                     </div>
                     <DialogFooter>
                       <Button variant="outline">Cancel</Button>
-                      <Button onClick={handleSimulateUpload} disabled={isUploading}>
+                      <Button
+                        onClick={handleSimulateUpload}
+                        disabled={isUploading}
+                      >
                         {isUploading ? 'Uploading...' : 'Upload'}
                       </Button>
                     </DialogFooter>
@@ -448,13 +482,16 @@ export default function ModalsComponentPage() {
                     </DialogHeader>
                     <div className="space-y-4">
                       <div className="relative">
-                        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Search className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" />
                         <Input placeholder="Search users..." className="pl-9" />
                       </div>
-                      
-                                              <div className="space-y-2 max-h-60 overflow-y-auto">
-                          {modalUsers.map((user) => (
-                          <div key={user.id} className="flex items-center space-x-3 p-2 hover:bg-muted rounded">
+
+                      <div className="max-h-60 space-y-2 overflow-y-auto">
+                        {modalUsers.map((user) => (
+                          <div
+                            key={user.id}
+                            className="hover:bg-muted flex items-center space-x-3 rounded p-2"
+                          >
                             <Checkbox
                               id={`user-${user.id}`}
                               checked={selectedUsers.includes(user.id)}
@@ -462,23 +499,34 @@ export default function ModalsComponentPage() {
                             />
                             <Avatar className="h-8 w-8">
                               <AvatarImage src={user.avatar} alt={user.name} />
-                              <AvatarFallback>{user.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                              <AvatarFallback>
+                                {user.name
+                                  .split(' ')
+                                  .map((n) => n[0])
+                                  .join('')}
+                              </AvatarFallback>
                             </Avatar>
                             <div className="flex-1">
-                              <Label htmlFor={`user-${user.id}`} className="font-medium cursor-pointer">
+                              <Label
+                                htmlFor={`user-${user.id}`}
+                                className="cursor-pointer font-medium"
+                              >
                                 {user.name}
                               </Label>
-                              <div className="text-xs text-muted-foreground">{user.email}</div>
+                              <div className="text-muted-foreground text-xs">
+                                {user.email}
+                              </div>
                             </div>
                             <Badge variant="outline">{user.role}</Badge>
                           </div>
                         ))}
                       </div>
-                      
+
                       {selectedUsers.length > 0 && (
-                        <div className="p-3 bg-muted rounded">
+                        <div className="bg-muted rounded p-3">
                           <p className="text-sm font-medium">
-                            {selectedUsers.length} user{selectedUsers.length > 1 ? 's' : ''} selected
+                            {selectedUsers.length} user
+                            {selectedUsers.length > 1 ? 's' : ''} selected
                           </p>
                         </div>
                       )}
@@ -531,7 +579,10 @@ export default function ModalsComponentPage() {
                           </div>
                           <div className="space-y-2">
                             <Label>Description</Label>
-                            <Textarea placeholder="Project description..." rows={3} />
+                            <Textarea
+                              placeholder="Project description..."
+                              rows={3}
+                            />
                           </div>
                           <div className="space-y-2">
                             <Label>Category</Label>
@@ -540,8 +591,12 @@ export default function ModalsComponentPage() {
                                 <SelectValue placeholder="Select category" />
                               </SelectTrigger>
                               <SelectContent>
-                                <SelectItem value="web">Web Development</SelectItem>
-                                <SelectItem value="mobile">Mobile App</SelectItem>
+                                <SelectItem value="web">
+                                  Web Development
+                                </SelectItem>
+                                <SelectItem value="mobile">
+                                  Mobile App
+                                </SelectItem>
                                 <SelectItem value="design">Design</SelectItem>
                               </SelectContent>
                             </Select>
@@ -550,15 +605,27 @@ export default function ModalsComponentPage() {
                         <TabsContent value="members" className="space-y-4 p-1">
                           <div className="space-y-3">
                             {modalUsers.map((user) => (
-                              <div key={user.id} className="flex items-center justify-between p-2 border rounded">
+                              <div
+                                key={user.id}
+                                className="flex items-center justify-between rounded border p-2"
+                              >
                                 <div className="flex items-center space-x-3">
                                   <Avatar className="h-8 w-8">
-                                    <AvatarImage src={user.avatar} alt={user.name} />
-                                    <AvatarFallback>{getUserInitials(user.name)}</AvatarFallback>
+                                    <AvatarImage
+                                      src={user.avatar}
+                                      alt={user.name}
+                                    />
+                                    <AvatarFallback>
+                                      {getUserInitials(user.name)}
+                                    </AvatarFallback>
                                   </Avatar>
                                   <div>
-                                    <div className="font-medium text-sm">{user.name}</div>
-                                    <div className="text-xs text-muted-foreground">{user.email}</div>
+                                    <div className="text-sm font-medium">
+                                      {user.name}
+                                    </div>
+                                    <div className="text-muted-foreground text-xs">
+                                      {user.email}
+                                    </div>
                                   </div>
                                 </div>
                                 <Select defaultValue={user.role.toLowerCase()}>
@@ -567,8 +634,12 @@ export default function ModalsComponentPage() {
                                   </SelectTrigger>
                                   <SelectContent>
                                     <SelectItem value="admin">Admin</SelectItem>
-                                    <SelectItem value="editor">Editor</SelectItem>
-                                    <SelectItem value="viewer">Viewer</SelectItem>
+                                    <SelectItem value="editor">
+                                      Editor
+                                    </SelectItem>
+                                    <SelectItem value="viewer">
+                                      Viewer
+                                    </SelectItem>
                                   </SelectContent>
                                 </Select>
                               </div>
@@ -579,8 +650,10 @@ export default function ModalsComponentPage() {
                           <div className="space-y-4">
                             <div className="flex items-center justify-between">
                               <div>
-                                <div className="font-medium">Public Project</div>
-                                <div className="text-sm text-muted-foreground">
+                                <div className="font-medium">
+                                  Public Project
+                                </div>
+                                <div className="text-muted-foreground text-sm">
                                   Make this project visible to everyone
                                 </div>
                               </div>
@@ -588,8 +661,10 @@ export default function ModalsComponentPage() {
                             </div>
                             <div className="flex items-center justify-between">
                               <div>
-                                <div className="font-medium">Enable Notifications</div>
-                                <div className="text-sm text-muted-foreground">
+                                <div className="font-medium">
+                                  Enable Notifications
+                                </div>
+                                <div className="text-muted-foreground text-sm">
                                   Receive email notifications for updates
                                 </div>
                               </div>
@@ -598,7 +673,7 @@ export default function ModalsComponentPage() {
                             <div className="flex items-center justify-between">
                               <div>
                                 <div className="font-medium">Auto Archive</div>
-                                <div className="text-sm text-muted-foreground">
+                                <div className="text-muted-foreground text-sm">
                                   Archive completed projects after 30 days
                                 </div>
                               </div>
@@ -621,7 +696,7 @@ export default function ModalsComponentPage() {
 
         <TabsContent value="alerts" className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold mb-4">Alert Dialogs</h2>
+            <h2 className="mb-4 text-2xl font-bold">Alert Dialogs</h2>
             <p className="text-muted-foreground mb-6">
               Confirmation dialogs and alerts for critical actions
             </p>
@@ -646,10 +721,12 @@ export default function ModalsComponentPage() {
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>
-                      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                      <AlertDialogTitle>
+                        Are you absolutely sure?
+                      </AlertDialogTitle>
                       <AlertDialogDescription>
-                        This action cannot be undone. This will permanently delete the
-                        item and remove it from our servers.
+                        This action cannot be undone. This will permanently
+                        delete the item and remove it from our servers.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
@@ -686,8 +763,9 @@ export default function ModalsComponentPage() {
                         Unsaved Changes
                       </AlertDialogTitle>
                       <AlertDialogDescription>
-                        You have unsaved changes that will be lost if you continue.
-                        Would you like to save your changes before proceeding?
+                        You have unsaved changes that will be lost if you
+                        continue. Would you like to save your changes before
+                        proceeding?
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
@@ -723,8 +801,9 @@ export default function ModalsComponentPage() {
                         Action Completed Successfully
                       </AlertDialogTitle>
                       <AlertDialogDescription>
-                        Your request has been processed successfully. All changes have
-                        been saved and users will be notified of the updates.
+                        Your request has been processed successfully. All
+                        changes have been saved and users will be notified of
+                        the updates.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
@@ -739,7 +818,7 @@ export default function ModalsComponentPage() {
 
         <TabsContent value="sheets" className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold mb-4">Sheet Components</h2>
+            <h2 className="mb-4 text-2xl font-bold">Sheet Components</h2>
             <p className="text-muted-foreground mb-6">
               Slide-out panels and drawers for secondary content and actions
             </p>
@@ -769,7 +848,7 @@ export default function ModalsComponentPage() {
                         This sheet slides in from the right side of the screen.
                       </SheetDescription>
                     </SheetHeader>
-                    <div className="py-4 space-y-4">
+                    <div className="space-y-4 py-4">
                       <div className="space-y-2">
                         <Label>Name</Label>
                         <Input placeholder="Enter your name" />
@@ -814,7 +893,7 @@ export default function ModalsComponentPage() {
                         Quick access to main navigation items.
                       </SheetDescription>
                     </SheetHeader>
-                    <div className="py-4 space-y-2">
+                    <div className="space-y-2 py-4">
                       <Button variant="ghost" className="w-full justify-start">
                         <User className="mr-2 h-4 w-4" />
                         Profile
@@ -841,9 +920,7 @@ export default function ModalsComponentPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg">Top Sheet</CardTitle>
-                <CardDescription>
-                  Sheet sliding from the top
-                </CardDescription>
+                <CardDescription>Sheet sliding from the top</CardDescription>
               </CardHeader>
               <CardContent>
                 <Sheet>
@@ -860,9 +937,9 @@ export default function ModalsComponentPage() {
                         Quick search across all your content and data.
                       </SheetDescription>
                     </SheetHeader>
-                    <div className="py-4 space-y-4">
+                    <div className="space-y-4 py-4">
                       <div className="relative">
-                        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Search className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" />
                         <Input placeholder="Search..." className="pl-9" />
                       </div>
                       <div className="flex space-x-2">
@@ -887,9 +964,7 @@ export default function ModalsComponentPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg">Bottom Sheet</CardTitle>
-                <CardDescription>
-                  Sheet sliding from the bottom
-                </CardDescription>
+                <CardDescription>Sheet sliding from the bottom</CardDescription>
               </CardHeader>
               <CardContent>
                 <Sheet>
@@ -907,20 +982,20 @@ export default function ModalsComponentPage() {
                       </SheetDescription>
                     </SheetHeader>
                     <div className="grid grid-cols-4 gap-4 py-4">
-                      <Button variant="outline" className="flex-col h-20">
-                        <Mail className="h-6 w-6 mb-2" />
+                      <Button variant="outline" className="h-20 flex-col">
+                        <Mail className="mb-2 h-6 w-6" />
                         Email
                       </Button>
-                      <Button variant="outline" className="flex-col h-20">
-                        <Share className="h-6 w-6 mb-2" />
+                      <Button variant="outline" className="h-20 flex-col">
+                        <Share className="mb-2 h-6 w-6" />
                         Link
                       </Button>
-                      <Button variant="outline" className="flex-col h-20">
-                        <Download className="h-6 w-6 mb-2" />
+                      <Button variant="outline" className="h-20 flex-col">
+                        <Download className="mb-2 h-6 w-6" />
                         Download
                       </Button>
-                      <Button variant="outline" className="flex-col h-20">
-                        <MoreHorizontal className="h-6 w-6 mb-2" />
+                      <Button variant="outline" className="h-20 flex-col">
+                        <MoreHorizontal className="mb-2 h-6 w-6" />
                         More
                       </Button>
                     </div>
@@ -933,7 +1008,7 @@ export default function ModalsComponentPage() {
 
         <TabsContent value="popovers" className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold mb-4">Popover Components</h2>
+            <h2 className="mb-4 text-2xl font-bold">Popover Components</h2>
             <p className="text-muted-foreground mb-6">
               Floating content containers for additional information and actions
             </p>
@@ -959,7 +1034,7 @@ export default function ModalsComponentPage() {
                   <PopoverContent>
                     <div className="space-y-2">
                       <h4 className="font-medium">About this feature</h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         This is a popover component that displays additional
                         information when triggered.
                       </p>
@@ -989,7 +1064,7 @@ export default function ModalsComponentPage() {
                     <div className="space-y-4">
                       <div className="space-y-2">
                         <h4 className="font-medium">Add New Item</h4>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-muted-foreground text-sm">
                           Quickly create a new item with basic information.
                         </p>
                       </div>
@@ -1048,8 +1123,11 @@ export default function ModalsComponentPage() {
                         <Download className="mr-2 h-4 w-4" />
                         Download
                       </Button>
-                      <div className="h-px bg-border my-1" />
-                      <Button variant="ghost" className="w-full justify-start text-red-600">
+                      <div className="bg-border my-1 h-px" />
+                      <Button
+                        variant="ghost"
+                        className="w-full justify-start text-red-600"
+                      >
                         <Trash2 className="mr-2 h-4 w-4" />
                         Delete
                       </Button>
@@ -1063,7 +1141,7 @@ export default function ModalsComponentPage() {
 
         <TabsContent value="tooltips" className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold mb-4">Tooltip Components</h2>
+            <h2 className="mb-4 text-2xl font-bold">Tooltip Components</h2>
             <p className="text-muted-foreground mb-6">
               Helpful hints and information on hover or focus
             </p>
@@ -1075,9 +1153,7 @@ export default function ModalsComponentPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">Basic Tooltip</CardTitle>
-                  <CardDescription>
-                    Simple tooltip with text
-                  </CardDescription>
+                  <CardDescription>Simple tooltip with text</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center">
                   <Tooltip>
@@ -1098,9 +1174,7 @@ export default function ModalsComponentPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">Icon Tooltips</CardTitle>
-                  <CardDescription>
-                    Tooltips for icon buttons
-                  </CardDescription>
+                  <CardDescription>Tooltips for icon buttons</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center space-x-2">
                   <Tooltip>
@@ -1142,9 +1216,7 @@ export default function ModalsComponentPage() {
               <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">Rich Tooltip</CardTitle>
-                  <CardDescription>
-                    Tooltip with rich content
-                  </CardDescription>
+                  <CardDescription>Tooltip with rich content</CardDescription>
                 </CardHeader>
                 <CardContent className="flex justify-center">
                   <Tooltip>
@@ -1161,10 +1233,13 @@ export default function ModalsComponentPage() {
                             <AvatarImage src={modalUsers[0].avatar} />
                             <AvatarFallback>AJ</AvatarFallback>
                           </Avatar>
-                          <span className="font-medium text-sm">Alice Johnson</span>
+                          <span className="text-sm font-medium">
+                            Alice Johnson
+                          </span>
                         </div>
-                        <p className="text-xs text-muted-foreground">
-                          Product Designer with 5+ years of experience in UX/UI design
+                        <p className="text-muted-foreground text-xs">
+                          Product Designer with 5+ years of experience in UX/UI
+                          design
                         </p>
                       </div>
                     </TooltipContent>
@@ -1190,7 +1265,9 @@ export default function ModalsComponentPage() {
                     <TooltipContent>
                       <div className="flex items-center space-x-2">
                         <span>Search</span>
-                        <kbd className="px-2 py-1 text-xs bg-muted rounded">⌘K</kbd>
+                        <kbd className="bg-muted rounded px-2 py-1 text-xs">
+                          ⌘K
+                        </kbd>
                       </div>
                     </TooltipContent>
                   </Tooltip>
@@ -1204,7 +1281,9 @@ export default function ModalsComponentPage() {
                     <TooltipContent>
                       <div className="flex items-center space-x-2">
                         <span>New item</span>
-                        <kbd className="px-2 py-1 text-xs bg-muted rounded">⌘N</kbd>
+                        <kbd className="bg-muted rounded px-2 py-1 text-xs">
+                          ⌘N
+                        </kbd>
                       </div>
                     </TooltipContent>
                   </Tooltip>
@@ -1216,12 +1295,13 @@ export default function ModalsComponentPage() {
           <Alert>
             <Info className="h-4 w-4" />
             <AlertDescription>
-              Tooltips should provide helpful, concise information without overwhelming the user. 
-              Use them sparingly and ensure they add value to the user experience.
+              Tooltips should provide helpful, concise information without
+              overwhelming the user. Use them sparingly and ensure they add
+              value to the user experience.
             </AlertDescription>
           </Alert>
         </TabsContent>
       </Tabs>
     </div>
   );
-} 
+}

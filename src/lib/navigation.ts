@@ -38,7 +38,7 @@ export const useActiveNavigation = () => {
 
   const hasActiveSubmenu = (submenu?: NavigationItem['submenu']): boolean => {
     if (!submenu) return false;
-    return submenu.some(item => isActive(item.href));
+    return submenu.some((item) => isActive(item.href));
   };
 
   return { isActive, hasActiveSubmenu, pathname };
@@ -76,7 +76,8 @@ export const generateBreadcrumbs = (pathname: string) => {
   for (const segment of segments) {
     currentPath += `/${segment}`;
     breadcrumbs.push({
-      title: segment.charAt(0).toUpperCase() + segment.slice(1).replace('-', ' '),
+      title:
+        segment.charAt(0).toUpperCase() + segment.slice(1).replace('-', ' '),
       href: currentPath,
     });
   }
@@ -88,93 +89,96 @@ export const generateBreadcrumbs = (pathname: string) => {
  * Get page metadata based on current route
  */
 export const getPageMetadata = (pathname: string) => {
-  const routeMetadata: Record<string, { title: string; description: string }> = {
-    '/dashboard': {
-      title: 'Dashboard',
-      description: 'Overview of your application metrics and recent activity',
-    },
-    '/dashboard/analytics': {
-      title: 'Analytics',
-      description: 'Detailed insights into your application performance',
-    },
-    '/dashboard/analytics/performance': {
-      title: 'Performance Analytics',
-      description: 'Monitor your application performance metrics',
-    },
-    '/dashboard/analytics/traffic': {
-      title: 'Traffic Analytics',
-      description: 'Analyze your website traffic and user behavior',
-    },
-    '/dashboard/analytics/revenue': {
-      title: 'Revenue Analytics',
-      description: 'Track your revenue metrics and financial performance',
-    },
-    '/dashboard/data/products': {
-      title: 'Products',
-      description: 'Manage your product catalog and inventory',
-    },
-    '/dashboard/data/users': {
-      title: 'Users',
-      description: 'User management and account administration',
-    },
-    '/dashboard/data/orders': {
-      title: 'Orders',
-      description: 'Order management and fulfillment tracking',
-    },
-    '/dashboard/data/reports': {
-      title: 'Reports',
-      description: 'Generate and view detailed business reports',
-    },
-    '/dashboard/components': {
-      title: 'UI Components',
-      description: 'Explore the component library and design system',
-    },
-    '/dashboard/components/forms': {
-      title: 'Form Components',
-      description: 'Form examples and validation patterns',
-    },
-    '/dashboard/components/tables': {
-      title: 'Table Components',
-      description: 'Data table examples with sorting and filtering',
-    },
-    '/dashboard/components/cards': {
-      title: 'Card Components',
-      description: 'Various card layouts and display patterns',
-    },
-    '/dashboard/components/modals': {
-      title: 'Modal Components',
-      description: 'Dialog and overlay component examples',
-    },
-    '/dashboard/components/showcase': {
-      title: 'Enhanced Components',
-      description: 'Advanced UI components and interactions',
-    },
-    '/dashboard/users/list': {
-      title: 'All Users',
-      description: 'Complete user directory and management',
-    },
-    '/dashboard/users/roles': {
-      title: 'User Roles',
-      description: 'Role-based access control management',
-    },
-    '/dashboard/users/permissions': {
-      title: 'Permissions',
-      description: 'Granular permission management system',
-    },
-    '/dashboard/settings': {
-      title: 'Settings',
-      description: 'Application and account preferences',
-    },
-    '/dashboard/notifications': {
-      title: 'Notifications',
-      description: 'Notification center and preferences',
-    },
-  };
+  const routeMetadata: Record<string, { title: string; description: string }> =
+    {
+      '/dashboard': {
+        title: 'Dashboard',
+        description: 'Overview of your application metrics and recent activity',
+      },
+      '/dashboard/analytics': {
+        title: 'Analytics',
+        description: 'Detailed insights into your application performance',
+      },
+      '/dashboard/analytics/performance': {
+        title: 'Performance Analytics',
+        description: 'Monitor your application performance metrics',
+      },
+      '/dashboard/analytics/traffic': {
+        title: 'Traffic Analytics',
+        description: 'Analyze your website traffic and user behavior',
+      },
+      '/dashboard/analytics/revenue': {
+        title: 'Revenue Analytics',
+        description: 'Track your revenue metrics and financial performance',
+      },
+      '/dashboard/data/products': {
+        title: 'Products',
+        description: 'Manage your product catalog and inventory',
+      },
+      '/dashboard/data/users': {
+        title: 'Users',
+        description: 'User management and account administration',
+      },
+      '/dashboard/data/orders': {
+        title: 'Orders',
+        description: 'Order management and fulfillment tracking',
+      },
+      '/dashboard/data/reports': {
+        title: 'Reports',
+        description: 'Generate and view detailed business reports',
+      },
+      '/dashboard/components': {
+        title: 'UI Components',
+        description: 'Explore the component library and design system',
+      },
+      '/dashboard/components/forms': {
+        title: 'Form Components',
+        description: 'Form examples and validation patterns',
+      },
+      '/dashboard/components/tables': {
+        title: 'Table Components',
+        description: 'Data table examples with sorting and filtering',
+      },
+      '/dashboard/components/cards': {
+        title: 'Card Components',
+        description: 'Various card layouts and display patterns',
+      },
+      '/dashboard/components/modals': {
+        title: 'Modal Components',
+        description: 'Dialog and overlay component examples',
+      },
+      '/dashboard/components/showcase': {
+        title: 'Enhanced Components',
+        description: 'Advanced UI components and interactions',
+      },
+      '/dashboard/users/list': {
+        title: 'All Users',
+        description: 'Complete user directory and management',
+      },
+      '/dashboard/users/roles': {
+        title: 'User Roles',
+        description: 'Role-based access control management',
+      },
+      '/dashboard/users/permissions': {
+        title: 'Permissions',
+        description: 'Granular permission management system',
+      },
+      '/dashboard/settings': {
+        title: 'Settings',
+        description: 'Application and account preferences',
+      },
+      '/dashboard/notifications': {
+        title: 'Notifications',
+        description: 'Notification center and preferences',
+      },
+    };
 
-  return routeMetadata[pathname] || {
-    title: 'Dashboard',
-    description: 'LiteControl Admin Dashboard',
-  };
+  return (
+    routeMetadata[pathname] || {
+      title: 'Dashboard',
+      description: 'LiteControl Admin Dashboard',
+    }
+  );
 };
 
 /**
@@ -208,8 +212,12 @@ export const canAccessRoute = (href: string, userRole?: string): boolean => {
 export const searchNavigation = (
   items: NavigationItem[],
   query: string
-): Array<NavigationItem & { matchType: 'title' | 'description' | 'submenu' }> => {
-  const results: Array<NavigationItem & { matchType: 'title' | 'description' | 'submenu' }> = [];
+): Array<
+  NavigationItem & { matchType: 'title' | 'description' | 'submenu' }
+> => {
+  const results: Array<
+    NavigationItem & { matchType: 'title' | 'description' | 'submenu' }
+  > = [];
   const lowerQuery = query.toLowerCase();
 
   for (const item of items) {
@@ -227,9 +235,10 @@ export const searchNavigation = (
 
     // Check submenu matches
     if (item.submenu) {
-      const submenuMatch = item.submenu.some(subitem =>
-        subitem.title.toLowerCase().includes(lowerQuery) ||
-        subitem.description?.toLowerCase().includes(lowerQuery)
+      const submenuMatch = item.submenu.some(
+        (subitem) =>
+          subitem.title.toLowerCase().includes(lowerQuery) ||
+          subitem.description?.toLowerCase().includes(lowerQuery)
       );
       if (submenuMatch) {
         results.push({ ...item, matchType: 'submenu' });
@@ -247,4 +256,4 @@ export default {
   getPageMetadata,
   canAccessRoute,
   searchNavigation,
-}; 
+};

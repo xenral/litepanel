@@ -12,7 +12,7 @@ export interface AuthStore {
   token: string | null;
   user: AuthUser | null;
   isAuthenticated: boolean;
-  
+
   // Actions
   setAuth: (token: string, user?: AuthUser) => void;
   setUser: (user: AuthUser) => void;
@@ -27,7 +27,7 @@ export const useAuthStore = create<AuthStore>()(
       token: null,
       user: null,
       isAuthenticated: false,
-      
+
       // Actions
       setAuth: (token, user) =>
         set({
@@ -35,11 +35,11 @@ export const useAuthStore = create<AuthStore>()(
           user: user || null,
           isAuthenticated: true,
         }),
-      
+
       setUser: (user) => set({ user }),
-      
+
       updateToken: (token) => set({ token, isAuthenticated: true }),
-      
+
       logout: () =>
         set({
           token: null,
@@ -56,4 +56,4 @@ export const useAuthStore = create<AuthStore>()(
       }),
     }
   )
-); 
+);

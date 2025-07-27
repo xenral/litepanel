@@ -9,12 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@/components/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -90,7 +85,9 @@ export default function PerformancePage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/dashboard/analytics">Analytics</BreadcrumbLink>
+            <BreadcrumbLink href="/dashboard/analytics">
+              Analytics
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -102,7 +99,9 @@ export default function PerformancePage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Performance Analytics</h1>
+          <h1 className="text-3xl font-bold tracking-tight">
+            Performance Analytics
+          </h1>
           <p className="text-muted-foreground">
             Monitor website performance and user experience metrics
           </p>
@@ -128,11 +127,11 @@ export default function PerformancePage() {
                 <CardTitle className="text-sm font-medium">
                   {metric.title}
                 </CardTitle>
-                <metric.icon className="h-4 w-4 text-muted-foreground" />
+                <metric.icon className="text-muted-foreground h-4 w-4" />
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">{metric.value}</div>
-                <div className="flex items-center space-x-2 text-xs text-muted-foreground">
+                <div className="text-muted-foreground flex items-center space-x-2 text-xs">
                   <div className="flex items-center">
                     {metric.change > 0 ? (
                       <TrendingUp className="mr-1 h-3 w-3 text-red-500" />
@@ -165,12 +164,12 @@ export default function PerformancePage() {
                 <div key={data.name} className="flex items-center space-x-4">
                   <div className="w-12 text-sm font-medium">{data.name}</div>
                   <div className="flex-1">
-                    <Progress 
-                      value={(3 - data.value) * 33.33} 
+                    <Progress
+                      value={(3 - data.value) * 33.33}
                       className="h-2"
                     />
                   </div>
-                  <div className="w-16 text-sm text-muted-foreground">
+                  <div className="text-muted-foreground w-16 text-sm">
                     {data.value}s
                   </div>
                 </div>
@@ -192,7 +191,7 @@ export default function PerformancePage() {
                 <span className="text-sm font-medium">Image Optimization</span>
                 <Badge variant="secondary">High Impact</Badge>
               </div>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 Compress and optimize images to reduce load times by up to 40%
               </p>
             </div>
@@ -202,7 +201,7 @@ export default function PerformancePage() {
                 <span className="text-sm font-medium">Code Splitting</span>
                 <Badge variant="outline">Medium Impact</Badge>
               </div>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 Implement lazy loading for non-critical components
               </p>
             </div>
@@ -212,7 +211,7 @@ export default function PerformancePage() {
                 <span className="text-sm font-medium">CDN Implementation</span>
                 <Badge variant="outline">Low Impact</Badge>
               </div>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 Serve static assets from a content delivery network
               </p>
             </div>
@@ -240,12 +239,16 @@ export default function PerformancePage() {
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
                   <h4 className="text-sm font-medium">Performance Score</h4>
-                  <div className="text-2xl font-bold text-green-600">94/100</div>
+                  <div className="text-2xl font-bold text-green-600">
+                    94/100
+                  </div>
                   <Progress value={94} className="h-2" />
                 </div>
                 <div className="space-y-2">
                   <h4 className="text-sm font-medium">Accessibility Score</h4>
-                  <div className="text-2xl font-bold text-green-600">98/100</div>
+                  <div className="text-2xl font-bold text-green-600">
+                    98/100
+                  </div>
                   <Progress value={98} className="h-2" />
                 </div>
               </div>
@@ -253,11 +256,15 @@ export default function PerformancePage() {
             <TabsContent value="loading" className="space-y-4">
               <div className="grid gap-4 md:grid-cols-3">
                 <div className="space-y-2">
-                  <h4 className="text-sm font-medium">First Contentful Paint</h4>
+                  <h4 className="text-sm font-medium">
+                    First Contentful Paint
+                  </h4>
                   <div className="text-xl font-bold">0.8s</div>
                 </div>
                 <div className="space-y-2">
-                  <h4 className="text-sm font-medium">Largest Contentful Paint</h4>
+                  <h4 className="text-sm font-medium">
+                    Largest Contentful Paint
+                  </h4>
                   <div className="text-xl font-bold">1.2s</div>
                 </div>
                 <div className="space-y-2">
@@ -282,7 +289,7 @@ export default function PerformancePage() {
               <div className="space-y-2">
                 <h4 className="text-sm font-medium">Cumulative Layout Shift</h4>
                 <div className="text-xl font-bold">0.05</div>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                   Measures visual stability during page load
                 </p>
               </div>
@@ -292,4 +299,4 @@ export default function PerformancePage() {
       </Card>
     </div>
   );
-} 
+}

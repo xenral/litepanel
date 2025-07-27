@@ -18,19 +18,13 @@ export interface ProductStats {
   outOfStockCount: number;
 }
 
-export const categories = [
-  'All',
-  'Electronics',
-  'Clothing', 
-  'Health',
-  'Home'
-];
+export const categories = ['All', 'Electronics', 'Clothing', 'Health', 'Home'];
 
 export const statusOptions = [
   'All Status',
   'Active',
   'Inactive',
-  'Out of Stock'
+  'Out of Stock',
 ];
 
 export const sampleProducts: Product[] = [
@@ -87,15 +81,28 @@ export const sampleProducts: Product[] = [
 ];
 
 // Status badge mappings using Maps for better performance
-export const statusBadgeMap = new Map<Product['status'], { variant: string; label: string; className: string }>([
-  ['active', { variant: 'default', label: 'Active', className: 'bg-green-100 text-green-800' }],
+export const statusBadgeMap = new Map<
+  Product['status'],
+  { variant: string; label: string; className: string }
+>([
+  [
+    'active',
+    {
+      variant: 'default',
+      label: 'Active',
+      className: 'bg-green-100 text-green-800',
+    },
+  ],
   ['inactive', { variant: 'secondary', label: 'Inactive', className: '' }],
-  ['out-of-stock', { variant: 'destructive', label: 'Out of Stock', className: '' }],
+  [
+    'out-of-stock',
+    { variant: 'destructive', label: 'Out of Stock', className: '' },
+  ],
 ]);
 
 export const statsIconMap = new Map([
   ['total', Package],
-  ['value', DollarSign], 
+  ['value', DollarSign],
   ['lowStock', TrendingUp],
   ['outOfStock', AlertCircle],
-]); 
+]);

@@ -20,7 +20,7 @@ export default function NotificationsLoading() {
       </div>
 
       {/* Summary Cards Skeleton */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
         {Array.from({ length: 4 }).map((_, i) => (
           <Card key={i}>
             <CardContent className="p-6">
@@ -53,10 +53,13 @@ export default function NotificationsLoading() {
         <CardContent>
           <div className="space-y-4">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="flex items-start space-x-4 p-4 rounded-lg border">
-                <Skeleton className="h-8 w-8 rounded-lg shrink-0" />
-                
-                <div className="flex-1 min-w-0">
+              <div
+                key={i}
+                className="flex items-start space-x-4 rounded-lg border p-4"
+              >
+                <Skeleton className="h-8 w-8 shrink-0 rounded-lg" />
+
+                <div className="min-w-0 flex-1">
                   <div className="flex items-start justify-between">
                     <div className="space-y-2">
                       <div className="flex items-center space-x-2">
@@ -87,7 +90,7 @@ export default function NotificationsLoading() {
           <Skeleton className="h-4 w-64" />
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             {Array.from({ length: 3 }).map((_, i) => (
               <div key={i} className="space-y-2">
                 <Skeleton className="h-5 w-32" />
@@ -101,4 +104,4 @@ export default function NotificationsLoading() {
       </Card>
     </div>
   );
-} 
+}

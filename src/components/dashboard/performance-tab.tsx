@@ -1,4 +1,10 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import type { PerformanceMetric, DeviceAnalytic } from '@/types/dashboard';
@@ -8,7 +14,10 @@ interface PerformanceTabProps {
   deviceAnalytics: DeviceAnalytic[];
 }
 
-export function PerformanceTab({ performanceMetrics, deviceAnalytics }: PerformanceTabProps) {
+export function PerformanceTab({
+  performanceMetrics,
+  deviceAnalytics,
+}: PerformanceTabProps) {
   return (
     <div className="grid gap-4 md:grid-cols-2">
       <Card>
@@ -22,16 +31,20 @@ export function PerformanceTab({ performanceMetrics, deviceAnalytics }: Performa
               <div key={metric.metric} className="space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium">{metric.metric}</span>
-                  <Badge variant={metric.status === 'good' ? 'default' : 'destructive'}>
+                  <Badge
+                    variant={
+                      metric.status === 'good' ? 'default' : 'destructive'
+                    }
+                  >
                     {metric.status}
                   </Badge>
                 </div>
-                <div className="flex items-center justify-between text-xs text-muted-foreground">
+                <div className="text-muted-foreground flex items-center justify-between text-xs">
                   <span>Current: {metric.value}</span>
                   <span>Target: {metric.target}</span>
                 </div>
-                <Progress 
-                  value={(metric.value / metric.target) * 100} 
+                <Progress
+                  value={(metric.value / metric.target) * 100}
                   className="h-2"
                 />
               </div>
@@ -51,10 +64,12 @@ export function PerformanceTab({ performanceMetrics, deviceAnalytics }: Performa
               <div key={device.device} className="space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium">{device.device}</span>
-                  <span className="text-sm text-muted-foreground">{device.percentage}%</span>
+                  <span className="text-muted-foreground text-sm">
+                    {device.percentage}%
+                  </span>
                 </div>
                 <Progress value={device.percentage} className="h-2" />
-                <div className="text-xs text-muted-foreground">
+                <div className="text-muted-foreground text-xs">
                   {device.count.toLocaleString()} users ({device.change})
                 </div>
               </div>
@@ -64,4 +79,4 @@ export function PerformanceTab({ performanceMetrics, deviceAnalytics }: Performa
       </Card>
     </div>
   );
-} 
+}

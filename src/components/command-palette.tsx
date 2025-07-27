@@ -90,7 +90,9 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
             <span>Dashboard</span>
           </CommandItem>
           <CommandItem
-            onSelect={() => runCommand(() => router.push('/dashboard/analytics'))}
+            onSelect={() =>
+              runCommand(() => router.push('/dashboard/analytics'))
+            }
             className="flex items-center"
           >
             <BarChart3 className="mr-2 h-4 w-4" />
@@ -111,14 +113,18 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
             <span>Forms</span>
           </CommandItem>
           <CommandItem
-            onSelect={() => runCommand(() => router.push('/dashboard/settings'))}
+            onSelect={() =>
+              runCommand(() => router.push('/dashboard/settings'))
+            }
             className="flex items-center"
           >
             <Settings className="mr-2 h-4 w-4" />
             <span>Settings</span>
           </CommandItem>
           <CommandItem
-            onSelect={() => runCommand(() => router.push('/dashboard/notifications'))}
+            onSelect={() =>
+              runCommand(() => router.push('/dashboard/notifications'))
+            }
             className="flex items-center"
           >
             <Bell className="mr-2 h-4 w-4" />
@@ -150,9 +156,9 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
             <span>{isDark ? 'Light Mode' : 'Dark Mode'}</span>
           </CommandItem>
         </CommandGroup>
-  
+
         <CommandSeparator />
-  
+
         <CommandGroup heading="Quick Actions">
           <CommandItem className="flex items-center">
             <Calculator className="mr-2 h-4 w-4" />
@@ -194,4 +200,4 @@ export function CommandPalette({ open, onOpenChange }: CommandPaletteProps) {
       </CommandList>
     </CommandDialog>
   );
-} 
+}

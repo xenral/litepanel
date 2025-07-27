@@ -47,23 +47,17 @@ export const departments = [
   'Sales',
   'HR',
   'Finance',
-  'Operations'
+  'Operations',
 ];
 
-export const roles = [
-  'All Roles',
-  'Admin',
-  'Manager',
-  'Lead',
-  'Employee'
-];
+export const roles = ['All Roles', 'Admin', 'Manager', 'Lead', 'Employee'];
 
 export const statuses = [
   'All Status',
   'Active',
   'Inactive',
   'Pending',
-  'Suspended'
+  'Suspended',
 ];
 
 export const usersData: UserData[] = [
@@ -71,7 +65,8 @@ export const usersData: UserData[] = [
     id: 'USR-001',
     name: 'Alice Johnson',
     email: 'alice.johnson@company.com',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=64&h=64&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=64&h=64&fit=crop&crop=face',
     role: 'Admin',
     department: 'Engineering',
     status: 'Active',
@@ -89,7 +84,8 @@ export const usersData: UserData[] = [
     id: 'USR-002',
     name: 'Bob Smith',
     email: 'bob.smith@company.com',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face',
     role: 'Manager',
     department: 'Marketing',
     status: 'Active',
@@ -107,7 +103,8 @@ export const usersData: UserData[] = [
     id: 'USR-003',
     name: 'Carol Davis',
     email: 'carol.davis@company.com',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop&crop=face',
     role: 'Employee',
     department: 'Sales',
     status: 'Inactive',
@@ -125,7 +122,8 @@ export const usersData: UserData[] = [
     id: 'USR-004',
     name: 'David Wilson',
     email: 'david.wilson@company.com',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=face',
     role: 'Lead',
     department: 'Engineering',
     status: 'Active',
@@ -143,7 +141,8 @@ export const usersData: UserData[] = [
     id: 'USR-005',
     name: 'Eva Brown',
     email: 'eva.brown@company.com',
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=64&h=64&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=64&h=64&fit=crop&crop=face',
     role: 'Employee',
     department: 'HR',
     status: 'Pending',
@@ -161,7 +160,8 @@ export const usersData: UserData[] = [
     id: 'USR-006',
     name: 'Frank Miller',
     email: 'frank.miller@company.com',
-    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=64&h=64&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=64&h=64&fit=crop&crop=face',
     role: 'Employee',
     department: 'Finance',
     status: 'Suspended',
@@ -208,4 +208,4 @@ export const statusIconMap = new Map([
   ['Inactive', XCircle],
   ['Pending', Clock],
   ['Suspended', Ban],
-]); 
+]);

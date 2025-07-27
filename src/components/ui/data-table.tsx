@@ -68,7 +68,7 @@ export function DataTable<T extends Record<string, any>>({
   data,
   columns,
   searchable = true,
-  searchPlaceholder = "Search...",
+  searchPlaceholder = 'Search...',
   filterable = true,
   paginated = true,
   pageSize = 10,
@@ -78,7 +78,10 @@ export function DataTable<T extends Record<string, any>>({
   className,
 }: DataTableProps<T>) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' } | null>(null);
+  const [sortConfig, setSortConfig] = useState<{
+    key: string;
+    direction: 'asc' | 'desc';
+  } | null>(null);
   const [selectedRows, setSelectedRows] = useState<T[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [filters, setFilters] = useState<Record<string, string>>({});
@@ -163,33 +166,35 @@ export function DataTable<T extends Record<string, any>>({
     const newSelection = selectedRows.includes(row)
       ? selectedRows.filter((r) => r !== row)
       : [...selectedRows, row];
-    
+
     setSelectedRows(newSelection);
     onSelectionChange?.(newSelection);
   };
 
   const handleSelectAll = () => {
-    const newSelection = selectedRows.length === paginatedData.length ? [] : paginatedData;
+    const newSelection =
+      selectedRows.length === paginatedData.length ? [] : paginatedData;
     setSelectedRows(newSelection);
     onSelectionChange?.(newSelection);
   };
 
   const isSelected = (row: T) => selectedRows.includes(row);
-  const isAllSelected = selectedRows.length === paginatedData.length && paginatedData.length > 0;
+  const isAllSelected =
+    selectedRows.length === paginatedData.length && paginatedData.length > 0;
 
   return (
     <div className={className}>
       {/* Search and Filters */}
       {(searchable || filterable) && (
-        <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0 mb-4">
+        <div className="mb-4 flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
           {searchable && (
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Search className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" />
               <Input
                 placeholder={searchPlaceholder}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-9 w-64"
+                className="w-64 pl-9"
               />
             </div>
           )}
@@ -211,13 +216,13 @@ export function DataTable<T extends Record<string, any>>({
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="">All {col.title}</SelectItem>
-                      {Array.from(new Set(data.map((row) => String(row[col.key])))).map(
-                        (value) => (
-                          <SelectItem key={value} value={value}>
-                            {value}
-                          </SelectItem>
-                        )
-                      )}
+                      {Array.from(
+                        new Set(data.map((row) => String(row[col.key])))
+                      ).map((value) => (
+                        <SelectItem key={value} value={value}>
+                          {value}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 ))}
@@ -289,8 +294,8 @@ export function DataTable<T extends Record<string, any>>({
       {/* Pagination */}
       {paginated && totalPages > 1 && (
         <div className="flex items-center justify-between space-x-2 py-4">
-          <div className="text-sm text-muted-foreground">
-            Showing {((currentPage - 1) * pageSize) + 1} to{' '}
+          <div className="text-muted-foreground text-sm">
+            Showing {(currentPage - 1) * pageSize + 1} to{' '}
             {Math.min(currentPage * pageSize, sortedData.length)} of{' '}
             {sortedData.length} results
           </div>
@@ -336,12 +341,13 @@ export function DataTable<T extends Record<string, any>>({
 
       {/* Selection info */}
       {selectable && selectedRows.length > 0 && (
-        <div className="mt-4 p-3 bg-muted rounded-lg">
-          <p className="text-sm text-muted-foreground">
-            {selectedRows.length} row{selectedRows.length > 1 ? 's' : ''} selected
+        <div className="bg-muted mt-4 rounded-lg p-3">
+          <p className="text-muted-foreground text-sm">
+            {selectedRows.length} row{selectedRows.length > 1 ? 's' : ''}{' '}
+            selected
           </p>
         </div>
       )}
     </div>
   );
-} 
+}

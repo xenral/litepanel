@@ -53,7 +53,7 @@ import {
 const revenueOverview = {
   totalRevenue: 1247850,
   monthlyRevenue: 124780,
-  avgOrderValue: 89.50,
+  avgOrderValue: 89.5,
   totalOrders: 13943,
   conversionRate: 4.8,
   customerLifetimeValue: 450.25,
@@ -71,44 +71,139 @@ const monthlyData = [
 ];
 
 const revenueByCategory = [
-  { category: 'Software', revenue: 456780, percentage: 36.6, change: 15.3, orders: 5234 },
-  { category: 'Consulting', revenue: 324560, percentage: 26.0, change: 8.7, orders: 891 },
-  { category: 'Training', revenue: 234120, percentage: 18.8, change: 22.1, orders: 1456 },
-  { category: 'Support', revenue: 156780, percentage: 12.6, change: -3.2, orders: 2890 },
-  { category: 'Hardware', revenue: 75610, percentage: 6.1, change: -8.5, orders: 567 },
+  {
+    category: 'Software',
+    revenue: 456780,
+    percentage: 36.6,
+    change: 15.3,
+    orders: 5234,
+  },
+  {
+    category: 'Consulting',
+    revenue: 324560,
+    percentage: 26.0,
+    change: 8.7,
+    orders: 891,
+  },
+  {
+    category: 'Training',
+    revenue: 234120,
+    percentage: 18.8,
+    change: 22.1,
+    orders: 1456,
+  },
+  {
+    category: 'Support',
+    revenue: 156780,
+    percentage: 12.6,
+    change: -3.2,
+    orders: 2890,
+  },
+  {
+    category: 'Hardware',
+    revenue: 75610,
+    percentage: 6.1,
+    change: -8.5,
+    orders: 567,
+  },
 ];
 
 const topCustomers = [
-  { name: 'Acme Corporation', revenue: 45600, orders: 23, avgOrder: 1982.61, tier: 'Enterprise' },
-  { name: 'Global Tech Solutions', revenue: 38200, orders: 18, avgOrder: 2122.22, tier: 'Enterprise' },
-  { name: 'Innovation Labs', revenue: 29800, orders: 34, avgOrder: 876.47, tier: 'Business' },
-  { name: 'Digital Dynamics', revenue: 24500, orders: 28, avgOrder: 875.00, tier: 'Business' },
-  { name: 'Future Systems', revenue: 19300, orders: 15, avgOrder: 1286.67, tier: 'Pro' },
+  {
+    name: 'Acme Corporation',
+    revenue: 45600,
+    orders: 23,
+    avgOrder: 1982.61,
+    tier: 'Enterprise',
+  },
+  {
+    name: 'Global Tech Solutions',
+    revenue: 38200,
+    orders: 18,
+    avgOrder: 2122.22,
+    tier: 'Enterprise',
+  },
+  {
+    name: 'Innovation Labs',
+    revenue: 29800,
+    orders: 34,
+    avgOrder: 876.47,
+    tier: 'Business',
+  },
+  {
+    name: 'Digital Dynamics',
+    revenue: 24500,
+    orders: 28,
+    avgOrder: 875.0,
+    tier: 'Business',
+  },
+  {
+    name: 'Future Systems',
+    revenue: 19300,
+    orders: 15,
+    avgOrder: 1286.67,
+    tier: 'Pro',
+  },
 ];
 
 const revenueTargets = [
-  { metric: 'Monthly Revenue', current: 124780, target: 150000, percentage: 83.2 },
-  { metric: 'Quarterly Revenue', current: 387680, target: 450000, percentage: 86.2 },
-  { metric: 'Annual Revenue', current: 1247850, target: 1500000, percentage: 83.2 },
-  { metric: 'New Customer Revenue', current: 45670, target: 60000, percentage: 76.1 },
+  {
+    metric: 'Monthly Revenue',
+    current: 124780,
+    target: 150000,
+    percentage: 83.2,
+  },
+  {
+    metric: 'Quarterly Revenue',
+    current: 387680,
+    target: 450000,
+    percentage: 86.2,
+  },
+  {
+    metric: 'Annual Revenue',
+    current: 1247850,
+    target: 1500000,
+    percentage: 83.2,
+  },
+  {
+    metric: 'New Customer Revenue',
+    current: 45670,
+    target: 60000,
+    percentage: 76.1,
+  },
 ];
 
 const paymentMethods = [
-  { method: 'Credit Card', revenue: 623925, percentage: 50.0, transactions: 8965 },
+  {
+    method: 'Credit Card',
+    revenue: 623925,
+    percentage: 50.0,
+    transactions: 8965,
+  },
   { method: 'PayPal', revenue: 374355, percentage: 30.0, transactions: 3456 },
-  { method: 'Bank Transfer', revenue: 186942, percentage: 15.0, transactions: 891 },
-  { method: 'Digital Wallet', revenue: 62463, percentage: 5.0, transactions: 1234 },
+  {
+    method: 'Bank Transfer',
+    revenue: 186942,
+    percentage: 15.0,
+    transactions: 891,
+  },
+  {
+    method: 'Digital Wallet',
+    revenue: 62463,
+    percentage: 5.0,
+    transactions: 1234,
+  },
 ];
 
-const MetricCard = ({ 
-  title, 
-  value, 
-  change, 
-  trend, 
+const MetricCard = ({
+  title,
+  value,
+  change,
+  trend,
   icon: Icon,
   description,
-  format = 'number'
-}: { 
+  format = 'number',
+}: {
   title: string;
   value: string | number;
   change: number;
@@ -117,8 +212,14 @@ const MetricCard = ({
   description?: string;
   format?: 'number' | 'currency' | 'percentage';
 }) => {
-  const trendIcon = trend === 'up' ? ArrowUpRight : trend === 'down' ? ArrowDownRight : Minus;
-  const trendColor = trend === 'up' ? 'text-green-600' : trend === 'down' ? 'text-red-600' : 'text-gray-600';
+  const trendIcon =
+    trend === 'up' ? ArrowUpRight : trend === 'down' ? ArrowDownRight : Minus;
+  const trendColor =
+    trend === 'up'
+      ? 'text-green-600'
+      : trend === 'down'
+        ? 'text-red-600'
+        : 'text-gray-600';
 
   const formatValue = (val: string | number) => {
     if (format === 'currency') {
@@ -140,8 +241,10 @@ const MetricCard = ({
         <CardContent className="p-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <Icon className="h-5 w-5 text-muted-foreground" />
-              <p className="text-sm font-medium text-muted-foreground">{title}</p>
+              <Icon className="text-muted-foreground h-5 w-5" />
+              <p className="text-muted-foreground text-sm font-medium">
+                {title}
+              </p>
             </div>
             <div className={`flex items-center space-x-1 ${trendColor}`}>
               {React.createElement(trendIcon, { className: 'h-4 w-4' })}
@@ -151,7 +254,9 @@ const MetricCard = ({
           <div className="mt-3">
             <p className="text-2xl font-bold">{formatValue(value)}</p>
             {description && (
-              <p className="text-xs text-muted-foreground mt-1">{description}</p>
+              <p className="text-muted-foreground mt-1 text-xs">
+                {description}
+              </p>
             )}
           </div>
         </CardContent>
@@ -173,7 +278,9 @@ export default function RevenueAnalyticsPage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/dashboard/analytics">Analytics</BreadcrumbLink>
+            <BreadcrumbLink href="/dashboard/analytics">
+              Analytics
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbPage>Revenue</BreadcrumbPage>
@@ -183,7 +290,9 @@ export default function RevenueAnalyticsPage() {
       {/* Header */}
       <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Revenue Analytics</h1>
+          <h1 className="text-3xl font-bold tracking-tight">
+            Revenue Analytics
+          </h1>
           <p className="text-muted-foreground">
             Track your financial performance and revenue trends
           </p>
@@ -319,17 +428,25 @@ export default function RevenueAnalyticsPage() {
                       className="flex items-center justify-between"
                     >
                       <div className="flex items-center space-x-3">
-                        <span className="font-medium w-8">{month.month}</span>
+                        <span className="w-8 font-medium">{month.month}</span>
                         <div className="flex-1">
-                          <Progress 
-                            value={(month.revenue / Math.max(...monthlyData.map(m => m.revenue))) * 100} 
-                            className="h-3 w-32" 
+                          <Progress
+                            value={
+                              (month.revenue /
+                                Math.max(
+                                  ...monthlyData.map((m) => m.revenue)
+                                )) *
+                              100
+                            }
+                            className="h-3 w-32"
                           />
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="font-medium">${month.revenue.toLocaleString()}</div>
-                        <div className="text-xs text-muted-foreground">
+                        <div className="font-medium">
+                          ${month.revenue.toLocaleString()}
+                        </div>
+                        <div className="text-muted-foreground text-xs">
                           {month.orders} orders
                         </div>
                       </div>
@@ -361,14 +478,16 @@ export default function RevenueAnalyticsPage() {
                       className="flex items-center justify-between"
                     >
                       <div className="flex-1">
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm font-medium">{method.method}</span>
-                          <span className="text-sm text-muted-foreground">
+                        <div className="mb-1 flex items-center justify-between">
+                          <span className="text-sm font-medium">
+                            {method.method}
+                          </span>
+                          <span className="text-muted-foreground text-sm">
                             ${method.revenue.toLocaleString()}
                           </span>
                         </div>
                         <Progress value={method.percentage} className="h-2" />
-                        <div className="text-xs text-muted-foreground mt-1">
+                        <div className="text-muted-foreground mt-1 text-xs">
                           {method.transactions.toLocaleString()} transactions
                         </div>
                       </div>
@@ -400,25 +519,31 @@ export default function RevenueAnalyticsPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
-                    className="flex items-center justify-between p-4 rounded-lg border"
+                    className="flex items-center justify-between rounded-lg border p-4"
                   >
                     <div className="flex-1">
-                      <div className="flex items-center justify-between mb-2">
+                      <div className="mb-2 flex items-center justify-between">
                         <span className="font-medium">{category.category}</span>
                         <div className="flex items-center space-x-2">
                           <span className="text-sm font-medium">
                             ${category.revenue.toLocaleString()}
                           </span>
                           <Badge
-                            variant={category.change > 0 ? 'default' : 'destructive'}
+                            variant={
+                              category.change > 0 ? 'default' : 'destructive'
+                            }
                             className="text-xs"
                           >
-                            {category.change > 0 ? '+' : ''}{category.change}%
+                            {category.change > 0 ? '+' : ''}
+                            {category.change}%
                           </Badge>
                         </div>
                       </div>
-                      <Progress value={category.percentage} className="h-2 mb-2" />
-                      <div className="flex justify-between text-xs text-muted-foreground">
+                      <Progress
+                        value={category.percentage}
+                        className="mb-2 h-2"
+                      />
+                      <div className="text-muted-foreground flex justify-between text-xs">
                         <span>{category.percentage}% of total revenue</span>
                         <span>{category.orders.toLocaleString()} orders</span>
                       </div>
@@ -450,28 +575,38 @@ export default function RevenueAnalyticsPage() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
-                    className="flex items-center justify-between p-4 rounded-lg border"
+                    className="flex items-center justify-between rounded-lg border p-4"
                   >
                     <div className="flex items-center space-x-4">
-                      <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-primary-foreground text-sm font-medium">
-                        {customer.name.split(' ').map(n => n[0]).join('')}
+                      <div className="bg-primary text-primary-foreground flex h-10 w-10 items-center justify-center rounded-full text-sm font-medium">
+                        {customer.name
+                          .split(' ')
+                          .map((n) => n[0])
+                          .join('')}
                       </div>
                       <div>
                         <div className="font-medium">{customer.name}</div>
-                        <div className="text-sm text-muted-foreground">
-                          {customer.orders} orders • Avg: ${customer.avgOrder.toFixed(2)}
+                        <div className="text-muted-foreground text-sm">
+                          {customer.orders} orders • Avg: $
+                          {customer.avgOrder.toFixed(2)}
                         </div>
                       </div>
                     </div>
                     <div className="text-right">
                       <div className="flex items-center space-x-2">
-                        <Badge 
-                          variant={customer.tier === 'Enterprise' ? 'default' : customer.tier === 'Business' ? 'secondary' : 'outline'}
+                        <Badge
+                          variant={
+                            customer.tier === 'Enterprise'
+                              ? 'default'
+                              : customer.tier === 'Business'
+                                ? 'secondary'
+                                : 'outline'
+                          }
                         >
                           {customer.tier}
                         </Badge>
                       </div>
-                      <div className="font-medium text-lg">
+                      <div className="text-lg font-medium">
                         ${customer.revenue.toLocaleString()}
                       </div>
                     </div>
@@ -506,17 +641,21 @@ export default function RevenueAnalyticsPage() {
                   >
                     <div className="flex items-center justify-between">
                       <span className="font-medium">{target.metric}</span>
-                      <span className="text-sm text-muted-foreground">
-                        ${target.current.toLocaleString()} / ${target.target.toLocaleString()}
+                      <span className="text-muted-foreground text-sm">
+                        ${target.current.toLocaleString()} / $
+                        {target.target.toLocaleString()}
                       </span>
                     </div>
                     <Progress value={target.percentage} className="h-3" />
                     <div className="flex justify-between text-sm">
-                      <span className={`font-medium ${target.percentage >= 90 ? 'text-green-600' : target.percentage >= 70 ? 'text-yellow-600' : 'text-red-600'}`}>
+                      <span
+                        className={`font-medium ${target.percentage >= 90 ? 'text-green-600' : target.percentage >= 70 ? 'text-yellow-600' : 'text-red-600'}`}
+                      >
                         {target.percentage.toFixed(1)}% completed
                       </span>
                       <span className="text-muted-foreground">
-                        ${(target.target - target.current).toLocaleString()} remaining
+                        ${(target.target - target.current).toLocaleString()}{' '}
+                        remaining
                       </span>
                     </div>
                   </motion.div>
@@ -528,12 +667,13 @@ export default function RevenueAnalyticsPage() {
           <Alert>
             <Target className="h-4 w-4" />
             <AlertDescription>
-              Revenue targets are automatically calculated based on your historical performance and growth projections. 
-              You can adjust these targets in your business settings.
+              Revenue targets are automatically calculated based on your
+              historical performance and growth projections. You can adjust
+              these targets in your business settings.
             </AlertDescription>
           </Alert>
         </TabsContent>
       </Tabs>
     </div>
   );
-} 
+}

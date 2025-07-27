@@ -8,12 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from '@/components/ui/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -39,9 +34,9 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import { Badge } from '@/components/ui/badge';
-import { 
-  AlertCircle, 
-  CheckCircle2, 
+import {
+  AlertCircle,
+  CheckCircle2,
   Info,
   User,
   Mail,
@@ -99,7 +94,9 @@ export default function FormsPage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/dashboard/components">Components</BreadcrumbLink>
+            <BreadcrumbLink href="/dashboard/components">
+              Components
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -113,12 +110,11 @@ export default function FormsPage() {
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Form Components</h1>
           <p className="text-muted-foreground">
-            Comprehensive form examples showcasing all available input components
+            Comprehensive form examples showcasing all available input
+            components
           </p>
         </div>
-        <Badge variant="outline">
-          Interactive Demo
-        </Badge>
+        <Badge variant="outline">Interactive Demo</Badge>
       </div>
 
       <Separator />
@@ -134,7 +130,7 @@ export default function FormsPage() {
               This is an informational alert with additional context.
             </AlertDescription>
           </Alert>
-          
+
           <Alert variant="destructive">
             <AlertCircle className="h-4 w-4" />
             <AlertTitle>Error</AlertTitle>
@@ -170,26 +166,30 @@ export default function FormsPage() {
                     <Input
                       id="firstName"
                       value={formData.firstName}
-                      onChange={(e) => setFormData(prev => ({
-                        ...prev,
-                        firstName: e.target.value
-                      }))}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          firstName: e.target.value,
+                        }))
+                      }
                       className={errors.firstName ? 'border-red-500' : ''}
                     />
                     {errors.firstName && (
                       <p className="text-sm text-red-500">{errors.firstName}</p>
                     )}
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label htmlFor="lastName">Last Name</Label>
                     <Input
                       id="lastName"
                       value={formData.lastName}
-                      onChange={(e) => setFormData(prev => ({
-                        ...prev,
-                        lastName: e.target.value
-                      }))}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          lastName: e.target.value,
+                        }))
+                      }
                       className={errors.lastName ? 'border-red-500' : ''}
                     />
                     {errors.lastName && (
@@ -204,10 +204,12 @@ export default function FormsPage() {
                     id="email"
                     type="email"
                     value={formData.email}
-                    onChange={(e) => setFormData(prev => ({
-                      ...prev,
-                      email: e.target.value
-                    }))}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        email: e.target.value,
+                      }))
+                    }
                     className={errors.email ? 'border-red-500' : ''}
                   />
                   {errors.email && (
@@ -220,10 +222,12 @@ export default function FormsPage() {
                   <Textarea
                     id="bio"
                     value={formData.bio}
-                    onChange={(e) => setFormData(prev => ({
-                      ...prev,
-                      bio: e.target.value
-                    }))}
+                    onChange={(e) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        bio: e.target.value,
+                      }))
+                    }
                     placeholder="Enter your message..."
                     rows={4}
                   />
@@ -297,15 +301,17 @@ export default function FormsPage() {
                       <Input id="confirmPassword" type="password" />
                     </div>
                   </div>
-                  
+
                   <div className="space-y-2">
                     <Label>Account Type</Label>
-                    <RadioGroup 
+                    <RadioGroup
                       value={formData.accountType}
-                      onValueChange={(value) => setFormData(prev => ({
-                        ...prev,
-                        accountType: value
-                      }))}
+                      onValueChange={(value) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          accountType: value,
+                        }))
+                      }
                     >
                       <div className="flex items-center space-x-2">
                         <RadioGroupItem value="standard" id="standard" />
@@ -327,7 +333,9 @@ export default function FormsPage() {
 
                 {/* Professional Information */}
                 <div className="space-y-4">
-                  <h3 className="text-lg font-medium">Professional Information</h3>
+                  <h3 className="text-lg font-medium">
+                    Professional Information
+                  </h3>
                   <div className="space-y-2">
                     <Label htmlFor="company">
                       <Building className="mr-2 inline h-4 w-4" />
@@ -335,7 +343,7 @@ export default function FormsPage() {
                     </Label>
                     <Input id="company" />
                   </div>
-                  
+
                   <div className="grid gap-4 md:grid-cols-2">
                     <div className="space-y-2">
                       <Label>Role</Label>
@@ -352,7 +360,7 @@ export default function FormsPage() {
                         </SelectContent>
                       </Select>
                     </div>
-                    
+
                     <div className="space-y-2">
                       <Label>Department</Label>
                       <Select>
@@ -360,7 +368,9 @@ export default function FormsPage() {
                           <SelectValue placeholder="Select department" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="engineering">Engineering</SelectItem>
+                          <SelectItem value="engineering">
+                            Engineering
+                          </SelectItem>
                           <SelectItem value="design">Design</SelectItem>
                           <SelectItem value="marketing">Marketing</SelectItem>
                           <SelectItem value="sales">Sales</SelectItem>
@@ -380,43 +390,49 @@ export default function FormsPage() {
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
                         <Label>Email Notifications</Label>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-muted-foreground text-sm">
                           Receive notifications about account activity
                         </p>
                       </div>
-                      <Switch 
+                      <Switch
                         checked={formData.notifications}
-                        onCheckedChange={(checked) => setFormData(prev => ({
-                          ...prev,
-                          notifications: checked
-                        }))}
+                        onCheckedChange={(checked) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            notifications: checked,
+                          }))
+                        }
                       />
                     </div>
-                    
+
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
                         <Label>Marketing Emails</Label>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-muted-foreground text-sm">
                           Receive marketing updates and promotions
                         </p>
                       </div>
-                      <Switch 
+                      <Switch
                         checked={formData.marketing}
-                        onCheckedChange={(checked) => setFormData(prev => ({
-                          ...prev,
-                          marketing: checked
-                        }))}
+                        onCheckedChange={(checked) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            marketing: checked,
+                          }))
+                        }
                       />
                     </div>
-                    
+
                     <div className="flex items-center space-x-2">
-                      <Checkbox 
+                      <Checkbox
                         id="updates"
                         checked={formData.updates}
-                        onCheckedChange={(checked) => setFormData(prev => ({
-                          ...prev,
-                          updates: checked === true
-                        }))}
+                        onCheckedChange={(checked) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            updates: checked === true,
+                          }))
+                        }
                       />
                       <Label htmlFor="updates">
                         Send me product updates and feature announcements
@@ -443,10 +459,11 @@ export default function FormsPage() {
             <CheckCircle2 className="h-4 w-4" />
             <AlertTitle>Form Validation</AlertTitle>
             <AlertDescription>
-              This form demonstrates real-time validation with error states and success feedback.
+              This form demonstrates real-time validation with error states and
+              success feedback.
             </AlertDescription>
           </Alert>
-          
+
           <Card>
             <CardHeader>
               <CardTitle>Validation Example</CardTitle>
@@ -455,8 +472,9 @@ export default function FormsPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground mb-4">
-                Form validation is handled in the "Basic Form" tab. Submit without filling required fields to see error states.
+              <p className="text-muted-foreground mb-4 text-sm">
+                Form validation is handled in the "Basic Form" tab. Submit
+                without filling required fields to see error states.
               </p>
             </CardContent>
           </Card>
@@ -474,22 +492,22 @@ export default function FormsPage() {
                   <Label>Text Input</Label>
                   <Input placeholder="Enter text..." />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label>Email Input</Label>
                   <Input type="email" placeholder="Enter email..." />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label>Password Input</Label>
                   <Input type="password" placeholder="Enter password..." />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label>Textarea</Label>
                   <Textarea placeholder="Enter long text..." />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label>Select Dropdown</Label>
                   <Select>
@@ -509,7 +527,9 @@ export default function FormsPage() {
             <Card>
               <CardHeader>
                 <CardTitle>Choice Components</CardTitle>
-                <CardDescription>Checkboxes, radios, and switches</CardDescription>
+                <CardDescription>
+                  Checkboxes, radios, and switches
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2">
@@ -525,7 +545,7 @@ export default function FormsPage() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label>Radio Group</Label>
                   <RadioGroup defaultValue="radio1">
@@ -539,7 +559,7 @@ export default function FormsPage() {
                     </div>
                   </RadioGroup>
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label>Switches</Label>
                   <div className="space-y-2">
@@ -560,4 +580,4 @@ export default function FormsPage() {
       </Tabs>
     </div>
   );
-} 
+}

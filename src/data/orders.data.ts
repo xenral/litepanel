@@ -21,7 +21,13 @@ export interface Order {
   id: string;
   customer: OrderCustomer;
   total: number;
-  status: 'Pending' | 'Processing' | 'Shipped' | 'Delivered' | 'Cancelled' | 'Refunded';
+  status:
+    | 'Pending'
+    | 'Processing'
+    | 'Shipped'
+    | 'Delivered'
+    | 'Cancelled'
+    | 'Refunded';
   items: number;
   date: string;
   shippingAddress: string;
@@ -44,10 +50,10 @@ export interface OrderStats {
 export const statusFilters = [
   'All Status',
   'Pending',
-  'Processing', 
+  'Processing',
   'Shipped',
   'Delivered',
-  'Cancelled'
+  'Cancelled',
 ];
 
 export const ordersData: Order[] = [
@@ -56,7 +62,8 @@ export const ordersData: Order[] = [
     customer: {
       name: 'Alice Johnson',
       email: 'alice.johnson@example.com',
-      avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=64&h=64&fit=crop&crop=face',
+      avatar:
+        'https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=64&h=64&fit=crop&crop=face',
     },
     total: 299.99,
     status: 'Delivered',
@@ -71,9 +78,10 @@ export const ordersData: Order[] = [
     customer: {
       name: 'Bob Smith',
       email: 'bob.smith@example.com',
-      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face',
+      avatar:
+        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face',
     },
-    total: 149.50,
+    total: 149.5,
     status: 'Shipped',
     items: 2,
     date: '2024-01-19T14:22:00Z',
@@ -86,7 +94,8 @@ export const ordersData: Order[] = [
     customer: {
       name: 'Carol Davis',
       email: 'carol.davis@example.com',
-      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop&crop=face',
+      avatar:
+        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop&crop=face',
     },
     total: 89.99,
     status: 'Processing',
@@ -101,7 +110,8 @@ export const ordersData: Order[] = [
     customer: {
       name: 'David Wilson',
       email: 'david.wilson@example.com',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=face',
+      avatar:
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=face',
     },
     total: 459.99,
     status: 'Pending',
@@ -116,7 +126,8 @@ export const ordersData: Order[] = [
     customer: {
       name: 'Eva Brown',
       email: 'eva.brown@example.com',
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=64&h=64&fit=crop&crop=face',
+      avatar:
+        'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=64&h=64&fit=crop&crop=face',
     },
     total: 199.99,
     status: 'Cancelled',
@@ -131,7 +142,8 @@ export const ordersData: Order[] = [
     customer: {
       name: 'Frank Miller',
       email: 'frank.miller@example.com',
-      avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=64&h=64&fit=crop&crop=face',
+      avatar:
+        'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=64&h=64&fit=crop&crop=face',
     },
     total: 79.99,
     status: 'Delivered',
@@ -165,7 +177,10 @@ export const statusIconMap = new Map([
   ['Refunded', RotateCcw],
 ]);
 
-export const statusColorMap = new Map<string, "outline" | "secondary" | "default" | "destructive">([
+export const statusColorMap = new Map<
+  string,
+  'outline' | 'secondary' | 'default' | 'destructive'
+>([
   ['Pending', 'outline'],
   ['Processing', 'secondary'],
   ['Shipped', 'default'],
@@ -181,4 +196,4 @@ export const statsIconMap = new Map([
   ['pendingOrders', Clock],
   ['shippedOrders', Truck],
   ['deliveredOrders', CheckCircle2],
-]); 
+]);

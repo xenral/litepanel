@@ -28,7 +28,7 @@ A **fully functional Next.js 15 admin dashboard** with hot-swappable themes, com
 
 ### Prerequisites
 
-- **Node.js 18+** 
+- **Node.js 18+**
 - **npm/yarn/pnpm**
 
 ### Installation
@@ -53,7 +53,8 @@ npm run storybook
 ### 🎯 Demo Credentials
 
 For testing the authentication system:
-- **Email**: `demo@example.com`  
+
+- **Email**: `demo@example.com`
 - **Password**: `password123`
 
 ---
@@ -63,13 +64,15 @@ For testing the authentication system:
 > **Real functionality, not placeholder content!**
 
 ### ✅ Authentication System
+
 - **Login Page** (`/auth/login`) - Complete with validation, error handling, loading states
-- **Register Page** (`/auth/register`) - Password confirmation, terms acceptance, form validation  
+- **Register Page** (`/auth/register`) - Password confirmation, terms acceptance, form validation
 - **Social Login Buttons** - Google/GitHub integration ready
 - **Form Validation** - Real-time error feedback with Zod schemas
 - **Route Protection** - Navigation guards and auth state management
 
 ### ✅ Dashboard Features
+
 - **Analytics Dashboard** (`/dashboard/analytics`) - Real data fetching with loading/error states
 - **Data Export** - CSV/Excel/PDF export functionality
 - **User Profile Settings** - Avatar upload, preferences, account management
@@ -77,6 +80,7 @@ For testing the authentication system:
 - **Responsive Design** - Mobile-optimized with collapsible sidebar
 
 ### ✅ Form Component Library
+
 ```tsx
 // Professional form components with validation
 <Form schema={loginSchema} onSubmit={handleLogin}>
@@ -88,6 +92,7 @@ For testing the authentication system:
 ```
 
 ### ✅ API Service Layer
+
 ```typescript
 // Real API integration with TypeScript
 const user = await UserService.getCurrentUser();
@@ -96,6 +101,7 @@ const notifications = await NotificationService.getNotifications();
 ```
 
 ### ✅ Production Features
+
 - **TypeScript Strict Mode** - Full type safety, zero compilation errors
 - **Error Boundaries** - Graceful error handling throughout the app
 - **Loading States** - Professional loading spinners and skeletons
@@ -107,27 +113,32 @@ const notifications = await NotificationService.getNotifications();
 ## 🛠️ Technology Stack
 
 ### **Core Framework**
+
 - **Next.js 15** - App Router, React 19, Server Components
 - **TypeScript 5** - Strict mode with comprehensive types
 - **Tailwind CSS v4** - Utility-first styling with custom themes
 
 ### **UI & Components**
+
 - **shadcn/ui** - High-quality components built on Radix UI
 - **Radix UI** - Accessible, unstyled UI primitives
 - **Lucide Icons** - Beautiful, consistent iconography
 - **Framer Motion** - Smooth animations and transitions
 
 ### **Forms & Validation**
+
 - **React Hook Form v8** - Performant form state management
 - **Zod** - TypeScript-first schema validation
 - **Custom Form Components** - Reusable, validated form inputs
 
 ### **Data & API**
+
 - **Custom API Service Layer** - Centralized data management
 - **TanStack Table** - Advanced data grid functionality
 - **Apache ECharts** - Professional data visualizations
 
 ### **Development Tools**
+
 - **Storybook** - Component development and documentation
 - **Playwright** - End-to-end testing framework
 - **ESLint + Prettier** - Code quality and formatting
@@ -176,11 +187,11 @@ Legend: ✅ Fully Implemented & Working
 
 ### **3 Professional Themes**
 
-1. **🌈 Playful Pastel** *(Default)*
+1. **🌈 Playful Pastel** _(Default)_
    - Soft, rounded design with gentle gradients
    - Perfect for creative and modern applications
 
-2. **⚡ Neutral Pro**  
+2. **⚡ Neutral Pro**
    - Clean, professional aesthetic
    - High contrast for business applications
 
@@ -189,6 +200,7 @@ Legend: ✅ Fully Implemented & Working
    - Optimized for accessibility
 
 ### **Theme Switching**
+
 ```tsx
 import { useThemeContext } from '@/context/theme-context';
 
@@ -199,6 +211,7 @@ setTheme('neutral-pro');
 ```
 
 ### **Custom CSS Variables**
+
 ```css
 :root {
   --background: 320 20% 99%;
@@ -223,7 +236,7 @@ npm run storybook        # Start Storybook (localhost:6006)
 npm run build            # Production build
 npm run start           # Start production server
 
-# Quality Assurance  
+# Quality Assurance
 npm run lint            # ESLint checking
 npm run type-check      # TypeScript validation
 npm run format          # Prettier formatting
@@ -236,6 +249,7 @@ npm run build-storybook # Build static Storybook
 ### **Environment Setup**
 
 Create `.env.local`:
+
 ```env
 # Optional: External APIs
 NEXT_PUBLIC_API_URL=https://your-api.com
@@ -272,6 +286,7 @@ const recentActivity = await DashboardService.getRecentActivity();
 ```
 
 ### **Development Mode**
+
 - **Mock Data Fallback** - Works without backend during development
 - **Error Handling** - Comprehensive error boundaries and user feedback
 - **Loading States** - Professional loading indicators throughout
@@ -326,9 +341,10 @@ npx playwright test tests/auth.spec.ts
 ```
 
 ### **Test Coverage**
+
 - ✅ **Landing Page** - Navigation and theme switching
 - ✅ **Authentication** - Login/register flows
-- 📋 **Dashboard** - Analytics and data interactions  
+- 📋 **Dashboard** - Analytics and data interactions
 - 📋 **Forms** - Validation and submission
 - 📋 **Components** - UI component behavior
 
@@ -346,6 +362,7 @@ npm run storybook
 ```
 
 **Available Stories:**
+
 - ✅ **Button Components** - All variants and states
 - ✅ **Card Components** - Different layouts and use cases
 - ✅ **Form Components** - Input types and validation
@@ -355,7 +372,12 @@ npm run storybook
 
 ```tsx
 // Professional form with validation
-import { Form, FormInput, FormSubmit, ValidationSchemas } from '@/components/ui/form';
+import {
+  Form,
+  FormInput,
+  FormSubmit,
+  ValidationSchemas,
+} from '@/components/ui/form';
 
 const schema = z.object({
   email: ValidationSchemas.email,
@@ -366,7 +388,7 @@ const schema = z.object({
   <FormInput name="email" label="Email" type="email" />
   <FormInput name="password" label="Password" type="password" />
   <FormSubmit>Submit</FormSubmit>
-</Form>
+</Form>;
 ```
 
 ---
@@ -374,12 +396,14 @@ const schema = z.object({
 ## 🔒 Security & Best Practices
 
 ### **Security Features**
+
 - **Input Validation** - All forms validated with Zod schemas
 - **XSS Protection** - Sanitized inputs and outputs
 - **CSRF Protection** - Next.js built-in protections
 - **Environment Variables** - Secure configuration management
 
 ### **Code Quality**
+
 - **TypeScript Strict** - Zero `any` types, full type safety
 - **ESLint Rules** - Comprehensive linting configuration
 - **Pre-commit Hooks** - Automated quality checks
@@ -394,6 +418,7 @@ We welcome contributions! Here's how to get started:
 ### **Development Setup**
 
 1. **Fork & Clone**
+
    ```bash
    git clone https://github.com/xenral/litepanel.git
    cd litepanel
@@ -401,11 +426,13 @@ We welcome contributions! Here's how to get started:
    ```
 
 2. **Create Feature Branch**
+
    ```bash
    git checkout -b feature/amazing-feature
    ```
 
 3. **Development Workflow**
+
    ```bash
    npm run dev        # Start development
    npm run test       # Run tests
@@ -419,6 +446,7 @@ We welcome contributions! Here's how to get started:
    - Update documentation as needed
 
 ### **Code Standards**
+
 - **TypeScript** - Strict mode, comprehensive types
 - **Components** - Documented with Storybook stories
 - **Testing** - E2E tests for critical paths
@@ -429,12 +457,14 @@ We welcome contributions! Here's how to get started:
 ## 📈 Performance & Optimization
 
 ### **Built-in Optimizations**
+
 - **Code Splitting** - Automatic route-based splitting
 - **Image Optimization** - Next.js Image component
 - **Font Optimization** - Automatic font loading
 - **Bundle Analysis** - Webpack bundle analyzer included
 
 ### **Performance Metrics**
+
 - **Lighthouse Score**: 95+ for Performance, Accessibility, SEO
 - **First Contentful Paint**: <1.5s
 - **Time to Interactive**: <3s
@@ -447,6 +477,7 @@ We welcome contributions! Here's how to get started:
 ### **Common Issues**
 
 **Build Errors**
+
 ```bash
 # Clear Next.js cache
 rm -rf .next
@@ -454,6 +485,7 @@ npm run build
 ```
 
 **TypeScript Errors**
+
 ```bash
 # Check types
 npm run type-check
@@ -463,6 +495,7 @@ npm update
 ```
 
 **Storybook Issues**
+
 ```bash
 # Clear Storybook cache
 npx storybook upgrade
@@ -506,4 +539,4 @@ See [LICENSE](./LICENSE) for full details.
 
 **Built with ❤️ for the developer community**
 
-</div> 
+</div>

@@ -43,14 +43,19 @@ export function SystemStatus({ metrics }: SystemStatusProps) {
           {metrics.map((metric) => {
             const IconComponent = getIconComponent(metric.icon);
             return (
-              <div key={metric.name} className="flex items-center justify-between">
+              <div
+                key={metric.name}
+                className="flex items-center justify-between"
+              >
                 <div className="flex items-center space-x-3">
-                  <IconComponent className="h-4 w-4 text-muted-foreground" />
+                  <IconComponent className="text-muted-foreground h-4 w-4" />
                   <span className="text-sm">{metric.name}</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <span className="text-sm font-medium">{metric.value}%</span>
-                  <div className={`w-2 h-2 rounded-full ${getStatusColor(metric.status)}`} />
+                  <div
+                    className={`h-2 w-2 rounded-full ${getStatusColor(metric.status)}`}
+                  />
                 </div>
               </div>
             );
@@ -59,4 +64,4 @@ export function SystemStatus({ metrics }: SystemStatusProps) {
       </CardContent>
     </Card>
   );
-} 
+}

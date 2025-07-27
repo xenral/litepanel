@@ -4,10 +4,26 @@ import { Button } from '@/components/ui/button';
 
 export function QuickActions() {
   const actions = [
-    { icon: Plus, label: 'New Project', action: () => console.log('New Project') },
-    { icon: FileText, label: 'New Document', action: () => console.log('New Document') },
-    { icon: Settings, label: 'Settings', action: () => console.log('Settings') },
-    { icon: Activity, label: 'Analytics', action: () => console.log('Analytics') },
+    {
+      icon: Plus,
+      label: 'New Project',
+      action: () => console.log('New Project'),
+    },
+    {
+      icon: FileText,
+      label: 'New Document',
+      action: () => console.log('New Document'),
+    },
+    {
+      icon: Settings,
+      label: 'Settings',
+      action: () => console.log('Settings'),
+    },
+    {
+      icon: Activity,
+      label: 'Analytics',
+      action: () => console.log('Analytics'),
+    },
   ];
 
   return (
@@ -20,9 +36,9 @@ export function QuickActions() {
           {actions.map((action) => {
             const IconComponent = action.icon;
             return (
-              <Button 
+              <Button
                 key={action.label}
-                variant="outline" 
+                variant="outline"
                 size="sm"
                 onClick={action.action}
                 className="justify-start"
@@ -36,4 +52,4 @@ export function QuickActions() {
       </CardContent>
     </Card>
   );
-} 
+}

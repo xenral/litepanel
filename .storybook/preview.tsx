@@ -100,19 +100,23 @@ const preview: Preview = {
   decorators: [
     (Story, context) => {
       const { theme, darkMode } = context.globals;
-      
+
       // Apply theme classes to body
       if (typeof window !== 'undefined') {
         const body = document.body;
-        
+
         // Remove existing theme classes
-        body.classList.remove('theme-playful-pastel', 'theme-neutral-pro', 'theme-high-contrast');
+        body.classList.remove(
+          'theme-playful-pastel',
+          'theme-neutral-pro',
+          'theme-high-contrast'
+        );
         body.classList.remove('light', 'dark');
-        
+
         // Apply new theme classes
         body.classList.add(`theme-${theme}`);
         body.classList.add(darkMode ? 'dark' : 'light');
-        
+
         // Update CSS variables for the theme
         const root = document.documentElement;
         if (darkMode) {
@@ -122,8 +126,10 @@ const preview: Preview = {
         }
       }
 
+      const themeClass = `min-h-screen bg-background text-foreground theme-${theme} ${darkMode ? 'dark' : 'light'}`;
+
       return (
-        <div className={`min-h-screen bg-background text-foreground theme-${theme} ${darkMode ? 'dark' : 'light'}`}>
+        <div className={themeClass}>
           <div className="p-4">
             <Story />
           </div>
@@ -133,4 +139,4 @@ const preview: Preview = {
   ],
 };
 
-export default preview; 
+export default preview;

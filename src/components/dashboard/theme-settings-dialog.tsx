@@ -42,7 +42,10 @@ interface ThemeSettingsDialogProps {
   onOpenChange: (open: boolean) => void;
 }
 
-export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogProps) {
+export function ThemeSettingsDialog({
+  open,
+  onOpenChange,
+}: ThemeSettingsDialogProps) {
   const {
     theme,
     isDark,
@@ -57,7 +60,7 @@ export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogP
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden">
+      <DialogContent className="max-h-[90vh] max-w-4xl overflow-hidden">
         <DialogHeader>
           <DialogTitle className="flex items-center">
             <Palette className="mr-2 h-5 w-5" />
@@ -95,7 +98,7 @@ export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogP
                       whileTap={{ scale: 0.98 }}
                     >
                       <Button
-                        variant={!isDark ? "default" : "outline"}
+                        variant={!isDark ? 'default' : 'outline'}
                         className="h-20 w-full flex-col space-y-2"
                         onClick={() => !isDark || toggleDarkMode()}
                       >
@@ -103,13 +106,13 @@ export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogP
                         <span>Light</span>
                       </Button>
                     </motion.div>
-                    
+
                     <motion.div
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
                       <Button
-                        variant={isDark ? "default" : "outline"}
+                        variant={isDark ? 'default' : 'outline'}
                         className="h-20 w-full flex-col space-y-2"
                         onClick={() => isDark || toggleDarkMode()}
                       >
@@ -130,27 +133,38 @@ export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogP
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Card className="ring-2 ring-primary">
+                  <Card className="ring-primary ring-2">
                     <CardContent className="p-4">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-3">
                           <div className="flex space-x-1">
                             <div
                               className="h-4 w-4 rounded-full border"
-                              style={{ backgroundColor: currentThemeConfig.preview.primary }}
+                              style={{
+                                backgroundColor:
+                                  currentThemeConfig.preview.primary,
+                              }}
                             />
                             <div
                               className="h-4 w-4 rounded-full border"
-                              style={{ backgroundColor: currentThemeConfig.preview.secondary }}
+                              style={{
+                                backgroundColor:
+                                  currentThemeConfig.preview.secondary,
+                              }}
                             />
                             <div
                               className="h-4 w-4 rounded-full border"
-                              style={{ backgroundColor: currentThemeConfig.preview.background }}
+                              style={{
+                                backgroundColor:
+                                  currentThemeConfig.preview.background,
+                              }}
                             />
                           </div>
                           <div>
-                            <h4 className="font-medium">{currentThemeConfig.name}</h4>
-                            <p className="text-sm text-muted-foreground">
+                            <h4 className="font-medium">
+                              {currentThemeConfig.name}
+                            </h4>
+                            <p className="text-muted-foreground text-sm">
                               {currentThemeConfig.description}
                             </p>
                           </div>
@@ -159,7 +173,7 @@ export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogP
                           <Badge variant="outline" className="text-xs">
                             Active
                           </Badge>
-                          <Check className="h-4 w-4 text-primary" />
+                          <Check className="text-primary h-4 w-4" />
                         </div>
                       </div>
                     </CardContent>
@@ -179,14 +193,15 @@ export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogP
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-center py-8">
-                    <div className="flex items-center justify-center space-x-2 text-muted-foreground mb-4">
+                  <div className="py-8 text-center">
+                    <div className="text-muted-foreground mb-4 flex items-center justify-center space-x-2">
                       <Clock className="h-5 w-5" />
                       <span>Additional themes in development</span>
                     </div>
-                    <p className="text-sm text-muted-foreground">
-                      We're working on more beautiful themes including Playful Pastel, 
-                      High Contrast, and custom theme builder. Stay tuned!
+                    <p className="text-muted-foreground text-sm">
+                      We're working on more beautiful themes including Playful
+                      Pastel, High Contrast, and custom theme builder. Stay
+                      tuned!
                     </p>
                   </div>
                 </CardContent>
@@ -205,18 +220,20 @@ export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogP
                     </Badge>
                   </CardTitle>
                   <CardDescription>
-                    Color customization is temporarily disabled to ensure consistent theme experience
+                    Color customization is temporarily disabled to ensure
+                    consistent theme experience
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="text-center py-8">
-                    <div className="flex items-center justify-center space-x-2 text-muted-foreground mb-4">
+                  <div className="py-8 text-center">
+                    <div className="text-muted-foreground mb-4 flex items-center justify-center space-x-2">
                       <Lock className="h-5 w-5" />
                       <span>Custom colors will be available soon</span>
                     </div>
-                    <p className="text-sm text-muted-foreground">
-                      We're working on a better color customization system that maintains 
-                      accessibility and theme consistency. This feature will return in a future update.
+                    <p className="text-muted-foreground text-sm">
+                      We're working on a better color customization system that
+                      maintains accessibility and theme consistency. This
+                      feature will return in a future update.
                     </p>
                   </div>
                 </CardContent>
@@ -239,58 +256,81 @@ export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogP
                     <div className="flex items-center space-x-4">
                       <Slider
                         value={[customization.borderRadius]}
-                        onValueChange={([value]) => updateCustomization({ borderRadius: value })}
+                        onValueChange={([value]) =>
+                          updateCustomization({ borderRadius: value })
+                        }
                         min={0}
                         max={2}
                         step={0.1}
                         className="flex-1"
                       />
-                      <span className="text-sm text-muted-foreground w-8">
+                      <span className="text-muted-foreground w-8 text-sm">
                         {customization.borderRadius.toFixed(1)}
                       </span>
                     </div>
                     <div className="flex space-x-2">
-                      <div 
-                        className="h-8 w-8 bg-primary"
-                        style={{ borderRadius: `${customization.borderRadius * 0.25}rem` }}
+                      <div
+                        className="bg-primary h-8 w-8"
+                        style={{
+                          borderRadius: `${customization.borderRadius * 0.25}rem`,
+                        }}
                       />
-                      <div 
-                        className="h-8 w-12 bg-secondary"
-                        style={{ borderRadius: `${customization.borderRadius * 0.25}rem` }}
+                      <div
+                        className="bg-secondary h-8 w-12"
+                        style={{
+                          borderRadius: `${customization.borderRadius * 0.25}rem`,
+                        }}
                       />
-                      <div 
-                        className="h-8 w-16 bg-muted border"
-                        style={{ borderRadius: `${customization.borderRadius * 0.25}rem` }}
+                      <div
+                        className="bg-muted h-8 w-16 border"
+                        style={{
+                          borderRadius: `${customization.borderRadius * 0.25}rem`,
+                        }}
                       />
                     </div>
                   </div>
 
                   <div className="space-y-3">
-                    <Label className="text-sm font-medium flex items-center">
+                    <Label className="flex items-center text-sm font-medium">
                       <Type className="mr-2 h-4 w-4" />
                       Font Size Scale
                     </Label>
                     <div className="flex items-center space-x-4">
                       <Slider
                         value={[customization.fontSize]}
-                        onValueChange={([value]) => updateCustomization({ fontSize: value })}
+                        onValueChange={([value]) =>
+                          updateCustomization({ fontSize: value })
+                        }
                         min={0.8}
                         max={1.2}
                         step={0.1}
                         className="flex-1"
                       />
-                      <span className="text-sm text-muted-foreground w-8">
+                      <span className="text-muted-foreground w-8 text-sm">
                         {customization.fontSize.toFixed(1)}x
                       </span>
                     </div>
                     <div className="space-y-1">
-                      <p className="text-xs" style={{ fontSize: `${customization.fontSize * 0.75}rem` }}>
+                      <p
+                        className="text-xs"
+                        style={{
+                          fontSize: `${customization.fontSize * 0.75}rem`,
+                        }}
+                      >
                         Small text example
                       </p>
-                      <p className="text-sm" style={{ fontSize: `${customization.fontSize * 0.875}rem` }}>
+                      <p
+                        className="text-sm"
+                        style={{
+                          fontSize: `${customization.fontSize * 0.875}rem`,
+                        }}
+                      >
                         Regular text example
                       </p>
-                      <p className="text-base" style={{ fontSize: `${customization.fontSize * 1}rem` }}>
+                      <p
+                        className="text-base"
+                        style={{ fontSize: `${customization.fontSize * 1}rem` }}
+                      >
                         Base text example
                       </p>
                     </div>
@@ -318,8 +358,9 @@ export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogP
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label className="text-base">Auto Dark Mode</Label>
-                      <p className="text-sm text-muted-foreground">
-                        Automatically switch to dark mode based on system preference
+                      <p className="text-muted-foreground text-sm">
+                        Automatically switch to dark mode based on system
+                        preference
                       </p>
                     </div>
                     <Switch />
@@ -330,8 +371,9 @@ export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogP
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label className="text-base">Reduce Motion</Label>
-                      <p className="text-sm text-muted-foreground">
-                        Minimize animations and transitions for better accessibility
+                      <p className="text-muted-foreground text-sm">
+                        Minimize animations and transitions for better
+                        accessibility
                       </p>
                     </div>
                     <Switch />
@@ -342,7 +384,7 @@ export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogP
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label className="text-base">High Contrast</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         Increase contrast for better visibility
                       </p>
                     </div>
@@ -353,8 +395,10 @@ export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogP
 
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
-                      <Label className="text-base">Remember Theme per Workspace</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <Label className="text-base">
+                        Remember Theme per Workspace
+                      </Label>
+                      <p className="text-muted-foreground text-sm">
                         Save different themes for different workspaces
                       </p>
                     </div>
@@ -368,4 +412,4 @@ export function ThemeSettingsDialog({ open, onOpenChange }: ThemeSettingsDialogP
       </DialogContent>
     </Dialog>
   );
-} 
+}

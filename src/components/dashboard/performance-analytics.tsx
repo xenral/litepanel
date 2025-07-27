@@ -19,16 +19,32 @@ export function PerformanceAnalytics({ metrics }: PerformanceAnalyticsProps) {
       <CardContent>
         <div className="space-y-4">
           {metrics.map((metric) => (
-            <div key={metric.metric} className="flex items-center justify-between">
+            <div
+              key={metric.metric}
+              className="flex items-center justify-between"
+            >
               <div className="space-y-1">
                 <p className="text-sm font-medium">{metric.metric}</p>
-                <p className="text-xs text-muted-foreground">
-                  {metric.value}{metric.metric.includes('Time') ? 'ms' : metric.metric.includes('Uptime') ? '%' : ''}
+                <p className="text-muted-foreground text-xs">
+                  {metric.value}
+                  {metric.metric.includes('Time')
+                    ? 'ms'
+                    : metric.metric.includes('Uptime')
+                      ? '%'
+                      : ''}
                   {' / '}
-                  {metric.target}{metric.metric.includes('Time') ? 'ms' : metric.metric.includes('Uptime') ? '%' : ''} target
+                  {metric.target}
+                  {metric.metric.includes('Time')
+                    ? 'ms'
+                    : metric.metric.includes('Uptime')
+                      ? '%'
+                      : ''}{' '}
+                  target
                 </p>
               </div>
-              <Badge variant={metric.status === 'good' ? 'default' : 'destructive'}>
+              <Badge
+                variant={metric.status === 'good' ? 'default' : 'destructive'}
+              >
                 {metric.status}
               </Badge>
             </div>
@@ -37,4 +53,4 @@ export function PerformanceAnalytics({ metrics }: PerformanceAnalyticsProps) {
       </CardContent>
     </Card>
   );
-} 
+}

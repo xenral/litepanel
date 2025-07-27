@@ -8,7 +8,7 @@ import type { ThemeName, ThemeCustomization, HSLColor } from '@/types/theme';
 const DEFAULT_CUSTOMIZATION: ThemeCustomization = {
   // These colors won't be used since we're forcing Neutral Pro colors
   primaryColor: { h: 0, s: 0, l: 98 }, // Neutral Pro primary
-  secondaryColor: { h: 240, s: 4, l: 16 }, // Neutral Pro secondary  
+  secondaryColor: { h: 240, s: 4, l: 16 }, // Neutral Pro secondary
   accentColor: { h: 240, s: 4, l: 16 }, // Neutral Pro accent
   borderRadius: 1,
   fontSize: 1,
@@ -23,7 +23,7 @@ export interface ThemeStore {
   customization: ThemeCustomization;
   isDark: boolean;
   _hasHydrated: boolean;
-  
+
   // Actions
   setTheme: (theme: ThemeName) => void; // Will be disabled but kept for compatibility
   setIsDark: (isDark: boolean) => void;
@@ -41,30 +41,32 @@ export const useThemeStore = create<ThemeStore>()(
       customization: DEFAULT_CUSTOMIZATION,
       isDark: true, // Default to dark mode
       _hasHydrated: false,
-      
+
       // Actions
       setTheme: (theme) => {
         // Silently ignore theme changes - always stay on neutral-pro
-        console.log('Theme switching is currently disabled. Using Neutral Pro theme.');
+        console.log(
+          'Theme switching is currently disabled. Using Neutral Pro theme.'
+        );
         set({ theme: LOCKED_THEME });
       },
-      
+
       setIsDark: (isDark) => set({ isDark }),
-      
+
       toggleDarkMode: () => set((state) => ({ isDark: !state.isDark })),
-      
+
       updateCustomization: (updates) => {
         console.log('Updating customization:', updates);
         set((state) => ({
           customization: { ...state.customization, ...updates },
         }));
       },
-      
+
       resetCustomization: () => {
         console.log('Resetting customization to defaults');
         set({ customization: DEFAULT_CUSTOMIZATION });
       },
-      
+
       setHasHydrated: (hasHydrated) => set({ _hasHydrated: hasHydrated }),
     }),
     {
@@ -100,4 +102,4 @@ export const useThemeStore = create<ThemeStore>()(
       },
     }
   )
-); 
+);

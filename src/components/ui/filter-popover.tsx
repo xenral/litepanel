@@ -1,10 +1,21 @@
 'use client';
 
 import * as React from 'react';
-import { Check, X, Calendar, Users, DollarSign, TrendingUp } from 'lucide-react';
+import {
+  Check,
+  X,
+  Calendar,
+  Users,
+  DollarSign,
+  TrendingUp,
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -89,8 +100,18 @@ export const DEFAULT_ANALYTICS_FILTERS: FilterCategory[] = [
     multiple: true,
     options: [
       { id: 'direct', label: 'Direct', value: 'direct', count: 45230 },
-      { id: 'organic', label: 'Organic Search', value: 'organic-search', count: 32840 },
-      { id: 'social', label: 'Social Media', value: 'social-media', count: 28100 },
+      {
+        id: 'organic',
+        label: 'Organic Search',
+        value: 'organic-search',
+        count: 32840,
+      },
+      {
+        id: 'social',
+        label: 'Social Media',
+        value: 'social-media',
+        count: 28100,
+      },
       { id: 'referral', label: 'Referral', value: 'referral', count: 12450 },
       { id: 'email', label: 'Email', value: 'email', count: 6212 },
       { id: 'paid', label: 'Paid Search', value: 'paid-search', count: 4890 },
@@ -104,7 +125,12 @@ export const DEFAULT_ANALYTICS_FILTERS: FilterCategory[] = [
     multiple: true,
     options: [
       { id: 'new', label: 'New Users', value: 'new', count: 78420 },
-      { id: 'returning', label: 'Returning Users', value: 'returning', count: 46412 },
+      {
+        id: 'returning',
+        label: 'Returning Users',
+        value: 'returning',
+        count: 46412,
+      },
       { id: 'premium', label: 'Premium Users', value: 'premium', count: 12890 },
       { id: 'trial', label: 'Trial Users', value: 'trial', count: 5670 },
     ],
@@ -119,7 +145,12 @@ export const DEFAULT_ANALYTICS_FILTERS: FilterCategory[] = [
       { id: 'under-100', label: 'Under $100', value: 'under-100', count: 2340 },
       { id: '100-500', label: '$100 - $500', value: '100-500', count: 1890 },
       { id: '500-1000', label: '$500 - $1,000', value: '500-1000', count: 980 },
-      { id: '1000-5000', label: '$1,000 - $5,000', value: '1000-5000', count: 450 },
+      {
+        id: '1000-5000',
+        label: '$1,000 - $5,000',
+        value: '1000-5000',
+        count: 450,
+      },
       { id: 'over-5000', label: 'Over $5,000', value: 'over-5000', count: 120 },
     ],
   },
@@ -137,7 +168,8 @@ export function FilterPopover({
   showCount = true,
 }: FilterPopoverProps) {
   const [open, setOpen] = React.useState(false);
-  const [tempFilters, setTempFilters] = React.useState<ActiveFilter[]>(activeFilters);
+  const [tempFilters, setTempFilters] =
+    React.useState<ActiveFilter[]>(activeFilters);
 
   // Update temp filters when active filters change
   React.useEffect(() => {
@@ -146,11 +178,11 @@ export function FilterPopover({
 
   // Handle filter toggle
   const handleFilterToggle = (categoryId: string, option: FilterOption) => {
-    const category = categories.find(c => c.id === categoryId);
+    const category = categories.find((c) => c.id === categoryId);
     if (!category) return;
 
     const existingFilterIndex = tempFilters.findIndex(
-      f => f.categoryId === categoryId && f.optionId === option.id
+      (f) => f.categoryId === categoryId && f.optionId === option.id
     );
 
     let newFilters = [...tempFilters];
@@ -169,7 +201,7 @@ export function FilterPopover({
 
       if (category.type === 'radio' || !category.multiple) {
         // Remove other filters from the same category for radio/single select
-        newFilters = newFilters.filter(f => f.categoryId !== categoryId);
+        newFilters = newFilters.filter((f) => f.categoryId !== categoryId);
       }
 
       newFilters.push(newFilter);
@@ -199,7 +231,8 @@ export function FilterPopover({
   // Remove individual filter
   const removeFilter = (filter: ActiveFilter) => {
     const newFilters = activeFilters.filter(
-      f => !(f.categoryId === filter.categoryId && f.optionId === filter.optionId)
+      (f) =>
+        !(f.categoryId === filter.categoryId && f.optionId === filter.optionId)
     );
     onFiltersChange(newFilters);
   };
@@ -213,7 +246,10 @@ export function FilterPopover({
           <Button variant="outline" className="relative">
             {triggerText}
             {showCount && activeFilterCount > 0 && (
-              <Badge variant="secondary" className="ml-2 h-5 w-5 rounded-full p-0 text-xs">
+              <Badge
+                variant="secondary"
+                className="ml-2 h-5 w-5 rounded-full p-0 text-xs"
+              >
                 {activeFilterCount}
               </Badge>
             )}
@@ -247,30 +283,34 @@ export function FilterPopover({
             {categories.map((category, index) => (
               <div key={category.id}>
                 <div className="p-4">
-                  <div className="flex items-center space-x-2 mb-3">
+                  <div className="mb-3 flex items-center space-x-2">
                     {category.icon && (
-                      <category.icon className="h-4 w-4 text-muted-foreground" />
+                      <category.icon className="text-muted-foreground h-4 w-4" />
                     )}
-                    <h5 className="font-medium text-sm">{category.label}</h5>
+                    <h5 className="text-sm font-medium">{category.label}</h5>
                   </div>
 
                   <div className="space-y-2">
                     {category.options.map((option) => {
                       const isSelected = tempFilters.some(
-                        f => f.categoryId === category.id && f.optionId === option.id
+                        (f) =>
+                          f.categoryId === category.id &&
+                          f.optionId === option.id
                       );
 
                       return (
                         <div
                           key={option.id}
-                          className="flex items-center space-x-2 cursor-pointer hover:bg-accent/50 rounded p-2 -m-2"
-                          onClick={() => handleFilterToggle(category.id, option)}
+                          className="hover:bg-accent/50 -m-2 flex cursor-pointer items-center space-x-2 rounded p-2"
+                          onClick={() =>
+                            handleFilterToggle(category.id, option)
+                          }
                         >
                           <Checkbox checked={isSelected} />
-                          <div className="flex-1 flex items-center justify-between">
+                          <div className="flex flex-1 items-center justify-between">
                             <span className="text-sm">{option.label}</span>
                             {option.count && (
-                              <span className="text-xs text-muted-foreground">
+                              <span className="text-muted-foreground text-xs">
                                 {option.count.toLocaleString()}
                               </span>
                             )}
@@ -289,7 +329,7 @@ export function FilterPopover({
 
       {/* Active filters display */}
       {activeFilters.length > 0 && (
-        <div className="flex flex-wrap items-center gap-2 mt-2">
+        <div className="mt-2 flex flex-wrap items-center gap-2">
           {activeFilters.map((filter) => (
             <Badge
               key={`${filter.categoryId}-${filter.optionId}`}
@@ -312,7 +352,7 @@ export function FilterPopover({
               variant="ghost"
               size="sm"
               onClick={clearAllFilters}
-              className="h-6 px-2 text-xs text-muted-foreground hover:text-foreground"
+              className="text-muted-foreground hover:text-foreground h-6 px-2 text-xs"
             >
               Clear all
             </Button>
@@ -360,4 +400,4 @@ export function DateRangeFilter({
       />
     </div>
   );
-} 
+}

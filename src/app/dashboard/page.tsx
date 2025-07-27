@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { 
+import {
   Monitor,
   Smartphone,
   Tablet,
@@ -12,9 +12,15 @@ import {
   Cpu,
   HardDrive,
   Wifi,
-  MoreHorizontal
+  MoreHorizontal,
 } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
@@ -23,23 +29,24 @@ import { KPICard } from '@/components/dashboard/kpi-card';
 import { QuickStatsBar } from '@/components/dashboard/quick-stats-bar';
 import { TeamMemberCard } from '@/components/dashboard/team-member-card';
 import { ActivityItem } from '@/components/shared/activity-item';
-import { 
-  kpiMetrics, 
-  quickStats, 
-  teamMembers, 
-  recentFiles, 
+import {
+  kpiMetrics,
+  quickStats,
+  teamMembers,
+  recentFiles,
   upcomingEvents,
   socialMetrics,
   deviceAnalytics,
   performanceMetrics,
   recentProjects,
   systemMetrics,
-  activityItems
+  activityItems,
 } from '@/data/dashboard';
 
 export const metadata: Metadata = {
   title: 'Dashboard | LiteControl',
-  description: 'Overview of your LiteControl dashboard with analytics and insights.',
+  description:
+    'Overview of your LiteControl dashboard with analytics and insights.',
 };
 
 export default function DashboardPage() {
@@ -89,16 +96,34 @@ export default function DashboardPage() {
                 <CardContent>
                   <div className="space-y-4">
                     {performanceMetrics.map((metric) => (
-                      <div key={metric.metric} className="flex items-center justify-between">
+                      <div
+                        key={metric.metric}
+                        className="flex items-center justify-between"
+                      >
                         <div className="space-y-1">
                           <p className="text-sm font-medium">{metric.metric}</p>
-                          <p className="text-xs text-muted-foreground">
-                            {metric.value}{metric.metric.includes('Time') ? 'ms' : metric.metric.includes('Uptime') ? '%' : ''}
+                          <p className="text-muted-foreground text-xs">
+                            {metric.value}
+                            {metric.metric.includes('Time')
+                              ? 'ms'
+                              : metric.metric.includes('Uptime')
+                                ? '%'
+                                : ''}
                             {' / '}
-                            {metric.target}{metric.metric.includes('Time') ? 'ms' : metric.metric.includes('Uptime') ? '%' : ''} target
+                            {metric.target}
+                            {metric.metric.includes('Time')
+                              ? 'ms'
+                              : metric.metric.includes('Uptime')
+                                ? '%'
+                                : ''}{' '}
+                            target
                           </p>
                         </div>
-                        <Badge variant={metric.status === 'good' ? 'default' : 'destructive'}>
+                        <Badge
+                          variant={
+                            metric.status === 'good' ? 'default' : 'destructive'
+                          }
+                        >
                           {metric.status}
                         </Badge>
                       </div>
@@ -118,21 +143,39 @@ export default function DashboardPage() {
                 <CardContent>
                   <div className="space-y-4">
                     {deviceAnalytics.map((device) => {
-                      const IconComponent = device.icon === 'Monitor' ? Monitor : 
-                                           device.icon === 'Smartphone' ? Smartphone : Tablet;
+                      const IconComponent =
+                        device.icon === 'Monitor'
+                          ? Monitor
+                          : device.icon === 'Smartphone'
+                            ? Smartphone
+                            : Tablet;
                       return (
-                        <div key={device.device} className="flex items-center space-x-4">
-                          <IconComponent className="h-5 w-5 text-muted-foreground" />
+                        <div
+                          key={device.device}
+                          className="flex items-center space-x-4"
+                        >
+                          <IconComponent className="text-muted-foreground h-5 w-5" />
                           <div className="flex-1 space-y-1">
                             <div className="flex items-center justify-between">
-                              <p className="text-sm font-medium">{device.device}</p>
+                              <p className="text-sm font-medium">
+                                {device.device}
+                              </p>
                               <div className="flex items-center space-x-2">
-                                <span className="text-sm text-muted-foreground">{device.change}</span>
-                                <span className="text-sm font-medium">{device.percentage}%</span>
+                                <span className="text-muted-foreground text-sm">
+                                  {device.change}
+                                </span>
+                                <span className="text-sm font-medium">
+                                  {device.percentage}%
+                                </span>
                               </div>
                             </div>
-                            <Progress value={device.percentage} className="h-2" />
-                            <p className="text-xs text-muted-foreground">{device.count.toLocaleString()} users</p>
+                            <Progress
+                              value={device.percentage}
+                              className="h-2"
+                            />
+                            <p className="text-muted-foreground text-xs">
+                              {device.count.toLocaleString()} users
+                            </p>
                           </div>
                         </div>
                       );
@@ -149,19 +192,30 @@ export default function DashboardPage() {
                 <CardContent>
                   <div className="space-y-4">
                     {socialMetrics.map((social) => (
-                      <div key={social.platform} className="flex items-center justify-between">
+                      <div
+                        key={social.platform}
+                        className="flex items-center justify-between"
+                      >
                         <div className="flex items-center space-x-3">
-                          <div className={`w-2 h-2 rounded-full ${social.color.replace('text-', 'bg-')}`} />
+                          <div
+                            className={`h-2 w-2 rounded-full ${social.color.replace('text-', 'bg-')}`}
+                          />
                           <div>
-                            <p className="text-sm font-medium">{social.platform}</p>
-                            <p className="text-xs text-muted-foreground">
+                            <p className="text-sm font-medium">
+                              {social.platform}
+                            </p>
+                            <p className="text-muted-foreground text-xs">
                               {social.followers.toLocaleString()} followers
                             </p>
                           </div>
                         </div>
                         <div className="text-right">
-                          <p className="text-sm font-medium">{social.engagement}%</p>
-                          <p className="text-xs text-green-600">{social.growth}</p>
+                          <p className="text-sm font-medium">
+                            {social.engagement}%
+                          </p>
+                          <p className="text-xs text-green-600">
+                            {social.growth}
+                          </p>
                         </div>
                       </div>
                     ))}
@@ -193,7 +247,9 @@ export default function DashboardPage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Team Members</CardTitle>
-                  <CardDescription>Active team members and their progress</CardDescription>
+                  <CardDescription>
+                    Active team members and their progress
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
@@ -215,12 +271,25 @@ export default function DashboardPage() {
                 <CardContent>
                   <div className="space-y-3">
                     {upcomingEvents.map((event) => (
-                      <div key={event.id} className="flex items-center justify-between p-3 rounded-lg border">
+                      <div
+                        key={event.id}
+                        className="flex items-center justify-between rounded-lg border p-3"
+                      >
                         <div className="space-y-1">
                           <p className="text-sm font-medium">{event.title}</p>
-                          <p className="text-xs text-muted-foreground">{event.time}</p>
+                          <p className="text-muted-foreground text-xs">
+                            {event.time}
+                          </p>
                         </div>
-                        <Badge variant={event.priority === 'high' ? 'destructive' : event.priority === 'medium' ? 'default' : 'secondary'}>
+                        <Badge
+                          variant={
+                            event.priority === 'high'
+                              ? 'destructive'
+                              : event.priority === 'medium'
+                                ? 'default'
+                                : 'secondary'
+                          }
+                        >
                           {event.priority}
                         </Badge>
                       </div>
@@ -240,10 +309,13 @@ export default function DashboardPage() {
                 <CardContent>
                   <div className="space-y-3">
                     {recentFiles.map((file) => (
-                      <div key={file.id} className="flex items-center justify-between">
+                      <div
+                        key={file.id}
+                        className="flex items-center justify-between"
+                      >
                         <div className="space-y-1">
                           <p className="text-sm font-medium">{file.name}</p>
-                          <div className="flex items-center space-x-2 text-xs text-muted-foreground">
+                          <div className="text-muted-foreground flex items-center space-x-2 text-xs">
                             <span>{file.type}</span>
                             <span>•</span>
                             <span>{file.size}</span>
@@ -295,20 +367,34 @@ export default function DashboardPage() {
                 <CardContent>
                   <div className="space-y-3">
                     {systemMetrics.map((metric) => {
-                      const IconComponent = metric.icon === 'Cpu' ? Cpu : 
-                                           metric.icon === 'HardDrive' ? HardDrive : Wifi;
+                      const IconComponent =
+                        metric.icon === 'Cpu'
+                          ? Cpu
+                          : metric.icon === 'HardDrive'
+                            ? HardDrive
+                            : Wifi;
                       return (
-                        <div key={metric.name} className="flex items-center justify-between">
+                        <div
+                          key={metric.name}
+                          className="flex items-center justify-between"
+                        >
                           <div className="flex items-center space-x-3">
-                            <IconComponent className="h-4 w-4 text-muted-foreground" />
+                            <IconComponent className="text-muted-foreground h-4 w-4" />
                             <span className="text-sm">{metric.name}</span>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <span className="text-sm font-medium">{metric.value}%</span>
-                            <div className={`w-2 h-2 rounded-full ${
-                              metric.status === 'healthy' ? 'bg-green-500' : 
-                              metric.status === 'warning' ? 'bg-yellow-500' : 'bg-red-500'
-                            }`} />
+                            <span className="text-sm font-medium">
+                              {metric.value}%
+                            </span>
+                            <div
+                              className={`h-2 w-2 rounded-full ${
+                                metric.status === 'healthy'
+                                  ? 'bg-green-500'
+                                  : metric.status === 'warning'
+                                    ? 'bg-yellow-500'
+                                    : 'bg-red-500'
+                              }`}
+                            />
                           </div>
                         </div>
                       );
@@ -327,8 +413,15 @@ export default function DashboardPage() {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-lg">{project.name}</CardTitle>
-                    <Badge variant={project.status === 'active' ? 'default' : 
-                                  project.status === 'completed' ? 'secondary' : 'outline'}>
+                    <Badge
+                      variant={
+                        project.status === 'active'
+                          ? 'default'
+                          : project.status === 'completed'
+                            ? 'secondary'
+                            : 'outline'
+                      }
+                    >
                       {project.status}
                     </Badge>
                   </div>
@@ -341,7 +434,7 @@ export default function DashboardPage() {
                       <span>{project.progress}%</span>
                     </div>
                     <Progress value={project.progress} />
-                    <div className="flex items-center justify-between text-xs text-muted-foreground">
+                    <div className="text-muted-foreground flex items-center justify-between text-xs">
                       <span>Team: {project.team.length} members</span>
                       <span>{project.lastActivity}</span>
                     </div>
@@ -364,17 +457,23 @@ export default function DashboardPage() {
                   {performanceMetrics.map((metric) => (
                     <div key={metric.metric} className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium">{metric.metric}</span>
-                        <Badge variant={metric.status === 'good' ? 'default' : 'destructive'}>
+                        <span className="text-sm font-medium">
+                          {metric.metric}
+                        </span>
+                        <Badge
+                          variant={
+                            metric.status === 'good' ? 'default' : 'destructive'
+                          }
+                        >
                           {metric.status}
                         </Badge>
                       </div>
-                      <div className="flex items-center justify-between text-xs text-muted-foreground">
+                      <div className="text-muted-foreground flex items-center justify-between text-xs">
                         <span>Current: {metric.value}</span>
                         <span>Target: {metric.target}</span>
                       </div>
-                      <Progress 
-                        value={(metric.value / metric.target) * 100} 
+                      <Progress
+                        value={(metric.value / metric.target) * 100}
                         className="h-2"
                       />
                     </div>
@@ -393,11 +492,15 @@ export default function DashboardPage() {
                   {deviceAnalytics.map((device) => (
                     <div key={device.device} className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium">{device.device}</span>
-                        <span className="text-sm text-muted-foreground">{device.percentage}%</span>
+                        <span className="text-sm font-medium">
+                          {device.device}
+                        </span>
+                        <span className="text-muted-foreground text-sm">
+                          {device.percentage}%
+                        </span>
                       </div>
                       <Progress value={device.percentage} className="h-2" />
-                      <div className="text-xs text-muted-foreground">
+                      <div className="text-muted-foreground text-xs">
                         {device.count.toLocaleString()} users ({device.change})
                       </div>
                     </div>
@@ -411,22 +514,33 @@ export default function DashboardPage() {
         <TabsContent value="system" className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {systemMetrics.map((metric) => {
-              const IconComponent = metric.icon === 'Cpu' ? Cpu : 
-                                   metric.icon === 'HardDrive' ? HardDrive : Wifi;
+              const IconComponent =
+                metric.icon === 'Cpu'
+                  ? Cpu
+                  : metric.icon === 'HardDrive'
+                    ? HardDrive
+                    : Wifi;
               return (
                 <Card key={metric.name}>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">{metric.name}</CardTitle>
-                    <IconComponent className="h-4 w-4 text-muted-foreground" />
+                    <CardTitle className="text-sm font-medium">
+                      {metric.name}
+                    </CardTitle>
+                    <IconComponent className="text-muted-foreground h-4 w-4" />
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">{metric.value}%</div>
-                    <div className="flex items-center mt-2">
-                      <div className={`w-2 h-2 rounded-full mr-2 ${
-                        metric.status === 'healthy' ? 'bg-green-500' : 
-                        metric.status === 'warning' ? 'bg-yellow-500' : 'bg-red-500'
-                      }`} />
-                      <span className="text-xs text-muted-foreground capitalize">
+                    <div className="mt-2 flex items-center">
+                      <div
+                        className={`mr-2 h-2 w-2 rounded-full ${
+                          metric.status === 'healthy'
+                            ? 'bg-green-500'
+                            : metric.status === 'warning'
+                              ? 'bg-yellow-500'
+                              : 'bg-red-500'
+                        }`}
+                      />
+                      <span className="text-muted-foreground text-xs capitalize">
                         {metric.status}
                       </span>
                     </div>
@@ -439,7 +553,9 @@ export default function DashboardPage() {
           <Card>
             <CardHeader>
               <CardTitle>System Activity</CardTitle>
-              <CardDescription>Recent system events and activities</CardDescription>
+              <CardDescription>
+                Recent system events and activities
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
@@ -453,4 +569,4 @@ export default function DashboardPage() {
       </Tabs>
     </div>
   );
-} 
+}

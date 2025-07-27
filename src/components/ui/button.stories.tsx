@@ -10,7 +10,8 @@ const meta = {
     layout: 'centered',
     docs: {
       description: {
-        component: 'A versatile button component with multiple variants, sizes, and states.',
+        component:
+          'A versatile button component with multiple variants, sizes, and states.',
       },
     },
   },
@@ -18,7 +19,14 @@ const meta = {
   argTypes: {
     variant: {
       control: { type: 'select' },
-      options: ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'],
+      options: [
+        'default',
+        'destructive',
+        'outline',
+        'secondary',
+        'ghost',
+        'link',
+      ],
       description: 'The visual style variant of the button',
     },
     size: {
@@ -35,7 +43,7 @@ const meta = {
       description: 'Whether the button is disabled',
     },
   },
-  args: { 
+  args: {
     onClick: fn(),
     children: 'Button',
   },
@@ -218,4 +226,4 @@ export const ButtonGroup: Story = {
       },
     },
   },
-}; 
+};

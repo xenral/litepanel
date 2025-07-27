@@ -1,5 +1,10 @@
 import { User } from 'lucide-react';
-import { DataUser, roleIconMap, statusColorMap, roleColorMap } from '@/data/data-users.data';
+import {
+  DataUser,
+  roleIconMap,
+  statusColorMap,
+  roleColorMap,
+} from '@/data/data-users.data';
 
 export const formatLastLogin = (dateString: string | null) => {
   if (!dateString) return 'Never';
@@ -7,7 +12,7 @@ export const formatLastLogin = (dateString: string | null) => {
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-  
+
   if (diffDays === 0) return 'Today';
   if (diffDays === 1) return 'Yesterday';
   if (diffDays < 7) return `${diffDays} days ago`;
@@ -18,11 +23,15 @@ export const getRoleIcon = (role: string) => {
   return roleIconMap.get(role) || User;
 };
 
-export const getStatusColor = (status: string): "default" | "secondary" | "outline" => {
+export const getStatusColor = (
+  status: string
+): 'default' | 'secondary' | 'outline' => {
   return statusColorMap.get(status) || 'secondary';
 };
 
-export const getRoleBadgeVariant = (role: string): "destructive" | "default" | "secondary" => {
+export const getRoleBadgeVariant = (
+  role: string
+): 'destructive' | 'default' | 'secondary' => {
   return roleColorMap.get(role) || 'secondary';
 };
 
@@ -32,12 +41,15 @@ export const filterUsers = (
   statusFilter: string,
   roleFilter: string
 ) => {
-  return users.filter(user => {
-    const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         user.email.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter === 'all' || user.status.toLowerCase() === statusFilter;
-    const matchesRole = roleFilter === 'all' || user.role.toLowerCase() === roleFilter;
-    
+  return users.filter((user) => {
+    const matchesSearch =
+      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus =
+      statusFilter === 'all' || user.status.toLowerCase() === statusFilter;
+    const matchesRole =
+      roleFilter === 'all' || user.role.toLowerCase() === roleFilter;
+
     return matchesSearch && matchesStatus && matchesRole;
   });
-}; 
+};

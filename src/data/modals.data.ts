@@ -4,7 +4,8 @@ export const modalUsers = [
     id: 1,
     name: 'Alice Johnson',
     email: 'alice@example.com',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=40&h=40&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=40&h=40&fit=crop&crop=face',
     role: 'Admin',
     status: 'Active',
   },
@@ -12,7 +13,8 @@ export const modalUsers = [
     id: 2,
     name: 'Bob Smith',
     email: 'bob@example.com',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face',
     role: 'Editor',
     status: 'Active',
   },
@@ -20,7 +22,8 @@ export const modalUsers = [
     id: 3,
     name: 'Carol Davis',
     email: 'carol@example.com',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face',
     role: 'Viewer',
     status: 'Inactive',
   },
@@ -58,7 +61,8 @@ export const modalTypes = [
   {
     id: 'dialogs',
     name: 'Dialogs',
-    description: 'Standard dialogs for forms, content display, and user interactions',
+    description:
+      'Standard dialogs for forms, content display, and user interactions',
   },
   {
     id: 'alerts',
@@ -68,12 +72,14 @@ export const modalTypes = [
   {
     id: 'sheets',
     name: 'Sheets',
-    description: 'Slide-out panels and drawers for secondary content and actions',
+    description:
+      'Slide-out panels and drawers for secondary content and actions',
   },
   {
     id: 'popovers',
     name: 'Popovers',
-    description: 'Floating content containers for additional information and actions',
+    description:
+      'Floating content containers for additional information and actions',
   },
   {
     id: 'tooltips',
@@ -85,7 +91,8 @@ export const modalTypes = [
 // Project data for content dialog
 export const projectData = {
   name: 'Dashboard Development',
-  description: 'This project involves developing a comprehensive dashboard application with modern React components and TypeScript integration.',
+  description:
+    'This project involves developing a comprehensive dashboard application with modern React components and TypeScript integration.',
   completion: 75,
   teamMembers: modalUsers,
 };
@@ -112,4 +119,4 @@ export const uploadConfig = {
   supportedTypes: 'PDF, DOC, JPG, PNG',
   dropText: 'Drop files here or click to browse',
   supportText: 'Support for PDF, DOC, JPG, PNG up to 10MB',
-}; 
+};

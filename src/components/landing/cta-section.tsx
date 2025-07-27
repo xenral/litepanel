@@ -3,17 +3,17 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { 
-  Rocket, 
-  Github, 
-  ExternalLink, 
-  ArrowRight, 
+import {
+  Rocket,
+  Github,
+  ExternalLink,
+  ArrowRight,
   Star,
   Download,
   BookOpen,
   Zap,
   Shield,
-  Users
+  Users,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -27,26 +27,26 @@ const stats = [
     icon: Github,
     value: '2.5k+',
     label: 'GitHub Stars',
-    description: 'Join our growing community'
+    description: 'Join our growing community',
   },
   {
     icon: Download,
     value: '10k+',
     label: 'Downloads',
-    description: 'Monthly package downloads'
+    description: 'Monthly package downloads',
   },
   {
     icon: Users,
     value: '500+',
     label: 'Companies',
-    description: 'Using in production'
+    description: 'Using in production',
   },
   {
     icon: Shield,
     value: '99.9%',
     label: 'Uptime',
-    description: 'Production reliability'
-  }
+    description: 'Production reliability',
+  },
 ];
 
 /**
@@ -57,24 +57,24 @@ const deploymentOptions = [
     name: 'Vercel',
     description: 'Deploy with zero configuration',
     icon: '▲',
-          url: 'https://vercel.com/new/clone?repository-url=https://github.com/xenral/litepanel',
+    url: 'https://vercel.com/new/clone?repository-url=https://github.com/xenral/litepanel',
     color: 'bg-black text-white hover:bg-gray-800',
-    primary: true
+    primary: true,
   },
   {
     name: 'Netlify',
     description: 'One-click deployment',
     icon: '◆',
-          url: 'https://app.netlify.com/start/deploy?repository=https://github.com/xenral/litepanel',
-    color: 'bg-teal-600 text-white hover:bg-teal-700'
+    url: 'https://app.netlify.com/start/deploy?repository=https://github.com/xenral/litepanel',
+    color: 'bg-teal-600 text-white hover:bg-teal-700',
   },
   {
     name: 'Railway',
     description: 'Deploy from GitHub',
     icon: '🚂',
-          url: 'https://railway.app/new/template?template=https://github.com/xenral/litepanel',
-    color: 'bg-purple-600 text-white hover:bg-purple-700'
-  }
+    url: 'https://railway.app/new/template?template=https://github.com/xenral/litepanel',
+    color: 'bg-purple-600 text-white hover:bg-purple-700',
+  },
 ];
 
 /**
@@ -92,9 +92,9 @@ export function CTASection() {
   }, []);
 
   return (
-    <section className="py-24 bg-gradient-to-br from-background via-muted/20 to-background relative overflow-hidden">
+    <section className="from-background via-muted/20 to-background relative overflow-hidden bg-gradient-to-br py-24">
       {/* Background decoration */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+      <div className="bg-grid-pattern absolute inset-0 opacity-5" />
       <motion.div
         animate={{
           rotate: 360,
@@ -102,9 +102,9 @@ export function CTASection() {
         transition={{
           duration: 20,
           repeat: Infinity,
-          ease: "linear",
+          ease: 'linear',
         }}
-        className="absolute top-20 right-20 w-64 h-64 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-full blur-3xl"
+        className="from-primary/10 to-secondary/10 absolute right-20 top-20 h-64 w-64 rounded-full bg-gradient-to-br blur-3xl"
       />
       <motion.div
         animate={{
@@ -113,58 +113,63 @@ export function CTASection() {
         transition={{
           duration: 25,
           repeat: Infinity,
-          ease: "linear",
+          ease: 'linear',
         }}
-        className="absolute bottom-20 left-20 w-48 h-48 bg-gradient-to-br from-secondary/10 to-accent/10 rounded-full blur-3xl"
+        className="from-secondary/10 to-accent/10 absolute bottom-20 left-20 h-48 w-48 rounded-full bg-gradient-to-br blur-3xl"
       />
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container relative z-10 mx-auto px-4">
         {/* Main CTA Content */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-16 text-center"
         >
-          <div className="flex items-center justify-center mb-6">
-            <div className="flex items-center space-x-2 rounded-full bg-primary/10 px-4 py-2 text-primary">
+          <div className="mb-6 flex items-center justify-center">
+            <div className="bg-primary/10 text-primary flex items-center space-x-2 rounded-full px-4 py-2">
               <Rocket className="h-5 w-5" />
               <span className="text-sm font-medium">Ready to Launch</span>
             </div>
           </div>
-          
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient">
+
+          <h2 className="text-gradient mb-6 text-4xl font-bold md:text-5xl">
             Start Building Today
           </h2>
-          
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Join thousands of developers who trust LiteControl Admin for their projects. 
-            Get started in minutes with our comprehensive documentation and examples.
+
+          <p className="text-muted-foreground mx-auto mb-8 max-w-3xl text-xl">
+            Join thousands of developers who trust LiteControl Admin for their
+            projects. Get started in minutes with our comprehensive
+            documentation and examples.
           </p>
 
           {/* Primary Actions */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <Button asChild size="lg" className="flex items-center space-x-2 min-w-[200px]">
+          <div className="mb-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button
+              asChild
+              size="lg"
+              className="flex min-w-[200px] items-center space-x-2"
+            >
               <Link href="/dashboard">
                 <Zap className="h-5 w-5" />
                 <span>Live Demo</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
-            
-            <Button 
-              asChild 
-              variant="outline" 
-              size="lg" 
-              className="flex items-center space-x-2 min-w-[200px]"
+
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="flex min-w-[200px] items-center space-x-2"
             >
-                             <Link href="https://github.com/xenral/litepanel" target="_blank">
+              <Link href="https://github.com/xenral/litepanel" target="_blank">
                 <Github className="h-5 w-5" />
                 <span>View on GitHub</span>
                 {githubStars && (
                   <Badge variant="secondary" className="ml-2">
-                    <Star className="h-3 w-3 mr-1 text-yellow-500 fill-current" />
+                    <Star className="mr-1 h-3 w-3 fill-current text-yellow-500" />
                     {githubStars.toLocaleString()}
                   </Badge>
                 )}
@@ -182,11 +187,11 @@ export function CTASection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-16"
         >
-          <h3 className="text-2xl font-semibold text-center mb-8">
+          <h3 className="mb-8 text-center text-2xl font-semibold">
             Deploy with One Click
           </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+
+          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-3">
             {deploymentOptions.map((option, index) => (
               <motion.div
                 key={option.name}
@@ -195,20 +200,20 @@ export function CTASection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.1 * index }}
               >
-                <Card className="p-6 text-center hover:shadow-lg transition-all duration-300 group">
-                  <div className="text-3xl mb-3">{option.icon}</div>
-                  <h4 className="font-semibold mb-2">{option.name}</h4>
-                  <p className="text-sm text-muted-foreground mb-4">
+                <Card className="group p-6 text-center transition-all duration-300 hover:shadow-lg">
+                  <div className="mb-3 text-3xl">{option.icon}</div>
+                  <h4 className="mb-2 font-semibold">{option.name}</h4>
+                  <p className="text-muted-foreground mb-4 text-sm">
                     {option.description}
                   </p>
                   <Button
                     asChild
-                    className={`w-full ${option.color} group-hover:scale-105 transition-transform`}
+                    className={`w-full ${option.color} transition-transform group-hover:scale-105`}
                     variant={option.primary ? 'default' : 'secondary'}
                   >
                     <Link href={option.url} target="_blank">
                       Deploy to {option.name}
-                      <ExternalLink className="h-4 w-4 ml-2" />
+                      <ExternalLink className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
                 </Card>
@@ -223,7 +228,7 @@ export function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
+          className="mb-16 grid grid-cols-2 gap-8 md:grid-cols-4"
         >
           {stats.map((stat, index) => (
             <motion.div
@@ -234,16 +239,14 @@ export function CTASection() {
               transition={{ duration: 0.6, delay: 0.1 * index }}
               className="text-center"
             >
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 mb-4">
-                <stat.icon className="h-6 w-6 text-primary" />
+              <div className="bg-primary/10 mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg">
+                <stat.icon className="text-primary h-6 w-6" />
               </div>
-              <div className="text-2xl md:text-3xl font-bold mb-1">
+              <div className="mb-1 text-2xl font-bold md:text-3xl">
                 {stat.value}
               </div>
-              <div className="text-sm font-medium mb-1">
-                {stat.label}
-              </div>
-              <div className="text-xs text-muted-foreground">
+              <div className="mb-1 text-sm font-medium">{stat.label}</div>
+              <div className="text-muted-foreground text-xs">
                 {stat.description}
               </div>
             </motion.div>
@@ -258,22 +261,34 @@ export function CTASection() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-center"
         >
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-            <Button asChild variant="ghost" className="flex items-center space-x-2">
+          <div className="mb-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button
+              asChild
+              variant="ghost"
+              className="flex items-center space-x-2"
+            >
               <Link href="/docs">
                 <BookOpen className="h-4 w-4" />
                 <span>Documentation</span>
               </Link>
             </Button>
-            
-            <Button asChild variant="ghost" className="flex items-center space-x-2">
+
+            <Button
+              asChild
+              variant="ghost"
+              className="flex items-center space-x-2"
+            >
               <Link href="/components">
                 <Star className="h-4 w-4" />
                 <span>Component Gallery</span>
               </Link>
             </Button>
-            
-            <Button asChild variant="ghost" className="flex items-center space-x-2">
+
+            <Button
+              asChild
+              variant="ghost"
+              className="flex items-center space-x-2"
+            >
               <Link href="/storybook">
                 <ExternalLink className="h-4 w-4" />
                 <span>Storybook</span>
@@ -281,25 +296,25 @@ export function CTASection() {
             </Button>
           </div>
 
-          <div className="text-sm text-muted-foreground">
-            <div className="flex items-center justify-center space-x-4 mb-4">
+          <div className="text-muted-foreground text-sm">
+            <div className="mb-4 flex items-center justify-center space-x-4">
               <div className="flex items-center space-x-1">
-                <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                <div className="h-2 w-2 rounded-full bg-green-500"></div>
                 <span>MIT Licensed</span>
               </div>
               <div className="flex items-center space-x-1">
-                <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                <div className="h-2 w-2 rounded-full bg-blue-500"></div>
                 <span>TypeScript</span>
               </div>
               <div className="flex items-center space-x-1">
-                <div className="w-2 h-2 rounded-full bg-purple-500"></div>
+                <div className="h-2 w-2 rounded-full bg-purple-500"></div>
                 <span>Next.js 15</span>
               </div>
             </div>
-            
-            <p className="max-w-2xl mx-auto">
-              LiteControl Admin is built with modern tools and best practices. 
-              Start with our template and customize it to fit your unique needs. 
+
+            <p className="mx-auto max-w-2xl">
+              LiteControl Admin is built with modern tools and best practices.
+              Start with our template and customize it to fit your unique needs.
               No vendor lock-in, no subscriptions, just great code.
             </p>
           </div>
@@ -307,4 +322,4 @@ export function CTASection() {
       </div>
     </section>
   );
-} 
+}

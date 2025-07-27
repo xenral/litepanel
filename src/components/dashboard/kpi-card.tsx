@@ -10,12 +10,12 @@ const iconMap = {
   Users: '👥',
   DollarSign: '💰',
   ShoppingCart: '🛒',
-  TrendingUp: '📈'
+  TrendingUp: '📈',
 };
 
 export function KPICard({ metric }: KPICardProps) {
   const isPositive = metric.trend === 'up';
-  
+
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -26,11 +26,15 @@ export function KPICard({ metric }: KPICardProps) {
       </CardHeader>
       <CardContent>
         <div className="text-2xl font-bold">{metric.value}</div>
-        <div className="flex items-center text-xs text-muted-foreground">
+        <div className="text-muted-foreground flex items-center text-xs">
           {isPositive ? (
-            <TrendingUp className={`mr-1 h-3 w-3 ${isPositive ? 'text-emerald-600' : 'text-red-600'}`} />
+            <TrendingUp
+              className={`mr-1 h-3 w-3 ${isPositive ? 'text-emerald-600' : 'text-red-600'}`}
+            />
           ) : (
-            <TrendingDown className={`mr-1 h-3 w-3 ${isPositive ? 'text-emerald-600' : 'text-red-600'}`} />
+            <TrendingDown
+              className={`mr-1 h-3 w-3 ${isPositive ? 'text-emerald-600' : 'text-red-600'}`}
+            />
           )}
           <span className={isPositive ? 'text-emerald-600' : 'text-red-600'}>
             {metric.change}
@@ -40,4 +44,4 @@ export function KPICard({ metric }: KPICardProps) {
       </CardContent>
     </Card>
   );
-} 
+}

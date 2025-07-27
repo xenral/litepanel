@@ -2,16 +2,16 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
-import type { 
-  ThemeName, 
-  ThemeContextValue, 
-  ThemeCustomization, 
-  HSLColor 
+import type {
+  ThemeName,
+  ThemeContextValue,
+  ThemeCustomization,
+  HSLColor,
 } from '@/types/theme';
-import { 
-  getThemeConfig, 
-  applyThemeToDocument, 
-  hslToString 
+import {
+  getThemeConfig,
+  applyThemeToDocument,
+  hslToString,
 } from '@/lib/themes';
 import { useThemeStore } from '@/stores/theme.store';
 
@@ -36,22 +36,22 @@ interface ThemeProviderProps {
  */
 function applyNeutralProTheme(isDark: boolean = true) {
   if (typeof window === 'undefined') return;
-  
+
   console.log('Applying Neutral Pro theme:', isDark ? 'dark' : 'light');
-  
+
   const theme = getThemeConfig('neutral-pro');
   const root = document.documentElement;
-  
+
   // Clear any existing theme classes and attributes
   root.classList.remove('light', 'dark');
   root.removeAttribute('data-theme');
-  
+
   // Apply dark/light mode class
   root.classList.add(isDark ? 'dark' : 'light');
-  
+
   // Set theme attribute
   root.setAttribute('data-theme', 'neutral-pro');
-  
+
   // Apply theme variables - use the correct theme object structure
   const vars = isDark ? theme.cssVars.dark : theme.cssVars.light;
   if (vars) {
@@ -60,7 +60,7 @@ function applyNeutralProTheme(isDark: boolean = true) {
       console.log(`Setting ${property}: ${value}`);
     });
   }
-  
+
   // Force specific neutral-pro colors to override any customization
   if (isDark) {
     // Neutral Pro Dark colors
@@ -105,7 +105,7 @@ function applyNeutralProTheme(isDark: boolean = true) {
     root.style.setProperty('--input', '240 5.9% 90%');
     root.style.setProperty('--ring', '240 5.9% 10%');
   }
-  
+
   console.log('Neutral Pro theme applied successfully');
 }
 
@@ -122,10 +122,14 @@ export function ThemeProvider({
   enableSystem = true,
   disableTransitionOnChange = false,
 }: ThemeProviderProps) {
-  const { theme: nextTheme, setTheme: setNextTheme, resolvedTheme } = useTheme();
+  const {
+    theme: nextTheme,
+    setTheme: setNextTheme,
+    resolvedTheme,
+  } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
-  
+
   // Use Zustand store instead of local state
   const {
     theme: currentTheme, // Will always be 'neutral-pro'
@@ -148,25 +152,32 @@ export function ThemeProvider({
     if (mounted && hasHydrated && nextTheme) {
       const shouldBeDark = storeDarkMode;
       const currentNextTheme = resolvedTheme === 'dark';
-      
+
       if (shouldBeDark !== currentNextTheme) {
         setNextTheme(shouldBeDark ? 'dark' : 'light');
       }
     }
-  }, [storeDarkMode, mounted, hasHydrated, nextTheme, resolvedTheme, setNextTheme]);
+  }, [
+    storeDarkMode,
+    mounted,
+    hasHydrated,
+    nextTheme,
+    resolvedTheme,
+    setNextTheme,
+  ]);
 
   // Handle hydration and apply theme
   useEffect(() => {
     if (!hasHydrated) return;
-    
+
     setMounted(true);
-    
+
     // Apply theme after hydration
     const isDarkMode = storeDarkMode;
-    
+
     // Set next-themes to match our store
     setNextTheme(isDarkMode ? 'dark' : 'light');
-    
+
     // Disable transitions temporarily to prevent flash
     const css = document.createElement('style');
     css.appendChild(
@@ -178,13 +189,13 @@ export function ThemeProvider({
 
     // Apply the theme with correct colors
     applyNeutralProTheme(isDarkMode);
-    
+
     // Don't apply customization initially - let theme colors take precedence
     // applyInitialCustomization(customization);
-    
+
     // Force repaint
     document.body.offsetHeight;
-    
+
     // Remove transition disable after a brief moment
     setTimeout(() => {
       if (document.head.contains(css)) {
@@ -220,12 +231,18 @@ export function ThemeProvider({
     }
 
     applyNeutralProTheme(isDarkMode);
-  }, [storeDarkMode, mounted, hasHydrated, disableTransitionOnChange, isInitializing]);
+  }, [
+    storeDarkMode,
+    mounted,
+    hasHydrated,
+    disableTransitionOnChange,
+    isInitializing,
+  ]);
 
   // Apply customization (but don't override base theme colors)
   useEffect(() => {
     if (!mounted || !hasHydrated || isInitializing) return;
-    
+
     // Only apply layout customization, not colors
     applyLayoutCustomization();
   }, [customization, mounted, hasHydrated, isInitializing]);
@@ -233,16 +250,25 @@ export function ThemeProvider({
   /**
    * Apply initial customization without transitions
    */
-  const applyInitialCustomization = (initialCustomization: ThemeCustomization) => {
+  const applyInitialCustomization = (
+    initialCustomization: ThemeCustomization
+  ) => {
     const root = document.documentElement;
-    
+
     // Apply border radius multiplier
-    const baseRadius = getThemeConfig('neutral-pro').cssVars.light['--radius'] || '0.25rem';
+    const baseRadius =
+      getThemeConfig('neutral-pro').cssVars.light['--radius'] || '0.25rem';
     const radiusValue = parseFloat(baseRadius.replace('rem', ''));
-    root.style.setProperty('--radius', `${radiusValue * initialCustomization.borderRadius}rem`);
-    
+    root.style.setProperty(
+      '--radius',
+      `${radiusValue * initialCustomization.borderRadius}rem`
+    );
+
     // Apply font size multiplier
-    root.style.setProperty('--font-size-multiplier', initialCustomization.fontSize.toString());
+    root.style.setProperty(
+      '--font-size-multiplier',
+      initialCustomization.fontSize.toString()
+    );
   };
 
   /**
@@ -250,14 +276,21 @@ export function ThemeProvider({
    */
   const applyLayoutCustomization = () => {
     const root = document.documentElement;
-    
+
     // Apply border radius multiplier
-    const baseRadius = getThemeConfig('neutral-pro').cssVars.light['--radius'] || '0.25rem';
+    const baseRadius =
+      getThemeConfig('neutral-pro').cssVars.light['--radius'] || '0.25rem';
     const radiusValue = parseFloat(baseRadius.replace('rem', ''));
-    root.style.setProperty('--radius', `${radiusValue * customization.borderRadius}rem`);
-    
+    root.style.setProperty(
+      '--radius',
+      `${radiusValue * customization.borderRadius}rem`
+    );
+
     // Apply font size multiplier
-    root.style.setProperty('--font-size-multiplier', customization.fontSize.toString());
+    root.style.setProperty(
+      '--font-size-multiplier',
+      customization.fontSize.toString()
+    );
   };
 
   /**
@@ -277,18 +310,22 @@ export function ThemeProvider({
   /**
    * Update customization (only layout, not colors)
    */
-  const updateCustomizationOverride = (updates: Partial<ThemeCustomization>) => {
+  const updateCustomizationOverride = (
+    updates: Partial<ThemeCustomization>
+  ) => {
     // Only allow layout updates, preserve theme colors
     const layoutOnlyUpdates = {
       borderRadius: updates.borderRadius,
       fontSize: updates.fontSize,
     };
-    
+
     // Filter out undefined values
     const filteredUpdates = Object.fromEntries(
-      Object.entries(layoutOnlyUpdates).filter(([_, value]) => value !== undefined)
+      Object.entries(layoutOnlyUpdates).filter(
+        ([_, value]) => value !== undefined
+      )
     ) as Partial<ThemeCustomization>;
-    
+
     if (Object.keys(filteredUpdates).length > 0) {
       updateCustomization(filteredUpdates);
     }
@@ -299,7 +336,9 @@ export function ThemeProvider({
    */
   const applyCustomColor = (variable: string, color: HSLColor) => {
     // Disabled to preserve theme colors
-    console.log('Custom color application disabled to preserve theme integrity');
+    console.log(
+      'Custom color application disabled to preserve theme integrity'
+    );
   };
 
   const contextValue: ThemeContextValue = {
@@ -329,7 +368,10 @@ export function useThemeContext(): ThemeContextValue {
   const context = useContext(ThemeContext);
   if (context === undefined) {
     // In production or during SSR, return safe defaults instead of throwing
-    if (typeof window === 'undefined' || process.env.NODE_ENV === 'production') {
+    if (
+      typeof window === 'undefined' ||
+      process.env.NODE_ENV === 'production'
+    ) {
       return {
         theme: 'neutral-pro' as ThemeName,
         isDark: true, // Default to dark mode
@@ -365,4 +407,4 @@ export function useIsThemeProviderAvailable(): boolean {
  */
 export function useCurrentThemeConfig() {
   return getThemeConfig('neutral-pro');
-} 
+}

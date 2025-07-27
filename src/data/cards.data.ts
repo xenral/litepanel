@@ -109,7 +109,8 @@ export const productCards: ProductCard[] = [
     name: 'MacBook Pro 16"',
     price: '$2,399',
     originalPrice: '$2,599',
-    image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=300&h=200&fit=crop',
+    image:
+      'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=300&h=200&fit=crop',
     category: 'Laptops',
     rating: 4.8,
     reviews: 128,
@@ -121,7 +122,8 @@ export const productCards: ProductCard[] = [
     name: 'iPhone 15 Pro',
     price: '$999',
     originalPrice: '$1,099',
-    image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=300&h=200&fit=crop',
+    image:
+      'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=300&h=200&fit=crop',
     category: 'Smartphones',
     rating: 4.9,
     reviews: 256,
@@ -133,7 +135,8 @@ export const productCards: ProductCard[] = [
     name: 'AirPods Pro',
     price: '$249',
     originalPrice: '$279',
-    image: 'https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=300&h=200&fit=crop',
+    image:
+      'https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=300&h=200&fit=crop',
     category: 'Audio',
     rating: 4.7,
     reviews: 89,
@@ -147,7 +150,8 @@ export const teamMembers: TeamMember[] = [
     id: 1,
     name: 'Alice Johnson',
     role: 'Product Designer',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=100&h=100&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=100&h=100&fit=crop&crop=face',
     location: 'San Francisco, CA',
     email: 'alice@example.com',
     projects: 12,
@@ -158,7 +162,8 @@ export const teamMembers: TeamMember[] = [
     id: 2,
     name: 'Bob Smith',
     role: 'Frontend Developer',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
     location: 'New York, NY',
     email: 'bob@example.com',
     projects: 18,
@@ -169,7 +174,8 @@ export const teamMembers: TeamMember[] = [
     id: 3,
     name: 'Carol Davis',
     role: 'Marketing Manager',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
     location: 'Austin, TX',
     email: 'carol@example.com',
     projects: 8,
@@ -218,26 +224,32 @@ export const blogPosts: BlogPost[] = [
   {
     id: 1,
     title: 'Getting Started with React 18',
-    excerpt: 'Learn about the new features and improvements in React 18, including concurrent rendering and automatic batching.',
+    excerpt:
+      'Learn about the new features and improvements in React 18, including concurrent rendering and automatic batching.',
     author: 'John Doe',
-    authorAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face',
+    authorAvatar:
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face',
     publishDate: '2024-01-15',
     readTime: '5 min read',
     category: 'Development',
-    image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=200&fit=crop',
+    image:
+      'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=200&fit=crop',
     likes: 124,
     comments: 23,
   },
   {
     id: 2,
     title: 'Design Systems at Scale',
-    excerpt: 'How to build and maintain design systems for large organizations with multiple teams and products.',
+    excerpt:
+      'How to build and maintain design systems for large organizations with multiple teams and products.',
     author: 'Jane Smith',
-    authorAvatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=40&h=40&fit=crop&crop=face',
+    authorAvatar:
+      'https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=40&h=40&fit=crop&crop=face',
     publishDate: '2024-01-10',
     readTime: '8 min read',
     category: 'Design',
-    image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?w=400&h=200&fit=crop',
+    image:
+      'https://images.unsplash.com/photo-1558655146-d09347e92766?w=400&h=200&fit=crop',
     likes: 89,
     comments: 15,
   },
@@ -256,14 +268,20 @@ export const trendColorMap = new Map([
   ['stable', 'text-gray-600'],
 ]);
 
-export const statusColorMap = new Map<string, "default" | "destructive" | "outline" | "secondary">([
+export const statusColorMap = new Map<
+  string,
+  'default' | 'destructive' | 'outline' | 'secondary'
+>([
   ['completed', 'default'],
   ['in progress', 'secondary'],
   ['pending', 'outline'],
 ]);
 
-export const priorityColorMap = new Map<string, "default" | "destructive" | "outline" | "secondary">([
+export const priorityColorMap = new Map<
+  string,
+  'default' | 'destructive' | 'outline' | 'secondary'
+>([
   ['high', 'destructive'],
   ['medium', 'secondary'],
   ['low', 'outline'],
-]); 
+]);

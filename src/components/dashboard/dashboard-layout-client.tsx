@@ -13,7 +13,9 @@ interface DashboardLayoutClientProps {
  * Dashboard layout client component with sidebar, topbar, and content area
  * This is a client component to handle interactive state and theme context
  */
-export function DashboardLayoutClient({ children }: DashboardLayoutClientProps) {
+export function DashboardLayoutClient({
+  children,
+}: DashboardLayoutClientProps) {
   const [sidebarCollapsed, setSidebarCollapsed] = React.useState(false);
   const [commandPaletteOpen, setCommandPaletteOpen] = React.useState(false);
 
@@ -32,7 +34,7 @@ export function DashboardLayoutClient({ children }: DashboardLayoutClientProps) 
   }, []);
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="bg-background flex h-screen">
       {/* Sidebar */}
       <Sidebar
         isCollapsed={sidebarCollapsed}
@@ -46,9 +48,7 @@ export function DashboardLayoutClient({ children }: DashboardLayoutClientProps) 
 
         {/* Content */}
         <main className="flex-1 overflow-auto p-6">
-          <div className="mx-auto max-w-7xl">
-            {children}
-          </div>
+          <div className="mx-auto max-w-7xl">{children}</div>
         </main>
       </div>
 
@@ -59,4 +59,4 @@ export function DashboardLayoutClient({ children }: DashboardLayoutClientProps) 
       />
     </div>
   );
-} 
+}

@@ -2,15 +2,15 @@
 
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Code, 
-  Copy, 
-  Check, 
-  Palette, 
-  Settings, 
+import {
+  Code,
+  Copy,
+  Check,
+  Palette,
+  Settings,
   Layers,
   ChevronLeft,
-  ChevronRight 
+  ChevronRight,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -163,7 +163,9 @@ const onSubmit = async (data: LoginFormData) => {
  */
 export function CodeSnippetShowcase() {
   const [activeExample, setActiveExample] = React.useState(0);
-  const [copiedStates, setCopiedStates] = React.useState<Record<string, boolean>>({});
+  const [copiedStates, setCopiedStates] = React.useState<
+    Record<string, boolean>
+  >({});
 
   /**
    * Handle copying code to clipboard
@@ -171,9 +173,9 @@ export function CodeSnippetShowcase() {
   const handleCopyCode = async (code: string, exampleId: string) => {
     try {
       await copyToClipboard(code);
-      setCopiedStates(prev => ({ ...prev, [exampleId]: true }));
+      setCopiedStates((prev) => ({ ...prev, [exampleId]: true }));
       setTimeout(() => {
-        setCopiedStates(prev => ({ ...prev, [exampleId]: false }));
+        setCopiedStates((prev) => ({ ...prev, [exampleId]: false }));
       }, 2000);
     } catch (error) {
       console.error('Failed to copy code:', error);
@@ -184,47 +186,52 @@ export function CodeSnippetShowcase() {
    * Navigate to previous example
    */
   const previousExample = () => {
-    setActiveExample(prev => (prev === 0 ? codeExamples.length - 1 : prev - 1));
+    setActiveExample((prev) =>
+      prev === 0 ? codeExamples.length - 1 : prev - 1
+    );
   };
 
   /**
    * Navigate to next example
    */
   const nextExample = () => {
-    setActiveExample(prev => (prev === codeExamples.length - 1 ? 0 : prev + 1));
+    setActiveExample((prev) =>
+      prev === codeExamples.length - 1 ? 0 : prev + 1
+    );
   };
 
   const currentExample = codeExamples[activeExample];
 
   return (
-    <section className="py-24 bg-muted/30">
+    <section className="bg-muted/30 py-24">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-16 text-center"
         >
-          <div className="flex items-center justify-center mb-4">
-            <div className="flex items-center space-x-2 rounded-full bg-primary/10 px-4 py-2 text-primary">
+          <div className="mb-4 flex items-center justify-center">
+            <div className="bg-primary/10 text-primary flex items-center space-x-2 rounded-full px-4 py-2">
               <Code className="h-5 w-5" />
               <span className="text-sm font-medium">Code Quality</span>
             </div>
           </div>
-          
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+
+          <h2 className="mb-4 text-3xl font-bold md:text-4xl">
             Clean, Modern Code
           </h2>
-          
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Explore the high-quality, well-documented code that powers LiteControl Admin. 
-            Every component is crafted with TypeScript, accessibility, and maintainability in mind.
+
+          <p className="text-muted-foreground mx-auto max-w-3xl text-lg">
+            Explore the high-quality, well-documented code that powers
+            LiteControl Admin. Every component is crafted with TypeScript,
+            accessibility, and maintainability in mind.
           </p>
         </motion.div>
 
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-3 gap-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-8 lg:grid-cols-3">
             {/* Code Example Navigation */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -237,28 +244,32 @@ export function CodeSnippetShowcase() {
                 <Card
                   key={example.id}
                   className={cn(
-                    "p-4 cursor-pointer transition-all duration-200 border-2",
+                    'cursor-pointer border-2 p-4 transition-all duration-200',
                     activeExample === index
-                      ? "border-primary bg-primary/5"
-                      : "border-border hover:border-primary/50 hover:bg-accent/50"
+                      ? 'border-primary bg-primary/5'
+                      : 'border-border hover:border-primary/50 hover:bg-accent/50'
                   )}
                   onClick={() => setActiveExample(index)}
                 >
                   <div className="flex items-start space-x-3">
-                    <div className={cn(
-                      "mt-1 h-3 w-3 rounded-full transition-colors",
-                      activeExample === index ? "bg-primary" : "bg-muted-foreground/30"
-                    )} />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center space-x-2 mb-1">
-                        <h3 className="text-sm font-semibold truncate">
+                    <div
+                      className={cn(
+                        'mt-1 h-3 w-3 rounded-full transition-colors',
+                        activeExample === index
+                          ? 'bg-primary'
+                          : 'bg-muted-foreground/30'
+                      )}
+                    />
+                    <div className="min-w-0 flex-1">
+                      <div className="mb-1 flex items-center space-x-2">
+                        <h3 className="truncate text-sm font-semibold">
                           {example.title}
                         </h3>
                         <Badge variant="outline" className="text-xs">
                           {example.badge}
                         </Badge>
                       </div>
-                      <p className="text-xs text-muted-foreground leading-relaxed">
+                      <p className="text-muted-foreground text-xs leading-relaxed">
                         {example.description}
                       </p>
                     </div>
@@ -277,12 +288,12 @@ export function CodeSnippetShowcase() {
             >
               <Card className="overflow-hidden">
                 {/* Header */}
-                <div className="flex items-center justify-between p-4 border-b bg-muted/50">
+                <div className="bg-muted/50 flex items-center justify-between border-b p-4">
                   <div className="flex items-center space-x-3">
                     <div className="flex space-x-1">
-                      <div className="w-3 h-3 rounded-full bg-red-500" />
-                      <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                      <div className="w-3 h-3 rounded-full bg-green-500" />
+                      <div className="h-3 w-3 rounded-full bg-red-500" />
+                      <div className="h-3 w-3 rounded-full bg-yellow-500" />
+                      <div className="h-3 w-3 rounded-full bg-green-500" />
                     </div>
                     <div className="flex items-center space-x-2">
                       <span className="text-sm font-medium">
@@ -293,7 +304,7 @@ export function CodeSnippetShowcase() {
                       </Badge>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center space-x-2">
                     {/* Navigation */}
                     <Button
@@ -304,7 +315,7 @@ export function CodeSnippetShowcase() {
                     >
                       <ChevronLeft className="h-4 w-4" />
                     </Button>
-                    <span className="text-xs text-muted-foreground px-2">
+                    <span className="text-muted-foreground px-2 text-xs">
                       {activeExample + 1} / {codeExamples.length}
                     </span>
                     <Button
@@ -315,14 +326,16 @@ export function CodeSnippetShowcase() {
                     >
                       <ChevronRight className="h-4 w-4" />
                     </Button>
-                    
-                    <div className="w-px h-4 bg-border" />
-                    
+
+                    <div className="bg-border h-4 w-px" />
+
                     {/* Copy Button */}
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={() => handleCopyCode(currentExample.code, currentExample.id)}
+                      onClick={() =>
+                        handleCopyCode(currentExample.code, currentExample.id)
+                      }
                       className="h-8 w-8 p-0"
                     >
                       <AnimatePresence mode="wait">
@@ -362,7 +375,7 @@ export function CodeSnippetShowcase() {
                     transition={{ duration: 0.3 }}
                     className="relative"
                   >
-                    <pre className="p-6 text-sm leading-relaxed overflow-x-auto bg-background">
+                    <pre className="bg-background overflow-x-auto p-6 text-sm leading-relaxed">
                       <code className="text-foreground font-mono">
                         {currentExample.code}
                       </code>
@@ -382,21 +395,21 @@ export function CodeSnippetShowcase() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-16 text-center"
         >
-          <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-muted-foreground">
+          <div className="text-muted-foreground flex flex-wrap items-center justify-center gap-6 text-sm">
             <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 rounded-full bg-green-500" />
+              <div className="h-2 w-2 rounded-full bg-green-500" />
               <span>TypeScript Strict Mode</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 rounded-full bg-blue-500" />
+              <div className="h-2 w-2 rounded-full bg-blue-500" />
               <span>ESLint + Prettier</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 rounded-full bg-purple-500" />
+              <div className="h-2 w-2 rounded-full bg-purple-500" />
               <span>Comprehensive JSDoc</span>
             </div>
             <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 rounded-full bg-orange-500" />
+              <div className="h-2 w-2 rounded-full bg-orange-500" />
               <span>GitHub Actions CI</span>
             </div>
           </div>
@@ -404,4 +417,4 @@ export function CodeSnippetShowcase() {
       </div>
     </section>
   );
-} 
+}

@@ -12,14 +12,14 @@ import {
   Eye,
   Shield,
   Activity,
-  Palette
+  Palette,
 } from 'lucide-react';
 import type {
   ComponentInfo,
   StorybookStats,
   RecentActivity,
   TeamMember,
-  DevTool
+  DevTool,
 } from '@/types/storybook';
 
 export const componentStories: ComponentInfo[] = [
@@ -30,19 +30,49 @@ export const componentStories: ComponentInfo[] = [
     icon: Component,
     description: 'Versatile button component with multiple variants and states',
     stories: [
-      { name: 'Default', description: 'Basic button component', complexity: 'Simple', testCoverage: 95 },
-      { name: 'Variants', description: 'Different button styles and colors', complexity: 'Medium', testCoverage: 88 },
-      { name: 'Sizes', description: 'Button size variations (sm, md, lg, xl)', complexity: 'Simple', testCoverage: 92 },
-      { name: 'With Icons', description: 'Buttons with leading/trailing icons', complexity: 'Medium', testCoverage: 85 },
-      { name: 'Loading States', description: 'Button loading indicators and spinners', complexity: 'Complex', testCoverage: 90 },
-      { name: 'Disabled States', description: 'Disabled button variations', complexity: 'Simple', testCoverage: 98 }
+      {
+        name: 'Default',
+        description: 'Basic button component',
+        complexity: 'Simple',
+        testCoverage: 95,
+      },
+      {
+        name: 'Variants',
+        description: 'Different button styles and colors',
+        complexity: 'Medium',
+        testCoverage: 88,
+      },
+      {
+        name: 'Sizes',
+        description: 'Button size variations (sm, md, lg, xl)',
+        complexity: 'Simple',
+        testCoverage: 92,
+      },
+      {
+        name: 'With Icons',
+        description: 'Buttons with leading/trailing icons',
+        complexity: 'Medium',
+        testCoverage: 85,
+      },
+      {
+        name: 'Loading States',
+        description: 'Button loading indicators and spinners',
+        complexity: 'Complex',
+        testCoverage: 90,
+      },
+      {
+        name: 'Disabled States',
+        description: 'Disabled button variations',
+        complexity: 'Simple',
+        testCoverage: 98,
+      },
     ],
     status: 'stable',
     lastUpdated: '2024-01-15',
     version: '2.1.0',
     downloads: 15420,
     rating: 4.8,
-    contributors: ['John Doe', 'Jane Smith', 'Mike Johnson']
+    contributors: ['John Doe', 'Jane Smith', 'Mike Johnson'],
   },
   {
     id: 'card',
@@ -51,18 +81,43 @@ export const componentStories: ComponentInfo[] = [
     icon: Layout,
     description: 'Flexible card container for organizing content',
     stories: [
-      { name: 'Basic Card', description: 'Simple card container with padding', complexity: 'Simple', testCoverage: 94 },
-      { name: 'With Header', description: 'Card with title and description header', complexity: 'Medium', testCoverage: 91 },
-      { name: 'Interactive', description: 'Clickable and hoverable card variants', complexity: 'Medium', testCoverage: 87 },
-      { name: 'Media Cards', description: 'Cards with images, videos, and media', complexity: 'Complex', testCoverage: 82 },
-      { name: 'Action Cards', description: 'Cards with embedded action buttons', complexity: 'Complex', testCoverage: 89 }
+      {
+        name: 'Basic Card',
+        description: 'Simple card container with padding',
+        complexity: 'Simple',
+        testCoverage: 94,
+      },
+      {
+        name: 'With Header',
+        description: 'Card with title and description header',
+        complexity: 'Medium',
+        testCoverage: 91,
+      },
+      {
+        name: 'Interactive',
+        description: 'Clickable and hoverable card variants',
+        complexity: 'Medium',
+        testCoverage: 87,
+      },
+      {
+        name: 'Media Cards',
+        description: 'Cards with images, videos, and media',
+        complexity: 'Complex',
+        testCoverage: 82,
+      },
+      {
+        name: 'Action Cards',
+        description: 'Cards with embedded action buttons',
+        complexity: 'Complex',
+        testCoverage: 89,
+      },
     ],
     status: 'stable',
     lastUpdated: '2024-01-14',
     version: '1.8.2',
     downloads: 12330,
     rating: 4.7,
-    contributors: ['Sarah Wilson', 'Tom Brown', 'Lisa Davis']
+    contributors: ['Sarah Wilson', 'Tom Brown', 'Lisa Davis'],
   },
   {
     id: 'input',
@@ -71,18 +126,43 @@ export const componentStories: ComponentInfo[] = [
     icon: Component,
     description: 'Form input component with validation and states',
     stories: [
-      { name: 'Text Input', description: 'Basic text input field with styling', complexity: 'Simple', testCoverage: 93 },
-      { name: 'With Labels', description: 'Labeled input components with descriptions', complexity: 'Medium', testCoverage: 90 },
-      { name: 'Validation States', description: 'Error, success, and warning states', complexity: 'Complex', testCoverage: 85 },
-      { name: 'Input Groups', description: 'Combined input elements with addons', complexity: 'Complex', testCoverage: 78 },
-      { name: 'File Uploads', description: 'File input with drag and drop', complexity: 'Complex', testCoverage: 81 }
+      {
+        name: 'Text Input',
+        description: 'Basic text input field with styling',
+        complexity: 'Simple',
+        testCoverage: 93,
+      },
+      {
+        name: 'With Labels',
+        description: 'Labeled input components with descriptions',
+        complexity: 'Medium',
+        testCoverage: 90,
+      },
+      {
+        name: 'Validation States',
+        description: 'Error, success, and warning states',
+        complexity: 'Complex',
+        testCoverage: 85,
+      },
+      {
+        name: 'Input Groups',
+        description: 'Combined input elements with addons',
+        complexity: 'Complex',
+        testCoverage: 78,
+      },
+      {
+        name: 'File Uploads',
+        description: 'File input with drag and drop',
+        complexity: 'Complex',
+        testCoverage: 81,
+      },
     ],
     status: 'beta',
     lastUpdated: '2024-01-13',
     version: '1.5.0-beta.3',
     downloads: 8920,
     rating: 4.5,
-    contributors: ['Alex Chen', 'Emma Taylor']
+    contributors: ['Alex Chen', 'Emma Taylor'],
   },
   {
     id: 'modal',
@@ -91,18 +171,43 @@ export const componentStories: ComponentInfo[] = [
     icon: Layers,
     description: 'Modal dialogs and overlay components',
     stories: [
-      { name: 'Basic Modal', description: 'Simple modal dialog with backdrop', complexity: 'Medium', testCoverage: 88 },
-      { name: 'Confirmation', description: 'Confirmation dialog with actions', complexity: 'Medium', testCoverage: 92 },
-      { name: 'Form Modal', description: 'Modal containing form elements', complexity: 'Complex', testCoverage: 84 },
-      { name: 'Fullscreen', description: 'Full-screen modal variant', complexity: 'Medium', testCoverage: 86 },
-      { name: 'Nested Modals', description: 'Stacked modal implementations', complexity: 'Complex', testCoverage: 79 }
+      {
+        name: 'Basic Modal',
+        description: 'Simple modal dialog with backdrop',
+        complexity: 'Medium',
+        testCoverage: 88,
+      },
+      {
+        name: 'Confirmation',
+        description: 'Confirmation dialog with actions',
+        complexity: 'Medium',
+        testCoverage: 92,
+      },
+      {
+        name: 'Form Modal',
+        description: 'Modal containing form elements',
+        complexity: 'Complex',
+        testCoverage: 84,
+      },
+      {
+        name: 'Fullscreen',
+        description: 'Full-screen modal variant',
+        complexity: 'Medium',
+        testCoverage: 86,
+      },
+      {
+        name: 'Nested Modals',
+        description: 'Stacked modal implementations',
+        complexity: 'Complex',
+        testCoverage: 79,
+      },
     ],
     status: 'stable',
     lastUpdated: '2024-01-12',
     version: '2.3.1',
     downloads: 11240,
     rating: 4.6,
-    contributors: ['David Kim', 'Rachel Green']
+    contributors: ['David Kim', 'Rachel Green'],
   },
   {
     id: 'table',
@@ -111,18 +216,43 @@ export const componentStories: ComponentInfo[] = [
     icon: BarChart3,
     description: 'Data table with sorting, filtering, and pagination',
     stories: [
-      { name: 'Basic Table', description: 'Simple data table with styling', complexity: 'Medium', testCoverage: 87 },
-      { name: 'Sortable', description: 'Table with column sorting functionality', complexity: 'Complex', testCoverage: 82 },
-      { name: 'Selectable Rows', description: 'Row selection with checkboxes', complexity: 'Complex', testCoverage: 80 },
-      { name: 'Pagination', description: 'Paginated table with navigation', complexity: 'Complex', testCoverage: 85 },
-      { name: 'Advanced Filters', description: 'Multi-column filtering system', complexity: 'Complex', testCoverage: 76 }
+      {
+        name: 'Basic Table',
+        description: 'Simple data table with styling',
+        complexity: 'Medium',
+        testCoverage: 87,
+      },
+      {
+        name: 'Sortable',
+        description: 'Table with column sorting functionality',
+        complexity: 'Complex',
+        testCoverage: 82,
+      },
+      {
+        name: 'Selectable Rows',
+        description: 'Row selection with checkboxes',
+        complexity: 'Complex',
+        testCoverage: 80,
+      },
+      {
+        name: 'Pagination',
+        description: 'Paginated table with navigation',
+        complexity: 'Complex',
+        testCoverage: 85,
+      },
+      {
+        name: 'Advanced Filters',
+        description: 'Multi-column filtering system',
+        complexity: 'Complex',
+        testCoverage: 76,
+      },
     ],
     status: 'alpha',
     lastUpdated: '2024-01-11',
     version: '0.9.2-alpha',
     downloads: 3450,
     rating: 4.2,
-    contributors: ['Chris Martinez']
+    contributors: ['Chris Martinez'],
   },
   {
     id: 'navigation',
@@ -131,18 +261,43 @@ export const componentStories: ComponentInfo[] = [
     icon: Target,
     description: 'Navigation components for app structure',
     stories: [
-      { name: 'Sidebar', description: 'Collapsible sidebar navigation', complexity: 'Complex', testCoverage: 88 },
-      { name: 'Breadcrumbs', description: 'Navigation breadcrumb trail', complexity: 'Medium', testCoverage: 91 },
-      { name: 'Tabs', description: 'Tab navigation component', complexity: 'Medium', testCoverage: 89 },
-      { name: 'Pagination', description: 'Page navigation controls', complexity: 'Medium', testCoverage: 93 },
-      { name: 'Menu', description: 'Dropdown and context menus', complexity: 'Complex', testCoverage: 84 }
+      {
+        name: 'Sidebar',
+        description: 'Collapsible sidebar navigation',
+        complexity: 'Complex',
+        testCoverage: 88,
+      },
+      {
+        name: 'Breadcrumbs',
+        description: 'Navigation breadcrumb trail',
+        complexity: 'Medium',
+        testCoverage: 91,
+      },
+      {
+        name: 'Tabs',
+        description: 'Tab navigation component',
+        complexity: 'Medium',
+        testCoverage: 89,
+      },
+      {
+        name: 'Pagination',
+        description: 'Page navigation controls',
+        complexity: 'Medium',
+        testCoverage: 93,
+      },
+      {
+        name: 'Menu',
+        description: 'Dropdown and context menus',
+        complexity: 'Complex',
+        testCoverage: 84,
+      },
     ],
     status: 'stable',
     lastUpdated: '2024-01-10',
     version: '3.0.0',
     downloads: 18760,
     rating: 4.9,
-    contributors: ['Maria Garcia', 'James Lee', 'Anna Thompson']
+    contributors: ['Maria Garcia', 'James Lee', 'Anna Thompson'],
   },
   {
     id: 'toast',
@@ -151,17 +306,37 @@ export const componentStories: ComponentInfo[] = [
     icon: Info,
     description: 'Toast notifications and alerts system',
     stories: [
-      { name: 'Basic Toast', description: 'Simple notification toast', complexity: 'Simple', testCoverage: 95 },
-      { name: 'Toast Types', description: 'Success, error, warning, info toasts', complexity: 'Medium', testCoverage: 92 },
-      { name: 'Positioning', description: 'Different toast positions on screen', complexity: 'Medium', testCoverage: 88 },
-      { name: 'Actions', description: 'Toasts with action buttons', complexity: 'Complex', testCoverage: 85 }
+      {
+        name: 'Basic Toast',
+        description: 'Simple notification toast',
+        complexity: 'Simple',
+        testCoverage: 95,
+      },
+      {
+        name: 'Toast Types',
+        description: 'Success, error, warning, info toasts',
+        complexity: 'Medium',
+        testCoverage: 92,
+      },
+      {
+        name: 'Positioning',
+        description: 'Different toast positions on screen',
+        complexity: 'Medium',
+        testCoverage: 88,
+      },
+      {
+        name: 'Actions',
+        description: 'Toasts with action buttons',
+        complexity: 'Complex',
+        testCoverage: 85,
+      },
     ],
     status: 'stable',
     lastUpdated: '2024-01-09',
     version: '1.4.2',
     downloads: 9870,
     rating: 4.7,
-    contributors: ['Kevin Wu', 'Sophie Clarke']
+    contributors: ['Kevin Wu', 'Sophie Clarke'],
   },
   {
     id: 'charts',
@@ -170,31 +345,60 @@ export const componentStories: ComponentInfo[] = [
     icon: TrendingUp,
     description: 'Interactive data visualization components',
     stories: [
-      { name: 'Line Chart', description: 'Responsive line chart component', complexity: 'Complex', testCoverage: 81 },
-      { name: 'Bar Chart', description: 'Vertical and horizontal bar charts', complexity: 'Complex', testCoverage: 78 },
-      { name: 'Pie Chart', description: 'Circular data representation', complexity: 'Complex', testCoverage: 83 },
-      { name: 'Area Chart', description: 'Filled area chart variations', complexity: 'Complex', testCoverage: 79 }
+      {
+        name: 'Line Chart',
+        description: 'Responsive line chart component',
+        complexity: 'Complex',
+        testCoverage: 81,
+      },
+      {
+        name: 'Bar Chart',
+        description: 'Vertical and horizontal bar charts',
+        complexity: 'Complex',
+        testCoverage: 78,
+      },
+      {
+        name: 'Pie Chart',
+        description: 'Circular data representation',
+        complexity: 'Complex',
+        testCoverage: 83,
+      },
+      {
+        name: 'Area Chart',
+        description: 'Filled area chart variations',
+        complexity: 'Complex',
+        testCoverage: 79,
+      },
     ],
     status: 'beta',
     lastUpdated: '2024-01-08',
     version: '0.8.1-beta',
     downloads: 2340,
     rating: 4.3,
-    contributors: ['Oliver Johnson']
-  }
+    contributors: ['Oliver Johnson'],
+  },
 ];
 
 export const storybookStats: StorybookStats = {
   totalComponents: componentStories.length,
-  totalStories: componentStories.reduce((acc, component) => acc + component.stories.length, 0),
-  stableComponents: componentStories.filter(c => c.status === 'stable').length,
+  totalStories: componentStories.reduce(
+    (acc, component) => acc + component.stories.length,
+    0
+  ),
+  stableComponents: componentStories.filter((c) => c.status === 'stable')
+    .length,
   coverage: 87,
   weeklyViews: 24500,
-  totalDownloads: componentStories.reduce((acc, component) => acc + component.downloads, 0),
-  avgRating: componentStories.reduce((acc, component) => acc + component.rating, 0) / componentStories.length,
+  totalDownloads: componentStories.reduce(
+    (acc, component) => acc + component.downloads,
+    0
+  ),
+  avgRating:
+    componentStories.reduce((acc, component) => acc + component.rating, 0) /
+    componentStories.length,
   activeContributors: 15,
   testsPassing: 342,
-  testsTotal: 389
+  testsTotal: 389,
 };
 
 export const recentActivity: RecentActivity[] = [
@@ -204,7 +408,7 @@ export const recentActivity: RecentActivity[] = [
     message: 'Button component updated to v2.1.0',
     user: 'John Doe',
     time: '2 hours ago',
-    icon: Component
+    icon: Component,
   },
   {
     id: 2,
@@ -212,7 +416,7 @@ export const recentActivity: RecentActivity[] = [
     message: 'New story added: Modal with Form validation',
     user: 'Sarah Wilson',
     time: '4 hours ago',
-    icon: FileText
+    icon: FileText,
   },
   {
     id: 3,
@@ -220,7 +424,7 @@ export const recentActivity: RecentActivity[] = [
     message: 'All tests passing for Navigation component',
     user: 'System',
     time: '6 hours ago',
-    icon: CheckCircle
+    icon: CheckCircle,
   },
   {
     id: 4,
@@ -228,7 +432,7 @@ export const recentActivity: RecentActivity[] = [
     message: 'Fixed accessibility issue in Input component',
     user: 'Emma Taylor',
     time: '1 day ago',
-    icon: Bug
+    icon: Bug,
   },
   {
     id: 5,
@@ -236,8 +440,8 @@ export const recentActivity: RecentActivity[] = [
     message: 'Updated documentation for Toast component',
     user: 'Kevin Wu',
     time: '2 days ago',
-    icon: FileText
-  }
+    icon: FileText,
+  },
 ];
 
 export const teamMembers: TeamMember[] = [
@@ -246,29 +450,29 @@ export const teamMembers: TeamMember[] = [
     role: 'Lead Developer',
     avatar: '/avatars/john.jpg',
     contributions: 47,
-    status: 'online'
+    status: 'online',
   },
   {
     name: 'Sarah Wilson',
     role: 'UI Designer',
     avatar: '/avatars/sarah.jpg',
     contributions: 32,
-    status: 'online'
+    status: 'online',
   },
   {
     name: 'Emma Taylor',
     role: 'Frontend Dev',
     avatar: '/avatars/emma.jpg',
     contributions: 28,
-    status: 'away'
+    status: 'away',
   },
   {
     name: 'Kevin Wu',
     role: 'QA Engineer',
     avatar: '/avatars/kevin.jpg',
     contributions: 19,
-    status: 'offline'
-  }
+    status: 'offline',
+  },
 ];
 
 export const devTools: DevTool[] = [
@@ -277,27 +481,27 @@ export const devTools: DevTool[] = [
     description: 'Automated visual regression testing',
     status: 'active',
     icon: Eye,
-    color: 'text-green-600'
+    color: 'text-green-600',
   },
   {
     name: 'Accessibility Scanner',
     description: 'A11y compliance checking',
     status: 'active',
     icon: Shield,
-    color: 'text-blue-600'
+    color: 'text-blue-600',
   },
   {
     name: 'Performance Monitor',
     description: 'Component performance tracking',
     status: 'active',
     icon: Activity,
-    color: 'text-purple-600'
+    color: 'text-purple-600',
   },
   {
     name: 'Design Tokens',
     description: 'Synchronized design system tokens',
     status: 'pending',
     icon: Palette,
-    color: 'text-orange-600'
-  }
-]; 
+    color: 'text-orange-600',
+  },
+];

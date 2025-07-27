@@ -19,19 +19,26 @@ export function SocialMetrics({ metrics }: SocialMetricsProps) {
       <CardContent>
         <div className="space-y-4">
           {metrics.map((social) => (
-            <div key={social.platform} className="flex items-center justify-between">
+            <div
+              key={social.platform}
+              className="flex items-center justify-between"
+            >
               <div className="flex items-center space-x-3">
-                <div className={`w-2 h-2 rounded-full ${getColorClasses(social.color)}`} />
+                <div
+                  className={`h-2 w-2 rounded-full ${getColorClasses(social.color)}`}
+                />
                 <div>
                   <p className="text-sm font-medium">{social.platform}</p>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-muted-foreground text-xs">
                     {social.followers.toLocaleString()} followers
                   </p>
                 </div>
               </div>
               <div className="text-right">
                 <p className="text-sm font-medium">{social.engagement}%</p>
-                <p className="text-xs text-emerald-600 dark:text-emerald-400">{social.growth}</p>
+                <p className="text-xs text-emerald-600 dark:text-emerald-400">
+                  {social.growth}
+                </p>
               </div>
             </div>
           ))}
@@ -39,4 +46,4 @@ export function SocialMetrics({ metrics }: SocialMetricsProps) {
       </CardContent>
     </Card>
   );
-} 
+}

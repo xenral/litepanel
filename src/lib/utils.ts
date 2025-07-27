@@ -92,7 +92,8 @@ export function debounce<T extends (...args: any[]) => any>(
  * @returns Random ID string
  */
 export function generateId(length = 8): string {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const chars =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
   for (let i = 0; i < length; i++) {
     result += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -153,6 +154,6 @@ export function getContrastRatio(color1: string, color2: string): number {
 
   const l1 = getLuminance(color1);
   const l2 = getLuminance(color2);
-  
+
   return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
-} 
+}

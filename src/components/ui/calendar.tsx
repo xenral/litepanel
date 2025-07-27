@@ -66,8 +66,18 @@ function isInRange(date: Date, range: { from?: Date; to?: Date }): boolean {
  * Month names
  */
 const MONTHS = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];
 
 /**
@@ -159,9 +169,12 @@ export function Calendar({
   };
 
   return (
-    <div className={cn('p-4 bg-background border rounded-lg', className)} {...props}>
+    <div
+      className={cn('bg-background rounded-lg border p-4', className)}
+      {...props}
+    >
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <Button
             variant="outline"
@@ -170,7 +183,7 @@ export function Calendar({
             className="h-8 w-8"
           >
             <ChevronLeft className="h-4 w-4" />
-            <ChevronLeft className="h-4 w-4 -ml-2" />
+            <ChevronLeft className="-ml-2 h-4 w-4" />
           </Button>
           <Button
             variant="outline"
@@ -204,18 +217,22 @@ export function Calendar({
             className="h-8 w-8"
           >
             <ChevronRight className="h-4 w-4" />
-            <ChevronRight className="h-4 w-4 -ml-2" />
+            <ChevronRight className="-ml-2 h-4 w-4" />
           </Button>
         </div>
       </div>
 
       {/* Day headers */}
-      <div className="grid grid-cols-7 gap-1 mb-2">
-        {showWeekNumbers && <div className="h-8 w-8 text-xs text-muted-foreground flex items-center justify-center">Wk</div>}
+      <div className="mb-2 grid grid-cols-7 gap-1">
+        {showWeekNumbers && (
+          <div className="text-muted-foreground flex h-8 w-8 items-center justify-center text-xs">
+            Wk
+          </div>
+        )}
         {DAYS.map((day) => (
           <div
             key={day}
-            className="h-8 w-8 text-xs font-medium text-muted-foreground flex items-center justify-center"
+            className="text-muted-foreground flex h-8 w-8 items-center justify-center text-xs font-medium"
           >
             {day}
           </div>
@@ -224,56 +241,68 @@ export function Calendar({
 
       {/* Calendar grid */}
       <div className="grid grid-cols-7 gap-1">
-        {Array.from({ length: Math.ceil(calendarDays.length / 7) }, (_, weekIndex) => (
-          <React.Fragment key={weekIndex}>
-            {showWeekNumbers && (
-              <div className="h-8 w-8 text-xs text-muted-foreground flex items-center justify-center">
-                {/* Week number calculation would go here */}
-                {weekIndex + 1}
-              </div>
-            )}
-            {calendarDays.slice(weekIndex * 7, (weekIndex + 1) * 7).map((date, dayIndex) => {
-              if (!date) return <div key={dayIndex} className="h-8 w-8" />;
+        {Array.from(
+          { length: Math.ceil(calendarDays.length / 7) },
+          (_, weekIndex) => (
+            <React.Fragment key={weekIndex}>
+              {showWeekNumbers && (
+                <div className="text-muted-foreground flex h-8 w-8 items-center justify-center text-xs">
+                  {/* Week number calculation would go here */}
+                  {weekIndex + 1}
+                </div>
+              )}
+              {calendarDays
+                .slice(weekIndex * 7, (weekIndex + 1) * 7)
+                .map((date, dayIndex) => {
+                  if (!date) return <div key={dayIndex} className="h-8 w-8" />;
 
-              const isCurrentMonth = date.getMonth() === month;
-              const isToday = isSameDay(date, today);
-              const isSelected = selected && isSameDay(date, selected);
-              const isDisabled = disabled?.(date);
-              const isInSelectedRange = selectedRange && isInRange(date, selectedRange as { from: Date; to: Date });
-              const isRangeStart = selectedRange?.from && isSameDay(date, selectedRange.from);
-              const isRangeEnd = selectedRange?.to && isSameDay(date, selectedRange.to);
+                  const isCurrentMonth = date.getMonth() === month;
+                  const isToday = isSameDay(date, today);
+                  const isSelected = selected && isSameDay(date, selected);
+                  const isDisabled = disabled?.(date);
+                  const isInSelectedRange =
+                    selectedRange &&
+                    isInRange(date, selectedRange as { from: Date; to: Date });
+                  const isRangeStart =
+                    selectedRange?.from && isSameDay(date, selectedRange.from);
+                  const isRangeEnd =
+                    selectedRange?.to && isSameDay(date, selectedRange.to);
 
-              return (
-                <button
-                  key={date.toISOString()}
-                  onClick={() => handleDateClick(date)}
-                  onMouseEnter={() => setHoveredDate(date)}
-                  onMouseLeave={() => setHoveredDate(null)}
-                  disabled={isDisabled}
-                  className={cn(
-                    'h-8 w-8 text-sm rounded-md transition-colors relative',
-                    'hover:bg-accent hover:text-accent-foreground',
-                    'focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
-                    'disabled:pointer-events-none disabled:opacity-50',
-                    !isCurrentMonth && 'text-muted-foreground opacity-50',
-                    isCurrentMonth && 'text-foreground',
-                    isToday && 'bg-accent text-accent-foreground font-medium',
-                    isSelected && 'bg-primary text-primary-foreground font-medium',
-                    isInSelectedRange && !isSelected && 'bg-primary/20',
-                    (isRangeStart || isRangeEnd) && 'bg-primary text-primary-foreground font-medium',
-                    isDisabled && 'cursor-not-allowed opacity-30'
-                  )}
-                >
-                  {date.getDate()}
-                </button>
-              );
-            })}
-          </React.Fragment>
-        ))}
+                  return (
+                    <button
+                      key={date.toISOString()}
+                      onClick={() => handleDateClick(date)}
+                      onMouseEnter={() => setHoveredDate(date)}
+                      onMouseLeave={() => setHoveredDate(null)}
+                      disabled={isDisabled}
+                      className={cn(
+                        'relative h-8 w-8 rounded-md text-sm transition-colors',
+                        'hover:bg-accent hover:text-accent-foreground',
+                        'focus:ring-ring focus:outline-none focus:ring-2 focus:ring-offset-2',
+                        'disabled:pointer-events-none disabled:opacity-50',
+                        !isCurrentMonth && 'text-muted-foreground opacity-50',
+                        isCurrentMonth && 'text-foreground',
+                        isToday &&
+                          'bg-accent text-accent-foreground font-medium',
+                        isSelected &&
+                          'bg-primary text-primary-foreground font-medium',
+                        isInSelectedRange && !isSelected && 'bg-primary/20',
+                        (isRangeStart || isRangeEnd) &&
+                          'bg-primary text-primary-foreground font-medium',
+                        isDisabled && 'cursor-not-allowed opacity-30'
+                      )}
+                    >
+                      {date.getDate()}
+                    </button>
+                  );
+                })}
+            </React.Fragment>
+          )
+        )}
       </div>
 
       {/* Today button */}
-      <div className="flex justify-center mt-4">
+      <div className="mt-4 flex justify-center">
         <Button
           variant="outline"
           size="sm"
@@ -312,31 +341,27 @@ interface DatePickerProps {
 export function DatePicker({
   selected,
   onSelect,
-  placeholder = "Pick a date",
+  placeholder = 'Pick a date',
   disabled,
   className,
 }: DatePickerProps) {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn('relative', className)}>
       <Button
         variant="outline"
         className={cn(
-          "w-full justify-start text-left font-normal",
-          !selected && "text-muted-foreground"
+          'w-full justify-start text-left font-normal',
+          !selected && 'text-muted-foreground'
         )}
         onClick={() => setOpen(!open)}
       >
-        {selected ? (
-          selected.toLocaleDateString()
-        ) : (
-          <span>{placeholder}</span>
-        )}
+        {selected ? selected.toLocaleDateString() : <span>{placeholder}</span>}
       </Button>
-      
+
       {open && (
-        <div className="absolute top-full left-0 z-50 mt-2">
+        <div className="absolute left-0 top-full z-50 mt-2">
           <Calendar
             selected={selected}
             onSelect={(date) => {
@@ -350,4 +375,4 @@ export function DatePicker({
       )}
     </div>
   );
-} 
+}

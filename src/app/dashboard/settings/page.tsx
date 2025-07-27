@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
-import { 
-  Settings as SettingsIcon, 
-  User, 
-  Bell, 
-  Palette, 
-  Shield, 
+import {
+  Settings as SettingsIcon,
+  User,
+  Bell,
+  Palette,
+  Shield,
   Key,
   Globe,
   Smartphone,
@@ -15,9 +15,15 @@ import {
   RefreshCw,
   Trash2,
   Plus,
-  Check
+  Check,
 } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -41,7 +47,7 @@ const userData = {
   joinDate: '2023-08-15',
   lastLogin: '2024-01-15 09:30:00',
   timezone: 'UTC-8 (Pacific Time)',
-  language: 'English (US)'
+  language: 'English (US)',
 };
 
 /**
@@ -53,36 +59,36 @@ const notificationSettings = [
     title: 'Email Updates',
     description: 'Receive email notifications for important updates',
     enabled: true,
-    category: 'general'
+    category: 'general',
   },
   {
     id: 'push_notifications',
     title: 'Push Notifications',
     description: 'Browser push notifications for real-time alerts',
     enabled: false,
-    category: 'general'
+    category: 'general',
   },
   {
     id: 'weekly_digest',
     title: 'Weekly Digest',
     description: 'Summary of your activity and insights',
     enabled: true,
-    category: 'reports'
+    category: 'reports',
   },
   {
     id: 'security_alerts',
     title: 'Security Alerts',
     description: 'Notifications about login attempts and security events',
     enabled: true,
-    category: 'security'
+    category: 'security',
   },
   {
     id: 'product_updates',
     title: 'Product Updates',
     description: 'Information about new features and improvements',
     enabled: false,
-    category: 'product'
-  }
+    category: 'product',
+  },
 ];
 
 /**
@@ -95,7 +101,7 @@ const apiKeys = [
     key: 'pk_live_*********************4242',
     created: '2023-12-01',
     lastUsed: '2024-01-15',
-    permissions: ['read', 'write']
+    permissions: ['read', 'write'],
   },
   {
     id: 2,
@@ -103,7 +109,7 @@ const apiKeys = [
     key: 'pk_dev_*********************8888',
     created: '2024-01-01',
     lastUsed: '2024-01-14',
-    permissions: ['read']
+    permissions: ['read'],
   },
   {
     id: 3,
@@ -111,8 +117,8 @@ const apiKeys = [
     key: 'pk_analytics_***************9999',
     created: '2024-01-10',
     lastUsed: 'Never',
-    permissions: ['read']
-  }
+    permissions: ['read'],
+  },
 ];
 
 /**
@@ -143,7 +149,7 @@ export default function SettingsPage() {
 
       {/* Settings Tabs */}
       <Tabs defaultValue="profile" className="space-y-6">
-        <TabsList className="grid grid-cols-5 w-fit">
+        <TabsList className="grid w-fit grid-cols-5">
           <TabsTrigger value="profile">Profile</TabsTrigger>
           <TabsTrigger value="notifications">Notifications</TabsTrigger>
           <TabsTrigger value="appearance">Appearance</TabsTrigger>
@@ -152,7 +158,7 @@ export default function SettingsPage() {
         </TabsList>
 
         <TabsContent value="profile" className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             {/* Profile Information */}
             <Card className="lg:col-span-2">
               <CardHeader>
@@ -165,7 +171,7 @@ export default function SettingsPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <div className="space-y-2">
                     <Label htmlFor="firstName">First Name</Label>
                     <Input id="firstName" defaultValue="John" />
@@ -178,19 +184,23 @@ export default function SettingsPage() {
 
                 <div className="space-y-2">
                   <Label htmlFor="email">Email Address</Label>
-                  <Input id="email" type="email" defaultValue={userData.email} />
+                  <Input
+                    id="email"
+                    type="email"
+                    defaultValue={userData.email}
+                  />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="bio">Bio</Label>
-                  <Input 
-                    id="bio" 
+                  <Input
+                    id="bio"
                     placeholder="Tell us about yourself..."
                     defaultValue="Product Manager and UI/UX enthusiast"
                   />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <div className="space-y-2">
                     <Label htmlFor="timezone">Timezone</Label>
                     <Input id="timezone" defaultValue={userData.timezone} />
@@ -210,27 +220,36 @@ export default function SettingsPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-center">
-                  <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center">
-                    <span className="text-2xl font-bold text-primary">
-                      {userData.name.split(' ').map(n => n[0]).join('')}
+                  <div className="bg-primary/10 flex h-20 w-20 items-center justify-center rounded-full">
+                    <span className="text-primary text-2xl font-bold">
+                      {userData.name
+                        .split(' ')
+                        .map((n) => n[0])
+                        .join('')}
                     </span>
                   </div>
                 </div>
 
                 <div className="text-center">
                   <h3 className="font-semibold">{userData.name}</h3>
-                  <p className="text-sm text-muted-foreground">{userData.email}</p>
+                  <p className="text-muted-foreground text-sm">
+                    {userData.email}
+                  </p>
                   <Badge className="mt-2">{userData.role}</Badge>
                 </div>
 
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Member since:</span>
-                    <span>{new Date(userData.joinDate).toLocaleDateString()}</span>
+                    <span>
+                      {new Date(userData.joinDate).toLocaleDateString()}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Last login:</span>
-                    <span>{new Date(userData.lastLogin).toLocaleDateString()}</span>
+                    <span>
+                      {new Date(userData.lastLogin).toLocaleDateString()}
+                    </span>
                   </div>
                 </div>
 
@@ -255,7 +274,10 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent className="space-y-6">
               {notificationSettings.map((setting) => (
-                <div key={setting.id} className="flex items-center justify-between p-4 border rounded-lg">
+                <div
+                  key={setting.id}
+                  className="flex items-center justify-between rounded-lg border p-4"
+                >
                   <div className="space-y-1">
                     <div className="flex items-center space-x-2">
                       <h4 className="font-medium">{setting.title}</h4>
@@ -263,47 +285,47 @@ export default function SettingsPage() {
                         {setting.category}
                       </Badge>
                     </div>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                       {setting.description}
                     </p>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <Button 
-                      variant={setting.enabled ? "default" : "outline"} 
+                    <Button
+                      variant={setting.enabled ? 'default' : 'outline'}
                       size="sm"
                       className="min-w-20"
                     >
                       {setting.enabled ? (
                         <>
-                          <Check className="h-3 w-3 mr-1" />
+                          <Check className="mr-1 h-3 w-3" />
                           On
                         </>
                       ) : (
-                        "Off"
+                        'Off'
                       )}
                     </Button>
                   </div>
                 </div>
               ))}
 
-              <div className="pt-4 space-y-4">
+              <div className="space-y-4 pt-4">
                 <h4 className="font-medium">Delivery Methods</h4>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="flex items-center justify-between p-3 border rounded-lg">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                  <div className="flex items-center justify-between rounded-lg border p-3">
                     <div className="flex items-center space-x-2">
                       <Mail className="h-4 w-4" />
                       <span className="text-sm">Email</span>
                     </div>
                     <Badge>Active</Badge>
                   </div>
-                  <div className="flex items-center justify-between p-3 border rounded-lg">
+                  <div className="flex items-center justify-between rounded-lg border p-3">
                     <div className="flex items-center space-x-2">
                       <Smartphone className="h-4 w-4" />
                       <span className="text-sm">Push</span>
                     </div>
                     <Badge variant="secondary">Disabled</Badge>
                   </div>
-                  <div className="flex items-center justify-between p-3 border rounded-lg">
+                  <div className="flex items-center justify-between rounded-lg border p-3">
                     <div className="flex items-center space-x-2">
                       <Globe className="h-4 w-4" />
                       <span className="text-sm">In-App</span>
@@ -328,49 +350,55 @@ export default function SettingsPage() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
                 <div className="space-y-4">
                   <h4 className="font-medium">Color Scheme</h4>
                   <div className="space-y-4">
                     <div className="space-y-2">
                       <Label>Primary Color</Label>
                       <div className="flex items-center space-x-4">
-                        <div className="h-10 w-20 rounded-lg bg-primary border" />
+                        <div className="bg-primary h-10 w-20 rounded-lg border" />
                         <Slider
                           defaultValue={[220]}
                           max={360}
                           step={1}
                           className="flex-1"
                         />
-                        <span className="text-sm text-muted-foreground w-12">220°</span>
+                        <span className="text-muted-foreground w-12 text-sm">
+                          220°
+                        </span>
                       </div>
                     </div>
 
                     <div className="space-y-2">
                       <Label>Saturation</Label>
                       <div className="flex items-center space-x-4">
-                        <div className="h-10 w-20 rounded-lg bg-primary/80 border" />
+                        <div className="bg-primary/80 h-10 w-20 rounded-lg border" />
                         <Slider
                           defaultValue={[100]}
                           max={100}
                           step={1}
                           className="flex-1"
                         />
-                        <span className="text-sm text-muted-foreground w-12">100%</span>
+                        <span className="text-muted-foreground w-12 text-sm">
+                          100%
+                        </span>
                       </div>
                     </div>
 
                     <div className="space-y-2">
                       <Label>Lightness</Label>
                       <div className="flex items-center space-x-4">
-                        <div className="h-10 w-20 rounded-lg bg-primary/60 border" />
+                        <div className="bg-primary/60 h-10 w-20 rounded-lg border" />
                         <Slider
                           defaultValue={[50]}
                           max={100}
                           step={1}
                           className="flex-1"
                         />
-                        <span className="text-sm text-muted-foreground w-12">50%</span>
+                        <span className="text-muted-foreground w-12 text-sm">
+                          50%
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -380,18 +408,51 @@ export default function SettingsPage() {
                   <h4 className="font-medium">Theme Presets</h4>
                   <div className="grid grid-cols-2 gap-3">
                     {[
-                      { name: 'Default', colors: ['bg-blue-500', 'bg-blue-600', 'bg-blue-700'] },
-                      { name: 'Forest', colors: ['bg-green-500', 'bg-green-600', 'bg-green-700'] },
-                      { name: 'Sunset', colors: ['bg-orange-500', 'bg-red-500', 'bg-pink-500'] },
-                      { name: 'Ocean', colors: ['bg-cyan-500', 'bg-blue-500', 'bg-indigo-500'] },
-                      { name: 'Purple', colors: ['bg-purple-500', 'bg-violet-500', 'bg-fuchsia-500'] },
-                      { name: 'Monochrome', colors: ['bg-gray-600', 'bg-gray-700', 'bg-gray-800'] }
+                      {
+                        name: 'Default',
+                        colors: ['bg-blue-500', 'bg-blue-600', 'bg-blue-700'],
+                      },
+                      {
+                        name: 'Forest',
+                        colors: [
+                          'bg-green-500',
+                          'bg-green-600',
+                          'bg-green-700',
+                        ],
+                      },
+                      {
+                        name: 'Sunset',
+                        colors: ['bg-orange-500', 'bg-red-500', 'bg-pink-500'],
+                      },
+                      {
+                        name: 'Ocean',
+                        colors: ['bg-cyan-500', 'bg-blue-500', 'bg-indigo-500'],
+                      },
+                      {
+                        name: 'Purple',
+                        colors: [
+                          'bg-purple-500',
+                          'bg-violet-500',
+                          'bg-fuchsia-500',
+                        ],
+                      },
+                      {
+                        name: 'Monochrome',
+                        colors: ['bg-gray-600', 'bg-gray-700', 'bg-gray-800'],
+                      },
                     ].map((preset) => (
-                      <Button key={preset.name} variant="outline" className="h-auto p-3">
+                      <Button
+                        key={preset.name}
+                        variant="outline"
+                        className="h-auto p-3"
+                      >
                         <div className="space-y-2">
                           <div className="flex space-x-1">
                             {preset.colors.map((color, i) => (
-                              <div key={i} className={`h-4 w-4 rounded ${color}`} />
+                              <div
+                                key={i}
+                                className={`h-4 w-4 rounded ${color}`}
+                              />
                             ))}
                           </div>
                           <span className="text-xs">{preset.name}</span>
@@ -404,7 +465,7 @@ export default function SettingsPage() {
 
               <div className="space-y-4">
                 <h4 className="font-medium">Layout Options</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <div className="space-y-2">
                     <Label>Sidebar Width</Label>
                     <Slider
@@ -432,7 +493,7 @@ export default function SettingsPage() {
         </TabsContent>
 
         <TabsContent value="security" className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
@@ -479,9 +540,7 @@ export default function SettingsPage() {
                   <Input id="confirmPassword" type="password" />
                 </div>
 
-                <Button className="w-full">
-                  Update Password
-                </Button>
+                <Button className="w-full">Update Password</Button>
               </CardContent>
             </Card>
 
@@ -493,29 +552,27 @@ export default function SettingsPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex items-center justify-between p-4 border rounded-lg">
+                <div className="flex items-center justify-between rounded-lg border p-4">
                   <div>
                     <h4 className="font-medium">Authenticator App</h4>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                       Use an app like Google Authenticator
                     </p>
                   </div>
                   <Badge variant="outline">Not Enabled</Badge>
                 </div>
 
-                <div className="flex items-center justify-between p-4 border rounded-lg">
+                <div className="flex items-center justify-between rounded-lg border p-4">
                   <div>
                     <h4 className="font-medium">SMS Verification</h4>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                       Receive codes via text message
                     </p>
                   </div>
                   <Badge variant="outline">Not Enabled</Badge>
                 </div>
 
-                <Button className="w-full">
-                  Enable Two-Factor Auth
-                </Button>
+                <Button className="w-full">Enable Two-Factor Auth</Button>
               </CardContent>
             </Card>
           </div>
@@ -543,24 +600,39 @@ export default function SettingsPage() {
             <CardContent>
               <div className="space-y-4">
                 {apiKeys.map((apiKey) => (
-                  <div key={apiKey.id} className="flex items-center justify-between p-4 border rounded-lg">
+                  <div
+                    key={apiKey.id}
+                    className="flex items-center justify-between rounded-lg border p-4"
+                  >
                     <div className="space-y-1">
                       <div className="flex items-center space-x-2">
                         <h4 className="font-medium">{apiKey.name}</h4>
                         <div className="flex space-x-1">
                           {apiKey.permissions.map((permission) => (
-                            <Badge key={permission} variant="outline" className="text-xs">
+                            <Badge
+                              key={permission}
+                              variant="outline"
+                              className="text-xs"
+                            >
                               {permission}
                             </Badge>
                           ))}
                         </div>
                       </div>
-                      <p className="text-sm text-muted-foreground font-mono">
+                      <p className="text-muted-foreground font-mono text-sm">
                         {apiKey.key}
                       </p>
-                      <div className="flex items-center space-x-4 text-xs text-muted-foreground">
-                        <span>Created: {new Date(apiKey.created).toLocaleDateString()}</span>
-                        <span>Last used: {apiKey.lastUsed === 'Never' ? 'Never' : new Date(apiKey.lastUsed).toLocaleDateString()}</span>
+                      <div className="text-muted-foreground flex items-center space-x-4 text-xs">
+                        <span>
+                          Created:{' '}
+                          {new Date(apiKey.created).toLocaleDateString()}
+                        </span>
+                        <span>
+                          Last used:{' '}
+                          {apiKey.lastUsed === 'Never'
+                            ? 'Never'
+                            : new Date(apiKey.lastUsed).toLocaleDateString()}
+                        </span>
                       </div>
                     </div>
                     <div className="flex items-center space-x-2">
@@ -570,7 +642,11 @@ export default function SettingsPage() {
                       <Button variant="outline" size="sm">
                         <RefreshCw className="h-3 w-3" />
                       </Button>
-                      <Button variant="outline" size="sm" className="text-destructive hover:text-destructive">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="text-destructive hover:text-destructive"
+                      >
                         <Trash2 className="h-3 w-3" />
                       </Button>
                     </div>
@@ -583,4 +659,4 @@ export default function SettingsPage() {
       </Tabs>
     </div>
   );
-} 
+}

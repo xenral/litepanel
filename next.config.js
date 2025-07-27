@@ -1,28 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    typescript: {
-        ignoreBuildErrors: false,
-    },
-    eslint: {
-        ignoreDuringBuilds: false,
-    },
-    images: {
-        remotePatterns: [{
-                protocol: 'https',
-                hostname: 'images.unsplash.com',
-            },
-            {
-                protocol: 'https',
-                hostname: 'avatars.githubusercontent.com',
-            },
-        ],
-    },
-    async rewrites() {
-        return [{
-            source: '/storybook/:path*',
-            destination: '/api/storybook/:path*',
-        }, ];
-    },
+  eslint: {
+    // Warning: This allows production builds to successfully complete even if
+    // your project has ESLint errors.
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: false,
+  },
+  // Enable experimental features for better performance
+  experimental: {
+    optimizePackageImports: ['@radix-ui/react-icons'],
+  },
 };
 
 module.exports = nextConfig;

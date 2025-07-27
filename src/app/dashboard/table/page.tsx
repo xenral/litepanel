@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import { 
-  Table as TableIcon, 
-  Search, 
-  Filter, 
-  Download, 
+import {
+  Table as TableIcon,
+  Search,
+  Filter,
+  Download,
   Plus,
   MoreHorizontal,
   Edit,
@@ -12,17 +12,31 @@ import {
   ArrowUpDown,
   CheckCircle,
   XCircle,
-  Clock
+  Clock,
 } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 export const metadata: Metadata = {
   title: 'Data Table',
-  description: 'Advanced data grid with filtering, sorting, and CRUD operations',
+  description:
+    'Advanced data grid with filtering, sorting, and CRUD operations',
 };
 
 /**
@@ -37,7 +51,7 @@ const userData = [
     status: 'active',
     lastLogin: '2024-01-15 09:30:00',
     joinDate: '2023-08-15',
-    projects: 12
+    projects: 12,
   },
   {
     id: 2,
@@ -47,7 +61,7 @@ const userData = [
     status: 'active',
     lastLogin: '2024-01-14 16:45:00',
     joinDate: '2023-09-22',
-    projects: 8
+    projects: 8,
   },
   {
     id: 3,
@@ -57,7 +71,7 @@ const userData = [
     status: 'inactive',
     lastLogin: '2024-01-10 11:20:00',
     joinDate: '2023-07-03',
-    projects: 3
+    projects: 3,
   },
   {
     id: 4,
@@ -67,7 +81,7 @@ const userData = [
     status: 'pending',
     lastLogin: null,
     joinDate: '2024-01-12',
-    projects: 0
+    projects: 0,
   },
   {
     id: 5,
@@ -77,7 +91,7 @@ const userData = [
     status: 'active',
     lastLogin: '2024-01-15 14:15:00',
     joinDate: '2023-06-18',
-    projects: 15
+    projects: 15,
   },
   {
     id: 6,
@@ -87,7 +101,7 @@ const userData = [
     status: 'active',
     lastLogin: '2024-01-13 10:30:00',
     joinDate: '2023-11-05',
-    projects: 2
+    projects: 2,
   },
   {
     id: 7,
@@ -97,7 +111,7 @@ const userData = [
     status: 'inactive',
     lastLogin: '2024-01-08 13:45:00',
     joinDate: '2023-05-12',
-    projects: 6
+    projects: 6,
   },
   {
     id: 8,
@@ -107,8 +121,8 @@ const userData = [
     status: 'active',
     lastLogin: '2024-01-15 08:20:00',
     joinDate: '2023-10-30',
-    projects: 9
-  }
+    projects: 9,
+  },
 ];
 
 /**
@@ -120,25 +134,25 @@ function getStatusInfo(status: string) {
       return {
         variant: 'default' as const,
         icon: CheckCircle,
-        label: 'Active'
+        label: 'Active',
       };
     case 'inactive':
       return {
         variant: 'secondary' as const,
         icon: XCircle,
-        label: 'Inactive'
+        label: 'Inactive',
       };
     case 'pending':
       return {
         variant: 'outline' as const,
         icon: Clock,
-        label: 'Pending'
+        label: 'Pending',
       };
     default:
       return {
         variant: 'secondary' as const,
         icon: XCircle,
-        label: 'Unknown'
+        label: 'Unknown',
       };
   }
 }
@@ -167,7 +181,7 @@ function formatDate(dateString: string | null) {
   return new Date(dateString).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
-    day: 'numeric'
+    day: 'numeric',
   });
 }
 
@@ -181,7 +195,7 @@ function formatDateTime(dateTimeString: string | null) {
     month: 'short',
     day: 'numeric',
     hour: '2-digit',
-    minute: '2-digit'
+    minute: '2-digit',
   });
 }
 
@@ -220,19 +234,18 @@ export default function DataTablePage() {
                 <TableIcon className="h-5 w-5" />
                 <span>User Management</span>
               </CardTitle>
-              <CardDescription>
-                {userData.length} users total
-              </CardDescription>
+              <CardDescription>{userData.length} users total</CardDescription>
             </div>
             <div className="flex items-center space-x-2">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input 
-                  placeholder="Search users..." 
-                  className="pl-9 w-64"
-                />
+                <Search className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform" />
+                <Input placeholder="Search users..." className="w-64 pl-9" />
               </div>
-              <Button variant="outline" size="sm" className="flex items-center space-x-2">
+              <Button
+                variant="outline"
+                size="sm"
+                className="flex items-center space-x-2"
+              >
                 <Filter className="h-4 w-4" />
                 <span>Filter</span>
               </Button>
@@ -245,35 +258,41 @@ export default function DataTablePage() {
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b bg-muted/50">
-                    <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
-                      <Button variant="ghost" className="h-auto p-0 font-medium">
+                  <tr className="bg-muted/50 border-b">
+                    <th className="text-muted-foreground h-12 px-4 text-left align-middle font-medium">
+                      <Button
+                        variant="ghost"
+                        className="h-auto p-0 font-medium"
+                      >
                         Name
                         <ArrowUpDown className="ml-2 h-4 w-4" />
                       </Button>
                     </th>
-                    <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                    <th className="text-muted-foreground h-12 px-4 text-left align-middle font-medium">
                       Email
                     </th>
-                    <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                    <th className="text-muted-foreground h-12 px-4 text-left align-middle font-medium">
                       Role
                     </th>
-                    <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
-                      <Button variant="ghost" className="h-auto p-0 font-medium">
+                    <th className="text-muted-foreground h-12 px-4 text-left align-middle font-medium">
+                      <Button
+                        variant="ghost"
+                        className="h-auto p-0 font-medium"
+                      >
                         Status
                         <ArrowUpDown className="ml-2 h-4 w-4" />
                       </Button>
                     </th>
-                    <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                    <th className="text-muted-foreground h-12 px-4 text-left align-middle font-medium">
                       Projects
                     </th>
-                    <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                    <th className="text-muted-foreground h-12 px-4 text-left align-middle font-medium">
                       Last Login
                     </th>
-                    <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                    <th className="text-muted-foreground h-12 px-4 text-left align-middle font-medium">
                       Join Date
                     </th>
-                    <th className="h-12 px-4 text-right align-middle font-medium text-muted-foreground">
+                    <th className="text-muted-foreground h-12 px-4 text-right align-middle font-medium">
                       Actions
                     </th>
                   </tr>
@@ -282,21 +301,29 @@ export default function DataTablePage() {
                   {userData.map((user, index) => {
                     const statusInfo = getStatusInfo(user.status);
                     const StatusIcon = statusInfo.icon;
-                    
+
                     return (
-                      <tr key={user.id} className={`border-b transition-colors hover:bg-muted/50 ${
-                        index % 2 === 0 ? 'bg-background' : 'bg-muted/20'
-                      }`}>
+                      <tr
+                        key={user.id}
+                        className={`hover:bg-muted/50 border-b transition-colors ${
+                          index % 2 === 0 ? 'bg-background' : 'bg-muted/20'
+                        }`}
+                      >
                         <td className="p-4 align-middle">
                           <div className="flex items-center space-x-3">
-                            <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
-                              <span className="text-sm font-medium text-primary">
-                                {user.name.split(' ').map(n => n[0]).join('')}
+                            <div className="bg-primary/10 flex h-8 w-8 items-center justify-center rounded-full">
+                              <span className="text-primary text-sm font-medium">
+                                {user.name
+                                  .split(' ')
+                                  .map((n) => n[0])
+                                  .join('')}
                               </span>
                             </div>
                             <div>
                               <div className="font-medium">{user.name}</div>
-                              <div className="text-sm text-muted-foreground">ID: {user.id}</div>
+                              <div className="text-muted-foreground text-sm">
+                                ID: {user.id}
+                              </div>
                             </div>
                           </div>
                         </td>
@@ -320,12 +347,16 @@ export default function DataTablePage() {
                           <span className="font-medium">{user.projects}</span>
                         </td>
                         <td className="p-4 align-middle">
-                          <div className="text-sm">{formatDateTime(user.lastLogin)}</div>
+                          <div className="text-sm">
+                            {formatDateTime(user.lastLogin)}
+                          </div>
                         </td>
                         <td className="p-4 align-middle">
-                          <div className="text-sm">{formatDate(user.joinDate)}</div>
+                          <div className="text-sm">
+                            {formatDate(user.joinDate)}
+                          </div>
                         </td>
-                        <td className="p-4 align-middle text-right">
+                        <td className="p-4 text-right align-middle">
                           <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                               <Button variant="ghost" className="h-8 w-8 p-0">
@@ -344,7 +375,7 @@ export default function DataTablePage() {
                                 Edit user
                               </DropdownMenuItem>
                               <DropdownMenuSeparator />
-                              <DropdownMenuItem className="cursor-pointer text-destructive">
+                              <DropdownMenuItem className="text-destructive cursor-pointer">
                                 <Trash2 className="mr-2 h-4 w-4" />
                                 Delete user
                               </DropdownMenuItem>
@@ -361,14 +392,18 @@ export default function DataTablePage() {
 
           {/* Pagination */}
           <div className="flex items-center justify-between space-x-2 py-4">
-            <div className="text-sm text-muted-foreground">
+            <div className="text-muted-foreground text-sm">
               Showing 1 to {userData.length} of {userData.length} entries
             </div>
             <div className="flex items-center space-x-2">
               <Button variant="outline" size="sm" disabled>
                 Previous
               </Button>
-              <Button variant="outline" size="sm" className="bg-primary text-primary-foreground">
+              <Button
+                variant="outline"
+                size="sm"
+                className="bg-primary text-primary-foreground"
+              >
                 1
               </Button>
               <Button variant="outline" size="sm" disabled>
@@ -384,26 +419,27 @@ export default function DataTablePage() {
         <CardHeader>
           <CardTitle>Table Features</CardTitle>
           <CardDescription>
-            This table will be enhanced with TanStack Table for advanced functionality
+            This table will be enhanced with TanStack Table for advanced
+            functionality
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             <div className="space-y-2">
               <h4 className="font-medium">Sorting & Filtering</h4>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 Click column headers to sort, use filters to narrow results
               </p>
             </div>
             <div className="space-y-2">
               <h4 className="font-medium">Bulk Operations</h4>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 Select multiple rows for bulk edit, delete, or export operations
               </p>
             </div>
             <div className="space-y-2">
               <h4 className="font-medium">Virtualization</h4>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 Handle thousands of rows with smooth scrolling performance
               </p>
             </div>
@@ -412,4 +448,4 @@ export default function DataTablePage() {
       </Card>
     </div>
   );
-} 
+}

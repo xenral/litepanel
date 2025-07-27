@@ -22,7 +22,7 @@ export default function AnalyticsLoading() {
       </div>
 
       {/* KPI Cards Skeleton */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         {Array.from({ length: 4 }).map((_, i) => (
           <Card key={i}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -30,7 +30,7 @@ export default function AnalyticsLoading() {
               <Skeleton className="h-8 w-8 rounded-lg" />
             </CardHeader>
             <CardContent>
-              <Skeleton className="h-8 w-20 mb-2" />
+              <Skeleton className="mb-2 h-8 w-20" />
               <div className="flex items-center space-x-2">
                 <Skeleton className="h-3 w-3" />
                 <Skeleton className="h-3 w-12" />
@@ -44,8 +44,8 @@ export default function AnalyticsLoading() {
       {/* Tabs and Content Skeleton */}
       <div className="space-y-6">
         <Skeleton className="h-10 w-80" />
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {/* Main Chart */}
           <Card className="lg:col-span-2">
             <CardHeader>
@@ -85,4 +85,4 @@ export default function AnalyticsLoading() {
       </div>
     </div>
   );
-} 
+}

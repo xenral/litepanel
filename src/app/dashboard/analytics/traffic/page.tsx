@@ -60,11 +60,41 @@ const trafficOverview = {
 };
 
 const trafficSources = [
-  { source: 'Direct', visitors: 42350, percentage: 33.1, change: 12.5, trend: 'up' },
-  { source: 'Google Search', visitors: 38420, percentage: 30.1, change: 8.3, trend: 'up' },
-  { source: 'Social Media', visitors: 23410, percentage: 18.3, change: -2.1, trend: 'down' },
-  { source: 'Email Campaign', visitors: 15230, percentage: 11.9, change: 15.7, trend: 'up' },
-  { source: 'Referral Sites', visitors: 8435, percentage: 6.6, change: 0.0, trend: 'stable' },
+  {
+    source: 'Direct',
+    visitors: 42350,
+    percentage: 33.1,
+    change: 12.5,
+    trend: 'up',
+  },
+  {
+    source: 'Google Search',
+    visitors: 38420,
+    percentage: 30.1,
+    change: 8.3,
+    trend: 'up',
+  },
+  {
+    source: 'Social Media',
+    visitors: 23410,
+    percentage: 18.3,
+    change: -2.1,
+    trend: 'down',
+  },
+  {
+    source: 'Email Campaign',
+    visitors: 15230,
+    percentage: 11.9,
+    change: 15.7,
+    trend: 'up',
+  },
+  {
+    source: 'Referral Sites',
+    visitors: 8435,
+    percentage: 6.6,
+    change: 0.0,
+    trend: 'stable',
+  },
 ];
 
 const deviceBreakdown = [
@@ -74,11 +104,41 @@ const deviceBreakdown = [
 ];
 
 const topPages = [
-  { page: '/', visitors: 45230, views: 67845, avgTime: '4m 23s', bounceRate: 28.3 },
-  { page: '/dashboard', visitors: 32410, views: 89234, avgTime: '8m 15s', bounceRate: 15.2 },
-  { page: '/docs', visitors: 18760, views: 34521, avgTime: '6m 42s', bounceRate: 45.8 },
-  { page: '/pricing', visitors: 12450, views: 15623, avgTime: '2m 18s', bounceRate: 52.1 },
-  { page: '/blog', visitors: 9820, views: 23456, avgTime: '5m 07s', bounceRate: 38.9 },
+  {
+    page: '/',
+    visitors: 45230,
+    views: 67845,
+    avgTime: '4m 23s',
+    bounceRate: 28.3,
+  },
+  {
+    page: '/dashboard',
+    visitors: 32410,
+    views: 89234,
+    avgTime: '8m 15s',
+    bounceRate: 15.2,
+  },
+  {
+    page: '/docs',
+    visitors: 18760,
+    views: 34521,
+    avgTime: '6m 42s',
+    bounceRate: 45.8,
+  },
+  {
+    page: '/pricing',
+    visitors: 12450,
+    views: 15623,
+    avgTime: '2m 18s',
+    bounceRate: 52.1,
+  },
+  {
+    page: '/blog',
+    visitors: 9820,
+    views: 23456,
+    avgTime: '5m 07s',
+    bounceRate: 38.9,
+  },
 ];
 
 const geographicData = [
@@ -107,14 +167,14 @@ const timeData = [
   { hour: '22:00', visitors: 2180 },
 ];
 
-const MetricCard = ({ 
-  title, 
-  value, 
-  change, 
-  trend, 
+const MetricCard = ({
+  title,
+  value,
+  change,
+  trend,
   icon: Icon,
-  description 
-}: { 
+  description,
+}: {
   title: string;
   value: string | number;
   change: number;
@@ -122,8 +182,14 @@ const MetricCard = ({
   icon: any;
   description?: string;
 }) => {
-  const trendIcon = trend === 'up' ? ArrowUpRight : trend === 'down' ? ArrowDownRight : Minus;
-  const trendColor = trend === 'up' ? 'text-green-600' : trend === 'down' ? 'text-red-600' : 'text-gray-600';
+  const trendIcon =
+    trend === 'up' ? ArrowUpRight : trend === 'down' ? ArrowDownRight : Minus;
+  const trendColor =
+    trend === 'up'
+      ? 'text-green-600'
+      : trend === 'down'
+        ? 'text-red-600'
+        : 'text-gray-600';
 
   return (
     <motion.div
@@ -135,8 +201,10 @@ const MetricCard = ({
         <CardContent className="p-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <Icon className="h-5 w-5 text-muted-foreground" />
-              <p className="text-sm font-medium text-muted-foreground">{title}</p>
+              <Icon className="text-muted-foreground h-5 w-5" />
+              <p className="text-muted-foreground text-sm font-medium">
+                {title}
+              </p>
             </div>
             <div className={`flex items-center space-x-1 ${trendColor}`}>
               {React.createElement(trendIcon, { className: 'h-4 w-4' })}
@@ -144,9 +212,13 @@ const MetricCard = ({
             </div>
           </div>
           <div className="mt-3">
-            <p className="text-2xl font-bold">{typeof value === 'number' ? value.toLocaleString() : value}</p>
+            <p className="text-2xl font-bold">
+              {typeof value === 'number' ? value.toLocaleString() : value}
+            </p>
             {description && (
-              <p className="text-xs text-muted-foreground mt-1">{description}</p>
+              <p className="text-muted-foreground mt-1 text-xs">
+                {description}
+              </p>
             )}
           </div>
         </CardContent>
@@ -168,7 +240,9 @@ export default function TrafficAnalyticsPage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/dashboard/analytics">Analytics</BreadcrumbLink>
+            <BreadcrumbLink href="/dashboard/analytics">
+              Analytics
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbPage>Traffic</BreadcrumbPage>
@@ -178,7 +252,9 @@ export default function TrafficAnalyticsPage() {
       {/* Header */}
       <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Traffic Analytics</h1>
+          <h1 className="text-3xl font-bold tracking-tight">
+            Traffic Analytics
+          </h1>
           <p className="text-muted-foreground">
             Monitor your website traffic patterns and visitor behavior
           </p>
@@ -287,17 +363,29 @@ export default function TrafficAnalyticsPage() {
                       className="flex items-center justify-between"
                     >
                       <div className="flex-1">
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="text-sm font-medium">{source.source}</span>
+                        <div className="mb-1 flex items-center justify-between">
+                          <span className="text-sm font-medium">
+                            {source.source}
+                          </span>
                           <div className="flex items-center space-x-2">
-                            <span className="text-sm text-muted-foreground">
+                            <span className="text-muted-foreground text-sm">
                               {source.visitors.toLocaleString()}
                             </span>
                             <Badge
-                              variant={source.trend === 'up' ? 'default' : source.trend === 'down' ? 'destructive' : 'secondary'}
+                              variant={
+                                source.trend === 'up'
+                                  ? 'default'
+                                  : source.trend === 'down'
+                                    ? 'destructive'
+                                    : 'secondary'
+                              }
                               className="text-xs"
                             >
-                              {source.trend === 'up' ? '+' : source.trend === 'down' ? '-' : ''}
+                              {source.trend === 'up'
+                                ? '+'
+                                : source.trend === 'down'
+                                  ? '-'
+                                  : ''}
                               {Math.abs(source.change)}%
                             </Badge>
                           </div>
@@ -332,20 +420,32 @@ export default function TrafficAnalyticsPage() {
                       className="flex items-center justify-between"
                     >
                       <div className="flex items-center space-x-3">
-                        {device.device === 'Desktop' && <Monitor className="h-4 w-4 text-muted-foreground" />}
-                        {device.device === 'Mobile' && <Smartphone className="h-4 w-4 text-muted-foreground" />}
-                        {device.device === 'Tablet' && <Smartphone className="h-4 w-4 text-muted-foreground" />}
-                        <span className="text-sm font-medium">{device.device}</span>
+                        {device.device === 'Desktop' && (
+                          <Monitor className="text-muted-foreground h-4 w-4" />
+                        )}
+                        {device.device === 'Mobile' && (
+                          <Smartphone className="text-muted-foreground h-4 w-4" />
+                        )}
+                        {device.device === 'Tablet' && (
+                          <Smartphone className="text-muted-foreground h-4 w-4" />
+                        )}
+                        <span className="text-sm font-medium">
+                          {device.device}
+                        </span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <span className="text-sm text-muted-foreground">
-                          {device.visitors.toLocaleString()} ({device.percentage}%)
+                        <span className="text-muted-foreground text-sm">
+                          {device.visitors.toLocaleString()} (
+                          {device.percentage}%)
                         </span>
                         <Badge
-                          variant={device.change > 0 ? 'default' : 'destructive'}
+                          variant={
+                            device.change > 0 ? 'default' : 'destructive'
+                          }
                           className="text-xs"
                         >
-                          {device.change > 0 ? '+' : ''}{device.change}%
+                          {device.change > 0 ? '+' : ''}
+                          {device.change}%
                         </Badge>
                       </div>
                     </motion.div>
@@ -376,30 +476,38 @@ export default function TrafficAnalyticsPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
-                    className="flex items-center justify-between p-3 rounded-lg border"
+                    className="flex items-center justify-between rounded-lg border p-3"
                   >
                     <div className="flex-1">
                       <div className="flex items-center space-x-3">
-                        <span className="font-mono text-sm bg-muted px-2 py-1 rounded">
+                        <span className="bg-muted rounded px-2 py-1 font-mono text-sm">
                           {page.page}
                         </span>
-                        <div className="text-xs text-muted-foreground">
+                        <div className="text-muted-foreground text-xs">
                           {page.visitors.toLocaleString()} visitors
                         </div>
                       </div>
                     </div>
                     <div className="flex items-center space-x-6 text-sm">
                       <div className="text-center">
-                        <div className="font-medium">{page.views.toLocaleString()}</div>
-                        <div className="text-xs text-muted-foreground">Views</div>
+                        <div className="font-medium">
+                          {page.views.toLocaleString()}
+                        </div>
+                        <div className="text-muted-foreground text-xs">
+                          Views
+                        </div>
                       </div>
                       <div className="text-center">
                         <div className="font-medium">{page.avgTime}</div>
-                        <div className="text-xs text-muted-foreground">Avg. Time</div>
+                        <div className="text-muted-foreground text-xs">
+                          Avg. Time
+                        </div>
                       </div>
                       <div className="text-center">
                         <div className="font-medium">{page.bounceRate}%</div>
-                        <div className="text-xs text-muted-foreground">Bounce</div>
+                        <div className="text-muted-foreground text-xs">
+                          Bounce
+                        </div>
                       </div>
                     </div>
                   </motion.div>
@@ -439,10 +547,10 @@ export default function TrafficAnalyticsPage() {
                       <div className="w-32">
                         <Progress value={location.percentage} className="h-2" />
                       </div>
-                      <div className="text-sm text-muted-foreground w-20 text-right">
+                      <div className="text-muted-foreground w-20 text-right text-sm">
                         {location.visitors.toLocaleString()}
                       </div>
-                      <div className="text-sm text-muted-foreground w-12 text-right">
+                      <div className="text-muted-foreground w-12 text-right text-sm">
                         {location.percentage}%
                       </div>
                     </div>
@@ -462,17 +570,19 @@ export default function TrafficAnalyticsPage() {
                   <Activity className="mr-2 h-5 w-5" />
                   Real-time Activity
                 </CardTitle>
-                <CardDescription>
-                  Current visitors on your site
-                </CardDescription>
+                <CardDescription>Current visitors on your site</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="text-center space-y-4">
+                <div className="space-y-4 text-center">
                   <div className="text-4xl font-bold text-green-600">247</div>
-                  <p className="text-muted-foreground">Active users right now</p>
+                  <p className="text-muted-foreground">
+                    Active users right now
+                  </p>
                   <div className="flex items-center justify-center space-x-2">
-                    <div className="h-2 w-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <span className="text-sm text-muted-foreground">Updates every 30 seconds</span>
+                    <div className="h-2 w-2 animate-pulse rounded-full bg-green-500"></div>
+                    <span className="text-muted-foreground text-sm">
+                      Updates every 30 seconds
+                    </span>
                   </div>
                 </div>
               </CardContent>
@@ -488,15 +598,24 @@ export default function TrafficAnalyticsPage() {
               <CardContent>
                 <div className="space-y-2">
                   {timeData.map((time, index) => (
-                    <div key={time.hour} className="flex items-center justify-between">
-                      <span className="text-sm font-mono w-12">{time.hour}</span>
-                      <div className="flex-1 mx-3">
-                        <Progress 
-                          value={(time.visitors / Math.max(...timeData.map(t => t.visitors))) * 100} 
-                          className="h-2" 
+                    <div
+                      key={time.hour}
+                      className="flex items-center justify-between"
+                    >
+                      <span className="w-12 font-mono text-sm">
+                        {time.hour}
+                      </span>
+                      <div className="mx-3 flex-1">
+                        <Progress
+                          value={
+                            (time.visitors /
+                              Math.max(...timeData.map((t) => t.visitors))) *
+                            100
+                          }
+                          className="h-2"
                         />
                       </div>
-                      <span className="text-sm text-muted-foreground w-16 text-right">
+                      <span className="text-muted-foreground w-16 text-right text-sm">
                         {time.visitors.toLocaleString()}
                       </span>
                     </div>
@@ -509,11 +628,12 @@ export default function TrafficAnalyticsPage() {
           <Alert>
             <Activity className="h-4 w-4" />
             <AlertDescription>
-              Real-time data is updated every 30 seconds. Historical data may take up to 24 hours to appear in reports.
+              Real-time data is updated every 30 seconds. Historical data may
+              take up to 24 hours to appear in reports.
             </AlertDescription>
           </Alert>
         </TabsContent>
       </Tabs>
     </div>
   );
-} 
+}

@@ -73,4 +73,4 @@ export interface ThemeContextValue {
   resetCustomization: () => void;
   /** Apply custom HSL color to CSS variable */
   applyCustomColor: (variable: string, color: HSLColor) => void;
-} 
+}

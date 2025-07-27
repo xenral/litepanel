@@ -11,7 +11,7 @@ import {
   Settings,
   Play,
   Video,
-  Users
+  Users,
 } from 'lucide-react';
 import type {
   DocCategory,
@@ -20,7 +20,7 @@ import type {
   RecentUpdate,
   Contributor,
   CommunityStats,
-  LearningResource
+  LearningResource,
 } from '@/types/docs';
 
 export const docCategories: DocCategory[] = [
@@ -33,7 +33,7 @@ export const docCategories: DocCategory[] = [
     color: 'text-green-600 bg-green-100 dark:bg-green-900',
     lastUpdated: '2024-01-15',
     completionRate: 95,
-    difficulty: 'Beginner'
+    difficulty: 'Beginner',
   },
   {
     id: 'components',
@@ -44,7 +44,7 @@ export const docCategories: DocCategory[] = [
     color: 'text-blue-600 bg-blue-100 dark:bg-blue-900',
     lastUpdated: '2024-01-14',
     completionRate: 88,
-    difficulty: 'Intermediate'
+    difficulty: 'Intermediate',
   },
   {
     id: 'api',
@@ -55,7 +55,7 @@ export const docCategories: DocCategory[] = [
     color: 'text-purple-600 bg-purple-100 dark:bg-purple-900',
     lastUpdated: '2024-01-13',
     completionRate: 92,
-    difficulty: 'Advanced'
+    difficulty: 'Advanced',
   },
   {
     id: 'guides',
@@ -66,7 +66,7 @@ export const docCategories: DocCategory[] = [
     color: 'text-orange-600 bg-orange-100 dark:bg-orange-900',
     lastUpdated: '2024-01-12',
     completionRate: 85,
-    difficulty: 'Intermediate'
+    difficulty: 'Intermediate',
   },
   {
     id: 'deployment',
@@ -77,7 +77,7 @@ export const docCategories: DocCategory[] = [
     color: 'text-indigo-600 bg-indigo-100 dark:bg-indigo-900',
     lastUpdated: '2024-01-11',
     completionRate: 90,
-    difficulty: 'Intermediate'
+    difficulty: 'Intermediate',
   },
   {
     id: 'examples',
@@ -88,7 +88,7 @@ export const docCategories: DocCategory[] = [
     color: 'text-teal-600 bg-teal-100 dark:bg-teal-900',
     lastUpdated: '2024-01-10',
     completionRate: 87,
-    difficulty: 'Beginner'
+    difficulty: 'Beginner',
   },
   {
     id: 'theming',
@@ -99,7 +99,7 @@ export const docCategories: DocCategory[] = [
     color: 'text-pink-600 bg-pink-100 dark:bg-pink-900',
     lastUpdated: '2024-01-09',
     completionRate: 93,
-    difficulty: 'Advanced'
+    difficulty: 'Advanced',
   },
   {
     id: 'integrations',
@@ -110,8 +110,8 @@ export const docCategories: DocCategory[] = [
     color: 'text-cyan-600 bg-cyan-100 dark:bg-cyan-900',
     lastUpdated: '2024-01-08',
     completionRate: 82,
-    difficulty: 'Advanced'
-  }
+    difficulty: 'Advanced',
+  },
 ];
 
 export const quickStart: QuickStartStep[] = [
@@ -121,7 +121,7 @@ export const quickStart: QuickStartStep[] = [
     description: 'Install LiteControl and dependencies',
     command: 'npm create litecontrol-app@latest my-app',
     time: '2 min',
-    icon: Download
+    icon: Download,
   },
   {
     step: 2,
@@ -129,7 +129,7 @@ export const quickStart: QuickStartStep[] = [
     description: 'Set up your project configuration',
     command: 'cd my-app && npm run setup',
     time: '3 min',
-    icon: Settings
+    icon: Settings,
   },
   {
     step: 3,
@@ -137,7 +137,7 @@ export const quickStart: QuickStartStep[] = [
     description: 'Start the development server',
     command: 'npm run dev',
     time: '1 min',
-    icon: Play
+    icon: Play,
   },
   {
     step: 4,
@@ -145,8 +145,8 @@ export const quickStart: QuickStartStep[] = [
     description: 'Customize themes and components',
     command: 'npm run theme:customize',
     time: '5 min',
-    icon: Palette
-  }
+    icon: Palette,
+  },
 ];
 
 export const popularDocs: PopularDoc[] = [
@@ -159,18 +159,19 @@ export const popularDocs: PopularDoc[] = [
     views: 15420,
     lastUpdated: '2024-01-15',
     rating: 4.9,
-    tags: ['setup', 'beginner', 'installation']
+    tags: ['setup', 'beginner', 'installation'],
   },
   {
     title: 'Component API Reference',
-    description: 'Comprehensive reference for all UI components and their props',
+    description:
+      'Comprehensive reference for all UI components and their props',
     category: 'Components',
     readTime: '15 min',
     popularity: 'High',
     views: 12350,
     lastUpdated: '2024-01-14',
     rating: 4.8,
-    tags: ['components', 'api', 'reference']
+    tags: ['components', 'api', 'reference'],
   },
   {
     title: 'Advanced Theme Customization',
@@ -181,7 +182,7 @@ export const popularDocs: PopularDoc[] = [
     views: 9870,
     lastUpdated: '2024-01-13',
     rating: 4.7,
-    tags: ['theming', 'customization', 'design-tokens']
+    tags: ['theming', 'customization', 'design-tokens'],
   },
   {
     title: 'Authentication & Authorization',
@@ -192,7 +193,7 @@ export const popularDocs: PopularDoc[] = [
     views: 8920,
     lastUpdated: '2024-01-12',
     rating: 4.8,
-    tags: ['auth', 'security', 'users']
+    tags: ['auth', 'security', 'users'],
   },
   {
     title: 'Deployment to Production',
@@ -203,7 +204,7 @@ export const popularDocs: PopularDoc[] = [
     views: 7560,
     lastUpdated: '2024-01-11',
     rating: 4.6,
-    tags: ['deployment', 'production', 'hosting']
+    tags: ['deployment', 'production', 'hosting'],
   },
   {
     title: 'Building Interactive Dashboards',
@@ -214,8 +215,8 @@ export const popularDocs: PopularDoc[] = [
     views: 11240,
     lastUpdated: '2024-01-10',
     rating: 4.9,
-    tags: ['dashboard', 'charts', 'data-visualization']
-  }
+    tags: ['dashboard', 'charts', 'data-visualization'],
+  },
 ];
 
 export const recentUpdates: RecentUpdate[] = [
@@ -224,12 +225,13 @@ export const recentUpdates: RecentUpdate[] = [
     date: '2024-01-15',
     type: 'major',
     title: 'New Component Library',
-    description: 'Added 12 new components including Charts, Calendar, and Rich Text Editor',
+    description:
+      'Added 12 new components including Charts, Calendar, and Rich Text Editor',
     changes: [
       'New Charts component with 8 chart types',
       'Calendar component with full internationalization',
-      'Rich Text Editor with markdown support'
-    ]
+      'Rich Text Editor with markdown support',
+    ],
   },
   {
     version: 'v2.3.2',
@@ -240,8 +242,8 @@ export const recentUpdates: RecentUpdate[] = [
     changes: [
       'Fixed memory leak in Table component',
       'Improved bundle size by 15%',
-      'Enhanced accessibility support'
-    ]
+      'Enhanced accessibility support',
+    ],
   },
   {
     version: 'v2.3.0',
@@ -252,9 +254,9 @@ export const recentUpdates: RecentUpdate[] = [
     changes: [
       'New CSS custom properties system',
       'Dark mode improvements',
-      'Better responsive design tokens'
-    ]
-  }
+      'Better responsive design tokens',
+    ],
+  },
 ];
 
 export const contributors: Contributor[] = [
@@ -263,29 +265,29 @@ export const contributors: Contributor[] = [
     role: 'Lead Maintainer',
     avatar: '/avatars/sarah.jpg',
     contributions: 247,
-    speciality: 'Core Architecture'
+    speciality: 'Core Architecture',
   },
   {
     name: 'Mike Rodriguez',
     role: 'UI/UX Designer',
     avatar: '/avatars/mike.jpg',
     contributions: 156,
-    speciality: 'Design System'
+    speciality: 'Design System',
   },
   {
     name: 'Emily Johnson',
     role: 'Developer',
     avatar: '/avatars/emily.jpg',
     contributions: 134,
-    speciality: 'Components'
+    speciality: 'Components',
   },
   {
     name: 'David Kim',
     role: 'Documentation',
     avatar: '/avatars/david.jpg',
     contributions: 89,
-    speciality: 'Docs & Examples'
-  }
+    speciality: 'Docs & Examples',
+  },
 ];
 
 export const communityStats: CommunityStats = {
@@ -294,7 +296,7 @@ export const communityStats: CommunityStats = {
   githubStars: 12500,
   discordMembers: 3420,
   monthlyDownloads: 45600,
-  issuesResolved: 1847
+  issuesResolved: 1847,
 };
 
 export const learningResources: LearningResource[] = [
@@ -305,7 +307,7 @@ export const learningResources: LearningResource[] = [
     duration: '1h 15m',
     level: 'Beginner',
     views: 25400,
-    icon: Video
+    icon: Video,
   },
   {
     type: 'article',
@@ -314,7 +316,7 @@ export const learningResources: LearningResource[] = [
     duration: '30 min read',
     level: 'Intermediate',
     views: 18900,
-    icon: FileText
+    icon: FileText,
   },
   {
     type: 'course',
@@ -323,7 +325,7 @@ export const learningResources: LearningResource[] = [
     duration: '3h 45m',
     level: 'Advanced',
     views: 12300,
-    icon: BookOpen
+    icon: BookOpen,
   },
   {
     type: 'workshop',
@@ -332,6 +334,6 @@ export const learningResources: LearningResource[] = [
     duration: 'Every Friday',
     level: 'All Levels',
     views: 8700,
-    icon: Users
-  }
-]; 
+    icon: Users,
+  },
+];

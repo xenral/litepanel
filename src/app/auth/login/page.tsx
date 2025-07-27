@@ -10,13 +10,13 @@ import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Separator } from '@/components/ui/separator';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { 
-  Form, 
-  FormInput, 
-  FormCheckbox, 
-  FormSubmit, 
+import {
+  Form,
+  FormInput,
+  FormCheckbox,
+  FormSubmit,
   FormSuccess,
-  ValidationSchemas 
+  ValidationSchemas,
 } from '@/components/ui/form';
 import { useAuthStore } from '@/stores/auth.store';
 
@@ -34,20 +34,22 @@ export default function LoginPage() {
   const { setAuth } = useAuthStore();
   const [showPassword, setShowPassword] = useState(false);
   const [success, setSuccess] = useState('');
-  const [socialLoading, setSocialLoading] = useState<'google' | 'github' | null>(null);
+  const [socialLoading, setSocialLoading] = useState<
+    'google' | 'github' | null
+  >(null);
 
   const handleLogin = async (data: LoginFormData) => {
     try {
       // In development, simulate login
       if (process.env.NODE_ENV === 'development') {
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        await new Promise((resolve) => setTimeout(resolve, 1500));
         setSuccess('Login successful! Redirecting to dashboard...');
-        
+
         // Store auth token and user data using Zustand store
         const token = 'demo_token_' + Date.now();
         const user = { email: data.email };
         setAuth(token, user);
-        
+
         setTimeout(() => {
           router.replace('/dashboard');
         }, 1000);
@@ -66,11 +68,11 @@ export default function LoginPage() {
       }
 
       const result = await response.json();
-      
+
       // Store auth data using Zustand store
       const user = { email: data.email, name: result.user?.name };
       setAuth(result.token, user);
-      
+
       setSuccess('Login successful! Redirecting...');
       setTimeout(() => router.replace('/dashboard'), 1000);
     } catch (error) {
@@ -81,16 +83,19 @@ export default function LoginPage() {
   const handleSocialLogin = async (provider: 'google' | 'github') => {
     try {
       setSocialLoading(provider);
-      
+
       if (process.env.NODE_ENV === 'development') {
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        await new Promise((resolve) => setTimeout(resolve, 2000));
         setSuccess(`${provider} login successful! Redirecting...`);
-        
+
         // Store auth token using Zustand store
         const token = `demo_${provider}_token_` + Date.now();
-        const user = { email: `user@${provider}.com`, name: `${provider} User` };
+        const user = {
+          email: `user@${provider}.com`,
+          name: `${provider} User`,
+        };
         setAuth(token, user);
-        
+
         setTimeout(() => router.replace('/dashboard'), 1000);
         return;
       }
@@ -108,7 +113,7 @@ export default function LoginPage() {
     <div className="grid gap-6">
       <div className="flex flex-col space-y-2 text-center">
         <h1 className="text-2xl font-semibold tracking-tight">Welcome back</h1>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Sign in to your account to continue
         </p>
       </div>
@@ -152,13 +157,10 @@ export default function LoginPage() {
         </div>
 
         <div className="flex items-center justify-between">
-          <FormCheckbox
-            name="rememberMe"
-            label="Remember me"
-          />
+          <FormCheckbox name="rememberMe" label="Remember me" />
           <Link
             href="/auth/forgot-password"
-            className="text-sm text-primary hover:underline"
+            className="text-primary text-sm hover:underline"
           >
             Forgot password?
           </Link>
@@ -166,9 +168,7 @@ export default function LoginPage() {
 
         <FormSuccess message={success} show={!!success} />
 
-        <FormSubmit className="w-full">
-          Sign In
-        </FormSubmit>
+        <FormSubmit className="w-full">Sign In</FormSubmit>
       </Form>
 
       <div className="relative">
@@ -176,7 +176,7 @@ export default function LoginPage() {
           <Separator className="w-full" />
         </div>
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-background px-2 text-muted-foreground">
+          <span className="bg-background text-muted-foreground px-2">
             Or continue with
           </span>
         </div>
@@ -209,7 +209,7 @@ export default function LoginPage() {
         </Button>
       </div>
 
-      <p className="px-8 text-center text-sm text-muted-foreground">
+      <p className="text-muted-foreground px-8 text-center text-sm">
         Don't have an account?{' '}
         <Link
           href="/auth/register"
@@ -223,12 +223,14 @@ export default function LoginPage() {
       {process.env.NODE_ENV === 'development' && (
         <Alert>
           <AlertDescription>
-            <strong>Demo credentials:</strong><br />
-            Email: demo@example.com<br />
+            <strong>Demo credentials:</strong>
+            <br />
+            Email: demo@example.com
+            <br />
             Password: password123
           </AlertDescription>
         </Alert>
       )}
     </div>
   );
-} 
+}

@@ -1,11 +1,11 @@
-# 📁 ThemeCraft Admin - Complete Project Structure
+# 📁 LiteControl Admin - Complete Project Structure
 
-This document outlines the complete file structure for the ThemeCraft Admin template. Items marked with ✅ are implemented, while ⏳ indicates files that need to be created for a complete implementation.
+This document outlines the complete file structure for the LiteControl Admin template. Items marked with ✅ are implemented, while ⏳ indicates files that need to be created for a complete implementation.
 
-## 🗂️ Root Directory
+## 🏗️ Root Structure
 
 ```
-themecraft-admin/
+litepanel/
 ├── ✅ package.json                    # Dependencies and scripts
 ├── ✅ tsconfig.json                   # TypeScript configuration
 ├── ✅ next.config.js                  # Next.js configuration
@@ -319,6 +319,7 @@ public/
 ## 📈 Implementation Progress
 
 ### ✅ Completed (Core Foundation)
+
 - **Project Setup**: Package.json, TypeScript, linting configuration
 - **Theme System**: CSS variables, theme switching, type definitions
 - **Core UI Components**: Button, Card, Input, Dialog, etc.
@@ -359,4 +360,4 @@ public/
    - Storybook stories for all components
    - MDX documentation pages
 
-This structure provides a comprehensive foundation for building a modern, themeable admin dashboard with Next.js 15 and the latest React patterns. 
+This structure provides a comprehensive foundation for building a modern, themeable admin dashboard with Next.js 15 and the latest React patterns.

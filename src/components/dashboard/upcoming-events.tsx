@@ -32,10 +32,13 @@ export function UpcomingEvents({ events }: UpcomingEventsProps) {
       <CardContent>
         <div className="space-y-3">
           {events.map((event) => (
-            <div key={event.id} className="flex items-center justify-between p-3 rounded-lg border">
+            <div
+              key={event.id}
+              className="flex items-center justify-between rounded-lg border p-3"
+            >
               <div className="space-y-1">
                 <p className="text-sm font-medium">{event.title}</p>
-                <p className="text-xs text-muted-foreground">{event.time}</p>
+                <p className="text-muted-foreground text-xs">{event.time}</p>
               </div>
               <Badge variant={getPriorityVariant(event.priority)}>
                 {event.priority}
@@ -46,4 +49,4 @@ export function UpcomingEvents({ events }: UpcomingEventsProps) {
       </CardContent>
     </Card>
   );
-} 
+}

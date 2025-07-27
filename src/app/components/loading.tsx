@@ -21,7 +21,7 @@ export default function ComponentsLoading() {
       </div>
 
       {/* Stats Cards Skeleton */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
         {Array.from({ length: 4 }).map((_, i) => (
           <Card key={i}>
             <CardContent className="p-6">
@@ -44,7 +44,7 @@ export default function ComponentsLoading() {
           <Skeleton className="h-4 w-64" />
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: 6 }).map((_, i) => (
               <Card key={i}>
                 <CardContent className="p-4">
@@ -65,7 +65,7 @@ export default function ComponentsLoading() {
       {/* Tabs Skeleton */}
       <div className="space-y-6">
         <Skeleton className="h-10 w-96" />
-        
+
         {/* Component Showcase Skeleton */}
         <Card>
           <CardHeader>
@@ -88,4 +88,4 @@ export default function ComponentsLoading() {
       </div>
     </div>
   );
-} 
+}

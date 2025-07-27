@@ -232,15 +232,17 @@ export function getAllThemes(): ThemeConfig[] {
  * @param theme - Theme configuration
  * @param isDark - Whether to apply dark mode colors
  */
-export function applyThemeToDocument(theme: ThemeConfig, isDark: boolean): void {
+export function applyThemeToDocument(
+  theme: ThemeConfig,
+  isDark: boolean
+): void {
   const root = document.documentElement;
-  const colors = isDark && theme.cssVars.dark 
-    ? theme.cssVars.dark 
-    : theme.cssVars.light;
+  const colors =
+    isDark && theme.cssVars.dark ? theme.cssVars.dark : theme.cssVars.light;
 
   // Remove existing theme attributes
   root.removeAttribute('data-theme');
-  
+
   // Set new theme attribute if not default
   if (theme.id !== 'playful-pastel') {
     root.setAttribute('data-theme', theme.id);
@@ -266,8 +268,14 @@ export function hslToString(hsl: { h: number; s: number; l: number }): string {
  * @param hslString - HSL string in format "h s% l%"
  * @returns HSL color object
  */
-export function parseHslString(hslString: string): { h: number; s: number; l: number } {
-  const matches = hslString.match(/(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)%\s+(\d+(?:\.\d+)?)%/);
+export function parseHslString(hslString: string): {
+  h: number;
+  s: number;
+  l: number;
+} {
+  const matches = hslString.match(
+    /(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)%\s+(\d+(?:\.\d+)?)%/
+  );
   if (!matches) {
     throw new Error(`Invalid HSL string: ${hslString}`);
   }
@@ -277,4 +285,4 @@ export function parseHslString(hslString: string): { h: number; s: number; l: nu
     s: parseFloat(matches[2]),
     l: parseFloat(matches[3]),
   };
-} 
+}

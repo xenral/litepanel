@@ -32,7 +32,7 @@ export function ThemeDebug() {
     localStorage.removeItem('litecontrol-theme-storage');
     localStorage.removeItem('litecontrol-theme');
     localStorage.removeItem('litecontrol-customization');
-    
+
     // Reload page to start fresh
     window.location.reload();
   };
@@ -41,11 +41,11 @@ export function ThemeDebug() {
   const isProtectionActive = loadTime < 2000; // Protection is active for first 2 seconds
 
   return (
-    <div 
-      className="fixed bottom-4 right-4 bg-background border border-border rounded-lg p-3 text-xs font-mono shadow-lg z-50"
+    <div
+      className="bg-background border-border fixed bottom-4 right-4 z-50 rounded-lg border p-3 font-mono text-xs shadow-lg"
       style={{ opacity: 0.9 }}
     >
-      <div className="font-semibold mb-2">Theme Debug Info</div>
+      <div className="mb-2 font-semibold">Theme Debug Info</div>
       <div>Load Time: {Math.round(loadTime / 100) / 10}s</div>
       <div>Protection: {isProtectionActive ? '🔒 Active' : '🔓 Inactive'}</div>
       <div>Store Hydrated: {_hasHydrated ? '✅' : '❌'}</div>
@@ -54,15 +54,18 @@ export function ThemeDebug() {
       <div>Store Dark: {isDark ? '🌙' : '☀️'}</div>
       <div>Context Theme: {contextTheme}</div>
       <div>Context Dark: {contextIsDark ? '🌙' : '☀️'}</div>
-      <div>Match: {theme === contextTheme && isDark === contextIsDark ? '✅' : '❌'}</div>
-      <Button 
+      <div>
+        Match:{' '}
+        {theme === contextTheme && isDark === contextIsDark ? '✅' : '❌'}
+      </div>
+      <Button
         onClick={handleReset}
         size="sm"
         variant="outline"
-        className="mt-2 text-xs h-6"
+        className="mt-2 h-6 text-xs"
       >
         Reset & Reload
       </Button>
     </div>
   );
-} 
+}

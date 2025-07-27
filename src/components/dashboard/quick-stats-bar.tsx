@@ -10,13 +10,13 @@ export function QuickStatsBar({ stats }: QuickStatsBarProps) {
   return (
     <Card className="mb-6">
       <CardContent className="p-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {stats.map((stat) => (
             <div key={stat.id} className="text-center">
-              <div className="text-2xl font-bold text-foreground">
+              <div className="text-foreground text-2xl font-bold">
                 {stat.value}
               </div>
-              <div className="text-sm text-muted-foreground mb-1">
+              <div className="text-muted-foreground mb-1 text-sm">
                 {stat.label}
               </div>
               <div className="flex items-center justify-center text-xs">
@@ -25,11 +25,13 @@ export function QuickStatsBar({ stats }: QuickStatsBarProps) {
                 ) : (
                   <TrendingDown className="mr-1 h-3 w-3 text-red-600 dark:text-red-400" />
                 )}
-                <span className={
-                  stat.changeType === 'positive' 
-                    ? 'text-emerald-600 dark:text-emerald-400' 
-                    : 'text-red-600 dark:text-red-400'
-                }>
+                <span
+                  className={
+                    stat.changeType === 'positive'
+                      ? 'text-emerald-600 dark:text-emerald-400'
+                      : 'text-red-600 dark:text-red-400'
+                  }
+                >
                   {stat.change}
                 </span>
               </div>
@@ -39,4 +41,4 @@ export function QuickStatsBar({ stats }: QuickStatsBarProps) {
       </CardContent>
     </Card>
   );
-} 
+}

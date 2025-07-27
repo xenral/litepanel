@@ -146,23 +146,28 @@ const getStatusBadge = (status: Product['status']) => {
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>(sampleProducts);
-  const [selectedProducts, setSelectedProducts] = useState<Set<string>>(new Set());
+  const [selectedProducts, setSelectedProducts] = useState<Set<string>>(
+    new Set()
+  );
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
 
-  const filteredProducts = products.filter(product => {
-    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         product.id.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter === 'all' || product.status === statusFilter;
-    const matchesCategory = categoryFilter === 'all' || product.category === categoryFilter;
-    
+  const filteredProducts = products.filter((product) => {
+    const matchesSearch =
+      product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.id.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus =
+      statusFilter === 'all' || product.status === statusFilter;
+    const matchesCategory =
+      categoryFilter === 'all' || product.category === categoryFilter;
+
     return matchesSearch && matchesStatus && matchesCategory;
   });
 
   const handleSelectAll = (checked: boolean) => {
     if (checked) {
-      setSelectedProducts(new Set(filteredProducts.map(p => p.id)));
+      setSelectedProducts(new Set(filteredProducts.map((p) => p.id)));
     } else {
       setSelectedProducts(new Set());
     }
@@ -178,9 +183,14 @@ export default function ProductsPage() {
     setSelectedProducts(newSelection);
   };
 
-  const totalValue = products.reduce((sum, product) => sum + (product.price * product.stock), 0);
-  const lowStockCount = products.filter(p => p.stock < 20 && p.stock > 0).length;
-  const outOfStockCount = products.filter(p => p.stock === 0).length;
+  const totalValue = products.reduce(
+    (sum, product) => sum + product.price * product.stock,
+    0
+  );
+  const lowStockCount = products.filter(
+    (p) => p.stock < 20 && p.stock > 0
+  ).length;
+  const outOfStockCount = products.filter((p) => p.stock === 0).length;
 
   return (
     <div className="space-y-6">
@@ -192,7 +202,9 @@ export default function ProductsPage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/dashboard/data">Data Management</BreadcrumbLink>
+            <BreadcrumbLink href="/dashboard/data">
+              Data Management
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -204,7 +216,9 @@ export default function ProductsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Product Management</h1>
+          <h1 className="text-3xl font-bold tracking-tight">
+            Product Management
+          </h1>
           <p className="text-muted-foreground">
             Manage your product inventory and details
           </p>
@@ -259,7 +273,10 @@ export default function ProductsPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="description">Description</Label>
-                  <Textarea id="description" placeholder="Product description" />
+                  <Textarea
+                    id="description"
+                    placeholder="Product description"
+                  />
                 </div>
                 <Button className="w-full">Add Product</Button>
               </div>
@@ -274,38 +291,38 @@ export default function ProductsPage() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Products</CardTitle>
-            <Package className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">
+              Total Products
+            </CardTitle>
+            <Package className="text-muted-foreground h-4 w-4" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{products.length}</div>
-            <p className="text-xs text-muted-foreground">
-              +2 from last month
-            </p>
+            <p className="text-muted-foreground text-xs">+2 from last month</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Value</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <DollarSign className="text-muted-foreground h-4 w-4" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${totalValue.toLocaleString()}</div>
-            <p className="text-xs text-muted-foreground">
-              Inventory value
-            </p>
+            <div className="text-2xl font-bold">
+              ${totalValue.toLocaleString()}
+            </div>
+            <p className="text-muted-foreground text-xs">Inventory value</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Low Stock</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            <TrendingUp className="text-muted-foreground h-4 w-4" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{lowStockCount}</div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-muted-foreground text-xs">
               Products below 20 units
             </p>
           </CardContent>
@@ -314,13 +331,11 @@ export default function ProductsPage() {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Out of Stock</CardTitle>
-            <AlertCircle className="h-4 w-4 text-muted-foreground" />
+            <AlertCircle className="text-muted-foreground h-4 w-4" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{outOfStockCount}</div>
-            <p className="text-xs text-muted-foreground">
-              Requires restocking
-            </p>
+            <p className="text-muted-foreground text-xs">Requires restocking</p>
           </CardContent>
         </Card>
       </div>
@@ -331,18 +346,16 @@ export default function ProductsPage() {
           <div className="flex items-center justify-between">
             <div>
               <CardTitle>Products</CardTitle>
-              <CardDescription>
-                Manage your product inventory
-              </CardDescription>
+              <CardDescription>Manage your product inventory</CardDescription>
             </div>
             <div className="flex items-center space-x-2">
               <div className="relative">
-                <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Search className="text-muted-foreground absolute left-2 top-2.5 h-4 w-4" />
                 <Input
                   placeholder="Search products..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-8 w-[250px]"
+                  className="w-[250px] pl-8"
                 />
               </div>
               <Select value={categoryFilter} onValueChange={setCategoryFilter}>
@@ -379,7 +392,9 @@ export default function ProductsPage() {
                     <Checkbox
                       checked={
                         filteredProducts.length > 0 &&
-                        filteredProducts.every(p => selectedProducts.has(p.id))
+                        filteredProducts.every((p) =>
+                          selectedProducts.has(p.id)
+                        )
                       }
                       onCheckedChange={handleSelectAll}
                     />
@@ -399,7 +414,7 @@ export default function ProductsPage() {
                     <TableCell>
                       <Checkbox
                         checked={selectedProducts.has(product.id)}
-                        onCheckedChange={(checked) => 
+                        onCheckedChange={(checked) =>
                           handleSelectProduct(product.id, checked === true)
                         }
                       />
@@ -407,7 +422,7 @@ export default function ProductsPage() {
                     <TableCell>
                       <div>
                         <div className="font-medium">{product.name}</div>
-                        <div className="text-sm text-muted-foreground">
+                        <div className="text-muted-foreground text-sm">
                           {product.id}
                         </div>
                       </div>
@@ -415,7 +430,9 @@ export default function ProductsPage() {
                     <TableCell>{product.category}</TableCell>
                     <TableCell>${product.price}</TableCell>
                     <TableCell>
-                      <span className={product.stock < 20 ? 'text-orange-600' : ''}>
+                      <span
+                        className={product.stock < 20 ? 'text-orange-600' : ''}
+                      >
                         {product.stock}
                       </span>
                     </TableCell>
@@ -430,17 +447,25 @@ export default function ProductsPage() {
                         </PopoverTrigger>
                         <PopoverContent className="w-40" align="end">
                           <div className="space-y-1">
-                            <Button variant="ghost" size="sm" className="w-full justify-start">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="w-full justify-start"
+                            >
                               <Eye className="mr-2 h-4 w-4" />
                               View
                             </Button>
-                            <Button variant="ghost" size="sm" className="w-full justify-start">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="w-full justify-start"
+                            >
                               <Edit className="mr-2 h-4 w-4" />
                               Edit
                             </Button>
-                            <Button 
-                              variant="ghost" 
-                              size="sm" 
+                            <Button
+                              variant="ghost"
+                              size="sm"
                               className="w-full justify-start text-red-600 hover:text-red-600"
                             >
                               <Trash2 className="mr-2 h-4 w-4" />
@@ -455,11 +480,12 @@ export default function ProductsPage() {
               </TableBody>
             </Table>
           </div>
-          
+
           {selectedProducts.size > 0 && (
             <div className="flex items-center justify-between pt-4">
-              <p className="text-sm text-muted-foreground">
-                {selectedProducts.size} of {filteredProducts.length} product(s) selected
+              <p className="text-muted-foreground text-sm">
+                {selectedProducts.size} of {filteredProducts.length} product(s)
+                selected
               </p>
               <div className="flex items-center space-x-2">
                 <Button variant="outline" size="sm">
@@ -478,4 +504,4 @@ export default function ProductsPage() {
       </Card>
     </div>
   );
-} 
+}

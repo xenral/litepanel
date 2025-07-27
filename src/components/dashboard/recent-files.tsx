@@ -22,7 +22,7 @@ export function RecentFiles({ files }: RecentFilesProps) {
             <div key={file.id} className="flex items-center justify-between">
               <div className="space-y-1">
                 <p className="text-sm font-medium">{file.name}</p>
-                <div className="flex items-center space-x-2 text-xs text-muted-foreground">
+                <div className="text-muted-foreground flex items-center space-x-2 text-xs">
                   <span>{file.type}</span>
                   <span>•</span>
                   <span>{file.size}</span>
@@ -39,4 +39,4 @@ export function RecentFiles({ files }: RecentFilesProps) {
       </CardContent>
     </Card>
   );
-} 
+}

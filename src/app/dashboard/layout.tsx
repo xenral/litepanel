@@ -10,4 +10,4 @@ interface DashboardLayoutProps {
  */
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return <DashboardLayoutClient>{children}</DashboardLayoutClient>;
-} 
+}

@@ -8,7 +8,8 @@ import { CTASection } from '@/components/landing/cta-section';
 
 export const metadata: Metadata = {
   title: 'LiteControl Admin - Next.js Admin Dashboard Template',
-  description: 'A fully-typed Next.js 15 admin template with hot-swappable themes, built with TypeScript, Tailwind CSS, and shadcn/ui components.',
+  description:
+    'A fully-typed Next.js 15 admin template with hot-swappable themes, built with TypeScript, Tailwind CSS, and shadcn/ui components.',
 };
 
 /**
@@ -20,21 +21,21 @@ export default function LandingPage() {
     <div className="flex flex-col">
       {/* Hero section with logo, tagline, and primary CTA */}
       <HeroSection />
-      
+
       {/* Interactive theme switcher with live preview */}
       <ThemeSwitcherPreview />
-      
+
       {/* Grid of feature cards with hover animations */}
       <FeatureGrid />
-      
+
       {/* Code examples with syntax highlighting and copy functionality */}
       <CodeSnippetShowcase />
-      
+
       {/* Rotating testimonials carousel */}
       <TestimonialsCarousel />
-      
+
       {/* Final call-to-action section with deploy button */}
       <CTASection />
     </div>
   );
-} 
+}

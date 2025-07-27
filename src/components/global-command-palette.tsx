@@ -12,4 +12,4 @@ export function GlobalCommandPalette() {
   const [open, setOpen] = React.useState(false);
 
   return <CommandPalette open={open} onOpenChange={setOpen} />;
-} 
+}

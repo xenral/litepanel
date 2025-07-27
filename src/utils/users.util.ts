@@ -7,7 +7,7 @@ export const formatLastLogin = (dateString: string | null) => {
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-  
+
   if (diffDays === 0) return 'Today';
   if (diffDays === 1) return 'Yesterday';
   if (diffDays < 7) return `${diffDays} days ago`;
@@ -33,14 +33,18 @@ export const filterUsers = (
   roleFilter: string,
   statusFilter: string
 ) => {
-  return users.filter(user => {
-    const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         user.id.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesDepartment = departmentFilter === 'All Departments' || user.department === departmentFilter;
+  return users.filter((user) => {
+    const matchesSearch =
+      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.id.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesDepartment =
+      departmentFilter === 'All Departments' ||
+      user.department === departmentFilter;
     const matchesRole = roleFilter === 'All Roles' || user.role === roleFilter;
-    const matchesStatus = statusFilter === 'All Status' || user.status === statusFilter;
-    
+    const matchesStatus =
+      statusFilter === 'All Status' || user.status === statusFilter;
+
     return matchesSearch && matchesDepartment && matchesRole && matchesStatus;
   });
-}; 
+};

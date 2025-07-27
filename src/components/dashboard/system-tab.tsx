@@ -15,19 +15,24 @@ export function SystemTab({ systemMetrics, activityItems }: SystemTabProps) {
         {systemMetrics.map((metric) => (
           <Card key={metric.name}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">{metric.name}</CardTitle>
-              <div className="h-4 w-4 text-muted-foreground">
-                📊
-              </div>
+              <CardTitle className="text-sm font-medium">
+                {metric.name}
+              </CardTitle>
+              <div className="text-muted-foreground h-4 w-4">📊</div>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{metric.value}%</div>
-              <div className="flex items-center mt-2">
-                <div className={`w-2 h-2 rounded-full mr-2 ${
-                  metric.status === 'healthy' ? 'bg-emerald-500' : 
-                  metric.status === 'warning' ? 'bg-yellow-500' : 'bg-red-500'
-                }`} />
-                <span className="text-xs text-muted-foreground capitalize">
+              <div className="mt-2 flex items-center">
+                <div
+                  className={`mr-2 h-2 w-2 rounded-full ${
+                    metric.status === 'healthy'
+                      ? 'bg-emerald-500'
+                      : metric.status === 'warning'
+                        ? 'bg-yellow-500'
+                        : 'bg-red-500'
+                  }`}
+                />
+                <span className="text-muted-foreground text-xs capitalize">
                   {metric.status}
                 </span>
               </div>
@@ -40,4 +45,4 @@ export function SystemTab({ systemMetrics, activityItems }: SystemTabProps) {
       <ActivityTimeline activities={activityItems} maxItems={8} />
     </div>
   );
-} 
+}

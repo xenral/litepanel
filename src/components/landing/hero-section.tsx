@@ -26,13 +26,13 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
+    <section className="from-background via-background to-muted/20 relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br">
       {/* Background pattern */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-      
+      <div className="bg-grid-pattern absolute inset-0 opacity-5" />
+
       {/* Animated background orbs */}
       <motion.div
-        className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl"
+        className="bg-primary/10 absolute -right-40 -top-40 h-80 w-80 rounded-full blur-3xl"
         animate={{
           x: [0, 100, 0],
           y: [0, -50, 0],
@@ -40,11 +40,11 @@ export function HeroSection() {
         transition={{
           duration: 20,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: 'easeInOut',
         }}
       />
       <motion.div
-        className="absolute -bottom-40 -left-40 w-96 h-96 bg-accent/10 rounded-full blur-3xl"
+        className="bg-accent/10 absolute -bottom-40 -left-40 h-96 w-96 rounded-full blur-3xl"
         animate={{
           x: [0, -80, 0],
           y: [0, 30, 0],
@@ -52,7 +52,7 @@ export function HeroSection() {
         transition={{
           duration: 25,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: 'easeInOut',
         }}
       />
 
@@ -60,8 +60,8 @@ export function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-8 max-w-4xl mx-auto"
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="mx-auto max-w-4xl space-y-8"
         >
           {/* Logo and branding */}
           <motion.div
@@ -70,10 +70,12 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex items-center justify-center space-x-3"
           >
-            <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center">
-              <span className="text-2xl font-bold text-primary-foreground">T</span>
+            <div className="from-primary to-accent flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br">
+              <span className="text-primary-foreground text-2xl font-bold">
+                T
+              </span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-gradient">
+            <h1 className="text-gradient text-4xl font-bold tracking-tight md:text-5xl">
               LiteControl Admin
             </h1>
           </motion.div>
@@ -83,13 +85,15 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+            className="text-muted-foreground mx-auto max-w-3xl text-xl leading-relaxed md:text-2xl"
           >
             A fully-typed{' '}
-            <span className="font-semibold text-foreground">Next.js 15</span>{' '}
+            <span className="text-foreground font-semibold">Next.js 15</span>{' '}
             admin template with{' '}
-            <span className="font-semibold text-foreground">hot-swappable themes</span>,{' '}
-            built for modern React applications
+            <span className="text-foreground font-semibold">
+              hot-swappable themes
+            </span>
+            , built for modern React applications
           </motion.p>
 
           {/* GitHub stats and badges */}
@@ -99,31 +103,31 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-wrap items-center justify-center gap-3"
           >
-            <Badge variant="secondary" className="text-sm px-3 py-1">
+            <Badge variant="secondary" className="px-3 py-1 text-sm">
               TypeScript
             </Badge>
-            <Badge variant="secondary" className="text-sm px-3 py-1">
+            <Badge variant="secondary" className="px-3 py-1 text-sm">
               Next.js 15
             </Badge>
-            <Badge variant="secondary" className="text-sm px-3 py-1">
+            <Badge variant="secondary" className="px-3 py-1 text-sm">
               Tailwind CSS v4
             </Badge>
-            <Badge variant="secondary" className="text-sm px-3 py-1">
+            <Badge variant="secondary" className="px-3 py-1 text-sm">
               shadcn/ui
             </Badge>
-            
+
             {/* GitHub stars */}
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              transition={{ type: "spring", stiffness: 100, delay: 0.8 }}
-              className="flex items-center space-x-1 bg-background border rounded-full px-3 py-1"
+              transition={{ type: 'spring', stiffness: 100, delay: 0.8 }}
+              className="bg-background flex items-center space-x-1 rounded-full border px-3 py-1"
             >
-              <Star className="w-4 h-4 text-yellow-500 fill-current" />
+              <Star className="h-4 w-4 fill-current text-yellow-500" />
               <span className="text-sm font-medium">
                 {githubStars ? githubStars.toLocaleString() : '...'}
               </span>
-              <span className="text-sm text-muted-foreground">stars</span>
+              <span className="text-muted-foreground text-sm">stars</span>
             </motion.div>
           </motion.div>
 
@@ -132,29 +136,29 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
             <Button
               asChild
               size="lg"
-              className="group text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              className="group rounded-xl px-8 py-6 text-lg shadow-lg transition-all duration-300 hover:shadow-xl"
             >
               <Link href="/dashboard">
                 Live Demo
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
-            
+
             <Button
               asChild
               variant="outline"
               size="lg"
-              className="text-lg px-8 py-6 rounded-xl group"
+              className="group rounded-xl px-8 py-6 text-lg"
             >
               <Link href="https://github.com/xenral/litepanel" target="_blank">
-                <Github className="mr-2 w-5 h-5" />
+                <Github className="mr-2 h-5 w-5" />
                 View on GitHub
-                <ExternalLink className="ml-2 w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
               </Link>
             </Button>
           </motion.div>
@@ -164,17 +168,17 @@ export function HeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.2 }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 transform"
           >
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center"
+              className="border-muted-foreground/30 flex h-10 w-6 justify-center rounded-full border-2"
             >
               <motion.div
                 animate={{ y: [0, 12, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="w-1 h-3 bg-muted-foreground/50 rounded-full mt-2"
+                className="bg-muted-foreground/50 mt-2 h-3 w-1 rounded-full"
               />
             </motion.div>
           </motion.div>
@@ -182,4 +186,4 @@ export function HeroSection() {
       </div>
     </section>
   );
-} 
+}

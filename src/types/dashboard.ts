@@ -90,4 +90,4 @@ export interface ActivityItem {
   time: string;
   user: string;
   icon: string;
-} 
+}

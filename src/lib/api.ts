@@ -6,7 +6,8 @@
 import * as React from 'react';
 
 // API Base Configuration
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
 const API_VERSION = 'v1';
 
 /**
@@ -119,7 +120,8 @@ export const UserService = {
         id: '1',
         name: 'John Doe',
         email: 'john@example.com',
-        avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
+        avatar:
+          'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
         role: 'admin',
         status: 'active',
         createdAt: '2023-01-15T00:00:00Z',
@@ -139,7 +141,7 @@ export const UserService = {
         },
       };
     }
-    
+
     const response = await apiClient.get<User>('/user/me');
     return response.data;
   },
@@ -147,28 +149,28 @@ export const UserService = {
   updateUser: async (id: string, data: Partial<User>): Promise<User> => {
     if (process.env.NODE_ENV === 'development') {
       // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      return { ...await UserService.getCurrentUser(), ...data };
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      return { ...(await UserService.getCurrentUser()), ...data };
     }
-    
+
     const response = await apiClient.put<User>(`/users/${id}`, data);
     return response.data;
   },
 
   uploadAvatar: async (file: File): Promise<{ url: string }> => {
     if (process.env.NODE_ENV === 'development') {
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 2000));
       return { url: URL.createObjectURL(file) };
     }
-    
+
     const formData = new FormData();
     formData.append('avatar', file);
-    
+
     const response = await fetch(`${API_BASE_URL}/${API_VERSION}/user/avatar`, {
       method: 'POST',
       body: formData,
     });
-    
+
     return response.json();
   },
 };
@@ -186,7 +188,11 @@ export interface AnalyticsData {
   charts: {
     revenue: Array<{ month: string; value: number }>;
     visitors: Array<{ date: string; desktop: number; mobile: number }>;
-    trafficSources: Array<{ source: string; visitors: number; percentage: number }>;
+    trafficSources: Array<{
+      source: string;
+      visitors: number;
+      percentage: number;
+    }>;
   };
   timeRange: string;
 }
@@ -228,19 +234,24 @@ export const AnalyticsService = {
         timeRange,
       };
     }
-    
-    const response = await apiClient.get<AnalyticsData>(`/analytics?range=${timeRange}`);
+
+    const response = await apiClient.get<AnalyticsData>(
+      `/analytics?range=${timeRange}`
+    );
     return response.data;
   },
 
   exportData: async (format: 'csv' | 'xlsx' | 'pdf'): Promise<Blob> => {
     if (process.env.NODE_ENV === 'development') {
       // Create a mock CSV for development
-      const csvContent = 'Date,Visitors,Revenue\n2024-01-01,1000,5000\n2024-01-02,1200,6000';
+      const csvContent =
+        'Date,Visitors,Revenue\n2024-01-01,1000,5000\n2024-01-02,1200,6000';
       return new Blob([csvContent], { type: 'text/csv' });
     }
-    
-    const response = await fetch(`${API_BASE_URL}/${API_VERSION}/analytics/export?format=${format}`);
+
+    const response = await fetch(
+      `${API_BASE_URL}/${API_VERSION}/analytics/export?format=${format}`
+    );
     return response.blob();
   },
 };
@@ -277,14 +288,54 @@ export const DashboardService = {
     if (process.env.NODE_ENV === 'development') {
       return {
         kpis: [
-          { id: '1', title: 'Total Revenue', value: '$45,231.89', change: '+20.1%', trend: 'up', icon: 'DollarSign' },
-          { id: '2', title: 'Active Users', value: '2,350', change: '+180.1%', trend: 'up', icon: 'Users' },
-          { id: '3', title: 'Sales', value: '12,234', change: '+19%', trend: 'up', icon: 'CreditCard' },
-          { id: '4', title: 'Active Now', value: '573', change: '+201', trend: 'up', icon: 'Activity' },
+          {
+            id: '1',
+            title: 'Total Revenue',
+            value: '$45,231.89',
+            change: '+20.1%',
+            trend: 'up',
+            icon: 'DollarSign',
+          },
+          {
+            id: '2',
+            title: 'Active Users',
+            value: '2,350',
+            change: '+180.1%',
+            trend: 'up',
+            icon: 'Users',
+          },
+          {
+            id: '3',
+            title: 'Sales',
+            value: '12,234',
+            change: '+19%',
+            trend: 'up',
+            icon: 'CreditCard',
+          },
+          {
+            id: '4',
+            title: 'Active Now',
+            value: '573',
+            change: '+201',
+            trend: 'up',
+            icon: 'Activity',
+          },
         ],
         recentActivity: [
-          { id: '1', type: 'user_signup', message: 'New user registered', timestamp: new Date().toISOString(), user: 'john@example.com' },
-          { id: '2', type: 'purchase', message: 'Purchase completed', timestamp: new Date(Date.now() - 300000).toISOString(), user: 'jane@example.com' },
+          {
+            id: '1',
+            type: 'user_signup',
+            message: 'New user registered',
+            timestamp: new Date().toISOString(),
+            user: 'john@example.com',
+          },
+          {
+            id: '2',
+            type: 'purchase',
+            message: 'Purchase completed',
+            timestamp: new Date(Date.now() - 300000).toISOString(),
+            user: 'jane@example.com',
+          },
         ],
         quickStats: {
           activeUsers: 2350,
@@ -294,7 +345,7 @@ export const DashboardService = {
         },
       };
     }
-    
+
     const response = await apiClient.get<DashboardData>('/dashboard');
     return response.data;
   },
@@ -344,26 +395,26 @@ export const NotificationService = {
         },
       ];
     }
-    
+
     const response = await apiClient.get<Notification[]>('/notifications');
     return response.data;
   },
 
   markAsRead: async (id: string): Promise<void> => {
     if (process.env.NODE_ENV === 'development') {
-      await new Promise(resolve => setTimeout(resolve, 300));
+      await new Promise((resolve) => setTimeout(resolve, 300));
       return;
     }
-    
+
     await apiClient.put(`/notifications/${id}/read`, {});
   },
 
   markAllAsRead: async (): Promise<void> => {
     if (process.env.NODE_ENV === 'development') {
-      await new Promise(resolve => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 500));
       return;
     }
-    
+
     await apiClient.put('/notifications/read-all', {});
   },
 };
@@ -417,4 +468,4 @@ export default {
   AnalyticsService,
   DashboardService,
   NotificationService,
-}; 
+};

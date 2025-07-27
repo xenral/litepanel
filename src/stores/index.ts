@@ -33,4 +33,4 @@ export const getCurrentTheme = () => {
 export const hasStoresHydrated = () => {
   const themeState = getThemeState();
   return themeState._hasHydrated;
-}; 
+};

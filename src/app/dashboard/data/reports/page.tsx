@@ -165,17 +165,45 @@ const recentReports = [
 ];
 
 const dataSourceOptions = [
-  { id: 'users', name: 'User Data', description: 'User profiles, activity, and preferences' },
-  { id: 'orders', name: 'Order Data', description: 'Sales transactions and order history' },
-  { id: 'products', name: 'Product Data', description: 'Product catalog and inventory' },
-  { id: 'analytics', name: 'Analytics Data', description: 'Website and app usage analytics' },
-  { id: 'financial', name: 'Financial Data', description: 'Revenue, expenses, and financial metrics' },
-  { id: 'marketing', name: 'Marketing Data', description: 'Campaign performance and leads' },
+  {
+    id: 'users',
+    name: 'User Data',
+    description: 'User profiles, activity, and preferences',
+  },
+  {
+    id: 'orders',
+    name: 'Order Data',
+    description: 'Sales transactions and order history',
+  },
+  {
+    id: 'products',
+    name: 'Product Data',
+    description: 'Product catalog and inventory',
+  },
+  {
+    id: 'analytics',
+    name: 'Analytics Data',
+    description: 'Website and app usage analytics',
+  },
+  {
+    id: 'financial',
+    name: 'Financial Data',
+    description: 'Revenue, expenses, and financial metrics',
+  },
+  {
+    id: 'marketing',
+    name: 'Marketing Data',
+    description: 'Campaign performance and leads',
+  },
 ];
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString);
-  return date.toLocaleDateString() + ' ' + date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  return (
+    date.toLocaleDateString() +
+    ' ' +
+    date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+  );
 };
 
 const getStatusColor = (status: string) => {
@@ -201,9 +229,9 @@ export default function ReportsDataPage() {
   const [selectedDataSources, setSelectedDataSources] = useState<string[]>([]);
 
   const handleDataSourceToggle = (sourceId: string) => {
-    setSelectedDataSources(prev => 
-      prev.includes(sourceId) 
-        ? prev.filter(id => id !== sourceId)
+    setSelectedDataSources((prev) =>
+      prev.includes(sourceId)
+        ? prev.filter((id) => id !== sourceId)
         : [...prev, sourceId]
     );
   };
@@ -218,7 +246,9 @@ export default function ReportsDataPage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/dashboard/data">Data Management</BreadcrumbLink>
+            <BreadcrumbLink href="/dashboard/data">
+              Data Management
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbPage>Reports</BreadcrumbPage>
@@ -238,7 +268,10 @@ export default function ReportsDataPage() {
             <Settings className="mr-2 h-4 w-4" />
             Report Settings
           </Button>
-          <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+          <Dialog
+            open={isCreateDialogOpen}
+            onOpenChange={setIsCreateDialogOpen}
+          >
             <DialogTrigger asChild>
               <Button>
                 <Plus className="mr-2 h-4 w-4" />
@@ -249,10 +282,11 @@ export default function ReportsDataPage() {
               <DialogHeader>
                 <DialogTitle>Create Custom Report</DialogTitle>
                 <DialogDescription>
-                  Build a custom report with your preferred data sources and settings.
+                  Build a custom report with your preferred data sources and
+                  settings.
                 </DialogDescription>
               </DialogHeader>
-              
+
               <div className="space-y-6">
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="space-y-2">
@@ -278,22 +312,32 @@ export default function ReportsDataPage() {
 
                 <div>
                   <Label className="text-base font-medium">Data Sources</Label>
-                  <p className="text-sm text-muted-foreground mb-3">
+                  <p className="text-muted-foreground mb-3 text-sm">
                     Select the data sources to include in your report
                   </p>
                   <div className="grid gap-3 md:grid-cols-2">
                     {dataSourceOptions.map((source) => (
-                      <div key={source.id} className="flex items-start space-x-3 p-3 border rounded-lg">
+                      <div
+                        key={source.id}
+                        className="flex items-start space-x-3 rounded-lg border p-3"
+                      >
                         <Checkbox
                           id={source.id}
                           checked={selectedDataSources.includes(source.id)}
-                          onCheckedChange={() => handleDataSourceToggle(source.id)}
+                          onCheckedChange={() =>
+                            handleDataSourceToggle(source.id)
+                          }
                         />
                         <div className="flex-1">
-                          <Label htmlFor={source.id} className="font-medium cursor-pointer">
+                          <Label
+                            htmlFor={source.id}
+                            className="cursor-pointer font-medium"
+                          >
                             {source.name}
                           </Label>
-                          <p className="text-sm text-muted-foreground">{source.description}</p>
+                          <p className="text-muted-foreground text-sm">
+                            {source.description}
+                          </p>
                         </div>
                       </div>
                     ))}
@@ -346,7 +390,10 @@ export default function ReportsDataPage() {
                 </div>
 
                 <div className="flex justify-end space-x-2">
-                  <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)}>
+                  <Button
+                    variant="outline"
+                    onClick={() => setIsCreateDialogOpen(false)}
+                  >
                     Cancel
                   </Button>
                   <Button onClick={() => setIsCreateDialogOpen(false)}>
@@ -375,15 +422,17 @@ export default function ReportsDataPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <Card className="cursor-pointer hover:shadow-md transition-shadow">
+              <Card className="cursor-pointer transition-shadow hover:shadow-md">
                 <CardContent className="p-6">
                   <div className="flex items-center space-x-3">
-                    <div className="p-2 bg-blue-100 rounded-lg">
+                    <div className="rounded-lg bg-blue-100 p-2">
                       <BarChart3 className="h-6 w-6 text-blue-600" />
                     </div>
                     <div>
                       <h3 className="font-medium">Sales Report</h3>
-                      <p className="text-sm text-muted-foreground">Generate now</p>
+                      <p className="text-muted-foreground text-sm">
+                        Generate now
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -395,15 +444,17 @@ export default function ReportsDataPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 }}
             >
-              <Card className="cursor-pointer hover:shadow-md transition-shadow">
+              <Card className="cursor-pointer transition-shadow hover:shadow-md">
                 <CardContent className="p-6">
                   <div className="flex items-center space-x-3">
-                    <div className="p-2 bg-green-100 rounded-lg">
+                    <div className="rounded-lg bg-green-100 p-2">
                       <Users className="h-6 w-6 text-green-600" />
                     </div>
                     <div>
                       <h3 className="font-medium">User Report</h3>
-                      <p className="text-sm text-muted-foreground">Generate now</p>
+                      <p className="text-muted-foreground text-sm">
+                        Generate now
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -415,15 +466,17 @@ export default function ReportsDataPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.2 }}
             >
-              <Card className="cursor-pointer hover:shadow-md transition-shadow">
+              <Card className="cursor-pointer transition-shadow hover:shadow-md">
                 <CardContent className="p-6">
                   <div className="flex items-center space-x-3">
-                    <div className="p-2 bg-purple-100 rounded-lg">
+                    <div className="rounded-lg bg-purple-100 p-2">
                       <DollarSign className="h-6 w-6 text-purple-600" />
                     </div>
                     <div>
                       <h3 className="font-medium">Financial Report</h3>
-                      <p className="text-sm text-muted-foreground">Generate now</p>
+                      <p className="text-muted-foreground text-sm">
+                        Generate now
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -435,15 +488,17 @@ export default function ReportsDataPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.3 }}
             >
-              <Card className="cursor-pointer hover:shadow-md transition-shadow">
+              <Card className="cursor-pointer transition-shadow hover:shadow-md">
                 <CardContent className="p-6">
                   <div className="flex items-center space-x-3">
-                    <div className="p-2 bg-orange-100 rounded-lg">
+                    <div className="rounded-lg bg-orange-100 p-2">
                       <Database className="h-6 w-6 text-orange-600" />
                     </div>
                     <div>
                       <h3 className="font-medium">Custom Report</h3>
-                      <p className="text-sm text-muted-foreground">Create new</p>
+                      <p className="text-muted-foreground text-sm">
+                        Create new
+                      </p>
                     </div>
                   </div>
                 </CardContent>
@@ -467,24 +522,26 @@ export default function ReportsDataPage() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
-                    className="flex items-center justify-between p-4 border rounded-lg"
+                    className="flex items-center justify-between rounded-lg border p-4"
                   >
                     <div className="flex-1">
                       <div className="flex items-center space-x-3">
-                        <div className="p-2 bg-muted rounded-lg">
-                          <FileText className="h-5 w-5 text-muted-foreground" />
+                        <div className="bg-muted rounded-lg p-2">
+                          <FileText className="text-muted-foreground h-5 w-5" />
                         </div>
                         <div>
                           <h4 className="font-medium">{template.name}</h4>
-                          <p className="text-sm text-muted-foreground">{template.description}</p>
-                          <div className="flex items-center space-x-4 mt-1">
-                            <span className="text-xs text-muted-foreground">
+                          <p className="text-muted-foreground text-sm">
+                            {template.description}
+                          </p>
+                          <div className="mt-1 flex items-center space-x-4">
+                            <span className="text-muted-foreground text-xs">
                               Category: {template.category}
                             </span>
-                            <span className="text-xs text-muted-foreground">
+                            <span className="text-muted-foreground text-xs">
                               Frequency: {template.frequency}
                             </span>
-                            <span className="text-xs text-muted-foreground">
+                            <span className="text-muted-foreground text-xs">
                               Format: {template.format}
                             </span>
                           </div>
@@ -496,7 +553,7 @@ export default function ReportsDataPage() {
                         <Badge variant={getStatusColor(template.status)}>
                           {template.status}
                         </Badge>
-                        <div className="text-xs text-muted-foreground mt-1">
+                        <div className="text-muted-foreground mt-1 text-xs">
                           Last run: {formatDate(template.lastRun)}
                         </div>
                       </div>
@@ -534,17 +591,19 @@ export default function ReportsDataPage() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
-                    className="flex items-center justify-between p-4 border rounded-lg"
+                    className="flex items-center justify-between rounded-lg border p-4"
                   >
                     <div className="flex items-center space-x-4">
-                      <div className="p-2 bg-muted rounded-lg">
-                        <FileText className="h-5 w-5 text-muted-foreground" />
+                      <div className="bg-muted rounded-lg p-2">
+                        <FileText className="text-muted-foreground h-5 w-5" />
                       </div>
                       <div>
                         <h4 className="font-medium">{report.name}</h4>
-                        <div className="flex items-center space-x-4 text-sm text-muted-foreground">
+                        <div className="text-muted-foreground flex items-center space-x-4 text-sm">
                           <span>ID: {report.id}</span>
-                          <span>Generated: {formatDate(report.generatedAt)}</span>
+                          <span>
+                            Generated: {formatDate(report.generatedAt)}
+                          </span>
                           <span>Size: {report.size}</span>
                           <span>Downloads: {report.downloadCount}</span>
                         </div>
@@ -557,15 +616,25 @@ export default function ReportsDataPage() {
                       {report.status === 'Generating' && report.progress && (
                         <div className="w-32">
                           <Progress value={report.progress} className="h-2" />
-                          <span className="text-xs text-muted-foreground">{report.progress}%</span>
+                          <span className="text-muted-foreground text-xs">
+                            {report.progress}%
+                          </span>
                         </div>
                       )}
                       <div className="flex items-center space-x-2">
-                        <Button variant="outline" size="sm" disabled={report.status !== 'Ready'}>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          disabled={report.status !== 'Ready'}
+                        >
                           <Eye className="mr-2 h-4 w-4" />
                           View
                         </Button>
-                        <Button variant="outline" size="sm" disabled={report.status !== 'Ready'}>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          disabled={report.status !== 'Ready'}
+                        >
                           <Download className="mr-2 h-4 w-4" />
                           Download
                         </Button>
@@ -580,7 +649,8 @@ export default function ReportsDataPage() {
           <Alert>
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>
-              Reports are automatically deleted after 30 days. Download important reports for long-term storage.
+              Reports are automatically deleted after 30 days. Download
+              important reports for long-term storage.
             </AlertDescription>
           </Alert>
         </TabsContent>
@@ -596,43 +666,45 @@ export default function ReportsDataPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {reportTemplates.filter(t => t.status !== 'Paused').map((template, index) => (
-                  <motion.div
-                    key={template.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
-                    className="flex items-center justify-between p-4 border rounded-lg"
-                  >
-                    <div className="flex items-center space-x-4">
-                      <div className="p-2 bg-muted rounded-lg">
-                        <Clock className="h-5 w-5 text-muted-foreground" />
-                      </div>
-                      <div>
-                        <h4 className="font-medium">{template.name}</h4>
-                        <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-                          <span>Frequency: {template.frequency}</span>
-                          <span>Next run: Tomorrow at 9:00 AM</span>
-                          <span>Recipients: {template.recipients}</span>
+                {reportTemplates
+                  .filter((t) => t.status !== 'Paused')
+                  .map((template, index) => (
+                    <motion.div
+                      key={template.id}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                      className="flex items-center justify-between rounded-lg border p-4"
+                    >
+                      <div className="flex items-center space-x-4">
+                        <div className="bg-muted rounded-lg p-2">
+                          <Clock className="text-muted-foreground h-5 w-5" />
+                        </div>
+                        <div>
+                          <h4 className="font-medium">{template.name}</h4>
+                          <div className="text-muted-foreground flex items-center space-x-4 text-sm">
+                            <span>Frequency: {template.frequency}</span>
+                            <span>Next run: Tomorrow at 9:00 AM</span>
+                            <span>Recipients: {template.recipients}</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <Badge variant={getStatusColor(template.status)}>
-                        {template.status}
-                      </Badge>
-                      <div className="flex items-center space-x-2">
-                        <Button variant="outline" size="sm">
-                          <Pause className="mr-2 h-4 w-4" />
-                          Pause
-                        </Button>
-                        <Button variant="outline" size="sm">
-                          <Settings className="h-4 w-4" />
-                        </Button>
+                      <div className="flex items-center space-x-3">
+                        <Badge variant={getStatusColor(template.status)}>
+                          {template.status}
+                        </Badge>
+                        <div className="flex items-center space-x-2">
+                          <Button variant="outline" size="sm">
+                            <Pause className="mr-2 h-4 w-4" />
+                            Pause
+                          </Button>
+                          <Button variant="outline" size="sm">
+                            <Settings className="h-4 w-4" />
+                          </Button>
+                        </div>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  ))}
               </div>
             </CardContent>
           </Card>
@@ -667,14 +739,17 @@ export default function ReportsDataPage() {
               <CardContent>
                 <div className="space-y-4">
                   <div>
-                    <div className="flex items-center justify-between mb-1">
+                    <div className="mb-1 flex items-center justify-between">
                       <span className="text-sm">Report Storage</span>
-                      <span className="text-sm text-muted-foreground">2.4 GB / 10 GB</span>
+                      <span className="text-muted-foreground text-sm">
+                        2.4 GB / 10 GB
+                      </span>
                     </div>
                     <Progress value={24} className="h-2" />
                   </div>
-                  <div className="text-xs text-muted-foreground">
-                    Reports are automatically cleaned up after 30 days to manage storage.
+                  <div className="text-muted-foreground text-xs">
+                    Reports are automatically cleaned up after 30 days to manage
+                    storage.
                   </div>
                 </div>
               </CardContent>
@@ -684,4 +759,4 @@ export default function ReportsDataPage() {
       </Tabs>
     </div>
   );
-} 
+}

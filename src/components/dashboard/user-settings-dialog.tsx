@@ -59,7 +59,10 @@ interface UserSettingsDialogProps {
   onOpenChange: (open: boolean) => void;
 }
 
-export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogProps) {
+export function UserSettingsDialog({
+  open,
+  onOpenChange,
+}: UserSettingsDialogProps) {
   const [user, setUser] = useState<UserType | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [savedMessage, setSavedMessage] = useState('');
@@ -87,7 +90,7 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
 
   const handleSave = async () => {
     if (!user) return;
-    
+
     try {
       setIsLoading(true);
       setError('');
@@ -128,18 +131,21 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
     setUser({ ...user, [field]: value });
   };
 
-  const updateUserPreference = (field: keyof UserType['preferences'], value: any) => {
+  const updateUserPreference = (
+    field: keyof UserType['preferences'],
+    value: any
+  ) => {
     if (!user) return;
     setUser({
       ...user,
-      preferences: { ...user.preferences, [field]: value }
+      preferences: { ...user.preferences, [field]: value },
     });
   };
 
   if (!user && isLoading) {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden">
+        <DialogContent className="max-h-[90vh] max-w-4xl overflow-hidden">
           <VisuallyHidden>
             <DialogTitle>Loading User Settings</DialogTitle>
           </VisuallyHidden>
@@ -158,7 +164,7 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-hidden">
+      <DialogContent className="max-h-[90vh] max-w-4xl overflow-hidden">
         <DialogHeader>
           <DialogTitle className="flex items-center">
             <User className="mr-2 h-5 w-5" />
@@ -203,7 +209,10 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                     <Avatar className="h-20 w-20">
                       <AvatarImage src={user.avatar} alt={user.name} />
                       <AvatarFallback className="text-lg">
-                        {user.name.split(' ').map(n => n[0]).join('')}
+                        {user.name
+                          .split(' ')
+                          .map((n) => n[0])
+                          .join('')}
                       </AvatarFallback>
                     </Avatar>
                     <div className="space-y-2">
@@ -211,7 +220,7 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                         <Camera className="mr-2 h-4 w-4" />
                         Change Avatar
                       </Button>
-                      <p className="text-xs text-muted-foreground">
+                      <p className="text-muted-foreground text-xs">
                         JPG, PNG or GIF. Max size 2MB.
                       </p>
                     </div>
@@ -226,7 +235,9 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                       <Input
                         id="name"
                         value={user.name}
-                        onChange={(e) => setUser({ ...user, name: e.target.value })}
+                        onChange={(e) =>
+                          setUser({ ...user, name: e.target.value })
+                        }
                       />
                     </div>
                     <div className="space-y-2">
@@ -235,7 +246,9 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                         id="email"
                         type="email"
                         value={user.email}
-                        onChange={(e) => setUser({ ...user, email: e.target.value })}
+                        onChange={(e) =>
+                          setUser({ ...user, email: e.target.value })
+                        }
                       />
                     </div>
                   </div>
@@ -245,7 +258,9 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                     <Textarea
                       id="bio"
                       value={user.bio}
-                      onChange={(e) => setUser({ ...user, bio: e.target.value })}
+                      onChange={(e) =>
+                        setUser({ ...user, bio: e.target.value })
+                      }
                       placeholder="Tell us about yourself..."
                       rows={3}
                     />
@@ -257,7 +272,9 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                       <Input
                         id="title"
                         value={user.title}
-                        onChange={(e) => setUser({ ...user, title: e.target.value })}
+                        onChange={(e) =>
+                          setUser({ ...user, title: e.target.value })
+                        }
                       />
                     </div>
                     <div className="space-y-2">
@@ -265,7 +282,9 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                       <Input
                         id="company"
                         value={user.company}
-                        onChange={(e) => setUser({ ...user, company: e.target.value })}
+                        onChange={(e) =>
+                          setUser({ ...user, company: e.target.value })
+                        }
                       />
                     </div>
                   </div>
@@ -279,7 +298,9 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                       <Input
                         id="location"
                         value={user.location}
-                        onChange={(e) => setUser({ ...user, location: e.target.value })}
+                        onChange={(e) =>
+                          setUser({ ...user, location: e.target.value })
+                        }
                       />
                     </div>
                     <div className="space-y-2">
@@ -290,7 +311,9 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                       <Input
                         id="phone"
                         value={user.phone}
-                        onChange={(e) => setUser({ ...user, phone: e.target.value })}
+                        onChange={(e) =>
+                          setUser({ ...user, phone: e.target.value })
+                        }
                       />
                     </div>
                   </div>
@@ -301,7 +324,9 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                       id="website"
                       type="url"
                       value={user.website}
-                      onChange={(e) => setUser({ ...user, website: e.target.value })}
+                      onChange={(e) =>
+                        setUser({ ...user, website: e.target.value })
+                      }
                       placeholder="https://..."
                     />
                   </div>
@@ -316,11 +341,13 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                 <CardContent>
                   <div className="grid gap-4 md:grid-cols-2">
                     <div className="flex items-center space-x-2">
-                      <Clock className="h-4 w-4 text-muted-foreground" />
+                      <Clock className="text-muted-foreground h-4 w-4" />
                       <div>
                         <p className="text-sm font-medium">Member since</p>
-                        <p className="text-sm text-muted-foreground">
-                          {user.joinedAt ? new Date(user.joinedAt).toLocaleDateString() : 'N/A'}
+                        <p className="text-muted-foreground text-sm">
+                          {user.joinedAt
+                            ? new Date(user.joinedAt).toLocaleDateString()
+                            : 'N/A'}
                         </p>
                       </div>
                     </div>
@@ -328,8 +355,10 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                       <CheckCircle2 className="h-4 w-4 text-green-500" />
                       <div>
                         <p className="text-sm font-medium">Last active</p>
-                        <p className="text-sm text-muted-foreground">
-                          {user.lastLoginAt ? new Date(user.lastLoginAt).toLocaleDateString() : 'N/A'}
+                        <p className="text-muted-foreground text-sm">
+                          {user.lastLoginAt
+                            ? new Date(user.lastLoginAt).toLocaleDateString()
+                            : 'N/A'}
                         </p>
                       </div>
                     </div>
@@ -354,7 +383,7 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
                         <Label className="text-base">Email Notifications</Label>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-muted-foreground text-sm">
                           Receive notifications via email
                         </p>
                       </div>
@@ -366,7 +395,7 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
                         <Label className="text-base">Push Notifications</Label>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-muted-foreground text-sm">
                           Receive push notifications in your browser
                         </p>
                       </div>
@@ -378,7 +407,7 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
                         <Label className="text-base">SMS Notifications</Label>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-muted-foreground text-sm">
                           Receive important updates via SMS
                         </p>
                       </div>
@@ -389,8 +418,10 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
 
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
-                        <Label className="text-base">Marketing Communications</Label>
-                        <p className="text-sm text-muted-foreground">
+                        <Label className="text-base">
+                          Marketing Communications
+                        </Label>
+                        <p className="text-muted-foreground text-sm">
                           Product updates, tips, and promotional content
                         </p>
                       </div>
@@ -402,7 +433,7 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
                         <Label className="text-base">Security Alerts</Label>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-muted-foreground text-sm">
                           Login attempts and security-related notifications
                         </p>
                       </div>
@@ -423,13 +454,13 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label className="text-base">Do Not Disturb</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         Pause all notifications during quiet hours
                       </p>
                     </div>
                     <Switch />
                   </div>
-                  
+
                   <div className="grid gap-4 md:grid-cols-2">
                     <div className="space-y-2">
                       <Label>Quiet Hours Start</Label>
@@ -459,7 +490,7 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                   <div className="space-y-4">
                     <div>
                       <Label className="text-base">Change Password</Label>
-                      <p className="text-sm text-muted-foreground mb-3">
+                      <p className="text-muted-foreground mb-3 text-sm">
                         It's good practice to use a strong, unique password
                       </p>
                       <Button variant="outline">
@@ -472,8 +503,10 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
 
                     <div className="flex items-center justify-between">
                       <div className="space-y-0.5">
-                        <Label className="text-base">Two-Factor Authentication</Label>
-                        <p className="text-sm text-muted-foreground">
+                        <Label className="text-base">
+                          Two-Factor Authentication
+                        </Label>
+                        <p className="text-muted-foreground text-sm">
                           Add an extra layer of security to your account
                         </p>
                       </div>
@@ -489,23 +522,23 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
 
                     <div>
                       <Label className="text-base">Active Sessions</Label>
-                      <p className="text-sm text-muted-foreground mb-3">
+                      <p className="text-muted-foreground mb-3 text-sm">
                         Manage devices that are signed in to your account
                       </p>
-                      <div className="space-y-2 border rounded-lg p-3">
+                      <div className="space-y-2 rounded-lg border p-3">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-3">
-                            <div className="h-2 w-2 bg-green-500 rounded-full"></div>
+                            <div className="h-2 w-2 rounded-full bg-green-500"></div>
                             <div>
                               <p className="text-sm font-medium">MacBook Pro</p>
-                              <p className="text-xs text-muted-foreground">
+                              <p className="text-muted-foreground text-xs">
                                 Chrome • San Francisco, CA • Current session
                               </p>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <Button variant="outline" className="w-full mt-2">
+                      <Button variant="outline" className="mt-2 w-full">
                         View All Sessions
                       </Button>
                     </div>
@@ -527,7 +560,7 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                   <div className="space-y-4">
                     <div>
                       <Label className="text-base">Delete Account</Label>
-                      <p className="text-sm text-muted-foreground mb-3">
+                      <p className="text-muted-foreground mb-3 text-sm">
                         Permanently delete your account and all associated data
                       </p>
                       <Button variant="destructive" className="w-full">
@@ -576,10 +609,18 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="America/Los_Angeles">Pacific Time</SelectItem>
-                          <SelectItem value="America/Denver">Mountain Time</SelectItem>
-                          <SelectItem value="America/Chicago">Central Time</SelectItem>
-                          <SelectItem value="America/New_York">Eastern Time</SelectItem>
+                          <SelectItem value="America/Los_Angeles">
+                            Pacific Time
+                          </SelectItem>
+                          <SelectItem value="America/Denver">
+                            Mountain Time
+                          </SelectItem>
+                          <SelectItem value="America/Chicago">
+                            Central Time
+                          </SelectItem>
+                          <SelectItem value="America/New_York">
+                            Eastern Time
+                          </SelectItem>
                           <SelectItem value="Europe/London">GMT</SelectItem>
                         </SelectContent>
                       </Select>
@@ -628,7 +669,7 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label className="text-base">Compact Mode</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         Show more content by reducing spacing
                       </p>
                     </div>
@@ -640,7 +681,7 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label className="text-base">Auto-save</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         Automatically save changes as you work
                       </p>
                     </div>
@@ -652,7 +693,7 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
                       <Label className="text-base">Keyboard Shortcuts</Label>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         Enable keyboard shortcuts for faster navigation
                       </p>
                     </div>
@@ -663,7 +704,7 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
             </TabsContent>
           </div>
 
-          <div className="flex justify-end space-x-2 pt-4 border-t">
+          <div className="flex justify-end space-x-2 border-t pt-4">
             <Button variant="outline" onClick={() => onOpenChange(false)}>
               Cancel
             </Button>
@@ -672,8 +713,12 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
                 <>
                   <motion.div
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    className="mr-2 h-4 w-4 border-2 border-current border-t-transparent rounded-full"
+                    transition={{
+                      duration: 1,
+                      repeat: Infinity,
+                      ease: 'linear',
+                    }}
+                    className="mr-2 h-4 w-4 rounded-full border-2 border-current border-t-transparent"
                   />
                   Saving...
                 </>
@@ -689,4 +734,4 @@ export function UserSettingsDialog({ open, onOpenChange }: UserSettingsDialogPro
       </DialogContent>
     </Dialog>
   );
-} 
+}

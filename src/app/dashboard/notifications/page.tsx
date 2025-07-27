@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import { 
-  Bell, 
-  Check, 
-  X, 
-  Filter, 
+import {
+  Bell,
+  Check,
+  X,
+  Filter,
   Search,
   MoreHorizontal,
   User,
@@ -12,13 +12,26 @@ import {
   CheckCircle,
   Clock,
   Trash2,
-  Eye
+  Eye,
 } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 export const metadata: Metadata = {
   title: 'Notifications',
@@ -38,7 +51,7 @@ const notifications = [
     read: false,
     priority: 'medium',
     icon: User,
-    color: 'text-blue-600 bg-blue-100 dark:bg-blue-900'
+    color: 'text-blue-600 bg-blue-100 dark:bg-blue-900',
   },
   {
     id: 2,
@@ -49,7 +62,7 @@ const notifications = [
     read: false,
     priority: 'high',
     icon: AlertTriangle,
-    color: 'text-orange-600 bg-orange-100 dark:bg-orange-900'
+    color: 'text-orange-600 bg-orange-100 dark:bg-orange-900',
   },
   {
     id: 3,
@@ -60,7 +73,7 @@ const notifications = [
     read: true,
     priority: 'low',
     icon: CheckCircle,
-    color: 'text-green-600 bg-green-100 dark:bg-green-900'
+    color: 'text-green-600 bg-green-100 dark:bg-green-900',
   },
   {
     id: 4,
@@ -71,7 +84,7 @@ const notifications = [
     read: false,
     priority: 'medium',
     icon: Info,
-    color: 'text-purple-600 bg-purple-100 dark:bg-purple-900'
+    color: 'text-purple-600 bg-purple-100 dark:bg-purple-900',
   },
   {
     id: 5,
@@ -82,7 +95,7 @@ const notifications = [
     read: true,
     priority: 'high',
     icon: AlertTriangle,
-    color: 'text-yellow-600 bg-yellow-100 dark:bg-yellow-900'
+    color: 'text-yellow-600 bg-yellow-100 dark:bg-yellow-900',
   },
   {
     id: 6,
@@ -93,8 +106,8 @@ const notifications = [
     read: true,
     priority: 'medium',
     icon: User,
-    color: 'text-blue-600 bg-blue-100 dark:bg-blue-900'
-  }
+    color: 'text-blue-600 bg-blue-100 dark:bg-blue-900',
+  },
 ];
 
 /**
@@ -103,17 +116,19 @@ const notifications = [
 function formatTimestamp(timestamp: string): string {
   const date = new Date(timestamp);
   const now = new Date();
-  const diffInMinutes = Math.floor((now.getTime() - date.getTime()) / (1000 * 60));
-  
+  const diffInMinutes = Math.floor(
+    (now.getTime() - date.getTime()) / (1000 * 60)
+  );
+
   if (diffInMinutes < 1) return 'Just now';
   if (diffInMinutes < 60) return `${diffInMinutes}m ago`;
-  
+
   const diffInHours = Math.floor(diffInMinutes / 60);
   if (diffInHours < 24) return `${diffInHours}h ago`;
-  
+
   const diffInDays = Math.floor(diffInHours / 24);
   if (diffInDays < 7) return `${diffInDays}d ago`;
-  
+
   return date.toLocaleDateString();
 }
 
@@ -137,7 +152,7 @@ function getPriorityVariant(priority: string) {
  * Notifications page component
  */
 export default function NotificationsPage() {
-  const unreadCount = notifications.filter(n => !n.read).length;
+  const unreadCount = notifications.filter((n) => !n.read).length;
 
   return (
     <div className="space-y-8">
@@ -162,28 +177,34 @@ export default function NotificationsPage() {
       </div>
 
       {/* Notifications Summary */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Total</p>
+                <p className="text-muted-foreground text-sm font-medium">
+                  Total
+                </p>
                 <p className="text-2xl font-bold">{notifications.length}</p>
               </div>
-              <Bell className="h-8 w-8 text-muted-foreground" />
+              <Bell className="text-muted-foreground h-8 w-8" />
             </div>
           </CardContent>
         </Card>
-        
+
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Unread</p>
+                <p className="text-muted-foreground text-sm font-medium">
+                  Unread
+                </p>
                 <p className="text-2xl font-bold">{unreadCount}</p>
               </div>
-              <div className="h-8 w-8 rounded-full bg-red-100 dark:bg-red-900 flex items-center justify-center">
-                <span className="text-sm font-bold text-red-600">{unreadCount}</span>
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-red-100 dark:bg-red-900">
+                <span className="text-sm font-bold text-red-600">
+                  {unreadCount}
+                </span>
               </div>
             </div>
           </CardContent>
@@ -193,9 +214,11 @@ export default function NotificationsPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">High Priority</p>
+                <p className="text-muted-foreground text-sm font-medium">
+                  High Priority
+                </p>
                 <p className="text-2xl font-bold">
-                  {notifications.filter(n => n.priority === 'high').length}
+                  {notifications.filter((n) => n.priority === 'high').length}
                 </p>
               </div>
               <AlertTriangle className="h-8 w-8 text-orange-500" />
@@ -207,11 +230,17 @@ export default function NotificationsPage() {
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-muted-foreground">Today</p>
+                <p className="text-muted-foreground text-sm font-medium">
+                  Today
+                </p>
                 <p className="text-2xl font-bold">
-                  {notifications.filter(n => 
-                    new Date(n.timestamp).toDateString() === new Date().toDateString()
-                  ).length}
+                  {
+                    notifications.filter(
+                      (n) =>
+                        new Date(n.timestamp).toDateString() ===
+                        new Date().toDateString()
+                    ).length
+                  }
                 </p>
               </div>
               <Clock className="h-8 w-8 text-blue-500" />
@@ -235,10 +264,10 @@ export default function NotificationsPage() {
             </div>
             <div className="flex items-center space-x-2">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input 
-                  placeholder="Search notifications..." 
-                  className="pl-9 w-64"
+                <Search className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform" />
+                <Input
+                  placeholder="Search notifications..."
+                  className="w-64 pl-9"
                 />
               </div>
             </div>
@@ -248,38 +277,47 @@ export default function NotificationsPage() {
           <div className="space-y-4">
             {notifications.map((notification) => {
               const NotificationIcon = notification.icon;
-              
+
               return (
-                <div 
-                  key={notification.id} 
-                  className={`flex items-start space-x-4 p-4 rounded-lg border transition-colors hover:bg-muted/50 ${
-                    !notification.read ? 'bg-muted/20 border-primary/20' : 'bg-background'
+                <div
+                  key={notification.id}
+                  className={`hover:bg-muted/50 flex items-start space-x-4 rounded-lg border p-4 transition-colors ${
+                    !notification.read
+                      ? 'bg-muted/20 border-primary/20'
+                      : 'bg-background'
                   }`}
                 >
-                  <div className={`p-2 rounded-lg ${notification.color} shrink-0`}>
+                  <div
+                    className={`rounded-lg p-2 ${notification.color} shrink-0`}
+                  >
                     <NotificationIcon className="h-4 w-4" />
                   </div>
-                  
-                  <div className="flex-1 min-w-0">
+
+                  <div className="min-w-0 flex-1">
                     <div className="flex items-start justify-between">
                       <div className="space-y-1">
                         <div className="flex items-center space-x-2">
-                          <h4 className="text-sm font-medium">{notification.title}</h4>
+                          <h4 className="text-sm font-medium">
+                            {notification.title}
+                          </h4>
                           {!notification.read && (
-                            <div className="h-2 w-2 rounded-full bg-primary" />
+                            <div className="bg-primary h-2 w-2 rounded-full" />
                           )}
-                          <Badge variant={getPriorityVariant(notification.priority)} className="text-xs">
+                          <Badge
+                            variant={getPriorityVariant(notification.priority)}
+                            className="text-xs"
+                          >
                             {notification.priority}
                           </Badge>
                         </div>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-muted-foreground text-sm">
                           {notification.message}
                         </p>
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-muted-foreground text-xs">
                           {formatTimestamp(notification.timestamp)}
                         </p>
                       </div>
-                      
+
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button variant="ghost" className="h-8 w-8 p-0">
@@ -291,10 +329,12 @@ export default function NotificationsPage() {
                           <DropdownMenuLabel>Actions</DropdownMenuLabel>
                           <DropdownMenuItem className="cursor-pointer">
                             <Eye className="mr-2 h-4 w-4" />
-                            {notification.read ? 'Mark as unread' : 'Mark as read'}
+                            {notification.read
+                              ? 'Mark as unread'
+                              : 'Mark as read'}
                           </DropdownMenuItem>
                           <DropdownMenuSeparator />
-                          <DropdownMenuItem className="cursor-pointer text-destructive">
+                          <DropdownMenuItem className="text-destructive cursor-pointer">
                             <Trash2 className="mr-2 h-4 w-4" />
                             Delete
                           </DropdownMenuItem>
@@ -309,9 +349,7 @@ export default function NotificationsPage() {
 
           {/* Load More Button */}
           <div className="flex justify-center pt-6">
-            <Button variant="outline">
-              Load More Notifications
-            </Button>
+            <Button variant="outline">Load More Notifications</Button>
           </div>
         </CardContent>
       </Card>
@@ -325,10 +363,10 @@ export default function NotificationsPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <div className="space-y-2">
               <h4 className="font-medium">Email Notifications</h4>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 Receive important updates via email
               </p>
               <Button variant="outline" size="sm">
@@ -337,7 +375,7 @@ export default function NotificationsPage() {
             </div>
             <div className="space-y-2">
               <h4 className="font-medium">Push Notifications</h4>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 Browser notifications for real-time alerts
               </p>
               <Button variant="outline" size="sm">
@@ -346,7 +384,7 @@ export default function NotificationsPage() {
             </div>
             <div className="space-y-2">
               <h4 className="font-medium">Digest Settings</h4>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-muted-foreground text-sm">
                 Daily or weekly notification summaries
               </p>
               <Button variant="outline" size="sm">
@@ -358,4 +396,4 @@ export default function NotificationsPage() {
       </Card>
     </div>
   );
-} 
+}

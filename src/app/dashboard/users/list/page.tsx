@@ -107,21 +107,27 @@ export default function UsersListPage() {
   const [selectedUser, setSelectedUser] = useState<any>(null);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 
-  const filteredUsers = filterUsers(usersData, searchTerm, departmentFilter, roleFilter, statusFilter);
+  const filteredUsers = filterUsers(
+    usersData,
+    searchTerm,
+    departmentFilter,
+    roleFilter,
+    statusFilter
+  );
 
   const handleSelectUser = (userId: string) => {
-    setSelectedUsers(prev => 
-      prev.includes(userId) 
-        ? prev.filter(id => id !== userId)
+    setSelectedUsers((prev) =>
+      prev.includes(userId)
+        ? prev.filter((id) => id !== userId)
         : [...prev, userId]
     );
   };
 
   const handleSelectAll = () => {
     setSelectedUsers(
-      selectedUsers.length === filteredUsers.length 
-        ? [] 
-        : filteredUsers.map(user => user.id)
+      selectedUsers.length === filteredUsers.length
+        ? []
+        : filteredUsers.map((user) => user.id)
     );
   };
 
@@ -135,7 +141,9 @@ export default function UsersListPage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/dashboard/users">User Management</BreadcrumbLink>
+            <BreadcrumbLink href="/dashboard/users">
+              User Management
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbPage>All Users</BreadcrumbPage>
@@ -159,7 +167,10 @@ export default function UsersListPage() {
             <Download className="mr-2 h-4 w-4" />
             Export Data
           </Button>
-          <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+          <Dialog
+            open={isCreateDialogOpen}
+            onOpenChange={setIsCreateDialogOpen}
+          >
             <DialogTrigger asChild>
               <Button>
                 <UserPlus className="mr-2 h-4 w-4" />
@@ -170,17 +181,18 @@ export default function UsersListPage() {
               <DialogHeader>
                 <DialogTitle>Add New User</DialogTitle>
                 <DialogDescription>
-                  Create a new user account with appropriate permissions and access.
+                  Create a new user account with appropriate permissions and
+                  access.
                 </DialogDescription>
               </DialogHeader>
-              
+
               <Tabs defaultValue="basic" className="w-full">
                 <TabsList className="grid w-full grid-cols-3">
                   <TabsTrigger value="basic">Basic Info</TabsTrigger>
                   <TabsTrigger value="role">Role & Access</TabsTrigger>
                   <TabsTrigger value="contact">Contact Details</TabsTrigger>
                 </TabsList>
-                
+
                 <div className="h-80 overflow-y-auto">
                   <TabsContent value="basic" className="space-y-4 p-1">
                     <div className="grid gap-4 md:grid-cols-2">
@@ -195,7 +207,11 @@ export default function UsersListPage() {
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="email">Email Address</Label>
-                      <Input id="email" type="email" placeholder="Enter email address" />
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="Enter email address"
+                      />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="department">Department</Label>
@@ -204,7 +220,9 @@ export default function UsersListPage() {
                           <SelectValue placeholder="Select department" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="engineering">Engineering</SelectItem>
+                          <SelectItem value="engineering">
+                            Engineering
+                          </SelectItem>
                           <SelectItem value="marketing">Marketing</SelectItem>
                           <SelectItem value="sales">Sales</SelectItem>
                           <SelectItem value="hr">Human Resources</SelectItem>
@@ -213,7 +231,7 @@ export default function UsersListPage() {
                       </Select>
                     </div>
                   </TabsContent>
-                  
+
                   <TabsContent value="role" className="space-y-4 p-1">
                     <div className="space-y-2">
                       <Label htmlFor="role">Role</Label>
@@ -260,7 +278,7 @@ export default function UsersListPage() {
                       </div>
                     </div>
                   </TabsContent>
-                  
+
                   <TabsContent value="contact" className="space-y-4 p-1">
                     <div className="space-y-2">
                       <Label htmlFor="phone">Phone Number</Label>
@@ -277,9 +295,12 @@ export default function UsersListPage() {
                   </TabsContent>
                 </div>
               </Tabs>
-              
+
               <DialogFooter>
-                <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)}>
+                <Button
+                  variant="outline"
+                  onClick={() => setIsCreateDialogOpen(false)}
+                >
                   Cancel
                 </Button>
                 <Button onClick={() => setIsCreateDialogOpen(false)}>
@@ -302,10 +323,14 @@ export default function UsersListPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Total Users</p>
-                  <p className="text-2xl font-bold">{userStats.totalUsers.toLocaleString()}</p>
+                  <p className="text-muted-foreground text-sm font-medium">
+                    Total Users
+                  </p>
+                  <p className="text-2xl font-bold">
+                    {userStats.totalUsers.toLocaleString()}
+                  </p>
                 </div>
-                <Users className="h-8 w-8 text-muted-foreground" />
+                <Users className="text-muted-foreground h-8 w-8" />
               </div>
             </CardContent>
           </Card>
@@ -320,8 +345,12 @@ export default function UsersListPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Active</p>
-                  <p className="text-2xl font-bold text-green-600">{userStats.activeUsers.toLocaleString()}</p>
+                  <p className="text-muted-foreground text-sm font-medium">
+                    Active
+                  </p>
+                  <p className="text-2xl font-bold text-green-600">
+                    {userStats.activeUsers.toLocaleString()}
+                  </p>
                 </div>
                 <CheckCircle2 className="h-8 w-8 text-green-600" />
               </div>
@@ -338,8 +367,12 @@ export default function UsersListPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Pending</p>
-                  <p className="text-2xl font-bold text-yellow-600">{userStats.pendingUsers}</p>
+                  <p className="text-muted-foreground text-sm font-medium">
+                    Pending
+                  </p>
+                  <p className="text-2xl font-bold text-yellow-600">
+                    {userStats.pendingUsers}
+                  </p>
                 </div>
                 <Clock className="h-8 w-8 text-yellow-600" />
               </div>
@@ -356,8 +389,12 @@ export default function UsersListPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Suspended</p>
-                  <p className="text-2xl font-bold text-red-600">{userStats.suspendedUsers}</p>
+                  <p className="text-muted-foreground text-sm font-medium">
+                    Suspended
+                  </p>
+                  <p className="text-2xl font-bold text-red-600">
+                    {userStats.suspendedUsers}
+                  </p>
                 </div>
                 <Ban className="h-8 w-8 text-red-600" />
               </div>
@@ -374,8 +411,12 @@ export default function UsersListPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Admins</p>
-                  <p className="text-2xl font-bold text-purple-600">{userStats.adminUsers}</p>
+                  <p className="text-muted-foreground text-sm font-medium">
+                    Admins
+                  </p>
+                  <p className="text-2xl font-bold text-purple-600">
+                    {userStats.adminUsers}
+                  </p>
                 </div>
                 <Crown className="h-8 w-8 text-purple-600" />
               </div>
@@ -392,8 +433,12 @@ export default function UsersListPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">This Week</p>
-                  <p className="text-2xl font-bold text-blue-600">{userStats.newThisWeek}</p>
+                  <p className="text-muted-foreground text-sm font-medium">
+                    This Week
+                  </p>
+                  <p className="text-2xl font-bold text-blue-600">
+                    {userStats.newThisWeek}
+                  </p>
                 </div>
                 <UserPlus className="h-8 w-8 text-blue-600" />
               </div>
@@ -410,8 +455,12 @@ export default function UsersListPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">This Month</p>
-                  <p className="text-2xl font-bold text-indigo-600">{userStats.newThisMonth}</p>
+                  <p className="text-muted-foreground text-sm font-medium">
+                    This Month
+                  </p>
+                  <p className="text-2xl font-bold text-indigo-600">
+                    {userStats.newThisMonth}
+                  </p>
                 </div>
                 <Calendar className="h-8 w-8 text-indigo-600" />
               </div>
@@ -428,8 +477,12 @@ export default function UsersListPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Avg. Performance</p>
-                  <p className="text-2xl font-bold text-emerald-600">{userStats.avgPerformance}%</p>
+                  <p className="text-muted-foreground text-sm font-medium">
+                    Avg. Performance
+                  </p>
+                  <p className="text-2xl font-bold text-emerald-600">
+                    {userStats.avgPerformance}%
+                  </p>
                 </div>
                 <CheckCircle2 className="h-8 w-8 text-emerald-600" />
               </div>
@@ -445,20 +498,24 @@ export default function UsersListPage() {
             <div>
               <CardTitle>All Users</CardTitle>
               <CardDescription>
-                Manage and monitor user accounts ({filteredUsers.length} of {usersData.length} users shown)
+                Manage and monitor user accounts ({filteredUsers.length} of{' '}
+                {usersData.length} users shown)
               </CardDescription>
             </div>
             <div className="flex flex-wrap items-center gap-2">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Search className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" />
                 <Input
                   placeholder="Search users..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-9 w-64"
+                  className="w-64 pl-9"
                 />
               </div>
-              <Select value={departmentFilter} onValueChange={setDepartmentFilter}>
+              <Select
+                value={departmentFilter}
+                onValueChange={setDepartmentFilter}
+              >
                 <SelectTrigger className="w-40">
                   <SelectValue />
                 </SelectTrigger>
@@ -499,10 +556,11 @@ export default function UsersListPage() {
         </CardHeader>
         <CardContent>
           {selectedUsers.length > 0 && (
-            <div className="mb-4 p-3 bg-muted rounded-lg">
+            <div className="bg-muted mb-4 rounded-lg p-3">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">
-                  {selectedUsers.length} user{selectedUsers.length > 1 ? 's' : ''} selected
+                <span className="text-muted-foreground text-sm">
+                  {selectedUsers.length} user
+                  {selectedUsers.length > 1 ? 's' : ''} selected
                 </span>
                 <div className="flex items-center space-x-2">
                   <Button variant="outline" size="sm">
@@ -550,7 +608,7 @@ export default function UsersListPage() {
                 {filteredUsers.map((user, index) => {
                   const RoleIcon = getRoleIcon(user.role);
                   const StatusIcon = getStatusIcon(user.status);
-                  
+
                   return (
                     <motion.tr
                       key={user.id}
@@ -570,19 +628,26 @@ export default function UsersListPage() {
                           <Avatar className="h-8 w-8">
                             <AvatarImage src={user.avatar} alt={user.name} />
                             <AvatarFallback>
-                              {user.name.split(' ').map((n: string) => n[0]).join('')}
+                              {user.name
+                                .split(' ')
+                                .map((n: string) => n[0])
+                                .join('')}
                             </AvatarFallback>
                           </Avatar>
                           <div>
                             <div className="font-medium">{user.name}</div>
-                            <div className="text-sm text-muted-foreground">{user.email}</div>
-                            <div className="text-xs text-muted-foreground">{user.id}</div>
+                            <div className="text-muted-foreground text-sm">
+                              {user.email}
+                            </div>
+                            <div className="text-muted-foreground text-xs">
+                              {user.id}
+                            </div>
                           </div>
                         </div>
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center space-x-2">
-                          <RoleIcon className="h-4 w-4 text-muted-foreground" />
+                          <RoleIcon className="text-muted-foreground h-4 w-4" />
                           <span>{user.role}</span>
                         </div>
                       </TableCell>
@@ -590,23 +655,33 @@ export default function UsersListPage() {
                       <TableCell>
                         <div className="flex items-center space-x-2">
                           <StatusIcon className="h-4 w-4" />
-                          <Badge variant={getStatusColor(user.status) as BadgeProps['variant']}>
+                          <Badge
+                            variant={
+                              getStatusColor(
+                                user.status
+                              ) as BadgeProps['variant']
+                            }
+                          >
                             {user.status}
                           </Badge>
                         </div>
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center space-x-2">
-                          <span className="text-sm font-medium">{user.performance}%</span>
-                          <div className="w-16 h-2 bg-muted rounded">
-                            <div 
-                              className="h-full bg-primary rounded" 
-                              style={{ width: `${Math.min(user.performance, 100)}%` }}
+                          <span className="text-sm font-medium">
+                            {user.performance}%
+                          </span>
+                          <div className="bg-muted h-2 w-16 rounded">
+                            <div
+                              className="bg-primary h-full rounded"
+                              style={{
+                                width: `${Math.min(user.performance, 100)}%`,
+                              }}
                             />
                           </div>
                         </div>
                       </TableCell>
-                      <TableCell className="text-sm text-muted-foreground">
+                      <TableCell className="text-muted-foreground text-sm">
                         {formatLastLogin(user.lastLogin)}
                       </TableCell>
                       <TableCell>
@@ -621,7 +696,9 @@ export default function UsersListPage() {
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                            <DropdownMenuItem onClick={() => setSelectedUser(user)}>
+                            <DropdownMenuItem
+                              onClick={() => setSelectedUser(user)}
+                            >
                               <Eye className="mr-2 h-4 w-4" />
                               View Details
                             </DropdownMenuItem>
@@ -669,10 +746,10 @@ export default function UsersListPage() {
           </div>
 
           {filteredUsers.length === 0 && (
-            <div className="text-center py-8">
-              <Users className="mx-auto h-12 w-12 text-muted-foreground" />
+            <div className="py-8 text-center">
+              <Users className="text-muted-foreground mx-auto h-12 w-12" />
               <h3 className="mt-2 text-sm font-semibold">No users found</h3>
-              <p className="mt-1 text-sm text-muted-foreground">
+              <p className="text-muted-foreground mt-1 text-sm">
                 Try adjusting your search or filter criteria.
               </p>
             </div>
@@ -689,22 +766,36 @@ export default function UsersListPage() {
               Complete information for {selectedUser?.name}
             </DialogDescription>
           </DialogHeader>
-          
+
           {selectedUser && (
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
                 <Avatar className="h-16 w-16">
-                  <AvatarImage src={selectedUser.avatar} alt={selectedUser.name} />
+                  <AvatarImage
+                    src={selectedUser.avatar}
+                    alt={selectedUser.name}
+                  />
                   <AvatarFallback className="text-lg">
-                    {selectedUser.name.split(' ').map((n: string) => n[0]).join('')}
+                    {selectedUser.name
+                      .split(' ')
+                      .map((n: string) => n[0])
+                      .join('')}
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
                   <h3 className="text-lg font-semibold">{selectedUser.name}</h3>
                   <p className="text-muted-foreground">{selectedUser.email}</p>
-                  <p className="text-sm text-muted-foreground">{selectedUser.id}</p>
-                  <div className="flex items-center space-x-2 mt-2">
-                    <Badge variant={getStatusColor(selectedUser.status) as BadgeProps['variant']}>
+                  <p className="text-muted-foreground text-sm">
+                    {selectedUser.id}
+                  </p>
+                  <div className="mt-2 flex items-center space-x-2">
+                    <Badge
+                      variant={
+                        getStatusColor(
+                          selectedUser.status
+                        ) as BadgeProps['variant']
+                      }
+                    >
                       {selectedUser.status}
                     </Badge>
                     <Badge variant="outline">{selectedUser.role}</Badge>
@@ -715,60 +806,78 @@ export default function UsersListPage() {
 
               <div className="grid gap-6 md:grid-cols-2">
                 <div>
-                  <h4 className="font-medium mb-3">Personal Information</h4>
+                  <h4 className="mb-3 font-medium">Personal Information</h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center space-x-2">
-                      <User className="h-4 w-4 text-muted-foreground" />
+                      <User className="text-muted-foreground h-4 w-4" />
                       <span>{selectedUser.department}</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <MapPin className="h-4 w-4 text-muted-foreground" />
+                      <MapPin className="text-muted-foreground h-4 w-4" />
                       <span>{selectedUser.location}</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Phone className="h-4 w-4 text-muted-foreground" />
+                      <Phone className="text-muted-foreground h-4 w-4" />
                       <span>{selectedUser.phone}</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Calendar className="h-4 w-4 text-muted-foreground" />
+                      <Calendar className="text-muted-foreground h-4 w-4" />
                       <span>Joined {selectedUser.joinDate}</span>
                     </div>
                   </div>
                 </div>
-                
+
                 <div>
-                  <h4 className="font-medium mb-3">Performance & Activity</h4>
+                  <h4 className="mb-3 font-medium">Performance & Activity</h4>
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Performance:</span>
-                      <span className="font-medium">{selectedUser.performance}%</span>
+                      <span className="text-muted-foreground">
+                        Performance:
+                      </span>
+                      <span className="font-medium">
+                        {selectedUser.performance}%
+                      </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Projects:</span>
-                      <span className="font-medium">{selectedUser.projects}</span>
+                      <span className="font-medium">
+                        {selectedUser.projects}
+                      </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Tasks Completed:</span>
-                      <span className="font-medium">{selectedUser.tasksCompleted}</span>
+                      <span className="text-muted-foreground">
+                        Tasks Completed:
+                      </span>
+                      <span className="font-medium">
+                        {selectedUser.tasksCompleted}
+                      </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Last Login:</span>
-                      <span className="font-medium">{formatLastLogin(selectedUser.lastLogin)}</span>
+                      <span className="font-medium">
+                        {formatLastLogin(selectedUser.lastLogin)}
+                      </span>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div>
-                <h4 className="font-medium mb-3">Permissions</h4>
+                <h4 className="mb-3 font-medium">Permissions</h4>
                 <div className="flex flex-wrap gap-2">
                   {selectedUser.permissions.map((permission: string) => (
-                    <Badge key={permission} variant="secondary" className="capitalize">
+                    <Badge
+                      key={permission}
+                      variant="secondary"
+                      className="capitalize"
+                    >
                       {permission}
                     </Badge>
                   ))}
                   {selectedUser.permissions.length === 0 && (
-                    <span className="text-sm text-muted-foreground">No permissions assigned</span>
+                    <span className="text-muted-foreground text-sm">
+                      No permissions assigned
+                    </span>
                   )}
                 </div>
               </div>
@@ -777,9 +886,7 @@ export default function UsersListPage() {
                 <Button variant="outline" onClick={() => setSelectedUser(null)}>
                   Close
                 </Button>
-                <Button>
-                  Edit User
-                </Button>
+                <Button>Edit User</Button>
               </div>
             </div>
           )}
@@ -787,4 +894,4 @@ export default function UsersListPage() {
       </Dialog>
     </div>
   );
-} 
+}

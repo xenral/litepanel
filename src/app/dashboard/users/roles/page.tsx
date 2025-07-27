@@ -109,14 +109,14 @@ export default function RolesManagementPage() {
 
   const handlePermissionToggle = (permissionId: string, isNewRole = false) => {
     if (isNewRole) {
-      setNewRole(prev => ({
+      setNewRole((prev) => ({
         ...prev,
-        permissions: togglePermission(prev.permissions, permissionId)
+        permissions: togglePermission(prev.permissions, permissionId),
       }));
     } else if (editingRole) {
       setEditingRole((prev: any) => ({
         ...prev,
-        permissions: togglePermission(prev.permissions, permissionId)
+        permissions: togglePermission(prev.permissions, permissionId),
       }));
     }
   };
@@ -145,7 +145,9 @@ export default function RolesManagementPage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/dashboard/users">User Management</BreadcrumbLink>
+            <BreadcrumbLink href="/dashboard/users">
+              User Management
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbPage>Roles</BreadcrumbPage>
@@ -165,21 +167,24 @@ export default function RolesManagementPage() {
             <Download className="mr-2 h-4 w-4" />
             Export Roles
           </Button>
-          <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+          <Dialog
+            open={isCreateDialogOpen}
+            onOpenChange={setIsCreateDialogOpen}
+          >
             <DialogTrigger asChild>
               <Button onClick={resetNewRole}>
                 <Plus className="mr-2 h-4 w-4" />
                 Create Role
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+            <DialogContent className="max-h-[90vh] max-w-4xl overflow-y-auto">
               <DialogHeader>
                 <DialogTitle>Create New Role</DialogTitle>
                 <DialogDescription>
                   Define a new role with specific permissions and access levels.
                 </DialogDescription>
               </DialogHeader>
-              
+
               <div className="space-y-6">
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="space-y-2">
@@ -188,14 +193,21 @@ export default function RolesManagementPage() {
                       id="role-name"
                       placeholder="Enter role name"
                       value={newRole.name}
-                      onChange={(e) => setNewRole(prev => ({ ...prev, name: e.target.value }))}
+                      onChange={(e) =>
+                        setNewRole((prev) => ({
+                          ...prev,
+                          name: e.target.value,
+                        }))
+                      }
                     />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="role-color">Role Color</Label>
-                    <Select 
-                      value={newRole.color} 
-                      onValueChange={(value) => setNewRole(prev => ({ ...prev, color: value }))}
+                    <Select
+                      value={newRole.color}
+                      onValueChange={(value) =>
+                        setNewRole((prev) => ({ ...prev, color: value }))
+                      }
                     >
                       <SelectTrigger>
                         <SelectValue />
@@ -213,14 +225,19 @@ export default function RolesManagementPage() {
                     </Select>
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="role-description">Description</Label>
                   <Textarea
                     id="role-description"
                     placeholder="Describe the role and its responsibilities"
                     value={newRole.description}
-                    onChange={(e) => setNewRole(prev => ({ ...prev, description: e.target.value }))}
+                    onChange={(e) =>
+                      setNewRole((prev) => ({
+                        ...prev,
+                        description: e.target.value,
+                      }))
+                    }
                     rows={3}
                   />
                 </div>
@@ -228,49 +245,65 @@ export default function RolesManagementPage() {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <Label className="text-base font-medium">Permissions</Label>
-                    <div className="text-sm text-muted-foreground">
-                      {newRole.permissions.length} permission{newRole.permissions.length !== 1 ? 's' : ''} selected
+                    <div className="text-muted-foreground text-sm">
+                      {newRole.permissions.length} permission
+                      {newRole.permissions.length !== 1 ? 's' : ''} selected
                     </div>
                   </div>
-                  
-                                        {permissionCategories.map((category, categoryIndex) => {
-                        const Icon = category.icon;
-                        const categoryPermissionsCount = getPermissionCountByCategory(
-                          newRole.permissions, 
-                          category.permissions
-                        );
-                    
+
+                  {permissionCategories.map((category, categoryIndex) => {
+                    const Icon = category.icon;
+                    const categoryPermissionsCount =
+                      getPermissionCountByCategory(
+                        newRole.permissions,
+                        category.permissions
+                      );
+
                     return (
                       <motion.div
                         key={category.id}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: categoryIndex * 0.05 }}
-                        className="border rounded-lg p-4"
+                        transition={{
+                          duration: 0.3,
+                          delay: categoryIndex * 0.05,
+                        }}
+                        className="rounded-lg border p-4"
                       >
-                        <div className="flex items-center justify-between mb-3">
+                        <div className="mb-3 flex items-center justify-between">
                           <div className="flex items-center space-x-2">
-                            <Icon className="h-5 w-5 text-muted-foreground" />
+                            <Icon className="text-muted-foreground h-5 w-5" />
                             <span className="font-medium">{category.name}</span>
                           </div>
                           <Badge variant="outline">
-                            {categoryPermissionsCount}/{category.permissions.length}
+                            {categoryPermissionsCount}/
+                            {category.permissions.length}
                           </Badge>
                         </div>
-                        
+
                         <div className="grid gap-3 md:grid-cols-2">
                           {category.permissions.map((permission) => (
-                            <div key={permission.id} className="flex items-start space-x-3">
+                            <div
+                              key={permission.id}
+                              className="flex items-start space-x-3"
+                            >
                               <Checkbox
                                 id={permission.id}
-                                checked={newRole.permissions.includes(permission.id)}
-                                onCheckedChange={() => handlePermissionToggle(permission.id, true)}
+                                checked={newRole.permissions.includes(
+                                  permission.id
+                                )}
+                                onCheckedChange={() =>
+                                  handlePermissionToggle(permission.id, true)
+                                }
                               />
                               <div className="flex-1">
-                                <Label htmlFor={permission.id} className="cursor-pointer font-medium">
+                                <Label
+                                  htmlFor={permission.id}
+                                  className="cursor-pointer font-medium"
+                                >
                                   {permission.name}
                                 </Label>
-                                <p className="text-xs text-muted-foreground">
+                                <p className="text-muted-foreground text-xs">
                                   {permission.description}
                                 </p>
                               </div>
@@ -282,12 +315,15 @@ export default function RolesManagementPage() {
                   })}
                 </div>
               </div>
-              
+
               <DialogFooter>
-                <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)}>
+                <Button
+                  variant="outline"
+                  onClick={() => setIsCreateDialogOpen(false)}
+                >
                   Cancel
                 </Button>
-                <Button 
+                <Button
                   onClick={() => setIsCreateDialogOpen(false)}
                   disabled={!newRole.name.trim()}
                 >
@@ -303,8 +339,8 @@ export default function RolesManagementPage() {
       <Card>
         <CardContent className="p-6">
           <div className="flex items-center space-x-4">
-            <div className="relative flex-1 max-w-sm">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <div className="relative max-w-sm flex-1">
+              <Search className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" />
               <Input
                 placeholder="Search roles..."
                 value={searchTerm}
@@ -312,7 +348,7 @@ export default function RolesManagementPage() {
                 className="pl-9"
               />
             </div>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-muted-foreground text-sm">
               {filteredRoles.length} of {rolesData.length} roles
             </div>
           </div>
@@ -332,11 +368,11 @@ export default function RolesManagementPage() {
               <CardHeader>
                 <div className="flex items-start justify-between">
                   <div className="flex items-center space-x-3">
-                    <div className={`w-4 h-4 rounded-full ${role.color}`} />
+                    <div className={`h-4 w-4 rounded-full ${role.color}`} />
                     <div>
                       <CardTitle className="text-lg">{role.name}</CardTitle>
                       {role.isSystem && (
-                        <Badge variant="outline" className="text-xs mt-1">
+                        <Badge variant="outline" className="mt-1 text-xs">
                           System Role
                         </Badge>
                       )}
@@ -354,7 +390,10 @@ export default function RolesManagementPage() {
                         <Eye className="mr-2 h-4 w-4" />
                         View Details
                       </DropdownMenuItem>
-                      <DropdownMenuItem onClick={() => openEditDialog(role)} disabled={role.isSystem}>
+                      <DropdownMenuItem
+                        onClick={() => openEditDialog(role)}
+                        disabled={role.isSystem}
+                      >
                         <Edit className="mr-2 h-4 w-4" />
                         Edit Role
                       </DropdownMenuItem>
@@ -363,8 +402,8 @@ export default function RolesManagementPage() {
                         Manage Users
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem 
-                        className="text-red-600" 
+                      <DropdownMenuItem
+                        className="text-red-600"
                         disabled={role.isSystem || role.userCount > 0}
                       >
                         <Trash2 className="mr-2 h-4 w-4" />
@@ -380,33 +419,37 @@ export default function RolesManagementPage() {
               <CardContent>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">Users with this role</span>
+                    <span className="text-muted-foreground">
+                      Users with this role
+                    </span>
                     <span className="font-medium">{role.userCount}</span>
                   </div>
-                  
+
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-muted-foreground">Permissions</span>
-                    <span className="font-medium">{role.permissions.length}</span>
+                    <span className="font-medium">
+                      {role.permissions.length}
+                    </span>
                   </div>
-                  
+
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-muted-foreground">Created</span>
                     <span className="font-medium">{role.createdAt}</span>
                   </div>
 
                   <div className="flex space-x-2">
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
+                    <Button
+                      variant="outline"
+                      size="sm"
                       className="flex-1"
                       onClick={() => setSelectedRole(role)}
                     >
                       <Eye className="mr-2 h-4 w-4" />
                       View
                     </Button>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
+                    <Button
+                      variant="outline"
+                      size="sm"
                       className="flex-1"
                       onClick={() => openEditDialog(role)}
                       disabled={role.isSystem}
@@ -424,64 +467,74 @@ export default function RolesManagementPage() {
 
       {/* Role Details Dialog */}
       <Dialog open={!!selectedRole} onOpenChange={() => setSelectedRole(null)}>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-h-[90vh] max-w-3xl overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="flex items-center space-x-2">
-              <div className={`w-4 h-4 rounded-full ${selectedRole?.color}`} />
+              <div className={`h-4 w-4 rounded-full ${selectedRole?.color}`} />
               <span>{selectedRole?.name}</span>
               {selectedRole?.isSystem && (
                 <Badge variant="outline">System Role</Badge>
               )}
             </DialogTitle>
-            <DialogDescription>
-              {selectedRole?.description}
-            </DialogDescription>
+            <DialogDescription>{selectedRole?.description}</DialogDescription>
           </DialogHeader>
-          
+
           {selectedRole && (
             <div className="space-y-6">
               <div className="grid gap-4 md:grid-cols-3">
-                <div className="text-center p-4 border rounded-lg">
-                  <div className="text-2xl font-bold">{selectedRole.userCount}</div>
-                  <div className="text-sm text-muted-foreground">Users</div>
+                <div className="rounded-lg border p-4 text-center">
+                  <div className="text-2xl font-bold">
+                    {selectedRole.userCount}
+                  </div>
+                  <div className="text-muted-foreground text-sm">Users</div>
                 </div>
-                <div className="text-center p-4 border rounded-lg">
-                  <div className="text-2xl font-bold">{selectedRole.permissions.length}</div>
-                  <div className="text-sm text-muted-foreground">Permissions</div>
+                <div className="rounded-lg border p-4 text-center">
+                  <div className="text-2xl font-bold">
+                    {selectedRole.permissions.length}
+                  </div>
+                  <div className="text-muted-foreground text-sm">
+                    Permissions
+                  </div>
                 </div>
-                <div className="text-center p-4 border rounded-lg">
-                  <div className="text-2xl font-bold">{selectedRole.createdAt}</div>
-                  <div className="text-sm text-muted-foreground">Created</div>
+                <div className="rounded-lg border p-4 text-center">
+                  <div className="text-2xl font-bold">
+                    {selectedRole.createdAt}
+                  </div>
+                  <div className="text-muted-foreground text-sm">Created</div>
                 </div>
               </div>
 
               <div>
-                <h4 className="font-medium mb-3">Permissions</h4>
+                <h4 className="mb-3 font-medium">Permissions</h4>
                 <div className="space-y-4">
                   {permissionCategories.map((category) => {
-                    const categoryPermissions = category.permissions.filter(p => 
-                      selectedRole.permissions.includes(p.id)
+                    const categoryPermissions = category.permissions.filter(
+                      (p) => selectedRole.permissions.includes(p.id)
                     );
-                    
+
                     if (categoryPermissions.length === 0) return null;
-                    
+
                     const Icon = category.icon;
-                    
+
                     return (
-                      <div key={category.id} className="border rounded-lg p-4">
-                        <div className="flex items-center justify-between mb-3">
+                      <div key={category.id} className="rounded-lg border p-4">
+                        <div className="mb-3 flex items-center justify-between">
                           <div className="flex items-center space-x-2">
-                            <Icon className="h-5 w-5 text-muted-foreground" />
+                            <Icon className="text-muted-foreground h-5 w-5" />
                             <span className="font-medium">{category.name}</span>
                           </div>
                           <Badge variant="outline">
-                            {categoryPermissions.length}/{category.permissions.length}
+                            {categoryPermissions.length}/
+                            {category.permissions.length}
                           </Badge>
                         </div>
-                        
+
                         <div className="grid gap-2 md:grid-cols-2">
                           {categoryPermissions.map((permission) => (
-                            <div key={permission.id} className="flex items-center space-x-2">
+                            <div
+                              key={permission.id}
+                              className="flex items-center space-x-2"
+                            >
                               <CheckCircle2 className="h-4 w-4 text-green-600" />
                               <span className="text-sm">{permission.name}</span>
                             </div>
@@ -494,26 +547,35 @@ export default function RolesManagementPage() {
               </div>
 
               <div>
-                <h4 className="font-medium mb-3">Users with this Role</h4>
+                <h4 className="mb-3 font-medium">Users with this Role</h4>
                 <div className="space-y-2">
                   {usersInRoles
-                    .filter(user => user.role === selectedRole.id)
+                    .filter((user) => user.role === selectedRole.id)
                     .map((user) => (
-                      <div key={user.id} className="flex items-center space-x-3 p-3 border rounded">
+                      <div
+                        key={user.id}
+                        className="flex items-center space-x-3 rounded border p-3"
+                      >
                         <Avatar className="h-8 w-8">
                           <AvatarImage src={user.avatar} alt={user.name} />
                           <AvatarFallback>
-                            {user.name.split(' ').map(n => n[0]).join('')}
+                            {user.name
+                              .split(' ')
+                              .map((n) => n[0])
+                              .join('')}
                           </AvatarFallback>
                         </Avatar>
                         <div className="flex-1">
-                          <div className="font-medium text-sm">{user.name}</div>
-                          <div className="text-xs text-muted-foreground">{user.email}</div>
+                          <div className="text-sm font-medium">{user.name}</div>
+                          <div className="text-muted-foreground text-xs">
+                            {user.email}
+                          </div>
                         </div>
                       </div>
                     ))}
-                  {usersInRoles.filter(user => user.role === selectedRole.id).length === 0 && (
-                    <div className="text-center py-4 text-muted-foreground">
+                  {usersInRoles.filter((user) => user.role === selectedRole.id)
+                    .length === 0 && (
+                    <div className="text-muted-foreground py-4 text-center">
                       No users assigned to this role
                     </div>
                   )}
@@ -524,10 +586,13 @@ export default function RolesManagementPage() {
                 <Button variant="outline" onClick={() => setSelectedRole(null)}>
                   Close
                 </Button>
-                <Button onClick={() => {
-                  setSelectedRole(null);
-                  openEditDialog(selectedRole);
-                }} disabled={selectedRole.isSystem}>
+                <Button
+                  onClick={() => {
+                    setSelectedRole(null);
+                    openEditDialog(selectedRole);
+                  }}
+                  disabled={selectedRole.isSystem}
+                >
                   Edit Role
                 </Button>
               </div>
@@ -538,14 +603,14 @@ export default function RolesManagementPage() {
 
       {/* Edit Role Dialog */}
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-h-[90vh] max-w-4xl overflow-y-auto">
           <DialogHeader>
             <DialogTitle>Edit Role</DialogTitle>
             <DialogDescription>
               Modify role details and permissions.
             </DialogDescription>
           </DialogHeader>
-          
+
           {editingRole && (
             <div className="space-y-6">
               <div className="grid gap-4 md:grid-cols-2">
@@ -554,14 +619,21 @@ export default function RolesManagementPage() {
                   <Input
                     id="edit-role-name"
                     value={editingRole.name}
-                    onChange={(e) => setEditingRole((prev: any) => ({ ...prev, name: e.target.value }))}
+                    onChange={(e) =>
+                      setEditingRole((prev: any) => ({
+                        ...prev,
+                        name: e.target.value,
+                      }))
+                    }
                   />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="edit-role-color">Role Color</Label>
-                  <Select 
-                    value={editingRole.color} 
-                    onValueChange={(value) => setEditingRole((prev: any) => ({ ...prev, color: value }))}
+                  <Select
+                    value={editingRole.color}
+                    onValueChange={(value) =>
+                      setEditingRole((prev: any) => ({ ...prev, color: value }))
+                    }
                   >
                     <SelectTrigger>
                       <SelectValue />
@@ -579,13 +651,18 @@ export default function RolesManagementPage() {
                   </Select>
                 </div>
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="edit-role-description">Description</Label>
                 <Textarea
                   id="edit-role-description"
                   value={editingRole.description}
-                  onChange={(e) => setEditingRole((prev: any) => ({ ...prev, description: e.target.value }))}
+                  onChange={(e) =>
+                    setEditingRole((prev: any) => ({
+                      ...prev,
+                      description: e.target.value,
+                    }))
+                  }
                   rows={3}
                 />
               </div>
@@ -593,42 +670,54 @@ export default function RolesManagementPage() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <Label className="text-base font-medium">Permissions</Label>
-                  <div className="text-sm text-muted-foreground">
-                    {editingRole.permissions.length} permission{editingRole.permissions.length !== 1 ? 's' : ''} selected
+                  <div className="text-muted-foreground text-sm">
+                    {editingRole.permissions.length} permission
+                    {editingRole.permissions.length !== 1 ? 's' : ''} selected
                   </div>
                 </div>
-                
+
                 {permissionCategories.map((category) => {
                   const Icon = category.icon;
-                  const categoryPermissions = category.permissions.filter((p: any) => 
-                    editingRole.permissions.includes(p.id)
+                  const categoryPermissions = category.permissions.filter(
+                    (p: any) => editingRole.permissions.includes(p.id)
                   );
-                  
+
                   return (
-                    <div key={category.id} className="border rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-3">
+                    <div key={category.id} className="rounded-lg border p-4">
+                      <div className="mb-3 flex items-center justify-between">
                         <div className="flex items-center space-x-2">
-                          <Icon className="h-5 w-5 text-muted-foreground" />
+                          <Icon className="text-muted-foreground h-5 w-5" />
                           <span className="font-medium">{category.name}</span>
                         </div>
                         <Badge variant="outline">
-                          {categoryPermissions.length}/{category.permissions.length}
+                          {categoryPermissions.length}/
+                          {category.permissions.length}
                         </Badge>
                       </div>
-                      
+
                       <div className="grid gap-3 md:grid-cols-2">
                         {category.permissions.map((permission) => (
-                          <div key={permission.id} className="flex items-start space-x-3">
+                          <div
+                            key={permission.id}
+                            className="flex items-start space-x-3"
+                          >
                             <Checkbox
                               id={`edit-${permission.id}`}
-                              checked={editingRole.permissions.includes(permission.id)}
-                              onCheckedChange={() => handlePermissionToggle(permission.id, false)}
+                              checked={editingRole.permissions.includes(
+                                permission.id
+                              )}
+                              onCheckedChange={() =>
+                                handlePermissionToggle(permission.id, false)
+                              }
                             />
                             <div className="flex-1">
-                              <Label htmlFor={`edit-${permission.id}`} className="cursor-pointer font-medium">
+                              <Label
+                                htmlFor={`edit-${permission.id}`}
+                                className="cursor-pointer font-medium"
+                              >
                                 {permission.name}
                               </Label>
-                              <p className="text-xs text-muted-foreground">
+                              <p className="text-muted-foreground text-xs">
                                 {permission.description}
                               </p>
                             </div>
@@ -641,9 +730,12 @@ export default function RolesManagementPage() {
               </div>
             </div>
           )}
-          
+
           <DialogFooter>
-            <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
+            <Button
+              variant="outline"
+              onClick={() => setIsEditDialogOpen(false)}
+            >
               Cancel
             </Button>
             <Button onClick={() => setIsEditDialogOpen(false)}>
@@ -657,10 +749,11 @@ export default function RolesManagementPage() {
       <Alert>
         <Info className="h-4 w-4" />
         <AlertDescription>
-          System roles (Administrator and Employee) cannot be deleted or have their core permissions modified. 
-          Custom roles can be fully customized to meet your organization's needs.
+          System roles (Administrator and Employee) cannot be deleted or have
+          their core permissions modified. Custom roles can be fully customized
+          to meet your organization's needs.
         </AlertDescription>
       </Alert>
     </div>
   );
-} 
+}

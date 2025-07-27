@@ -58,4 +58,4 @@ export interface DevTool {
   status: 'active' | 'pending';
   icon: LucideIcon;
   color: string;
-} 
+}

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { 
+import {
   Component,
   Search,
   Filter,
@@ -15,7 +15,13 @@ import {
   Shield,
   FileText,
 } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
@@ -23,12 +29,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
 import { StatsCard } from '@/components/shared/stats-card';
 import { ActivityItem } from '@/components/shared/activity-item';
-import { 
+import {
   componentStories,
   storybookStats,
   recentActivity,
   teamMembers,
-  devTools
+  devTools,
 } from '@/data/storybook';
 
 export const metadata: Metadata = {
@@ -78,8 +84,8 @@ export default function StorybookPage() {
           icon="Shield"
           description="Automated test coverage"
           trend={{
-            value: "+2%",
-            isPositive: true
+            value: '+2%',
+            isPositive: true,
           }}
         />
         <StatsCard
@@ -88,8 +94,8 @@ export default function StorybookPage() {
           icon="Eye"
           description="Developer interactions"
           trend={{
-            value: "+15%",
-            isPositive: true
+            value: '+15%',
+            isPositive: true,
           }}
         />
       </div>
@@ -105,7 +111,7 @@ export default function StorybookPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="relative">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                <Search className="text-muted-foreground absolute left-3 top-3 h-4 w-4" />
                 <Input placeholder="Search components..." className="pl-10" />
               </div>
               <div className="flex items-center space-x-2">
@@ -125,12 +131,26 @@ export default function StorybookPage() {
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                {['Form', 'Layout', 'Navigation', 'Feedback', 'Data Display', 'Overlay'].map((category) => {
-                  const count = componentStories.filter(c => c.category === category).length;
+                {[
+                  'Form',
+                  'Layout',
+                  'Navigation',
+                  'Feedback',
+                  'Data Display',
+                  'Overlay',
+                ].map((category) => {
+                  const count = componentStories.filter(
+                    (c) => c.category === category
+                  ).length;
                   return (
-                    <div key={category} className="flex items-center justify-between p-2 rounded-lg hover:bg-muted cursor-pointer">
+                    <div
+                      key={category}
+                      className="hover:bg-muted flex cursor-pointer items-center justify-between rounded-lg p-2"
+                    >
                       <span className="text-sm">{category}</span>
-                      <Badge variant="outline" className="text-xs">{count}</Badge>
+                      <Badge variant="outline" className="text-xs">
+                        {count}
+                      </Badge>
                     </div>
                   );
                 })}
@@ -147,27 +167,32 @@ export default function StorybookPage() {
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 rounded-full bg-green-500" />
+                    <div className="h-2 w-2 rounded-full bg-green-500" />
                     <span className="text-sm">Stable</span>
                   </div>
-                  <span className="text-sm font-medium">{storybookStats.stableComponents}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 rounded-full bg-yellow-500" />
-                    <span className="text-sm">Beta</span>
-                  </div>
                   <span className="text-sm font-medium">
-                    {componentStories.filter(c => c.status === 'beta').length}
+                    {storybookStats.stableComponents}
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 rounded-full bg-red-500" />
+                    <div className="h-2 w-2 rounded-full bg-yellow-500" />
+                    <span className="text-sm">Beta</span>
+                  </div>
+                  <span className="text-sm font-medium">
+                    {componentStories.filter((c) => c.status === 'beta').length}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <div className="h-2 w-2 rounded-full bg-red-500" />
                     <span className="text-sm">Alpha</span>
                   </div>
                   <span className="text-sm font-medium">
-                    {componentStories.filter(c => c.status === 'alpha').length}
+                    {
+                      componentStories.filter((c) => c.status === 'alpha')
+                        .length
+                    }
                   </span>
                 </div>
               </div>
@@ -184,17 +209,28 @@ export default function StorybookPage() {
                 {devTools.map((tool) => {
                   const IconComponent = tool.icon;
                   return (
-                    <div key={tool.name} className="flex items-center justify-between">
+                    <div
+                      key={tool.name}
+                      className="flex items-center justify-between"
+                    >
                       <div className="flex items-center space-x-3">
-                        <div className={`p-1.5 rounded-lg ${tool.color.replace('text-', 'bg-').replace('600', '100')} dark:${tool.color.replace('text-', 'bg-').replace('600', '900')}`}>
+                        <div
+                          className={`rounded-lg p-1.5 ${tool.color.replace('text-', 'bg-').replace('600', '100')} dark:${tool.color.replace('text-', 'bg-').replace('600', '900')}`}
+                        >
                           <IconComponent className={`h-4 w-4 ${tool.color}`} />
                         </div>
                         <div>
                           <p className="text-sm font-medium">{tool.name}</p>
-                          <p className="text-xs text-muted-foreground">{tool.description}</p>
+                          <p className="text-muted-foreground text-xs">
+                            {tool.description}
+                          </p>
                         </div>
                       </div>
-                      <Badge variant={tool.status === 'active' ? 'default' : 'secondary'}>
+                      <Badge
+                        variant={
+                          tool.status === 'active' ? 'default' : 'secondary'
+                        }
+                      >
                         {tool.status}
                       </Badge>
                     </div>
@@ -221,40 +257,56 @@ export default function StorybookPage() {
                 {componentStories.map((component) => {
                   const IconComponent = component.icon;
                   return (
-                    <Card key={component.id} className="hover:shadow-lg transition-shadow cursor-pointer">
+                    <Card
+                      key={component.id}
+                      className="cursor-pointer transition-shadow hover:shadow-lg"
+                    >
                       <CardHeader>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-3">
-                            <div className="p-2 rounded-lg bg-primary/10">
-                              <IconComponent className="h-5 w-5 text-primary" />
+                            <div className="bg-primary/10 rounded-lg p-2">
+                              <IconComponent className="text-primary h-5 w-5" />
                             </div>
                             <div>
-                              <CardTitle className="text-lg">{component.name}</CardTitle>
-                              <CardDescription className="text-sm">{component.category}</CardDescription>
+                              <CardTitle className="text-lg">
+                                {component.name}
+                              </CardTitle>
+                              <CardDescription className="text-sm">
+                                {component.category}
+                              </CardDescription>
                             </div>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <Badge variant={
-                              component.status === 'stable' ? 'default' :
-                              component.status === 'beta' ? 'secondary' : 'outline'
-                            }>
+                            <Badge
+                              variant={
+                                component.status === 'stable'
+                                  ? 'default'
+                                  : component.status === 'beta'
+                                    ? 'secondary'
+                                    : 'outline'
+                              }
+                            >
                               {component.status}
                             </Badge>
                             <div className="flex items-center space-x-1">
-                              <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                              <span className="text-sm">{component.rating}</span>
+                              <Star className="h-4 w-4 fill-current text-yellow-500" />
+                              <span className="text-sm">
+                                {component.rating}
+                              </span>
                             </div>
                           </div>
                         </div>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-sm text-muted-foreground mb-3">
+                        <p className="text-muted-foreground mb-3 text-sm">
                           {component.description}
                         </p>
                         <div className="space-y-3">
                           <div className="flex items-center justify-between text-sm">
                             <span>Stories: {component.stories.length}</span>
-                            <span>Downloads: {component.downloads.toLocaleString()}</span>
+                            <span>
+                              Downloads: {component.downloads.toLocaleString()}
+                            </span>
                           </div>
                           <div className="flex items-center justify-between text-sm">
                             <span>Version: {component.version}</span>
@@ -294,25 +346,41 @@ export default function StorybookPage() {
                     <div className="space-y-4">
                       <div className="flex items-center justify-between">
                         <span className="text-sm">Total Tests</span>
-                        <span className="font-medium">{storybookStats.testsTotal}</span>
+                        <span className="font-medium">
+                          {storybookStats.testsTotal}
+                        </span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-sm">Passing</span>
-                        <span className="font-medium text-green-600">{storybookStats.testsPassing}</span>
+                        <span className="font-medium text-green-600">
+                          {storybookStats.testsPassing}
+                        </span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-sm">Failed</span>
                         <span className="font-medium text-red-600">
-                          {storybookStats.testsTotal - storybookStats.testsPassing}
+                          {storybookStats.testsTotal -
+                            storybookStats.testsPassing}
                         </span>
                       </div>
                       <div className="space-y-2">
                         <div className="flex items-center justify-between text-sm">
                           <span>Success Rate</span>
-                          <span>{Math.round((storybookStats.testsPassing / storybookStats.testsTotal) * 100)}%</span>
+                          <span>
+                            {Math.round(
+                              (storybookStats.testsPassing /
+                                storybookStats.testsTotal) *
+                                100
+                            )}
+                            %
+                          </span>
                         </div>
-                        <Progress 
-                          value={(storybookStats.testsPassing / storybookStats.testsTotal) * 100} 
+                        <Progress
+                          value={
+                            (storybookStats.testsPassing /
+                              storybookStats.testsTotal) *
+                            100
+                          }
                           className="h-2"
                         />
                       </div>
@@ -330,18 +398,20 @@ export default function StorybookPage() {
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-4">
-                      {['Statements', 'Branches', 'Functions', 'Lines'].map((type, index) => {
-                        const coverage = [92, 85, 88, 90][index];
-                        return (
-                          <div key={type} className="space-y-2">
-                            <div className="flex items-center justify-between text-sm">
-                              <span>{type}</span>
-                              <span className="font-medium">{coverage}%</span>
+                      {['Statements', 'Branches', 'Functions', 'Lines'].map(
+                        (type, index) => {
+                          const coverage = [92, 85, 88, 90][index];
+                          return (
+                            <div key={type} className="space-y-2">
+                              <div className="flex items-center justify-between text-sm">
+                                <span>{type}</span>
+                                <span className="font-medium">{coverage}%</span>
+                              </div>
+                              <Progress value={coverage} className="h-2" />
                             </div>
-                            <Progress value={coverage} className="h-2" />
-                          </div>
-                        );
-                      })}
+                          );
+                        }
+                      )}
                     </div>
                   </CardContent>
                 </Card>
@@ -357,7 +427,10 @@ export default function StorybookPage() {
                   <CardContent>
                     <div className="space-y-2">
                       {recentActivity.slice(0, 6).map((activity) => (
-                        <ActivityItem key={activity.id} activity={activity as any} />
+                        <ActivityItem
+                          key={activity.id}
+                          activity={activity as any}
+                        />
                       ))}
                     </div>
                   </CardContent>
@@ -391,7 +464,9 @@ export default function StorybookPage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Component Usage Analytics</CardTitle>
-                  <CardDescription>Most popular components by downloads</CardDescription>
+                  <CardDescription>
+                    Most popular components by downloads
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
@@ -399,17 +474,28 @@ export default function StorybookPage() {
                       .sort((a, b) => b.downloads - a.downloads)
                       .slice(0, 5)
                       .map((component) => (
-                        <div key={component.id} className="flex items-center justify-between">
+                        <div
+                          key={component.id}
+                          className="flex items-center justify-between"
+                        >
                           <div className="flex items-center space-x-3">
-                            <component.icon className="h-5 w-5 text-muted-foreground" />
+                            <component.icon className="text-muted-foreground h-5 w-5" />
                             <div>
-                              <p className="text-sm font-medium">{component.name}</p>
-                              <p className="text-xs text-muted-foreground">{component.category}</p>
+                              <p className="text-sm font-medium">
+                                {component.name}
+                              </p>
+                              <p className="text-muted-foreground text-xs">
+                                {component.category}
+                              </p>
                             </div>
                           </div>
                           <div className="text-right">
-                            <p className="text-sm font-medium">{component.downloads.toLocaleString()}</p>
-                            <p className="text-xs text-muted-foreground">downloads</p>
+                            <p className="text-sm font-medium">
+                              {component.downloads.toLocaleString()}
+                            </p>
+                            <p className="text-muted-foreground text-xs">
+                              downloads
+                            </p>
                           </div>
                         </div>
                       ))}
@@ -431,23 +517,40 @@ export default function StorybookPage() {
                   <CardContent>
                     <div className="space-y-4">
                       {teamMembers.map((member) => (
-                        <div key={member.name} className="flex items-center space-x-3">
+                        <div
+                          key={member.name}
+                          className="flex items-center space-x-3"
+                        >
                           <div className="relative">
-                            <div className="h-10 w-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white font-medium">
-                              {member.name.split(' ').map(n => n[0]).join('')}
+                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500 font-medium text-white">
+                              {member.name
+                                .split(' ')
+                                .map((n) => n[0])
+                                .join('')}
                             </div>
-                            <div className={`absolute -bottom-1 -right-1 h-3 w-3 rounded-full border-2 border-background ${
-                              member.status === 'online' ? 'bg-green-500' : 
-                              member.status === 'away' ? 'bg-yellow-500' : 'bg-gray-500'
-                            }`} />
+                            <div
+                              className={`border-background absolute -bottom-1 -right-1 h-3 w-3 rounded-full border-2 ${
+                                member.status === 'online'
+                                  ? 'bg-green-500'
+                                  : member.status === 'away'
+                                    ? 'bg-yellow-500'
+                                    : 'bg-gray-500'
+                              }`}
+                            />
                           </div>
                           <div className="flex-1">
                             <p className="text-sm font-medium">{member.name}</p>
-                            <p className="text-xs text-muted-foreground">{member.role}</p>
+                            <p className="text-muted-foreground text-xs">
+                              {member.role}
+                            </p>
                           </div>
                           <div className="text-right">
-                            <p className="text-sm font-medium">{member.contributions}</p>
-                            <p className="text-xs text-muted-foreground">contributions</p>
+                            <p className="text-sm font-medium">
+                              {member.contributions}
+                            </p>
+                            <p className="text-muted-foreground text-xs">
+                              contributions
+                            </p>
                           </div>
                         </div>
                       ))}
@@ -488,4 +591,4 @@ export default function StorybookPage() {
       </div>
     </div>
   );
-} 
+}

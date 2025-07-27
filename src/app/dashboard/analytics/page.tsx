@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { 
-  BarChart3, 
-  TrendingUp, 
-  PieChart, 
+import {
+  BarChart3,
+  TrendingUp,
+  PieChart,
   Activity,
   Users,
   DollarSign,
@@ -15,14 +15,27 @@ import {
   Filter,
   RefreshCw,
   Loader2,
-  AlertCircle
+  AlertCircle,
 } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { AreaChartComponent, LineChartComponent, PieChartComponent } from '@/components/ui/chart';
-import { FilterPopover, DEFAULT_ANALYTICS_FILTERS } from '@/components/ui/filter-popover';
+import {
+  AreaChartComponent,
+  LineChartComponent,
+  PieChartComponent,
+} from '@/components/ui/chart';
+import {
+  FilterPopover,
+  DEFAULT_ANALYTICS_FILTERS,
+} from '@/components/ui/filter-popover';
 import { DatePicker } from '@/components/ui/calendar';
 import { RevenueAnalytics } from '@/components/dashboard/revenue-analytics';
 import { ConversionFunnel } from '@/components/dashboard/conversion-funnel';
@@ -37,7 +50,7 @@ const transformAnalyticsData = (data: AnalyticsData) => ({
       change: '+12.5%', // Would be calculated from historical data
       changeType: 'positive' as const,
       icon: Users,
-      period: 'vs last month'
+      period: 'vs last month',
     },
     {
       title: 'Revenue',
@@ -45,7 +58,7 @@ const transformAnalyticsData = (data: AnalyticsData) => ({
       change: '+8.2%',
       changeType: 'positive' as const,
       icon: DollarSign,
-      period: 'vs last month'
+      period: 'vs last month',
     },
     {
       title: 'Conversion Rate',
@@ -53,7 +66,7 @@ const transformAnalyticsData = (data: AnalyticsData) => ({
       change: '-0.8%',
       changeType: 'negative' as const,
       icon: Target,
-      period: 'vs last month'
+      period: 'vs last month',
     },
     {
       title: 'Avg. Session',
@@ -61,17 +74,17 @@ const transformAnalyticsData = (data: AnalyticsData) => ({
       change: '+15.3%',
       changeType: 'positive' as const,
       icon: Clock,
-      period: 'vs last month'
-    }
+      period: 'vs last month',
+    },
   ],
   topPages: [
     { path: '/dashboard', views: 15420, change: '+12%' },
     { path: '/analytics', views: 8932, change: '+5%' },
     { path: '/settings', views: 6744, change: '-2%' },
     { path: '/forms', views: 4523, change: '+18%' },
-    { path: '/table', views: 3891, change: '+7%' }
+    { path: '/table', views: 3891, change: '+7%' },
   ],
-  trafficSources: data.charts.trafficSources
+  trafficSources: data.charts.trafficSources,
 });
 
 const formatDuration = (seconds: number) => {
@@ -87,7 +100,9 @@ export default function AnalyticsPage() {
   // State for filters and date selection
   const [activeFilters, setActiveFilters] = useState<any[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date>();
-  const [analyticsData, setAnalyticsData] = useState<AnalyticsData | null>(null);
+  const [analyticsData, setAnalyticsData] = useState<AnalyticsData | null>(
+    null
+  );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -143,11 +158,13 @@ export default function AnalyticsPage() {
       <div className="space-y-8">
         <div className="flex items-center justify-center py-12">
           <div className="text-center">
-            <AlertCircle className="h-12 w-12 text-red-500 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">Failed to load analytics</h3>
-            <p className="text-gray-500 mb-4">{error}</p>
+            <AlertCircle className="mx-auto mb-4 h-12 w-12 text-red-500" />
+            <h3 className="mb-2 text-lg font-medium text-gray-900">
+              Failed to load analytics
+            </h3>
+            <p className="mb-4 text-gray-500">{error}</p>
             <Button onClick={() => loadAnalyticsData()}>
-              <RefreshCw className="h-4 w-4 mr-2" />
+              <RefreshCw className="mr-2 h-4 w-4" />
               Try Again
             </Button>
           </div>
@@ -161,7 +178,7 @@ export default function AnalyticsPage() {
   const displayData = transformAnalyticsData(analyticsData);
   const chartData = {
     revenue: analyticsData.charts.revenue,
-    visitors: analyticsData.charts.visitors
+    visitors: analyticsData.charts.visitors,
   };
 
   return (
@@ -171,7 +188,8 @@ export default function AnalyticsPage() {
         <div>
           <h1 className="text-3xl font-bold">Analytics</h1>
           <p className="text-muted-foreground mt-2">
-            Comprehensive insights into your application performance and user behavior.
+            Comprehensive insights into your application performance and user
+            behavior.
           </p>
         </div>
         <div className="flex items-center space-x-2">
@@ -192,7 +210,7 @@ export default function AnalyticsPage() {
             <RefreshCw className="h-4 w-4" />
             <span>Refresh</span>
           </Button>
-          <Button 
+          <Button
             className="flex items-center space-x-2"
             onClick={() => handleExportData('csv')}
           >
@@ -203,24 +221,34 @@ export default function AnalyticsPage() {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         {displayData.summary.map((metric) => (
           <Card key={metric.title}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 {metric.title}
               </CardTitle>
-              <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
-                <metric.icon className="h-4 w-4 text-primary" />
+              <div className="bg-primary/10 flex h-8 w-8 items-center justify-center rounded-lg">
+                <metric.icon className="text-primary h-4 w-4" />
               </div>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{metric.value}</div>
-              <div className="flex items-center space-x-2 text-xs text-muted-foreground mt-1">
-                <TrendingUp className={`h-3 w-3 ${
-                  metric.changeType === 'positive' ? 'text-green-600' : 'text-red-600'
-                }`} />
-                <span className={metric.changeType === 'positive' ? 'text-green-600' : 'text-red-600'}>
+              <div className="text-muted-foreground mt-1 flex items-center space-x-2 text-xs">
+                <TrendingUp
+                  className={`h-3 w-3 ${
+                    metric.changeType === 'positive'
+                      ? 'text-green-600'
+                      : 'text-red-600'
+                  }`}
+                />
+                <span
+                  className={
+                    metric.changeType === 'positive'
+                      ? 'text-green-600'
+                      : 'text-red-600'
+                  }
+                >
                   {metric.change}
                 </span>
                 <span>{metric.period}</span>
@@ -232,7 +260,7 @@ export default function AnalyticsPage() {
 
       {/* Charts and Tables */}
       <Tabs defaultValue="overview" className="space-y-6">
-        <TabsList className="grid grid-cols-4 w-fit">
+        <TabsList className="grid w-fit grid-cols-4">
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="traffic">Traffic</TabsTrigger>
           <TabsTrigger value="revenue">Revenue</TabsTrigger>
@@ -240,7 +268,7 @@ export default function AnalyticsPage() {
         </TabsList>
 
         <TabsContent value="overview" className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             {/* Revenue Chart */}
             <AreaChartComponent
               title="Revenue Trend"
@@ -255,25 +283,30 @@ export default function AnalyticsPage() {
             <Card>
               <CardHeader>
                 <CardTitle>Top Pages</CardTitle>
-                <CardDescription>
-                  Most visited pages this month
-                </CardDescription>
+                <CardDescription>Most visited pages this month</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 {displayData.topPages.map((page, index) => (
-                  <div key={page.path} className="flex items-center justify-between">
+                  <div
+                    key={page.path}
+                    className="flex items-center justify-between"
+                  >
                     <div className="flex items-center space-x-3">
-                      <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted text-sm font-medium">
+                      <div className="bg-muted flex h-8 w-8 items-center justify-center rounded-lg text-sm font-medium">
                         {index + 1}
                       </div>
                       <div>
                         <p className="text-sm font-medium">{page.path}</p>
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-muted-foreground text-xs">
                           {page.views.toLocaleString()} views
                         </p>
                       </div>
                     </div>
-                    <Badge variant={page.change.startsWith('+') ? 'default' : 'secondary'}>
+                    <Badge
+                      variant={
+                        page.change.startsWith('+') ? 'default' : 'secondary'
+                      }
+                    >
                       {page.change}
                     </Badge>
                   </div>
@@ -284,7 +317,7 @@ export default function AnalyticsPage() {
         </TabsContent>
 
         <TabsContent value="traffic" className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             {/* Visitor Chart */}
             <LineChartComponent
               title="Visitor Traffic"
@@ -293,7 +326,7 @@ export default function AnalyticsPage() {
               xAxisKey="date"
               lines={[
                 { key: 'desktop', color: '#3b82f6', name: 'Desktop' },
-                { key: 'mobile', color: '#8b5cf6', name: 'Mobile' }
+                { key: 'mobile', color: '#8b5cf6', name: 'Mobile' },
               ]}
             />
 
@@ -304,20 +337,27 @@ export default function AnalyticsPage() {
                   <PieChart className="h-5 w-5" />
                   <span>Traffic Sources</span>
                 </CardTitle>
-                <CardDescription>
-                  Where your visitors come from
-                </CardDescription>
+                <CardDescription>Where your visitors come from</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 {displayData.trafficSources.map((source) => (
-                  <div key={source.source} className="flex items-center justify-between">
+                  <div
+                    key={source.source}
+                    className="flex items-center justify-between"
+                  >
                     <div className="flex items-center space-x-3">
-                      <div className="h-3 w-3 rounded-full bg-primary" />
-                      <span className="text-sm font-medium">{source.source}</span>
+                      <div className="bg-primary h-3 w-3 rounded-full" />
+                      <span className="text-sm font-medium">
+                        {source.source}
+                      </span>
                     </div>
                     <div className="text-right">
-                      <p className="text-sm font-medium">{source.visitors.toLocaleString()}</p>
-                      <p className="text-xs text-muted-foreground">{source.percentage}%</p>
+                      <p className="text-sm font-medium">
+                        {source.visitors.toLocaleString()}
+                      </p>
+                      <p className="text-muted-foreground text-xs">
+                        {source.percentage}%
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -336,4 +376,4 @@ export default function AnalyticsPage() {
       </Tabs>
     </div>
   );
-} 
+}

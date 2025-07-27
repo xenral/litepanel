@@ -23,15 +23,20 @@ import {
 import { Alert, AlertDescription } from '@/components/ui/alert';
 
 // Import enhanced components
-import { AreaChartComponent, LineChartComponent, BarChartComponent, PieChartComponent } from '@/components/ui/chart';
+import {
+  AreaChartComponent,
+  LineChartComponent,
+  BarChartComponent,
+  PieChartComponent,
+} from '@/components/ui/chart';
 import { DataTable, DataTableColumn } from '@/components/ui/data-table';
-import { 
-  CardSkeleton, 
-  TableSkeleton, 
-  ChartSkeleton, 
-  KPISkeleton, 
-  UserAvatarSkeleton, 
-  FormSkeleton 
+import {
+  CardSkeleton,
+  TableSkeleton,
+  ChartSkeleton,
+  KPISkeleton,
+  UserAvatarSkeleton,
+  FormSkeleton,
 } from '@/components/ui/skeleton';
 
 import {
@@ -55,28 +60,28 @@ const chartData = {
     { month: 'Mar', value: 68000 },
     { month: 'Apr', value: 85000 },
     { month: 'May', value: 91000 },
-    { month: 'Jun', value: 89432 }
+    { month: 'Jun', value: 89432 },
   ],
   visitors: [
     { date: 'Mon', desktop: 4200, mobile: 2800 },
     { date: 'Tue', desktop: 4800, mobile: 3200 },
     { date: 'Wed', desktop: 5100, mobile: 3600 },
     { date: 'Thu', desktop: 4900, mobile: 3400 },
-    { date: 'Fri', desktop: 5300, mobile: 3800 }
+    { date: 'Fri', desktop: 5300, mobile: 3800 },
   ],
   performance: [
     { metric: 'CPU', value: 65 },
     { metric: 'Memory', value: 78 },
     { metric: 'Storage', value: 45 },
-    { metric: 'Network', value: 89 }
+    { metric: 'Network', value: 89 },
   ],
   sources: [
     { source: 'Direct', visitors: 45230 },
     { source: 'Search', visitors: 32840 },
     { source: 'Social', visitors: 28100 },
     { source: 'Referral', visitors: 12450 },
-    { source: 'Email', visitors: 6212 }
-  ]
+    { source: 'Email', visitors: 6212 },
+  ],
 };
 
 const tableData = [
@@ -88,7 +93,7 @@ const tableData = [
     status: 'Active',
     lastLogin: '2 hours ago',
     projects: 12,
-    rating: 4.8
+    rating: 4.8,
   },
   {
     id: 2,
@@ -98,7 +103,7 @@ const tableData = [
     status: 'Active',
     lastLogin: '1 day ago',
     projects: 8,
-    rating: 4.6
+    rating: 4.6,
   },
   {
     id: 3,
@@ -108,7 +113,7 @@ const tableData = [
     status: 'Inactive',
     lastLogin: '1 week ago',
     projects: 15,
-    rating: 4.9
+    rating: 4.9,
   },
   {
     id: 4,
@@ -118,7 +123,7 @@ const tableData = [
     status: 'Active',
     lastLogin: '3 hours ago',
     projects: 6,
-    rating: 4.7
+    rating: 4.7,
   },
   {
     id: 5,
@@ -128,8 +133,8 @@ const tableData = [
     status: 'Active',
     lastLogin: '30 minutes ago',
     projects: 20,
-    rating: 4.9
-  }
+    rating: 4.9,
+  },
 ];
 
 const tableColumns: DataTableColumn[] = [
@@ -139,12 +144,12 @@ const tableColumns: DataTableColumn[] = [
     sortable: true,
     render: (value, row) => (
       <div className="flex items-center space-x-2">
-        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+        <div className="bg-primary/10 flex h-8 w-8 items-center justify-center rounded-full">
           {value.charAt(0)}
         </div>
         <div>
           <div className="font-medium">{value}</div>
-          <div className="text-sm text-muted-foreground">{row.email}</div>
+          <div className="text-muted-foreground text-sm">{row.email}</div>
         </div>
       </div>
     ),
@@ -163,7 +168,9 @@ const tableColumns: DataTableColumn[] = [
     filterable: true,
     render: (value) => (
       <div className="flex items-center space-x-2">
-        <div className={`w-2 h-2 rounded-full ${value === 'Active' ? 'bg-green-500' : 'bg-gray-500'}`} />
+        <div
+          className={`h-2 w-2 rounded-full ${value === 'Active' ? 'bg-green-500' : 'bg-gray-500'}`}
+        />
         <span>{value}</span>
       </div>
     ),
@@ -179,7 +186,7 @@ const tableColumns: DataTableColumn[] = [
     sortable: true,
     render: (value) => (
       <div className="flex items-center space-x-1">
-        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+        <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
         <span>{value}</span>
       </div>
     ),
@@ -210,7 +217,9 @@ export default function ComponentShowcasePage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/dashboard/components">UI Components</BreadcrumbLink>
+            <BreadcrumbLink href="/dashboard/components">
+              UI Components
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbPage>Enhanced Showcase</BreadcrumbPage>
@@ -220,9 +229,12 @@ export default function ComponentShowcasePage() {
       {/* Header */}
       <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Enhanced UI Components</h1>
+          <h1 className="text-3xl font-bold tracking-tight">
+            Enhanced UI Components
+          </h1>
           <p className="text-muted-foreground">
-            Showcase of newly added and improved UI components with charts, tables, and loading states
+            Showcase of newly added and improved UI components with charts,
+            tables, and loading states
           </p>
         </div>
         <div className="flex items-center space-x-2">
@@ -236,7 +248,8 @@ export default function ComponentShowcasePage() {
       <Alert>
         <CheckCircle className="h-4 w-4" />
         <AlertDescription>
-          ✅ All build issues have been fixed, including the MarkAsRead import error and missing users references.
+          ✅ All build issues have been fixed, including the MarkAsRead import
+          error and missing users references.
         </AlertDescription>
       </Alert>
 
@@ -251,9 +264,10 @@ export default function ComponentShowcasePage() {
 
         <TabsContent value="charts" className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold mb-4">Chart Components</h2>
+            <h2 className="mb-4 text-2xl font-bold">Chart Components</h2>
             <p className="text-muted-foreground mb-6">
-              Real chart implementations using Recharts, replacing all placeholder charts in analytics pages
+              Real chart implementations using Recharts, replacing all
+              placeholder charts in analytics pages
             </p>
           </div>
 
@@ -273,7 +287,7 @@ export default function ComponentShowcasePage() {
               xAxisKey="date"
               lines={[
                 { key: 'desktop', color: '#3b82f6', name: 'Desktop' },
-                { key: 'mobile', color: '#8b5cf6', name: 'Mobile' }
+                { key: 'mobile', color: '#8b5cf6', name: 'Mobile' },
               ]}
             />
 
@@ -282,9 +296,7 @@ export default function ComponentShowcasePage() {
               description="System performance indicators"
               data={chartData.performance}
               xAxisKey="metric"
-              bars={[
-                { key: 'value', color: '#10b981', name: 'Usage %' }
-              ]}
+              bars={[{ key: 'value', color: '#10b981', name: 'Usage %' }]}
             />
 
             <PieChartComponent
@@ -299,9 +311,10 @@ export default function ComponentShowcasePage() {
 
         <TabsContent value="tables" className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold mb-4">Advanced Data Table</h2>
+            <h2 className="mb-4 text-2xl font-bold">Advanced Data Table</h2>
             <p className="text-muted-foreground mb-6">
-              Feature-rich data table with sorting, filtering, pagination, and row selection
+              Feature-rich data table with sorting, filtering, pagination, and
+              row selection
             </p>
           </div>
 
@@ -343,15 +356,16 @@ export default function ComponentShowcasePage() {
           <Alert>
             <AlertTriangle className="h-4 w-4" />
             <AlertDescription>
-              The table supports sorting (click headers), filtering (dropdowns), searching, pagination, and row selection.
-              Try selecting rows to see the selection counter at the bottom.
+              The table supports sorting (click headers), filtering (dropdowns),
+              searching, pagination, and row selection. Try selecting rows to
+              see the selection counter at the bottom.
             </AlertDescription>
           </Alert>
         </TabsContent>
 
         <TabsContent value="loading" className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold mb-4">Enhanced Loading States</h2>
+            <h2 className="mb-4 text-2xl font-bold">Enhanced Loading States</h2>
             <p className="text-muted-foreground mb-6">
               Improved skeleton components for better loading experiences
             </p>
@@ -361,10 +375,14 @@ export default function ComponentShowcasePage() {
             <Card>
               <CardHeader>
                 <CardTitle>KPI Skeleton</CardTitle>
-                <CardDescription>Loading state for dashboard KPI cards</CardDescription>
+                <CardDescription>
+                  Loading state for dashboard KPI cards
+                </CardDescription>
               </CardHeader>
               <CardContent>
-                {isLoading ? <KPISkeleton /> : (
+                {isLoading ? (
+                  <KPISkeleton />
+                ) : (
                   <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                     {[
                       { title: 'Total Users', value: '1,234', icon: Users },
@@ -374,13 +392,17 @@ export default function ComponentShowcasePage() {
                     ].map((kpi, i) => {
                       const Icon = kpi.icon;
                       return (
-                        <div key={i} className="rounded-lg border bg-card p-6">
+                        <div key={i} className="bg-card rounded-lg border p-6">
                           <div className="flex items-center justify-between">
                             <div className="space-y-2">
-                              <div className="text-sm text-muted-foreground">{kpi.title}</div>
-                              <div className="text-2xl font-bold">{kpi.value}</div>
+                              <div className="text-muted-foreground text-sm">
+                                {kpi.title}
+                              </div>
+                              <div className="text-2xl font-bold">
+                                {kpi.value}
+                              </div>
                             </div>
-                            <Icon className="h-8 w-8 text-muted-foreground" />
+                            <Icon className="text-muted-foreground h-8 w-8" />
                           </div>
                         </div>
                       );
@@ -397,10 +419,12 @@ export default function ComponentShowcasePage() {
                   <CardDescription>Loading state for charts</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {isLoading ? <ChartSkeleton /> : (
-                    <div className="h-48 flex items-center justify-center border-2 border-dashed border-muted rounded">
+                  {isLoading ? (
+                    <ChartSkeleton />
+                  ) : (
+                    <div className="border-muted flex h-48 items-center justify-center rounded border-2 border-dashed">
                       <div className="text-center">
-                        <BarChart3 className="h-12 w-12 text-muted-foreground mx-auto mb-2" />
+                        <BarChart3 className="text-muted-foreground mx-auto mb-2 h-12 w-12" />
                         <p className="text-muted-foreground">Chart Content</p>
                       </div>
                     </div>
@@ -411,10 +435,14 @@ export default function ComponentShowcasePage() {
               <Card>
                 <CardHeader>
                   <CardTitle>Table Skeleton</CardTitle>
-                  <CardDescription>Loading state for data tables</CardDescription>
+                  <CardDescription>
+                    Loading state for data tables
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {isLoading ? <TableSkeleton rows={3} columns={3} /> : (
+                  {isLoading ? (
+                    <TableSkeleton rows={3} columns={3} />
+                  ) : (
                     <div className="space-y-3">
                       <div className="flex space-x-4 font-medium">
                         <div className="flex-1">Name</div>
@@ -438,9 +466,12 @@ export default function ComponentShowcasePage() {
 
         <TabsContent value="summary" className="space-y-6">
           <div>
-            <h2 className="text-2xl font-bold mb-4">Project Improvements Summary</h2>
+            <h2 className="mb-4 text-2xl font-bold">
+              Project Improvements Summary
+            </h2>
             <p className="text-muted-foreground mb-6">
-              Complete overview of all fixes and enhancements made to the project
+              Complete overview of all fixes and enhancements made to the
+              project
             </p>
           </div>
 
@@ -455,17 +486,21 @@ export default function ComponentShowcasePage() {
               <CardContent className="space-y-4">
                 <div className="space-y-2">
                   <h4 className="font-medium">Build Errors Resolved:</h4>
-                  <ul className="text-sm text-muted-foreground space-y-1 ml-4">
-                    <li>• Fixed MarkAsRead import error (replaced with Eye icon)</li>
+                  <ul className="text-muted-foreground ml-4 space-y-1 text-sm">
+                    <li>
+                      • Fixed MarkAsRead import error (replaced with Eye icon)
+                    </li>
                     <li>• Fixed missing 'users' references in modals page</li>
-                    <li>• Fixed categories/Database references in permissions page</li>
+                    <li>
+                      • Fixed categories/Database references in permissions page
+                    </li>
                     <li>• Installed missing TypeScript ESLint dependencies</li>
                   </ul>
                 </div>
 
                 <div className="space-y-2">
                   <h4 className="font-medium">Code Organization:</h4>
-                  <ul className="text-sm text-muted-foreground space-y-1 ml-4">
+                  <ul className="text-muted-foreground ml-4 space-y-1 text-sm">
                     <li>• Extracted data to separate .data.ts files</li>
                     <li>• Created utility functions in .util.ts files</li>
                     <li>• Reduced file sizes and improved maintainability</li>
@@ -485,17 +520,21 @@ export default function ComponentShowcasePage() {
               <CardContent className="space-y-4">
                 <div className="space-y-2">
                   <h4 className="font-medium">Chart Components:</h4>
-                  <ul className="text-sm text-muted-foreground space-y-1 ml-4">
+                  <ul className="text-muted-foreground ml-4 space-y-1 text-sm">
                     <li>• Area, Line, Bar, and Pie chart components</li>
-                    <li>• Replaced all placeholder charts with real Recharts</li>
+                    <li>
+                      • Replaced all placeholder charts with real Recharts
+                    </li>
                     <li>• Responsive and themeable chart implementations</li>
                   </ul>
                 </div>
 
                 <div className="space-y-2">
                   <h4 className="font-medium">Enhanced UI Components:</h4>
-                  <ul className="text-sm text-muted-foreground space-y-1 ml-4">
-                    <li>• Advanced DataTable with sorting, filtering, pagination</li>
+                  <ul className="text-muted-foreground ml-4 space-y-1 text-sm">
+                    <li>
+                      • Advanced DataTable with sorting, filtering, pagination
+                    </li>
                     <li>• Enhanced Skeleton components for loading states</li>
                     <li>• Row selection and bulk actions support</li>
                     <li>• Improved accessibility and user experience</li>
@@ -508,12 +547,13 @@ export default function ComponentShowcasePage() {
           <Alert>
             <CheckCircle className="h-4 w-4" />
             <AlertDescription>
-              🎉 Project is now fully functional with enhanced UI components, real data visualization, 
-              and improved code organization following clean code principles!
+              🎉 Project is now fully functional with enhanced UI components,
+              real data visualization, and improved code organization following
+              clean code principles!
             </AlertDescription>
           </Alert>
         </TabsContent>
       </Tabs>
     </div>
   );
-} 
+}

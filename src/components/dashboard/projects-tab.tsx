@@ -1,4 +1,10 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import type { RecentProject } from '@/types/dashboard';
@@ -41,7 +47,7 @@ export function ProjectsTab({ projects }: ProjectsTabProps) {
                 <span>{project.progress}%</span>
               </div>
               <Progress value={project.progress} />
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
+              <div className="text-muted-foreground flex items-center justify-between text-xs">
                 <span>Team: {project.team.length} members</span>
                 <span>{project.lastActivity}</span>
               </div>
@@ -51,4 +57,4 @@ export function ProjectsTab({ projects }: ProjectsTabProps) {
       ))}
     </div>
   );
-} 
+}

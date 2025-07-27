@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import { 
-  BookOpen, 
+import {
+  BookOpen,
   Search,
   Download,
   ExternalLink,
@@ -23,28 +23,35 @@ import {
   FileText,
   Video,
   Calendar,
-  Activity
+  Activity,
 } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { StatsCard } from '@/components/shared/stats-card';
-import { 
+import {
   docCategories,
   quickStart,
   popularDocs,
   recentUpdates,
   contributors,
   communityStats,
-  learningResources
+  learningResources,
 } from '@/data/docs';
 
 export const metadata: Metadata = {
   title: 'Documentation | LiteControl',
-  description: 'Comprehensive documentation for LiteControl components and APIs.',
+  description:
+    'Comprehensive documentation for LiteControl components and APIs.',
 };
 
 export default function DocsPage() {
@@ -83,8 +90,8 @@ export default function DocsPage() {
           icon="Github"
           description="Stars on GitHub"
           trend={{
-            value: "+12%",
-            isPositive: true
+            value: '+12%',
+            isPositive: true,
           }}
         />
         <StatsCard
@@ -93,8 +100,8 @@ export default function DocsPage() {
           icon="Download"
           description="Package downloads"
           trend={{
-            value: "+8%",
-            isPositive: true
+            value: '+8%',
+            isPositive: true,
           }}
         />
         <StatsCard
@@ -103,8 +110,8 @@ export default function DocsPage() {
           icon="Users"
           description="Active users"
           trend={{
-            value: "+15%",
-            isPositive: true
+            value: '+15%',
+            isPositive: true,
           }}
         />
       </div>
@@ -120,8 +127,11 @@ export default function DocsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="relative">
-                <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                <Input placeholder="Search documentation..." className="pl-10" />
+                <Search className="text-muted-foreground absolute left-3 top-3 h-4 w-4" />
+                <Input
+                  placeholder="Search documentation..."
+                  className="pl-10"
+                />
               </div>
               <div className="flex items-center space-x-2">
                 <Button variant="outline" size="sm">
@@ -129,7 +139,8 @@ export default function DocsPage() {
                   Filters
                 </Button>
                 <Badge variant="secondary">
-                  {docCategories.reduce((acc, cat) => acc + cat.articles, 0)} articles
+                  {docCategories.reduce((acc, cat) => acc + cat.articles, 0)}{' '}
+                  articles
                 </Badge>
               </div>
             </CardContent>
@@ -145,21 +156,26 @@ export default function DocsPage() {
                 {docCategories.map((category) => {
                   const IconComponent = category.icon;
                   return (
-                    <div key={category.id} className="flex items-center justify-between p-3 rounded-lg hover:bg-muted cursor-pointer transition-colors">
+                    <div
+                      key={category.id}
+                      className="hover:bg-muted flex cursor-pointer items-center justify-between rounded-lg p-3 transition-colors"
+                    >
                       <div className="flex items-center space-x-3">
-                        <div className={`p-1.5 rounded-lg ${category.color}`}>
+                        <div className={`rounded-lg p-1.5 ${category.color}`}>
                           <IconComponent className="h-4 w-4" />
                         </div>
                         <div>
                           <p className="text-sm font-medium">{category.name}</p>
-                          <p className="text-xs text-muted-foreground">{category.articles} articles</p>
+                          <p className="text-muted-foreground text-xs">
+                            {category.articles} articles
+                          </p>
                         </div>
                       </div>
                       <div className="text-right">
                         <Badge variant="outline" className="text-xs">
                           {category.difficulty}
                         </Badge>
-                        <p className="text-xs text-muted-foreground mt-1">
+                        <p className="text-muted-foreground mt-1 text-xs">
                           {category.completionRate}% complete
                         </p>
                       </div>
@@ -183,20 +199,22 @@ export default function DocsPage() {
                   return (
                     <div key={step.step} className="flex items-start space-x-3">
                       <div className="flex-shrink-0">
-                        <div className="h-8 w-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-medium">
+                        <div className="bg-primary text-primary-foreground flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium">
                           {step.step}
                         </div>
                       </div>
-                      <div className="flex-1 min-w-0">
+                      <div className="min-w-0 flex-1">
                         <div className="flex items-center space-x-2">
-                          <IconComponent className="h-4 w-4 text-muted-foreground" />
+                          <IconComponent className="text-muted-foreground h-4 w-4" />
                           <h4 className="text-sm font-medium">{step.title}</h4>
-                          <Badge variant="outline" className="text-xs">{step.time}</Badge>
+                          <Badge variant="outline" className="text-xs">
+                            {step.time}
+                          </Badge>
                         </div>
-                        <p className="text-xs text-muted-foreground mt-1">
+                        <p className="text-muted-foreground mt-1 text-xs">
                           {step.description}
                         </p>
-                        <div className="mt-2 p-2 rounded bg-muted font-mono text-xs">
+                        <div className="bg-muted mt-2 rounded p-2 font-mono text-xs">
                           {step.command}
                         </div>
                       </div>
@@ -216,31 +234,39 @@ export default function DocsPage() {
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <Github className="h-4 w-4 text-muted-foreground" />
+                    <Github className="text-muted-foreground h-4 w-4" />
                     <span className="text-sm">GitHub Stars</span>
                   </div>
-                  <span className="text-sm font-medium">{communityStats.githubStars.toLocaleString()}</span>
+                  <span className="text-sm font-medium">
+                    {communityStats.githubStars.toLocaleString()}
+                  </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <MessageSquare className="h-4 w-4 text-muted-foreground" />
+                    <MessageSquare className="text-muted-foreground h-4 w-4" />
                     <span className="text-sm">Discord Members</span>
                   </div>
-                  <span className="text-sm font-medium">{communityStats.discordMembers.toLocaleString()}</span>
+                  <span className="text-sm font-medium">
+                    {communityStats.discordMembers.toLocaleString()}
+                  </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <Users className="h-4 w-4 text-muted-foreground" />
+                    <Users className="text-muted-foreground h-4 w-4" />
                     <span className="text-sm">Contributors</span>
                   </div>
-                  <span className="text-sm font-medium">{communityStats.activeContributors}</span>
+                  <span className="text-sm font-medium">
+                    {communityStats.activeContributors}
+                  </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-muted-foreground" />
+                    <CheckCircle className="text-muted-foreground h-4 w-4" />
                     <span className="text-sm">Issues Resolved</span>
                   </div>
-                  <span className="text-sm font-medium">{communityStats.issuesResolved.toLocaleString()}</span>
+                  <span className="text-sm font-medium">
+                    {communityStats.issuesResolved.toLocaleString()}
+                  </span>
                 </div>
               </div>
             </CardContent>
@@ -261,15 +287,22 @@ export default function DocsPage() {
               {/* Popular Documentation */}
               <div className="grid gap-4 md:grid-cols-2">
                 {popularDocs.map((doc) => (
-                  <Card key={doc.title} className="hover:shadow-lg transition-shadow cursor-pointer">
+                  <Card
+                    key={doc.title}
+                    className="cursor-pointer transition-shadow hover:shadow-lg"
+                  >
                     <CardHeader>
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
-                          <CardTitle className="text-lg leading-tight">{doc.title}</CardTitle>
-                          <CardDescription className="mt-2">{doc.description}</CardDescription>
+                          <CardTitle className="text-lg leading-tight">
+                            {doc.title}
+                          </CardTitle>
+                          <CardDescription className="mt-2">
+                            {doc.description}
+                          </CardDescription>
                         </div>
-                        <div className="flex items-center space-x-1 ml-2">
-                          <Star className="h-4 w-4 text-yellow-500 fill-current" />
+                        <div className="ml-2 flex items-center space-x-1">
+                          <Star className="h-4 w-4 fill-current text-yellow-500" />
                           <span className="text-sm">{doc.rating}</span>
                         </div>
                       </div>
@@ -278,11 +311,17 @@ export default function DocsPage() {
                       <div className="space-y-3">
                         <div className="flex items-center justify-between text-sm">
                           <Badge variant="outline">{doc.category}</Badge>
-                          <Badge variant={doc.popularity === 'High' ? 'default' : 'secondary'}>
+                          <Badge
+                            variant={
+                              doc.popularity === 'High'
+                                ? 'default'
+                                : 'secondary'
+                            }
+                          >
                             {doc.popularity}
                           </Badge>
                         </div>
-                        <div className="flex items-center justify-between text-sm text-muted-foreground">
+                        <div className="text-muted-foreground flex items-center justify-between text-sm">
                           <div className="flex items-center space-x-4">
                             <div className="flex items-center space-x-1">
                               <Clock className="h-3 w-3" />
@@ -297,7 +336,11 @@ export default function DocsPage() {
                         </div>
                         <div className="flex flex-wrap gap-1">
                           {doc.tags.slice(0, 3).map((tag) => (
-                            <Badge key={tag} variant="outline" className="text-xs">
+                            <Badge
+                              key={tag}
+                              variant="outline"
+                              className="text-xs"
+                            >
                               {tag}
                             </Badge>
                           ))}
@@ -324,20 +367,27 @@ export default function DocsPage() {
                 {docCategories.map((category) => {
                   const IconComponent = category.icon;
                   return (
-                    <Card key={category.id} className="hover:shadow-lg transition-shadow cursor-pointer">
+                    <Card
+                      key={category.id}
+                      className="cursor-pointer transition-shadow hover:shadow-lg"
+                    >
                       <CardHeader>
                         <div className="flex items-center space-x-3">
-                          <div className={`p-2 rounded-lg ${category.color}`}>
+                          <div className={`rounded-lg p-2 ${category.color}`}>
                             <IconComponent className="h-5 w-5" />
                           </div>
                           <div>
-                            <CardTitle className="text-lg">{category.name}</CardTitle>
-                            <CardDescription>{category.articles} articles</CardDescription>
+                            <CardTitle className="text-lg">
+                              {category.name}
+                            </CardTitle>
+                            <CardDescription>
+                              {category.articles} articles
+                            </CardDescription>
                           </div>
                         </div>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-sm text-muted-foreground mb-3">
+                        <p className="text-muted-foreground mb-3 text-sm">
                           {category.description}
                         </p>
                         <div className="space-y-2">
@@ -345,9 +395,12 @@ export default function DocsPage() {
                             <span>Completion</span>
                             <span>{category.completionRate}%</span>
                           </div>
-                          <Progress value={category.completionRate} className="h-2" />
+                          <Progress
+                            value={category.completionRate}
+                            className="h-2"
+                          />
                         </div>
-                        <div className="flex items-center justify-between mt-3 text-xs text-muted-foreground">
+                        <div className="text-muted-foreground mt-3 flex items-center justify-between text-xs">
                           <Badge variant="outline" className="text-xs">
                             {category.difficulty}
                           </Badge>
@@ -366,20 +419,30 @@ export default function DocsPage() {
                 {learningResources.map((resource) => {
                   const IconComponent = resource.icon;
                   return (
-                    <Card key={resource.title} className="hover:shadow-lg transition-shadow cursor-pointer">
+                    <Card
+                      key={resource.title}
+                      className="cursor-pointer transition-shadow hover:shadow-lg"
+                    >
                       <CardHeader>
                         <div className="flex items-start space-x-3">
-                          <div className="p-2 rounded-lg bg-primary/10">
-                            <IconComponent className="h-5 w-5 text-primary" />
+                          <div className="bg-primary/10 rounded-lg p-2">
+                            <IconComponent className="text-primary h-5 w-5" />
                           </div>
                           <div className="flex-1">
                             <div className="flex items-center space-x-2">
-                              <CardTitle className="text-lg">{resource.title}</CardTitle>
-                              <Badge variant="outline" className="text-xs capitalize">
+                              <CardTitle className="text-lg">
+                                {resource.title}
+                              </CardTitle>
+                              <Badge
+                                variant="outline"
+                                className="text-xs capitalize"
+                              >
                                 {resource.type}
                               </Badge>
                             </div>
-                            <CardDescription className="mt-1">{resource.description}</CardDescription>
+                            <CardDescription className="mt-1">
+                              {resource.description}
+                            </CardDescription>
                           </div>
                         </div>
                       </CardHeader>
@@ -387,15 +450,17 @@ export default function DocsPage() {
                         <div className="space-y-3">
                           <div className="flex items-center justify-between text-sm">
                             <div className="flex items-center space-x-2">
-                              <Clock className="h-4 w-4 text-muted-foreground" />
+                              <Clock className="text-muted-foreground h-4 w-4" />
                               <span>{resource.duration}</span>
                             </div>
                             <Badge variant="secondary">{resource.level}</Badge>
                           </div>
-                          <div className="flex items-center justify-between text-sm text-muted-foreground">
+                          <div className="text-muted-foreground flex items-center justify-between text-sm">
                             <div className="flex items-center space-x-1">
                               <Users className="h-3 w-3" />
-                              <span>{resource.views.toLocaleString()} views</span>
+                              <span>
+                                {resource.views.toLocaleString()} views
+                              </span>
                             </div>
                           </div>
                           <Button size="sm" className="w-full">
@@ -418,24 +483,37 @@ export default function DocsPage() {
                     <CardHeader>
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-3">
-                          <div className={`p-2 rounded-lg ${
-                            update.type === 'major' ? 'bg-red-100 dark:bg-red-900' :
-                            update.type === 'minor' ? 'bg-blue-100 dark:bg-blue-900' :
-                            'bg-green-100 dark:bg-green-900'
-                          }`}>
-                            <Rocket className={`h-5 w-5 ${
-                              update.type === 'major' ? 'text-red-600 dark:text-red-400' :
-                              update.type === 'minor' ? 'text-blue-600 dark:text-blue-400' :
-                              'text-green-600 dark:text-green-400'
-                            }`} />
+                          <div
+                            className={`rounded-lg p-2 ${
+                              update.type === 'major'
+                                ? 'bg-red-100 dark:bg-red-900'
+                                : update.type === 'minor'
+                                  ? 'bg-blue-100 dark:bg-blue-900'
+                                  : 'bg-green-100 dark:bg-green-900'
+                            }`}
+                          >
+                            <Rocket
+                              className={`h-5 w-5 ${
+                                update.type === 'major'
+                                  ? 'text-red-600 dark:text-red-400'
+                                  : update.type === 'minor'
+                                    ? 'text-blue-600 dark:text-blue-400'
+                                    : 'text-green-600 dark:text-green-400'
+                              }`}
+                            />
                           </div>
                           <div>
                             <CardTitle className="flex items-center space-x-2">
                               <span>{update.version}</span>
-                              <Badge variant={
-                                update.type === 'major' ? 'destructive' :
-                                update.type === 'minor' ? 'default' : 'secondary'
-                              }>
+                              <Badge
+                                variant={
+                                  update.type === 'major'
+                                    ? 'destructive'
+                                    : update.type === 'minor'
+                                      ? 'default'
+                                      : 'secondary'
+                                }
+                              >
                                 {update.type}
                               </Badge>
                             </CardTitle>
@@ -443,7 +521,7 @@ export default function DocsPage() {
                           </div>
                         </div>
                         <div className="text-right">
-                          <div className="flex items-center space-x-1 text-muted-foreground">
+                          <div className="text-muted-foreground flex items-center space-x-1">
                             <Calendar className="h-4 w-4" />
                             <span className="text-sm">{update.date}</span>
                           </div>
@@ -451,15 +529,18 @@ export default function DocsPage() {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-sm text-muted-foreground mb-3">
+                      <p className="text-muted-foreground mb-3 text-sm">
                         {update.description}
                       </p>
                       <div className="space-y-2">
                         <h4 className="text-sm font-medium">What's New:</h4>
                         <ul className="space-y-1">
                           {update.changes.map((change, index) => (
-                            <li key={index} className="flex items-start space-x-2 text-sm">
-                              <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <li
+                              key={index}
+                              className="flex items-start space-x-2 text-sm"
+                            >
+                              <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-500" />
                               <span>{change}</span>
                             </li>
                           ))}
@@ -481,23 +562,37 @@ export default function DocsPage() {
             <Award className="mr-2 h-5 w-5" />
             Top Contributors
           </CardTitle>
-          <CardDescription>Community members who help maintain our documentation</CardDescription>
+          <CardDescription>
+            Community members who help maintain our documentation
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {contributors.map((contributor) => (
-              <div key={contributor.name} className="flex items-center space-x-3 p-3 rounded-lg border">
-                <div className="h-10 w-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white font-medium">
-                  {contributor.name.split(' ').map(n => n[0]).join('')}
+              <div
+                key={contributor.name}
+                className="flex items-center space-x-3 rounded-lg border p-3"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500 font-medium text-white">
+                  {contributor.name
+                    .split(' ')
+                    .map((n) => n[0])
+                    .join('')}
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-medium">{contributor.name}</p>
-                  <p className="text-xs text-muted-foreground">{contributor.role}</p>
-                  <p className="text-xs text-muted-foreground">{contributor.speciality}</p>
+                  <p className="text-muted-foreground text-xs">
+                    {contributor.role}
+                  </p>
+                  <p className="text-muted-foreground text-xs">
+                    {contributor.speciality}
+                  </p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-medium">{contributor.contributions}</p>
-                  <p className="text-xs text-muted-foreground">contributions</p>
+                  <p className="text-sm font-medium">
+                    {contributor.contributions}
+                  </p>
+                  <p className="text-muted-foreground text-xs">contributions</p>
                 </div>
               </div>
             ))}
@@ -506,4 +601,4 @@ export default function DocsPage() {
       </Card>
     </div>
   );
-} 
+}

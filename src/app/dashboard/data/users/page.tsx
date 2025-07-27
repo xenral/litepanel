@@ -84,7 +84,8 @@ const userData = [
     id: '1',
     name: 'Alice Johnson',
     email: 'alice.johnson@example.com',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=64&h=64&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=64&h=64&fit=crop&crop=face',
     role: 'Admin',
     status: 'Active',
     lastLogin: '2024-01-20T10:30:00Z',
@@ -98,7 +99,8 @@ const userData = [
     id: '2',
     name: 'Bob Smith',
     email: 'bob.smith@example.com',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=64&h=64&fit=crop&crop=face',
     role: 'Editor',
     status: 'Active',
     lastLogin: '2024-01-19T14:22:00Z',
@@ -112,7 +114,8 @@ const userData = [
     id: '3',
     name: 'Carol Davis',
     email: 'carol.davis@example.com',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=64&h=64&fit=crop&crop=face',
     role: 'Viewer',
     status: 'Inactive',
     lastLogin: '2024-01-10T09:15:00Z',
@@ -126,7 +129,8 @@ const userData = [
     id: '4',
     name: 'David Wilson',
     email: 'david.wilson@example.com',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=64&h=64&fit=crop&crop=face',
     role: 'Editor',
     status: 'Active',
     lastLogin: '2024-01-20T08:45:00Z',
@@ -140,7 +144,8 @@ const userData = [
     id: '5',
     name: 'Eva Brown',
     email: 'eva.brown@example.com',
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=64&h=64&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=64&h=64&fit=crop&crop=face',
     role: 'Admin',
     status: 'Pending',
     lastLogin: null,
@@ -154,7 +159,8 @@ const userData = [
     id: '6',
     name: 'Frank Miller',
     email: 'frank.miller@example.com',
-    avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=64&h=64&fit=crop&crop=face',
+    avatar:
+      'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=64&h=64&fit=crop&crop=face',
     role: 'Viewer',
     status: 'Active',
     lastLogin: '2024-01-19T16:30:00Z',
@@ -181,7 +187,7 @@ const formatLastLogin = (dateString: string | null) => {
   const now = new Date();
   const diffMs = now.getTime() - date.getTime();
   const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-  
+
   if (diffDays === 0) return 'Today';
   if (diffDays === 1) return 'Yesterday';
   if (diffDays < 7) return `${diffDays} days ago`;
@@ -221,28 +227,31 @@ export default function UsersDataPage() {
   const [roleFilter, setRoleFilter] = useState('all');
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 
-  const filteredUsers = userData.filter(user => {
-    const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         user.email.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter === 'all' || user.status.toLowerCase() === statusFilter;
-    const matchesRole = roleFilter === 'all' || user.role.toLowerCase() === roleFilter;
-    
+  const filteredUsers = userData.filter((user) => {
+    const matchesSearch =
+      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus =
+      statusFilter === 'all' || user.status.toLowerCase() === statusFilter;
+    const matchesRole =
+      roleFilter === 'all' || user.role.toLowerCase() === roleFilter;
+
     return matchesSearch && matchesStatus && matchesRole;
   });
 
   const handleSelectUser = (userId: string) => {
-    setSelectedUsers(prev => 
-      prev.includes(userId) 
-        ? prev.filter(id => id !== userId)
+    setSelectedUsers((prev) =>
+      prev.includes(userId)
+        ? prev.filter((id) => id !== userId)
         : [...prev, userId]
     );
   };
 
   const handleSelectAll = () => {
     setSelectedUsers(
-      selectedUsers.length === filteredUsers.length 
-        ? [] 
-        : filteredUsers.map(user => user.id)
+      selectedUsers.length === filteredUsers.length
+        ? []
+        : filteredUsers.map((user) => user.id)
     );
   };
 
@@ -256,7 +265,9 @@ export default function UsersDataPage() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/dashboard/data">Data Management</BreadcrumbLink>
+            <BreadcrumbLink href="/dashboard/data">
+              Data Management
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbPage>Users</BreadcrumbPage>
@@ -280,7 +291,10 @@ export default function UsersDataPage() {
             <Download className="mr-2 h-4 w-4" />
             Export
           </Button>
-          <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+          <Dialog
+            open={isCreateDialogOpen}
+            onOpenChange={setIsCreateDialogOpen}
+          >
             <DialogTrigger asChild>
               <Button>
                 <UserPlus className="mr-2 h-4 w-4" />
@@ -301,7 +315,11 @@ export default function UsersDataPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email">Email Address</Label>
-                  <Input id="email" type="email" placeholder="Enter email address" />
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="Enter email address"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="role">Role</Label>
@@ -332,7 +350,10 @@ export default function UsersDataPage() {
                   </Select>
                 </div>
                 <div className="flex justify-end space-x-2">
-                  <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)}>
+                  <Button
+                    variant="outline"
+                    onClick={() => setIsCreateDialogOpen(false)}
+                  >
                     Cancel
                   </Button>
                   <Button onClick={() => setIsCreateDialogOpen(false)}>
@@ -356,10 +377,14 @@ export default function UsersDataPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Total Users</p>
-                  <p className="text-2xl font-bold">{userStats.totalUsers.toLocaleString()}</p>
+                  <p className="text-muted-foreground text-sm font-medium">
+                    Total Users
+                  </p>
+                  <p className="text-2xl font-bold">
+                    {userStats.totalUsers.toLocaleString()}
+                  </p>
                 </div>
-                <Users className="h-8 w-8 text-muted-foreground" />
+                <Users className="text-muted-foreground h-8 w-8" />
               </div>
             </CardContent>
           </Card>
@@ -374,8 +399,12 @@ export default function UsersDataPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Active</p>
-                  <p className="text-2xl font-bold text-green-600">{userStats.activeUsers.toLocaleString()}</p>
+                  <p className="text-muted-foreground text-sm font-medium">
+                    Active
+                  </p>
+                  <p className="text-2xl font-bold text-green-600">
+                    {userStats.activeUsers.toLocaleString()}
+                  </p>
                 </div>
                 <CheckCircle2 className="h-8 w-8 text-green-600" />
               </div>
@@ -392,8 +421,12 @@ export default function UsersDataPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Pending</p>
-                  <p className="text-2xl font-bold text-yellow-600">{userStats.pendingUsers}</p>
+                  <p className="text-muted-foreground text-sm font-medium">
+                    Pending
+                  </p>
+                  <p className="text-2xl font-bold text-yellow-600">
+                    {userStats.pendingUsers}
+                  </p>
                 </div>
                 <Clock className="h-8 w-8 text-yellow-600" />
               </div>
@@ -410,8 +443,12 @@ export default function UsersDataPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Inactive</p>
-                  <p className="text-2xl font-bold text-red-600">{userStats.inactiveUsers}</p>
+                  <p className="text-muted-foreground text-sm font-medium">
+                    Inactive
+                  </p>
+                  <p className="text-2xl font-bold text-red-600">
+                    {userStats.inactiveUsers}
+                  </p>
                 </div>
                 <AlertTriangle className="h-8 w-8 text-red-600" />
               </div>
@@ -428,8 +465,12 @@ export default function UsersDataPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">Admins</p>
-                  <p className="text-2xl font-bold text-purple-600">{userStats.adminUsers}</p>
+                  <p className="text-muted-foreground text-sm font-medium">
+                    Admins
+                  </p>
+                  <p className="text-2xl font-bold text-purple-600">
+                    {userStats.adminUsers}
+                  </p>
                 </div>
                 <Shield className="h-8 w-8 text-purple-600" />
               </div>
@@ -446,8 +487,12 @@ export default function UsersDataPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium text-muted-foreground">New This Month</p>
-                  <p className="text-2xl font-bold text-blue-600">{userStats.newThisMonth}</p>
+                  <p className="text-muted-foreground text-sm font-medium">
+                    New This Month
+                  </p>
+                  <p className="text-2xl font-bold text-blue-600">
+                    {userStats.newThisMonth}
+                  </p>
                 </div>
                 <UserPlus className="h-8 w-8 text-blue-600" />
               </div>
@@ -463,17 +508,18 @@ export default function UsersDataPage() {
             <div>
               <CardTitle>Users</CardTitle>
               <CardDescription>
-                Manage and monitor user accounts ({filteredUsers.length} of {userData.length} users shown)
+                Manage and monitor user accounts ({filteredUsers.length} of{' '}
+                {userData.length} users shown)
               </CardDescription>
             </div>
             <div className="flex items-center space-x-2">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Search className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" />
                 <Input
                   placeholder="Search users..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-9 w-64"
+                  className="w-64 pl-9"
                 />
               </div>
               <Select value={statusFilter} onValueChange={setStatusFilter}>
@@ -503,10 +549,11 @@ export default function UsersDataPage() {
         </CardHeader>
         <CardContent>
           {selectedUsers.length > 0 && (
-            <div className="mb-4 p-3 bg-muted rounded-lg">
+            <div className="bg-muted mb-4 rounded-lg p-3">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-muted-foreground">
-                  {selectedUsers.length} user{selectedUsers.length > 1 ? 's' : ''} selected
+                <span className="text-muted-foreground text-sm">
+                  {selectedUsers.length} user
+                  {selectedUsers.length > 1 ? 's' : ''} selected
                 </span>
                 <div className="flex items-center space-x-2">
                   <Button variant="outline" size="sm">
@@ -567,18 +614,23 @@ export default function UsersDataPage() {
                           <Avatar className="h-8 w-8">
                             <AvatarImage src={user.avatar} alt={user.name} />
                             <AvatarFallback>
-                              {user.name.split(' ').map(n => n[0]).join('')}
+                              {user.name
+                                .split(' ')
+                                .map((n) => n[0])
+                                .join('')}
                             </AvatarFallback>
                           </Avatar>
                           <div>
                             <div className="font-medium">{user.name}</div>
-                            <div className="text-sm text-muted-foreground">{user.email}</div>
+                            <div className="text-muted-foreground text-sm">
+                              {user.email}
+                            </div>
                           </div>
                         </div>
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center space-x-2">
-                          <RoleIcon className="h-4 w-4 text-muted-foreground" />
+                          <RoleIcon className="text-muted-foreground h-4 w-4" />
                           <span>{user.role}</span>
                         </div>
                       </TableCell>
@@ -588,7 +640,7 @@ export default function UsersDataPage() {
                         </Badge>
                       </TableCell>
                       <TableCell>{user.department}</TableCell>
-                      <TableCell className="text-sm text-muted-foreground">
+                      <TableCell className="text-muted-foreground text-sm">
                         {formatLastLogin(user.lastLogin)}
                       </TableCell>
                       <TableCell>
@@ -631,10 +683,10 @@ export default function UsersDataPage() {
           </div>
 
           {filteredUsers.length === 0 && (
-            <div className="text-center py-8">
-              <Users className="mx-auto h-12 w-12 text-muted-foreground" />
+            <div className="py-8 text-center">
+              <Users className="text-muted-foreground mx-auto h-12 w-12" />
               <h3 className="mt-2 text-sm font-semibold">No users found</h3>
-              <p className="mt-1 text-sm text-muted-foreground">
+              <p className="text-muted-foreground mt-1 text-sm">
                 Try adjusting your search or filter criteria.
               </p>
             </div>
@@ -643,4 +695,4 @@ export default function UsersDataPage() {
       </Card>
     </div>
   );
-} 
+}

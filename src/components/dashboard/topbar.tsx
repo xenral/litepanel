@@ -79,7 +79,8 @@ const notificationCount = 3;
 const user = {
   name: 'John Doe',
   email: 'john@example.com',
-  avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face',
+  avatar:
+    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face',
   initials: 'JD',
 };
 
@@ -87,7 +88,9 @@ const user = {
  * Topbar component for the dashboard layout
  */
 export function Topbar({ onCommandPaletteOpen, className }: TopbarProps) {
-  const [selectedWorkspace, setSelectedWorkspace] = React.useState(workspaces[0]);
+  const [selectedWorkspace, setSelectedWorkspace] = React.useState(
+    workspaces[0]
+  );
   const [themeDialogOpen, setThemeDialogOpen] = React.useState(false);
   const [userSettingsOpen, setUserSettingsOpen] = React.useState(false);
   const { isDark, toggleDarkMode } = useThemeContext();
@@ -95,7 +98,7 @@ export function Topbar({ onCommandPaletteOpen, className }: TopbarProps) {
   return (
     <header
       className={cn(
-        'sticky top-0 z-40 flex h-16 items-center justify-between border-b bg-background/95 px-6 backdrop-blur supports-[backdrop-filter]:bg-background/60',
+        'bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40 flex h-16 items-center justify-between border-b px-6 backdrop-blur',
         className
       )}
     >
@@ -107,16 +110,18 @@ export function Topbar({ onCommandPaletteOpen, className }: TopbarProps) {
               variant="ghost"
               className="flex items-center space-x-2 text-left"
             >
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground text-sm font-medium">
+              <div className="bg-primary text-primary-foreground flex h-8 w-8 items-center justify-center rounded-lg text-sm font-medium">
                 {selectedWorkspace.avatar}
               </div>
               <div className="hidden sm:block">
-                <div className="text-sm font-medium">{selectedWorkspace.name}</div>
-                <div className="text-xs text-muted-foreground">
+                <div className="text-sm font-medium">
+                  {selectedWorkspace.name}
+                </div>
+                <div className="text-muted-foreground text-xs">
                   {selectedWorkspace.description}
                 </div>
               </div>
-              <ChevronDown className="h-4 w-4 text-muted-foreground" />
+              <ChevronDown className="text-muted-foreground h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-64">
@@ -128,17 +133,17 @@ export function Topbar({ onCommandPaletteOpen, className }: TopbarProps) {
                 onClick={() => setSelectedWorkspace(workspace)}
                 className="flex items-center space-x-3"
               >
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted text-sm font-medium">
+                <div className="bg-muted flex h-8 w-8 items-center justify-center rounded-lg text-sm font-medium">
                   {workspace.avatar}
                 </div>
                 <div>
                   <div className="text-sm font-medium">{workspace.name}</div>
-                  <div className="text-xs text-muted-foreground">
+                  <div className="text-muted-foreground text-xs">
                     {workspace.description}
                   </div>
                 </div>
                 {selectedWorkspace.id === workspace.id && (
-                  <div className="ml-auto h-2 w-2 rounded-full bg-primary" />
+                  <div className="bg-primary ml-auto h-2 w-2 rounded-full" />
                 )}
               </DropdownMenuItem>
             ))}
@@ -152,17 +157,17 @@ export function Topbar({ onCommandPaletteOpen, className }: TopbarProps) {
       </div>
 
       {/* Center Section - Search */}
-      <div className="flex-1 max-w-lg mx-8">
+      <div className="mx-8 max-w-lg flex-1">
         <Button
           variant="outline"
-          className="w-full justify-start text-muted-foreground"
+          className="text-muted-foreground w-full justify-start"
           onClick={onCommandPaletteOpen}
         >
           <Search className="mr-2 h-4 w-4" />
           <span className="hidden sm:inline">Search or jump to...</span>
           <span className="sm:hidden">Search...</span>
           <div className="ml-auto flex items-center space-x-1">
-            <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+            <kbd className="bg-muted text-muted-foreground pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100">
               <Command className="h-3 w-3" />
               <span>K</span>
             </kbd>
@@ -199,7 +204,10 @@ export function Topbar({ onCommandPaletteOpen, className }: TopbarProps) {
         {/* User Menu */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="relative h-9 w-9 rounded-full p-0">
+            <Button
+              variant="ghost"
+              className="relative h-9 w-9 rounded-full p-0"
+            >
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -224,16 +232,18 @@ export function Topbar({ onCommandPaletteOpen, className }: TopbarProps) {
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium leading-none">{user.name}</p>
-                  <p className="text-xs leading-none text-muted-foreground">
+                  <p className="text-sm font-medium leading-none">
+                    {user.name}
+                  </p>
+                  <p className="text-muted-foreground text-xs leading-none">
                     {user.email}
                   </p>
                 </div>
               </div>
             </DropdownMenuLabel>
-            
+
             <DropdownMenuSeparator />
-            
+
             {/* Account Section */}
             <DropdownMenuGroup>
               <DropdownMenuItem onClick={() => setUserSettingsOpen(true)}>
@@ -245,9 +255,9 @@ export function Topbar({ onCommandPaletteOpen, className }: TopbarProps) {
                 <span>Billing & Plans</span>
               </DropdownMenuItem>
             </DropdownMenuGroup>
-            
+
             <DropdownMenuSeparator />
-            
+
             {/* Preferences Section */}
             <DropdownMenuGroup>
               <DropdownMenuItem onClick={() => setUserSettingsOpen(true)}>
@@ -263,9 +273,9 @@ export function Topbar({ onCommandPaletteOpen, className }: TopbarProps) {
                 <span>Keyboard Shortcuts</span>
               </DropdownMenuItem>
             </DropdownMenuGroup>
-            
+
             <DropdownMenuSeparator />
-            
+
             {/* Help Section */}
             <DropdownMenuGroup>
               <DropdownMenuItem>
@@ -273,11 +283,11 @@ export function Topbar({ onCommandPaletteOpen, className }: TopbarProps) {
                 <span>Help & Support</span>
               </DropdownMenuItem>
             </DropdownMenuGroup>
-            
+
             <DropdownMenuSeparator />
-            
+
             {/* Sign Out */}
-            <DropdownMenuItem className="text-red-600 focus:text-red-600 focus:bg-red-50 dark:focus:bg-red-950">
+            <DropdownMenuItem className="text-red-600 focus:bg-red-50 focus:text-red-600 dark:focus:bg-red-950">
               <LogOut className="mr-2 h-4 w-4" />
               <span>Sign Out</span>
             </DropdownMenuItem>
@@ -298,4 +308,4 @@ export function Topbar({ onCommandPaletteOpen, className }: TopbarProps) {
       />
     </header>
   );
-} 
+}

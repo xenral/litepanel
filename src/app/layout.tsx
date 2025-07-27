@@ -16,7 +16,8 @@ export const metadata: Metadata = {
     default: 'LiteControl Admin - Next.js Admin Dashboard Template',
     template: '%s | LiteControl Admin',
   },
-  description: 'A fully-typed Next.js 15 admin template with hot-swappable themes, built with TypeScript, Tailwind CSS, and shadcn/ui components.',
+  description:
+    'A fully-typed Next.js 15 admin template with hot-swappable themes, built with TypeScript, Tailwind CSS, and shadcn/ui components.',
   keywords: [
     'nextjs',
     'admin-template',
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
     'tailwindcss',
     'shadcn-ui',
     'themes',
-    'react'
+    'react',
   ],
   authors: [
     {
@@ -39,7 +40,8 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://litepanel.vercel.app',
     title: 'LiteControl Admin - Next.js Admin Dashboard Template',
-    description: 'A modern, fully-customizable admin dashboard template with hot-swappable themes.',
+    description:
+      'A modern, fully-customizable admin dashboard template with hot-swappable themes.',
     siteName: 'LiteControl Admin',
     images: [
       {
@@ -53,7 +55,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'LiteControl Admin - Next.js Admin Dashboard Template',
-    description: 'A fully-typed Next.js 15 admin template with hot-swappable themes',
+    description:
+      'A fully-typed Next.js 15 admin template with hot-swappable themes',
     images: ['/og-image.png'],
     creator: '@yourusername',
   },
@@ -87,7 +90,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(inter.className, 'min-h-screen bg-background font-sans antialiased')}>
+      <body
+        className={cn(
+          inter.className,
+          'bg-background min-h-screen font-sans antialiased'
+        )}
+      >
         <NextThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -96,9 +104,7 @@ export default function RootLayout({
         >
           <ThemeProvider>
             <div className="relative flex min-h-screen flex-col">
-              <div className="flex-1">
-                {children}
-              </div>
+              <div className="flex-1">{children}</div>
             </div>
             <Toaster />
             <GlobalCommandPalette />
@@ -108,5 +114,3 @@ export default function RootLayout({
     </html>
   );
 }
-
- 
