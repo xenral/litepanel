@@ -176,7 +176,7 @@ export const getPageMetadata = (pathname: string) => {
   return (
     routeMetadata[pathname] || {
       title: 'Dashboard',
-      description: 'LiteControl Admin Dashboard',
+      description: 'LitePanel Dashboard',
     }
   );
 };

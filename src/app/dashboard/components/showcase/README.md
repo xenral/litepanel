@@ -1,6 +1,6 @@
 # Component Showcase
 
-This page demonstrates all the enhanced UI components and fixes that have been added to the LiteControl project.
+This page demonstrates all the enhanced UI components and fixes that have been added to the LitePanel project.
 
 ## 🎯 Issues Fixed
 

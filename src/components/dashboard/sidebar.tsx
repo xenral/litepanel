@@ -212,7 +212,7 @@ export function Sidebar({
                 <Palette className="text-primary-foreground h-5 w-5" />
               </div>
               <div className="flex flex-col">
-                <span className="text-sm font-semibold">LiteControl</span>
+                <span className="text-sm font-semibold">LitePanel</span>
                 <span className="text-muted-foreground text-xs">Admin</span>
               </div>
             </motion.div>
@@ -495,7 +495,7 @@ export function Sidebar({
               transition={{ duration: 0.2 }}
               className="text-muted-foreground text-center text-xs"
             >
-              <div className="mb-1">LiteControl Admin</div>
+                              <div className="mb-1">LitePanel</div>
               <div className="text-[10px]">v0.1.0</div>
             </motion.div>
           )}

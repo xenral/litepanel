@@ -13,8 +13,8 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   metadataBase: new URL('https://litepanel.vercel.app'),
   title: {
-    default: 'LiteControl Admin - Next.js Admin Dashboard Template',
-    template: '%s | LiteControl Admin',
+    default: 'LitePanel - Next.js Admin Dashboard Template',
+    template: '%s | LitePanel',
   },
   description:
     'A fully-typed Next.js 15 admin template with hot-swappable themes, built with TypeScript, Tailwind CSS, and shadcn/ui components.',
@@ -39,22 +39,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://litepanel.vercel.app',
-    title: 'LiteControl Admin - Next.js Admin Dashboard Template',
+    title: 'LitePanel - Next.js Admin Dashboard Template',
     description:
       'A modern, fully-customizable admin dashboard template with hot-swappable themes.',
-    siteName: 'LiteControl Admin',
+    siteName: 'LitePanel',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'LiteControl Admin',
+        alt: 'LitePanel',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'LiteControl Admin - Next.js Admin Dashboard Template',
+    title: 'LitePanel - Next.js Admin Dashboard Template',
     description:
       'A fully-typed Next.js 15 admin template with hot-swappable themes',
     images: ['/og-image.png'],

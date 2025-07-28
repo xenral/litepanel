@@ -70,7 +70,7 @@ export const useThemeStore = create<ThemeStore>()(
       setHasHydrated: (hasHydrated) => set({ _hasHydrated: hasHydrated }),
     }),
     {
-      name: 'litecontrol-theme-storage',
+      name: 'litepanel-theme-storage',
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         theme: LOCKED_THEME, // Always save neutral-pro

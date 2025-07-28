@@ -139,7 +139,7 @@ export function CTASection() {
           </h2>
 
           <p className="text-muted-foreground mx-auto mb-8 max-w-3xl text-xl">
-            Join thousands of developers who trust LiteControl Admin for their
+            Join thousands of developers who trust LitePanel for their
             projects. Get started in minutes with our comprehensive
             documentation and examples.
           </p>
@@ -313,7 +313,7 @@ export function CTASection() {
             </div>
 
             <p className="mx-auto max-w-2xl">
-              LiteControl Admin is built with modern tools and best practices.
+              LitePanel is built with modern tools and best practices.
               Start with our template and customize it to fit your unique needs.
               No vendor lock-in, no subscriptions, just great code.
             </p>

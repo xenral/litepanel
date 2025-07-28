@@ -48,7 +48,7 @@ export const useAuthStore = create<AuthStore>()(
         }),
     }),
     {
-      name: 'litecontrol-auth-storage',
+      name: 'litepanel-auth-storage',
       partialize: (state) => ({
         token: state.token,
         user: state.user,

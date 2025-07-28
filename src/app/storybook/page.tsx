@@ -38,7 +38,7 @@ import {
 } from '@/data/storybook';
 
 export const metadata: Metadata = {
-  title: 'Storybook | LiteControl',
+      title: 'Storybook | LitePanel',
   description: 'Interactive component library and design system documentation.',
 };
 

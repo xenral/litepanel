@@ -118,8 +118,8 @@ export const quickStart: QuickStartStep[] = [
   {
     step: 1,
     title: 'Installation',
-    description: 'Install LiteControl and dependencies',
-    command: 'npm create litecontrol-app@latest my-app',
+          description: 'Install LitePanel and dependencies',
+      command: 'npm create litepanel-app@latest my-app',
     time: '2 min',
     icon: Download,
   },
@@ -151,8 +151,8 @@ export const quickStart: QuickStartStep[] = [
 
 export const popularDocs: PopularDoc[] = [
   {
-    title: 'Getting Started with LiteControl',
-    description: 'Complete guide to setting up your first LiteControl project',
+    title: 'Getting Started with LitePanel',
+    description: 'Complete guide to setting up your first LitePanel project',
     category: 'Getting Started',
     readTime: '8 min',
     popularity: 'High',
@@ -302,7 +302,7 @@ export const communityStats: CommunityStats = {
 export const learningResources: LearningResource[] = [
   {
     type: 'video',
-    title: 'LiteControl Crash Course',
+    title: 'LitePanel Crash Course',
     description: '1-hour comprehensive tutorial covering all basics',
     duration: '1h 15m',
     level: 'Beginner',

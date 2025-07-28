@@ -52,9 +52,9 @@ export function HeroSection() {
               className="text-gradient bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-5xl font-bold tracking-tight text-transparent md:text-6xl"
               whileHover={{ scale: 1.02 }}
               transition={{ type: 'spring', stiffness: 300 }}
-            >
-              LiteControl Admin
-            </motion.h1>
+                         >
+               LitePanel
+             </motion.h1>
           </motion.div>
 
           {/* Enhanced features section with typing animation */}

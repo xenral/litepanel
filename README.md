@@ -1,4 +1,4 @@
-# 🎨 LiteControl Admin
+# 🎨 LitePanel
 
 A modern, fully-customizable Next.js 15 admin dashboard template with **hot-swappable themes**, built with TypeScript, Tailwind CSS, and shadcn/ui components.
 
@@ -149,7 +149,7 @@ const notifications = await NotificationService.getNotifications();
 ## 📁 Project Structure
 
 ```
-litecontrol-admin/
+litepanel/
 ├── 🔐 src/app/auth/                # Authentication System
 │   ├── login/page.tsx              # ✅ Login with validation
 │   ├── register/page.tsx           # ✅ Registration form
@@ -320,7 +320,7 @@ npm run build
 npm start
 
 # Or with PM2
-pm2 start npm --name "litecontrol" -- start
+pm2 start npm --name "litepanel" -- start
 ```
 
 ---
@@ -535,7 +535,7 @@ See [LICENSE](./LICENSE) for full details.
 
 ### 🚀 Ready to build something amazing?
 
-**[⭐ Star on GitHub](https://github.com/xenral/litepanel)** • **[🚀 Deploy Now](https://vercel.com/new/clone?repository-url=https://github.com/xenral/litepanel)** • **[💬 Join Community](https://discord.gg/litecontrol)**
+**[⭐ Star on GitHub](https://github.com/xenral/litepanel)** • **[🚀 Deploy Now](https://vercel.com/new/clone?repository-url=https://github.com/xenral/litepanel)** • **[💬 Join Community](https://discord.gg/litepanel)**
 
 **Built with ❤️ for the developer community**
 

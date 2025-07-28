@@ -44,9 +44,9 @@ import {
 } from '@/data/dashboard';
 
 export const metadata: Metadata = {
-  title: 'Dashboard | LiteControl',
+      title: 'Dashboard | LitePanel',
   description:
-    'Overview of your LiteControl dashboard with analytics and insights.',
+          'Overview of your LitePanel dashboard with analytics and insights.',
 };
 
 export default function DashboardPage() {

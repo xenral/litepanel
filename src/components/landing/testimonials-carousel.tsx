@@ -28,7 +28,7 @@ const testimonials = [
     company: 'TechFlow Inc.',
     avatar: '/avatars/sarah.jpg',
     content:
-      'LiteControl Admin has completely transformed how we build admin interfaces. The theme system is incredibly flexible, and the TypeScript support is top-notch. Our development velocity has increased by 40%.',
+      'LitePanel has completely transformed how we build admin interfaces. The theme system is incredibly flexible, and the TypeScript support is top-notch. Our development velocity has increased by 40%.',
     rating: 5,
     social: {
       twitter: '@sarahchen',
@@ -43,7 +43,7 @@ const testimonials = [
     company: 'StartupLabs',
     avatar: '/avatars/marcus.jpg',
     content:
-      'Setting up our admin dashboard used to take weeks. With LiteControl Admin, we had a production-ready interface in just a few days. The component library is extensive and well-documented.',
+      'Setting up our admin dashboard used to take weeks. With LitePanel, we had a production-ready interface in just a few days. The component library is extensive and well-documented.',
     rating: 5,
     social: {
       linkedin: 'marcus-rodriguez',
@@ -164,7 +164,7 @@ export function TestimonialsCarousel() {
           </h2>
 
           <p className="text-muted-foreground mx-auto max-w-3xl text-lg">
-            See what developers and designers are saying about LiteControl
+            See what developers and designers are saying about LitePanel
             Admin. Join thousands of professionals who trust our template for
             their projects.
           </p>

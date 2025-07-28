@@ -225,7 +225,7 @@ export function CodeSnippetShowcase() {
 
           <p className="text-muted-foreground mx-auto max-w-3xl text-lg">
             Explore the high-quality, well-documented code that powers
-            LiteControl Admin. Every component is crafted with TypeScript,
+            LitePanel. Every component is crafted with TypeScript,
             accessibility, and maintainability in mind.
           </p>
         </motion.div>

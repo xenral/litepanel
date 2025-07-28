@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
-  title: 'Authentication | LiteControl',
-  description: 'Sign in to your LiteControl dashboard',
+  title: 'Authentication | LitePanel',
+  description: 'Sign in to your LitePanel dashboard',
 };
 
 interface AuthLayoutProps {
@@ -21,7 +21,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
             <div className="mr-2 flex h-6 w-6 items-center justify-center rounded bg-white/20">
               <div className="h-3 w-3 rounded bg-white" />
             </div>
-            LiteControl
+                            LitePanel
           </div>
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2">

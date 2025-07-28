@@ -1,6 +1,6 @@
-# 📁 LiteControl Admin - Complete Project Structure
+# 📁 LitePanel - Complete Project Structure
 
-This document outlines the complete file structure for the LiteControl Admin template. Items marked with ✅ are implemented, while ⏳ indicates files that need to be created for a complete implementation.
+This document outlines the complete file structure for the LitePanel template. Items marked with ✅ are implemented, while ⏳ indicates files that need to be created for a complete implementation.
 
 ## 🏗️ Root Structure
 

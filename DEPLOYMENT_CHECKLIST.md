@@ -75,7 +75,7 @@
 
 ### ✅ Testing Setup
 
-- [ ] **Playwright tests**: Update tests to reflect LiteControl branding
+- [ ] **Playwright tests**: Update tests to reflect LitePanel branding
 - [ ] **Unit tests**: Add component unit tests if needed
 - [ ] **E2E tests**: Comprehensive end-to-end testing
 - [ ] **Test CI/CD**: Set up GitHub Actions for automated testing
@@ -116,7 +116,7 @@
 
 ### ✅ Visual Assets
 
-- [ ] **Logo/favicon**: Replace default favicon with LiteControl logo
+- [ ] **Logo/favicon**: Replace default favicon with LitePanel logo
 - [ ] **Open Graph images**: Social media preview images
 - [ ] **Screenshots**: Update screenshots for documentation
 - [ ] **Demo GIFs**: Create demo animations

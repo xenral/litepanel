@@ -29,9 +29,9 @@ export function ThemeDebug() {
 
   const handleReset = () => {
     // Clear all theme-related localStorage
-    localStorage.removeItem('litecontrol-theme-storage');
-    localStorage.removeItem('litecontrol-theme');
-    localStorage.removeItem('litecontrol-customization');
+    localStorage.removeItem('litepanel-theme-storage');
+    localStorage.removeItem('litepanel-theme');
+    localStorage.removeItem('litepanel-customization');
 
     // Reload page to start fresh
     window.location.reload();
