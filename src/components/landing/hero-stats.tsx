@@ -141,4 +141,4 @@ export function HeroStats() {
       ))}
     </motion.div>
   );
-} 
+}

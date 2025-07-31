@@ -79,8 +79,6 @@ const sampleProducts: Product[] = [
   },
 ];
 
-
-
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>(sampleProducts);
 
@@ -131,10 +129,7 @@ export default function ProductsPage() {
       />
 
       {/* Products Table */}
-      <ProductsTable
-        products={products}
-        onProductsChange={setProducts}
-      />
+      <ProductsTable products={products} onProductsChange={setProducts} />
     </ResponsiveContainer>
   );
 }

@@ -277,7 +277,9 @@ export default function UsersDataPage() {
       {/* Header */}
       <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">User Management</h1>
+          <h1 className="text-2xl font-bold tracking-tight md:text-3xl">
+            User Management
+          </h1>
           <p className="text-muted-foreground text-sm md:text-base">
             Manage user accounts, roles, and permissions
           </p>

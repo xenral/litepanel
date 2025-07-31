@@ -2,7 +2,13 @@
 
 import { useState } from 'react';
 import { Search, Eye, Edit, Trash2, MoreHorizontal } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -61,8 +67,13 @@ const getStatusBadge = (status: Product['status']) => {
  * Products Table Component
  * Displays products in a responsive table with filters and actions
  */
-export function ProductsTable({ products, onProductsChange }: ProductsTableProps) {
-  const [selectedProducts, setSelectedProducts] = useState<Set<string>>(new Set());
+export function ProductsTable({
+  products,
+  onProductsChange,
+}: ProductsTableProps) {
+  const [selectedProducts, setSelectedProducts] = useState<Set<string>>(
+    new Set()
+  );
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
@@ -71,8 +82,10 @@ export function ProductsTable({ products, onProductsChange }: ProductsTableProps
     const matchesSearch =
       product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       product.id.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus = statusFilter === 'all' || product.status === statusFilter;
-    const matchesCategory = categoryFilter === 'all' || product.category === categoryFilter;
+    const matchesStatus =
+      statusFilter === 'all' || product.status === statusFilter;
+    const matchesCategory =
+      categoryFilter === 'all' || product.category === categoryFilter;
 
     return matchesSearch && matchesStatus && matchesCategory;
   });
@@ -101,7 +114,9 @@ export function ProductsTable({ products, onProductsChange }: ProductsTableProps
         <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
           <div>
             <CardTitle className="text-lg">Products</CardTitle>
-            <CardDescription className="text-sm">Manage your product inventory</CardDescription>
+            <CardDescription className="text-sm">
+              Manage your product inventory
+            </CardDescription>
           </div>
           <div className="flex flex-col space-y-2 sm:flex-row sm:items-center sm:space-x-2 sm:space-y-0">
             <div className="relative">
@@ -110,7 +125,7 @@ export function ProductsTable({ products, onProductsChange }: ProductsTableProps
                 placeholder="Search products..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full sm:w-[200px] pl-8"
+                className="w-full pl-8 sm:w-[200px]"
               />
             </div>
             <Select value={categoryFilter} onValueChange={setCategoryFilter}>
@@ -140,11 +155,11 @@ export function ProductsTable({ products, onProductsChange }: ProductsTableProps
       </CardHeader>
       <CardContent>
         {/* Mobile view */}
-        <div className="block md:hidden space-y-4">
+        <div className="block space-y-4 md:hidden">
           {filteredProducts.map((product) => (
             <Card key={product.id} className="p-4">
               <div className="flex items-start justify-between">
-                <div className="space-y-2 flex-1 min-w-0">
+                <div className="min-w-0 flex-1 space-y-2">
                   <div className="flex items-center space-x-2">
                     <Checkbox
                       checked={selectedProducts.has(product.id)}
@@ -152,19 +167,25 @@ export function ProductsTable({ products, onProductsChange }: ProductsTableProps
                         handleSelectProduct(product.id, checked === true)
                       }
                     />
-                    <div className="font-medium truncate">{product.name}</div>
+                    <div className="truncate font-medium">{product.name}</div>
                   </div>
-                  <div className="text-muted-foreground text-sm">{product.id}</div>
+                  <div className="text-muted-foreground text-sm">
+                    {product.id}
+                  </div>
                   <div className="flex items-center space-x-4 text-sm">
                     <span>{product.category}</span>
                     <span>${product.price}</span>
-                    <span className={product.stock < 20 ? 'text-orange-600' : ''}>
+                    <span
+                      className={product.stock < 20 ? 'text-orange-600' : ''}
+                    >
                       {product.stock} units
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     {getStatusBadge(product.status)}
-                    <span className="text-muted-foreground text-xs">{product.createdAt}</span>
+                    <span className="text-muted-foreground text-xs">
+                      {product.createdAt}
+                    </span>
                   </div>
                 </div>
                 <Popover>
@@ -175,11 +196,19 @@ export function ProductsTable({ products, onProductsChange }: ProductsTableProps
                   </PopoverTrigger>
                   <PopoverContent className="w-40" align="end">
                     <div className="space-y-1">
-                      <Button variant="ghost" size="sm" className="w-full justify-start">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="w-full justify-start"
+                      >
                         <Eye className="mr-2 h-4 w-4" />
                         View
                       </Button>
-                      <Button variant="ghost" size="sm" className="w-full justify-start">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="w-full justify-start"
+                      >
                         <Edit className="mr-2 h-4 w-4" />
                         Edit
                       </Button>
@@ -209,7 +238,9 @@ export function ProductsTable({ products, onProductsChange }: ProductsTableProps
                     <Checkbox
                       checked={
                         filteredProducts.length > 0 &&
-                        filteredProducts.every((p) => selectedProducts.has(p.id))
+                        filteredProducts.every((p) =>
+                          selectedProducts.has(p.id)
+                        )
                       }
                       onCheckedChange={handleSelectAll}
                     />
@@ -237,13 +268,17 @@ export function ProductsTable({ products, onProductsChange }: ProductsTableProps
                     <TableCell>
                       <div>
                         <div className="font-medium">{product.name}</div>
-                        <div className="text-muted-foreground text-sm">{product.id}</div>
+                        <div className="text-muted-foreground text-sm">
+                          {product.id}
+                        </div>
                       </div>
                     </TableCell>
                     <TableCell>{product.category}</TableCell>
                     <TableCell>${product.price}</TableCell>
                     <TableCell>
-                      <span className={product.stock < 20 ? 'text-orange-600' : ''}>
+                      <span
+                        className={product.stock < 20 ? 'text-orange-600' : ''}
+                      >
                         {product.stock}
                       </span>
                     </TableCell>
@@ -258,11 +293,19 @@ export function ProductsTable({ products, onProductsChange }: ProductsTableProps
                         </PopoverTrigger>
                         <PopoverContent className="w-40" align="end">
                           <div className="space-y-1">
-                            <Button variant="ghost" size="sm" className="w-full justify-start">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="w-full justify-start"
+                            >
                               <Eye className="mr-2 h-4 w-4" />
                               View
                             </Button>
-                            <Button variant="ghost" size="sm" className="w-full justify-start">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="w-full justify-start"
+                            >
                               <Edit className="mr-2 h-4 w-4" />
                               Edit
                             </Button>
@@ -288,7 +331,8 @@ export function ProductsTable({ products, onProductsChange }: ProductsTableProps
         {selectedProducts.size > 0 && (
           <div className="flex flex-col space-y-2 pt-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
             <p className="text-muted-foreground text-sm">
-              {selectedProducts.size} of {filteredProducts.length} product(s) selected
+              {selectedProducts.size} of {filteredProducts.length} product(s)
+              selected
             </p>
             <div className="flex flex-col space-y-2 sm:flex-row sm:items-center sm:space-x-2 sm:space-y-0">
               <Button variant="outline" size="sm">

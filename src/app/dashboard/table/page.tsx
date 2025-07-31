@@ -208,13 +208,17 @@ export default function DataTablePage() {
       {/* Header */}
       <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold">Data Table</h1>
-          <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base">
+          <h1 className="text-2xl font-bold md:text-3xl">Data Table</h1>
+          <p className="text-muted-foreground mt-1 text-sm sm:mt-2 sm:text-base">
             Manage users with advanced filtering, sorting, and bulk operations.
           </p>
         </div>
         <div className="flex items-center space-x-2">
-          <Button variant="outline" size="sm" className="flex items-center space-x-2">
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex items-center space-x-2"
+          >
             <Download className="h-4 w-4" />
             <span className="hidden sm:inline">Export</span>
           </Button>
@@ -240,7 +244,10 @@ export default function DataTablePage() {
             <div className="flex flex-col space-y-2 sm:flex-row sm:items-center sm:space-x-2 sm:space-y-0">
               <div className="relative">
                 <Search className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform" />
-                <Input placeholder="Search users..." className="w-full sm:w-64 pl-9" />
+                <Input
+                  placeholder="Search users..."
+                  className="w-full pl-9 sm:w-64"
+                />
               </div>
               <Button
                 variant="outline"

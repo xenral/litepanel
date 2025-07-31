@@ -34,7 +34,7 @@ export function ProductsHeader({ title, description }: ProductsHeaderProps) {
   return (
     <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
       <div>
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
+        <h1 className="text-2xl font-bold tracking-tight md:text-3xl">
           {title}
         </h1>
         <p className="text-muted-foreground text-sm md:text-base">
@@ -92,10 +92,7 @@ export function ProductsHeader({ title, description }: ProductsHeaderProps) {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="description">Description</Label>
-                <Textarea
-                  id="description"
-                  placeholder="Product description"
-                />
+                <Textarea id="description" placeholder="Product description" />
               </div>
               <Button className="w-full">Add Product</Button>
             </div>

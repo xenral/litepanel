@@ -153,7 +153,9 @@ export default function UsersListPage() {
       {/* Header */}
       <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">User Management</h1>
+          <h1 className="text-2xl font-bold tracking-tight md:text-3xl">
+            User Management
+          </h1>
           <p className="text-muted-foreground text-sm md:text-base">
             Comprehensive user administration and management
           </p>
@@ -316,62 +318,62 @@ export default function UsersListPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-8">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-8">
         {[
           {
-            title: "Total Users",
+            title: 'Total Users',
             value: userStats.totalUsers.toLocaleString(),
             icon: Users,
-            color: "text-muted-foreground",
+            color: 'text-muted-foreground',
             delay: 0,
           },
           {
-            title: "Active",
+            title: 'Active',
             value: userStats.activeUsers.toLocaleString(),
             icon: CheckCircle2,
-            color: "text-green-600",
+            color: 'text-green-600',
             delay: 0.1,
           },
           {
-            title: "Pending",
+            title: 'Pending',
             value: userStats.pendingUsers,
             icon: Clock,
-            color: "text-yellow-600",
+            color: 'text-yellow-600',
             delay: 0.2,
           },
           {
-            title: "Suspended",
+            title: 'Suspended',
             value: userStats.suspendedUsers,
             icon: Ban,
-            color: "text-red-600",
+            color: 'text-red-600',
             delay: 0.3,
           },
           {
-            title: "Admins",
+            title: 'Admins',
             value: userStats.adminUsers,
             icon: Crown,
-            color: "text-purple-600",
+            color: 'text-purple-600',
             delay: 0.4,
           },
           {
-            title: "This Week",
+            title: 'This Week',
             value: userStats.newThisWeek,
             icon: UserPlus,
-            color: "text-blue-600",
+            color: 'text-blue-600',
             delay: 0.5,
           },
           {
-            title: "This Month",
+            title: 'This Month',
             value: userStats.newThisMonth,
             icon: Calendar,
-            color: "text-indigo-600",
+            color: 'text-indigo-600',
             delay: 0.6,
           },
           {
-            title: "Avg. Performance",
+            title: 'Avg. Performance',
             value: `${userStats.avgPerformance}%`,
             icon: CheckCircle2,
-            color: "text-emerald-600",
+            color: 'text-emerald-600',
             delay: 0.7,
           },
         ].map((stat, index) => {
@@ -383,19 +385,23 @@ export default function UsersListPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: stat.delay }}
             >
-              <Card className="hover:shadow-md transition-shadow">
+              <Card className="transition-shadow hover:shadow-md">
                 <CardContent className="p-4 lg:p-6">
                   <div className="flex items-center justify-between">
                     <div className="min-w-0 flex-1">
-                      <p className="text-muted-foreground text-xs lg:text-sm font-medium truncate">
+                      <p className="text-muted-foreground truncate text-xs font-medium lg:text-sm">
                         {stat.title}
                       </p>
-                      <p className={`text-lg lg:text-2xl font-bold ${stat.color === "text-muted-foreground" ? "" : stat.color} truncate`}>
+                      <p
+                        className={`text-lg font-bold lg:text-2xl ${stat.color === 'text-muted-foreground' ? '' : stat.color} truncate`}
+                      >
                         {stat.value}
                       </p>
                     </div>
-                    <div className="flex-shrink-0 ml-2">
-                      <IconComponent className={`h-6 w-6 lg:h-8 lg:w-8 ${stat.color}`} />
+                    <div className="ml-2 flex-shrink-0">
+                      <IconComponent
+                        className={`h-6 w-6 lg:h-8 lg:w-8 ${stat.color}`}
+                      />
                     </div>
                   </div>
                 </CardContent>

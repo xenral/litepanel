@@ -45,9 +45,7 @@ export function PerformanceAnalyticsCard() {
                 </p>
               </div>
               <Badge
-                variant={
-                  metric.status === 'good' ? 'default' : 'destructive'
-                }
+                variant={metric.status === 'good' ? 'default' : 'destructive'}
               >
                 {metric.status}
               </Badge>

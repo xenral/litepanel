@@ -130,13 +130,17 @@ export default function SettingsPage() {
       {/* Header */}
       <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold">Settings</h1>
-          <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base">
+          <h1 className="text-2xl font-bold md:text-3xl">Settings</h1>
+          <p className="text-muted-foreground mt-1 text-sm sm:mt-2 sm:text-base">
             Manage your account settings, preferences, and integrations.
           </p>
         </div>
         <div className="flex items-center space-x-2">
-          <Button variant="outline" size="sm" className="flex items-center space-x-2">
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex items-center space-x-2"
+          >
             <RefreshCw className="h-4 w-4" />
             <span className="hidden sm:inline">Reset</span>
           </Button>
@@ -151,11 +155,21 @@ export default function SettingsPage() {
       {/* Settings Tabs */}
       <Tabs defaultValue="profile" className="space-y-4 sm:space-y-6">
         <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
-          <TabsTrigger value="profile" className="text-xs sm:text-sm">Profile</TabsTrigger>
-          <TabsTrigger value="notifications" className="text-xs sm:text-sm">Notifications</TabsTrigger>
-          <TabsTrigger value="appearance" className="text-xs sm:text-sm">Appearance</TabsTrigger>
-          <TabsTrigger value="security" className="text-xs sm:text-sm">Security</TabsTrigger>
-          <TabsTrigger value="api" className="text-xs sm:text-sm">API Keys</TabsTrigger>
+          <TabsTrigger value="profile" className="text-xs sm:text-sm">
+            Profile
+          </TabsTrigger>
+          <TabsTrigger value="notifications" className="text-xs sm:text-sm">
+            Notifications
+          </TabsTrigger>
+          <TabsTrigger value="appearance" className="text-xs sm:text-sm">
+            Appearance
+          </TabsTrigger>
+          <TabsTrigger value="security" className="text-xs sm:text-sm">
+            Security
+          </TabsTrigger>
+          <TabsTrigger value="api" className="text-xs sm:text-sm">
+            API Keys
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="profile" className="space-y-4 sm:space-y-6">

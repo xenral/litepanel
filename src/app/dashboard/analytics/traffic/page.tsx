@@ -1,11 +1,23 @@
 'use client';
 
-import { Users, Globe, Smartphone, Monitor, Eye, MousePointer, Clock, Activity } from 'lucide-react';
+import {
+  Users,
+  Globe,
+  Smartphone,
+  Monitor,
+  Eye,
+  MousePointer,
+  Clock,
+  Activity,
+} from 'lucide-react';
 import { AnalyticsHeader } from '@/components/analytics/analytics-header';
 import { TrafficMetricCard } from '@/components/analytics/traffic-metric-card';
 import { TrafficSourceCard } from '@/components/analytics/traffic-source-card';
 import { TrafficTabs } from '@/components/analytics/traffic-tabs';
-import { ResponsiveContainer, ResponsiveGrid } from '@/components/ui/responsive-grid';
+import {
+  ResponsiveContainer,
+  ResponsiveGrid,
+} from '@/components/ui/responsive-grid';
 
 const trafficMetrics = [
   {
@@ -66,17 +78,65 @@ export default function TrafficAnalyticsPage() {
   ];
 
   const trafficSources = [
-    { source: 'Organic Search', visitors: 34500, percentage: 40, change: 12.3, color: 'bg-green-500' },
-    { source: 'Direct', visitors: 26000, percentage: 30, change: 8.7, color: 'bg-blue-500' },
-    { source: 'Social Media', visitors: 17300, percentage: 20, change: 25.1, color: 'bg-purple-500' },
-    { source: 'Referral', visitors: 8700, percentage: 10, change: -3.2, color: 'bg-orange-500' },
+    {
+      source: 'Organic Search',
+      visitors: 34500,
+      percentage: 40,
+      change: 12.3,
+      color: 'bg-green-500',
+    },
+    {
+      source: 'Direct',
+      visitors: 26000,
+      percentage: 30,
+      change: 8.7,
+      color: 'bg-blue-500',
+    },
+    {
+      source: 'Social Media',
+      visitors: 17300,
+      percentage: 20,
+      change: 25.1,
+      color: 'bg-purple-500',
+    },
+    {
+      source: 'Referral',
+      visitors: 8700,
+      percentage: 10,
+      change: -3.2,
+      color: 'bg-orange-500',
+    },
   ];
 
   const campaignTraffic = [
-    { source: 'Google Ads', visitors: 18200, percentage: 35, change: 15.8, color: 'bg-red-500' },
-    { source: 'Facebook Ads', visitors: 14600, percentage: 28, change: 22.4, color: 'bg-blue-600' },
-    { source: 'LinkedIn Ads', visitors: 9800, percentage: 19, change: 8.9, color: 'bg-indigo-500' },
-    { source: 'Email Campaign', visitors: 9400, percentage: 18, change: 12.1, color: 'bg-teal-500' },
+    {
+      source: 'Google Ads',
+      visitors: 18200,
+      percentage: 35,
+      change: 15.8,
+      color: 'bg-red-500',
+    },
+    {
+      source: 'Facebook Ads',
+      visitors: 14600,
+      percentage: 28,
+      change: 22.4,
+      color: 'bg-blue-600',
+    },
+    {
+      source: 'LinkedIn Ads',
+      visitors: 9800,
+      percentage: 19,
+      change: 8.9,
+      color: 'bg-indigo-500',
+    },
+    {
+      source: 'Email Campaign',
+      visitors: 9400,
+      percentage: 18,
+      change: 12.1,
+      color: 'bg-teal-500',
+    },
   ];
 
   return (
@@ -92,11 +152,7 @@ export default function TrafficAnalyticsPage() {
       {/* Traffic Metrics */}
       <ResponsiveGrid cols={{ default: 1, sm: 2, lg: 3, xl: 6 }}>
         {trafficMetrics.map((metric, index) => (
-          <TrafficMetricCard
-            key={metric.title}
-            metric={metric}
-            index={index}
-          />
+          <TrafficMetricCard key={metric.title} metric={metric} index={index} />
         ))}
       </ResponsiveGrid>
 

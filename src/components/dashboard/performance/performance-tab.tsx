@@ -1,6 +1,12 @@
 'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { performanceMetrics, deviceAnalytics } from '@/data/dashboard';
@@ -23,7 +29,7 @@ export function PerformanceTab() {
             {performanceMetrics.map((metric) => (
               <div key={metric.metric} className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium truncate">
+                  <span className="truncate text-sm font-medium">
                     {metric.metric}
                   </span>
                   <Badge
@@ -59,15 +65,13 @@ export function PerformanceTab() {
             {deviceAnalytics.map((device) => (
               <div key={device.device} className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium">
-                    {device.device}
-                  </span>
+                  <span className="text-sm font-medium">{device.device}</span>
                   <span className="text-muted-foreground text-sm">
                     {device.percentage}%
                   </span>
                 </div>
                 <Progress value={device.percentage} className="h-2" />
-                <div className="text-muted-foreground text-xs flex items-center justify-between">
+                <div className="text-muted-foreground flex items-center justify-between text-xs">
                   <span>{device.count.toLocaleString()} users</span>
                   <span>({device.change})</span>
                 </div>

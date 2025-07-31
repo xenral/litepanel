@@ -16,7 +16,9 @@ export function DashboardHeader({ title, description }: DashboardHeaderProps) {
   return (
     <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
       <div className="space-y-1">
-        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">{title}</h2>
+        <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
+          {title}
+        </h2>
         {description && (
           <p className="text-muted-foreground text-sm md:text-base">
             {description}

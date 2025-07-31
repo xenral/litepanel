@@ -49,9 +49,8 @@ import {
 } from '@/data/docs';
 
 export const metadata: Metadata = {
-      title: 'Documentation | LitePanel',
-  description:
-    'Comprehensive documentation for LitePanel components and APIs.',
+  title: 'Documentation | LitePanel',
+  description: 'Comprehensive documentation for LitePanel components and APIs.',
 };
 
 export default function DocsPage() {

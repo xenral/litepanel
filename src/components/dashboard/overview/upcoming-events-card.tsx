@@ -23,13 +23,11 @@ export function UpcomingEventsCard() {
           {upcomingEvents.map((event) => (
             <div
               key={event.id}
-              className="flex items-center justify-between rounded-lg border p-3 transition-colors hover:bg-muted/50"
+              className="hover:bg-muted/50 flex items-center justify-between rounded-lg border p-3 transition-colors"
             >
               <div className="space-y-1">
                 <p className="text-sm font-medium">{event.title}</p>
-                <p className="text-muted-foreground text-xs">
-                  {event.time}
-                </p>
+                <p className="text-muted-foreground text-xs">{event.time}</p>
               </div>
               <Badge
                 variant={

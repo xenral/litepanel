@@ -33,9 +33,7 @@ export function SystemStatusCard() {
                   <span className="text-sm">{metric.name}</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <span className="text-sm font-medium">
-                    {metric.value}%
-                  </span>
+                  <span className="text-sm font-medium">{metric.value}%</span>
                   <div
                     className={`h-2 w-2 rounded-full ${
                       metric.status === 'healthy'

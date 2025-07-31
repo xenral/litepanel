@@ -14,9 +14,9 @@ export const themeUtils = {
       useThemeStore.getState();
 
     // Clear localStorage to prevent conflicts
-      localStorage.removeItem('litepanel-theme-storage');
-  localStorage.removeItem('litepanel-theme');
-  localStorage.removeItem('litepanel-customization');
+    localStorage.removeItem('litepanel-theme-storage');
+    localStorage.removeItem('litepanel-theme');
+    localStorage.removeItem('litepanel-customization');
 
     setTheme('neutral-pro');
     setIsDark(true);

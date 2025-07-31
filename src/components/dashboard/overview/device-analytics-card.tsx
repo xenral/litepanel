@@ -28,16 +28,11 @@ export function DeviceAnalyticsCard() {
                   ? Smartphone
                   : Tablet;
             return (
-              <div
-                key={device.device}
-                className="flex items-center space-x-4"
-              >
+              <div key={device.device} className="flex items-center space-x-4">
                 <IconComponent className="text-muted-foreground h-5 w-5 shrink-0" />
                 <div className="flex-1 space-y-1">
                   <div className="flex items-center justify-between">
-                    <p className="text-sm font-medium">
-                      {device.device}
-                    </p>
+                    <p className="text-sm font-medium">{device.device}</p>
                     <div className="flex items-center space-x-2">
                       <span className="text-muted-foreground text-sm">
                         {device.change}
@@ -47,10 +42,7 @@ export function DeviceAnalyticsCard() {
                       </span>
                     </div>
                   </div>
-                  <Progress
-                    value={device.percentage}
-                    className="h-2"
-                  />
+                  <Progress value={device.percentage} className="h-2" />
                   <p className="text-muted-foreground text-xs">
                     {device.count.toLocaleString()} users
                   </p>

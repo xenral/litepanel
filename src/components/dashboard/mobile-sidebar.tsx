@@ -4,10 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  ChevronDown,
-  Palette,
-} from 'lucide-react';
+import { ChevronDown, Palette } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { useThemeContext } from '@/context/theme-context';
@@ -17,7 +14,11 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
-import { navigationItems, secondaryItems, type NavigationItem } from '@/data/navigation.data';
+import {
+  navigationItems,
+  secondaryItems,
+  type NavigationItem,
+} from '@/data/navigation.data';
 
 interface MobileSidebarProps {
   /** Whether the mobile sidebar is open */
@@ -79,8 +80,8 @@ export function MobileSidebar({
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent 
-        side="left" 
+      <SheetContent
+        side="left"
         className="w-80 p-0 transition-all duration-300 ease-in-out"
         style={{
           backgroundColor: 'hsl(var(--sidebar-background))',
@@ -120,7 +121,7 @@ export function MobileSidebar({
                           onClick={() => toggleSubmenu(item.href)}
                           whileHover={{ scale: 1.02, x: 4 }}
                           whileTap={{ scale: 0.98 }}
-                          transition={{ duration: 0.2, ease: "easeInOut" }}
+                          transition={{ duration: 0.2, ease: 'easeInOut' }}
                           className={cn(
                             'group flex w-full items-center justify-start rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
                             isItemActive || isSubmenuItemActive
@@ -141,7 +142,8 @@ export function MobileSidebar({
                           }}
                           onMouseLeave={(e) => {
                             if (!isItemActive && !isSubmenuItemActive) {
-                              e.currentTarget.style.backgroundColor = 'transparent';
+                              e.currentTarget.style.backgroundColor =
+                                'transparent';
                             }
                           }}
                         >
@@ -173,8 +175,8 @@ export function MobileSidebar({
                               className="border-border/50 ml-4 mt-1 space-y-1 overflow-hidden border-l pl-4"
                             >
                               {item.submenu?.map((subItem) => (
-                                <Link 
-                                  key={subItem.href} 
+                                <Link
+                                  key={subItem.href}
                                   href={subItem.href}
                                   onClick={handleItemClick}
                                 >
@@ -242,7 +244,8 @@ export function MobileSidebar({
                           }}
                           onMouseLeave={(e) => {
                             if (!isItemActive) {
-                              e.currentTarget.style.backgroundColor = 'transparent';
+                              e.currentTarget.style.backgroundColor =
+                                'transparent';
                             }
                           }}
                         >
@@ -269,7 +272,11 @@ export function MobileSidebar({
             {/* Secondary Navigation */}
             <div className="space-y-1">
               {secondaryItems.map((item) => (
-                <Link key={item.href} href={item.href} onClick={handleItemClick}>
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={handleItemClick}
+                >
                   <motion.div
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -281,7 +288,8 @@ export function MobileSidebar({
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.backgroundColor = 'transparent';
-                      e.currentTarget.style.color = 'hsl(var(--muted-foreground))';
+                      e.currentTarget.style.color =
+                        'hsl(var(--muted-foreground))';
                     }}
                   >
                     <item.icon className="mr-3 h-4 w-4 shrink-0" />

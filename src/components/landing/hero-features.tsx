@@ -31,7 +31,7 @@ export function HeroFeatures() {
 
   // Typing animation for the main tagline
   const mainText = 'hot-swappable themes';
-  
+
   React.useEffect(() => {
     if (!isTyping) return;
 
@@ -68,18 +68,18 @@ export function HeroFeatures() {
         className="text-muted-foreground mx-auto max-w-3xl text-xl leading-relaxed md:text-2xl"
       >
         A fully-typed{' '}
-        <span className="text-foreground font-semibold">Next.js 15</span>{' '}
-        admin template with{' '}
+        <span className="text-foreground font-semibold">Next.js 15</span> admin
+        template with{' '}
         <span className="text-foreground relative font-semibold">
           {displayedText}
           {isTyping && (
             <motion.span
               animate={{ opacity: [1, 0, 1] }}
-              transition={{ 
+              transition={{
                 type: 'tween',
-                duration: 0.8, 
+                duration: 0.8,
                 repeat: Infinity,
-                ease: 'easeInOut'
+                ease: 'easeInOut',
               }}
               className="text-primary ml-1"
             >
@@ -172,4 +172,4 @@ export function HeroFeatures() {
       </AnimatePresence>
     </div>
   );
-} 
+}

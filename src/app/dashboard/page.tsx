@@ -10,17 +10,17 @@ import { SystemTab } from '@/components/dashboard/system/system-tab';
 import { kpiMetrics, quickStats } from '@/data/dashboard';
 
 export const metadata: Metadata = {
-      title: 'Dashboard | LitePanel',
+  title: 'Dashboard | LitePanel',
   description:
-          'Overview of your LitePanel dashboard with analytics and insights.',
+    'Overview of your LitePanel dashboard with analytics and insights.',
 };
 
 export default function DashboardPage() {
   return (
     <div className="flex-1 space-y-4 sm:space-y-6">
       {/* Dashboard Header */}
-      <DashboardHeader 
-        title="Dashboard" 
+      <DashboardHeader
+        title="Dashboard"
         description="Overview of your LitePanel dashboard with analytics and insights"
       />
 

@@ -15,11 +15,11 @@ interface ProductsStatsProps {
  * Products Stats Component
  * Displays key product statistics in cards
  */
-export function ProductsStats({ 
-  totalProducts, 
-  totalValue, 
-  lowStockCount, 
-  outOfStockCount 
+export function ProductsStats({
+  totalProducts,
+  totalValue,
+  lowStockCount,
+  outOfStockCount,
 }: ProductsStatsProps) {
   const stats = [
     {
@@ -53,13 +53,11 @@ export function ProductsStats({
       {stats.map((stat) => (
         <Card key={stat.title}>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">
-              {stat.title}
-            </CardTitle>
+            <CardTitle className="text-sm font-medium">{stat.title}</CardTitle>
             <stat.icon className="text-muted-foreground h-4 w-4" />
           </CardHeader>
           <CardContent>
-            <div className="text-xl md:text-2xl font-bold">{stat.value}</div>
+            <div className="text-xl font-bold md:text-2xl">{stat.value}</div>
             <p className="text-muted-foreground text-xs">{stat.description}</p>
           </CardContent>
         </Card>

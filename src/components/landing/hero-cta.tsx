@@ -49,21 +49,19 @@ export function HeroCTA() {
               }
               transition={{ duration: 2, repeat: Infinity }}
             />
-            
+
             {/* Button content */}
             <span className="relative z-10 flex items-center">
               <Play className="mr-2 h-5 w-5 transition-transform group-hover:scale-110" />
               Live Demo
               <motion.div
                 className="ml-2"
-                animate={
-                  isHoveringDemo ? { x: [0, 5, 0] } : { x: 0 }
-                }
-                transition={{ 
+                animate={isHoveringDemo ? { x: [0, 5, 0] } : { x: 0 }}
+                transition={{
                   type: 'tween',
-                  duration: 0.6, 
+                  duration: 0.6,
                   repeat: Infinity,
-                  ease: 'easeInOut'
+                  ease: 'easeInOut',
                 }}
               >
                 <ArrowRight className="h-5 w-5" />
@@ -109,7 +107,7 @@ export function HeroCTA() {
           asChild
           variant="outline"
           size="lg"
-          className="group relative overflow-hidden rounded-xl px-8 py-6 text-lg transition-all duration-300 hover:bg-muted/50"
+          className="hover:bg-muted/50 group relative overflow-hidden rounded-xl px-8 py-6 text-lg transition-all duration-300"
         >
           <Link href="https://github.com/xenral/litepanel" target="_blank">
             {/* Animated border glow */}
@@ -147,11 +145,11 @@ export function HeroCTA() {
                     ? { x: [0, 3, 0], y: [0, -3, 0] }
                     : { x: 0, y: 0 }
                 }
-                transition={{ 
+                transition={{
                   type: 'tween',
-                  duration: 0.8, 
+                  duration: 0.8,
                   repeat: Infinity,
-                  ease: 'easeInOut'
+                  ease: 'easeInOut',
                 }}
               >
                 <ExternalLink className="h-4 w-4" />
@@ -160,7 +158,6 @@ export function HeroCTA() {
           </Link>
         </Button>
       </motion.div>
-
     </motion.div>
   );
-} 
+}

@@ -15,7 +15,7 @@ export function QuickActionsCard() {
         <CardTitle>Quick Actions</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           <Button variant="outline" size="sm" className="justify-start">
             <Plus className="mr-2 h-4 w-4" />
             New Project

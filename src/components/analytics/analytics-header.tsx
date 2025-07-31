@@ -26,7 +26,12 @@ interface AnalyticsHeaderProps {
  * Analytics Header Component
  * Responsive header for analytics pages
  */
-export function AnalyticsHeader({ title, description, breadcrumbs, badge }: AnalyticsHeaderProps) {
+export function AnalyticsHeader({
+  title,
+  description,
+  breadcrumbs,
+  badge,
+}: AnalyticsHeaderProps) {
   return (
     <div className="space-y-4">
       {/* Breadcrumbs */}
@@ -39,7 +44,9 @@ export function AnalyticsHeader({ title, description, breadcrumbs, badge }: Anal
                 {crumb.isActive ? (
                   <BreadcrumbPage>{crumb.label}</BreadcrumbPage>
                 ) : (
-                  <BreadcrumbLink href={crumb.href}>{crumb.label}</BreadcrumbLink>
+                  <BreadcrumbLink href={crumb.href}>
+                    {crumb.label}
+                  </BreadcrumbLink>
                 )}
               </BreadcrumbItem>
             </div>
@@ -50,7 +57,7 @@ export function AnalyticsHeader({ title, description, breadcrumbs, badge }: Anal
       {/* Title and Description */}
       <div className="flex flex-col space-y-2 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
         <div className="space-y-1">
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">
+          <h1 className="text-2xl font-bold tracking-tight md:text-3xl">
             {title}
           </h1>
           <p className="text-muted-foreground text-sm md:text-base">

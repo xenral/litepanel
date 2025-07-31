@@ -164,9 +164,9 @@ export function TestimonialsCarousel() {
           </h2>
 
           <p className="text-muted-foreground mx-auto max-w-3xl text-lg">
-            See what developers and designers are saying about LitePanel
-            Admin. Join thousands of professionals who trust our template for
-            their projects.
+            See what developers and designers are saying about LitePanel Admin.
+            Join thousands of professionals who trust our template for their
+            projects.
           </p>
         </motion.div>
 

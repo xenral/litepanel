@@ -7,7 +7,7 @@ import { TestimonialsCarousel } from '@/components/landing/testimonials-carousel
 import { CTASection } from '@/components/landing/cta-section';
 
 export const metadata: Metadata = {
-      title: 'LitePanel - Next.js Admin Dashboard Template',
+  title: 'LitePanel - Next.js Admin Dashboard Template',
   description:
     'A fully-typed Next.js 15 admin template with hot-swappable themes, built with TypeScript, Tailwind CSS, and shadcn/ui components.',
 };

@@ -1,7 +1,13 @@
 'use client';
 
 import { Cpu, HardDrive, Wifi } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { ActivityItem } from '@/components/shared/activity-item';
 import { systemMetrics, activityItems } from '@/data/dashboard';
 
@@ -55,9 +61,7 @@ export function SystemTab() {
       <Card>
         <CardHeader>
           <CardTitle>System Activity</CardTitle>
-          <CardDescription>
-            Recent system events and activities
-          </CardDescription>
+          <CardDescription>Recent system events and activities</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-2">

@@ -21,7 +21,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
             <div className="mr-2 flex h-6 w-6 items-center justify-center rounded bg-white/20">
               <div className="h-3 w-3 rounded bg-white" />
             </div>
-                            LitePanel
+            LitePanel
           </div>
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2">

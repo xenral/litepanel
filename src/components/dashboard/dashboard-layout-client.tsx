@@ -22,7 +22,7 @@ export function DashboardLayoutClient({
   const [sidebarCollapsed, setSidebarCollapsed] = React.useState(false);
   const [commandPaletteOpen, setCommandPaletteOpen] = React.useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = React.useState(false);
-  
+
   // Check if we're on a mobile device (screens smaller than 768px)
   const isMobile = useMediaQuery('(max-width: 767px)');
 
@@ -76,7 +76,7 @@ export function DashboardLayoutClient({
       {/* Main Content Area */}
       <div className="flex flex-1 flex-col overflow-hidden">
         {/* Topbar */}
-        <Topbar 
+        <Topbar
           onCommandPaletteOpen={openCommandPalette}
           onMobileSidebarToggle={toggleMobileSidebar}
           isMobile={isMobile}

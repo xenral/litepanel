@@ -1,6 +1,12 @@
 'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { recentProjects } from '@/data/dashboard';
@@ -16,7 +22,7 @@ export function ProjectsTab() {
         <Card key={project.id} className="transition-all hover:shadow-md">
           <CardHeader>
             <div className="flex items-center justify-between">
-              <CardTitle className="text-lg truncate">{project.name}</CardTitle>
+              <CardTitle className="truncate text-lg">{project.name}</CardTitle>
               <Badge
                 variant={
                   project.status === 'active'
@@ -42,7 +48,7 @@ export function ProjectsTab() {
               <Progress value={project.progress} />
               <div className="text-muted-foreground flex items-center justify-between text-xs">
                 <span>Team: {project.team.length} members</span>
-                <span className="truncate ml-2">{project.lastActivity}</span>
+                <span className="ml-2 truncate">{project.lastActivity}</span>
               </div>
             </div>
           </CardContent>

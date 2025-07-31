@@ -1,7 +1,13 @@
 'use client';
 
 import { Monitor, Smartphone, Tablet } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
@@ -12,9 +18,27 @@ import { Badge } from '@/components/ui/badge';
  */
 export function TrafficTabs() {
   const deviceData = [
-    { device: 'Desktop', visitors: 45200, percentage: 52, icon: Monitor, change: 8.2 },
-    { device: 'Mobile', visitors: 32800, percentage: 38, icon: Smartphone, change: 15.7 },
-    { device: 'Tablet', visitors: 8700, percentage: 10, icon: Tablet, change: -3.4 },
+    {
+      device: 'Desktop',
+      visitors: 45200,
+      percentage: 52,
+      icon: Monitor,
+      change: 8.2,
+    },
+    {
+      device: 'Mobile',
+      visitors: 32800,
+      percentage: 38,
+      icon: Smartphone,
+      change: 15.7,
+    },
+    {
+      device: 'Tablet',
+      visitors: 8700,
+      percentage: 10,
+      icon: Tablet,
+      change: -3.4,
+    },
   ];
 
   const locationData = [
@@ -62,24 +86,28 @@ export function TrafficTabs() {
               {deviceData.map((item) => {
                 const IconComponent = item.icon;
                 return (
-                  <div key={item.device} className="space-y-3 p-4 rounded-lg border">
+                  <div
+                    key={item.device}
+                    className="space-y-3 rounded-lg border p-4"
+                  >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
-                        <IconComponent className="h-5 w-5 text-muted-foreground" />
+                        <IconComponent className="text-muted-foreground h-5 w-5" />
                         <span className="font-medium">{item.device}</span>
                       </div>
-                      <Badge 
+                      <Badge
                         variant={item.change > 0 ? 'default' : 'secondary'}
                         className="text-xs"
                       >
-                        {item.change > 0 ? '+' : ''}{item.change}%
+                        {item.change > 0 ? '+' : ''}
+                        {item.change}%
                       </Badge>
                     </div>
                     <div className="text-2xl font-bold">
                       {item.visitors.toLocaleString()}
                     </div>
                     <Progress value={item.percentage} className="h-2" />
-                    <div className="text-xs text-muted-foreground">
+                    <div className="text-muted-foreground text-xs">
                       {item.percentage}% of total visitors
                     </div>
                   </div>
@@ -91,7 +119,10 @@ export function TrafficTabs() {
           <TabsContent value="locations" className="space-y-4">
             <div className="space-y-3">
               {locationData.map((item) => (
-                <div key={item.country} className="flex items-center justify-between p-3 rounded-lg border">
+                <div
+                  key={item.country}
+                  className="flex items-center justify-between rounded-lg border p-3"
+                >
                   <div className="flex items-center space-x-3">
                     <span className="text-lg">{item.flag}</span>
                     <span className="font-medium">{item.country}</span>
@@ -100,7 +131,7 @@ export function TrafficTabs() {
                     <div className="font-medium">
                       {item.visitors.toLocaleString()}
                     </div>
-                    <div className="text-xs text-muted-foreground">
+                    <div className="text-muted-foreground text-xs">
                       {item.percentage}%
                     </div>
                   </div>

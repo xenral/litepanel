@@ -23,10 +23,10 @@ export function RecentFilesCard() {
           {recentFiles.map((file) => (
             <div
               key={file.id}
-              className="flex items-center justify-between rounded-lg p-2 transition-colors hover:bg-muted/50"
+              className="hover:bg-muted/50 flex items-center justify-between rounded-lg p-2 transition-colors"
             >
-              <div className="space-y-1 flex-1 min-w-0">
-                <p className="text-sm font-medium truncate">{file.name}</p>
+              <div className="min-w-0 flex-1 space-y-1">
+                <p className="truncate text-sm font-medium">{file.name}</p>
                 <div className="text-muted-foreground flex items-center space-x-2 text-xs">
                   <span>{file.type}</span>
                   <span>•</span>

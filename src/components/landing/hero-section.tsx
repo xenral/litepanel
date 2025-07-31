@@ -33,27 +33,28 @@ export function HeroSection() {
             className="flex items-center justify-center space-x-3"
           >
             <motion.div
-              className="p-2 bg-white flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br shadow-lg"
-              whileHover={{ 
-                scale: 1.1, 
+              className="flex h-14 w-14 items-center justify-center rounded-xl bg-white bg-gradient-to-br p-2 shadow-lg"
+              whileHover={{
+                scale: 1.1,
                 rotate: [0, -10, 10, 0],
-                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                boxShadow:
+                  '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
               }}
-              transition={{ 
+              transition={{
                 scale: { type: 'spring', stiffness: 300 },
                 rotate: { type: 'tween', duration: 0.6, ease: 'easeInOut' },
-                boxShadow: { type: 'tween', duration: 0.3 }
+                boxShadow: { type: 'tween', duration: 0.3 },
               }}
             >
               <Image src="/logo.svg" alt="LitePanel" width={100} height={100} />
             </motion.div>
             <motion.h1
-              className="text-gradient bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-5xl font-bold tracking-tight text-transparent md:text-6xl"
+              className="text-gradient from-foreground to-foreground/70 bg-gradient-to-r bg-clip-text text-5xl font-bold tracking-tight text-transparent md:text-6xl"
               whileHover={{ scale: 1.02 }}
               transition={{ type: 'spring', stiffness: 300 }}
-                         >
-               LitePanel
-             </motion.h1>
+            >
+              LitePanel
+            </motion.h1>
           </motion.div>
 
           {/* Enhanced features section with typing animation */}
@@ -74,29 +75,29 @@ export function HeroSection() {
           >
             <motion.div
               animate={{ y: [0, 10, 0] }}
-              transition={{ 
+              transition={{
                 type: 'tween',
-                duration: 2, 
+                duration: 2,
                 repeat: Infinity,
-                ease: 'easeInOut'
+                ease: 'easeInOut',
               }}
-              className="border-muted-foreground/30 flex h-12 w-7 justify-center mx-auto rounded-full border-2 backdrop-blur-sm"
+              className="border-muted-foreground/30 mx-auto flex h-12 w-7 justify-center rounded-full border-2 backdrop-blur-sm"
             >
               <motion.div
-                animate={{ 
+                animate={{
                   y: [0, 16, 0],
-                  opacity: [0.4, 1, 0.4]
+                  opacity: [0.4, 1, 0.4],
                 }}
-                transition={{ 
+                transition={{
                   type: 'tween',
-                  duration: 2, 
+                  duration: 2,
                   repeat: Infinity,
-                  ease: 'easeInOut'
+                  ease: 'easeInOut',
                 }}
                 className="bg-muted-foreground/60 mt-3 h-4 w-1 rounded-full"
               />
             </motion.div>
-            
+
             {/* Scroll hint text */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -112,7 +113,7 @@ export function HeroSection() {
 
       {/* Subtle glow effect at the bottom */}
       <motion.div
-        className="from-primary/5 to-transparent absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t"
+        className="from-primary/5 absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t to-transparent"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.5 }}

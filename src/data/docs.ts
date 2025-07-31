@@ -118,8 +118,8 @@ export const quickStart: QuickStartStep[] = [
   {
     step: 1,
     title: 'Installation',
-          description: 'Install LitePanel and dependencies',
-      command: 'npm create litepanel-app@latest my-app',
+    description: 'Install LitePanel and dependencies',
+    command: 'npm create litepanel-app@latest my-app',
     time: '2 min',
     icon: Download,
   },

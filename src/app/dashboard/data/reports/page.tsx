@@ -258,7 +258,9 @@ export default function ReportsDataPage() {
       {/* Header */}
       <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Data Reports</h1>
+          <h1 className="text-2xl font-bold tracking-tight md:text-3xl">
+            Data Reports
+          </h1>
           <p className="text-muted-foreground text-sm md:text-base">
             Generate, schedule, and export comprehensive data reports
           </p>
@@ -411,9 +413,15 @@ export default function ReportsDataPage() {
       {/* Main Content Tabs */}
       <Tabs defaultValue="templates" className="space-y-4 sm:space-y-6">
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="templates" className="text-xs sm:text-sm">Templates</TabsTrigger>
-          <TabsTrigger value="recent" className="text-xs sm:text-sm">Recent</TabsTrigger>
-          <TabsTrigger value="scheduled" className="text-xs sm:text-sm">Scheduled</TabsTrigger>
+          <TabsTrigger value="templates" className="text-xs sm:text-sm">
+            Templates
+          </TabsTrigger>
+          <TabsTrigger value="recent" className="text-xs sm:text-sm">
+            Recent
+          </TabsTrigger>
+          <TabsTrigger value="scheduled" className="text-xs sm:text-sm">
+            Scheduled
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="templates" className="space-y-4 sm:space-y-6">

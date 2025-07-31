@@ -157,7 +157,9 @@ export default function RolesManagementPage() {
       {/* Header */}
       <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Role Management</h1>
+          <h1 className="text-2xl font-bold tracking-tight md:text-3xl">
+            Role Management
+          </h1>
           <p className="text-muted-foreground text-sm md:text-base">
             Define roles and manage permissions for your team members
           </p>
@@ -358,7 +360,7 @@ export default function RolesManagementPage() {
       </Card>
 
       {/* Roles Grid */}
-      <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
         {filteredRoles.map((role, index) => (
           <motion.div
             key={role.id}

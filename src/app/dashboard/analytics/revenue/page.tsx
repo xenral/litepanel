@@ -1,11 +1,21 @@
 'use client';
 
-import { DollarSign, TrendingUp, ShoppingCart, CreditCard, Target, Users } from 'lucide-react';
+import {
+  DollarSign,
+  TrendingUp,
+  ShoppingCart,
+  CreditCard,
+  Target,
+  Users,
+} from 'lucide-react';
 import { AnalyticsHeader } from '@/components/analytics/analytics-header';
 import { RevenueMetricCard } from '@/components/analytics/revenue-metric-card';
 import { RevenueBreakdownCard } from '@/components/analytics/revenue-breakdown-card';
 import { RevenueTabs } from '@/components/analytics/revenue-tabs';
-import { ResponsiveContainer, ResponsiveGrid } from '@/components/ui/responsive-grid';
+import {
+  ResponsiveContainer,
+  ResponsiveGrid,
+} from '@/components/ui/responsive-grid';
 
 const revenueMetrics = [
   {
@@ -66,17 +76,57 @@ export default function RevenueAnalyticsPage() {
   ];
 
   const revenueByCategory = [
-    { category: 'Subscriptions', amount: 234560, percentage: 45, color: 'bg-blue-500' },
-    { category: 'One-time Sales', amount: 156780, percentage: 30, color: 'bg-green-500' },
-    { category: 'Services', amount: 89430, percentage: 17, color: 'bg-purple-500' },
-    { category: 'Add-ons', amount: 40660, percentage: 8, color: 'bg-orange-500' },
+    {
+      category: 'Subscriptions',
+      amount: 234560,
+      percentage: 45,
+      color: 'bg-blue-500',
+    },
+    {
+      category: 'One-time Sales',
+      amount: 156780,
+      percentage: 30,
+      color: 'bg-green-500',
+    },
+    {
+      category: 'Services',
+      amount: 89430,
+      percentage: 17,
+      color: 'bg-purple-500',
+    },
+    {
+      category: 'Add-ons',
+      amount: 40660,
+      percentage: 8,
+      color: 'bg-orange-500',
+    },
   ];
 
   const revenueBySource = [
-    { category: 'Direct Sales', amount: 198750, percentage: 38, color: 'bg-indigo-500' },
-    { category: 'Affiliate', amount: 145320, percentage: 28, color: 'bg-pink-500' },
-    { category: 'Partnerships', amount: 104180, percentage: 20, color: 'bg-teal-500' },
-    { category: 'Referrals', amount: 73180, percentage: 14, color: 'bg-yellow-500' },
+    {
+      category: 'Direct Sales',
+      amount: 198750,
+      percentage: 38,
+      color: 'bg-indigo-500',
+    },
+    {
+      category: 'Affiliate',
+      amount: 145320,
+      percentage: 28,
+      color: 'bg-pink-500',
+    },
+    {
+      category: 'Partnerships',
+      amount: 104180,
+      percentage: 20,
+      color: 'bg-teal-500',
+    },
+    {
+      category: 'Referrals',
+      amount: 73180,
+      percentage: 14,
+      color: 'bg-yellow-500',
+    },
   ];
 
   return (
@@ -92,11 +142,7 @@ export default function RevenueAnalyticsPage() {
       {/* Revenue Metrics */}
       <ResponsiveGrid cols={{ default: 1, sm: 2, lg: 3, xl: 6 }}>
         {revenueMetrics.map((metric, index) => (
-          <RevenueMetricCard
-            key={metric.title}
-            metric={metric}
-            index={index}
-          />
+          <RevenueMetricCard key={metric.title} metric={metric} index={index} />
         ))}
       </ResponsiveGrid>
 

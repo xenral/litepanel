@@ -186,8 +186,8 @@ export default function AnalyticsPage() {
       {/* Header */}
       <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold">Analytics</h1>
-          <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base">
+          <h1 className="text-2xl font-bold md:text-3xl">Analytics</h1>
+          <p className="text-muted-foreground mt-1 text-sm sm:mt-2 sm:text-base">
             Comprehensive insights into your application performance and user
             behavior.
           </p>
@@ -206,7 +206,11 @@ export default function AnalyticsPage() {
             placeholder="Select date range"
             className="w-32 sm:w-40"
           />
-          <Button variant="outline" size="sm" className="flex items-center space-x-2">
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex items-center space-x-2"
+          >
             <RefreshCw className="h-4 w-4" />
             <span className="hidden sm:inline">Refresh</span>
           </Button>
@@ -226,15 +230,17 @@ export default function AnalyticsPage() {
         {displayData.summary.map((metric) => (
           <Card key={metric.title} className="transition-all hover:shadow-md">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium truncate">
+              <CardTitle className="truncate text-sm font-medium">
                 {metric.title}
               </CardTitle>
-              <div className="bg-primary/10 flex h-8 w-8 items-center justify-center rounded-lg shrink-0">
+              <div className="bg-primary/10 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg">
                 <metric.icon className="text-primary h-4 w-4" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-xl md:text-2xl font-bold">{metric.value}</div>
+              <div className="text-xl font-bold md:text-2xl">
+                {metric.value}
+              </div>
               <div className="text-muted-foreground mt-1 flex items-center space-x-2 text-xs">
                 <TrendingUp
                   className={`h-3 w-3 ${
@@ -265,10 +271,18 @@ export default function AnalyticsPage() {
       {/* Charts and Tables */}
       <Tabs defaultValue="overview" className="space-y-4 sm:space-y-6">
         <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4">
-          <TabsTrigger value="overview" className="text-xs sm:text-sm">Overview</TabsTrigger>
-          <TabsTrigger value="traffic" className="text-xs sm:text-sm">Traffic</TabsTrigger>
-          <TabsTrigger value="revenue" className="text-xs sm:text-sm">Revenue</TabsTrigger>
-          <TabsTrigger value="conversion" className="text-xs sm:text-sm">Conversion</TabsTrigger>
+          <TabsTrigger value="overview" className="text-xs sm:text-sm">
+            Overview
+          </TabsTrigger>
+          <TabsTrigger value="traffic" className="text-xs sm:text-sm">
+            Traffic
+          </TabsTrigger>
+          <TabsTrigger value="revenue" className="text-xs sm:text-sm">
+            Revenue
+          </TabsTrigger>
+          <TabsTrigger value="conversion" className="text-xs sm:text-sm">
+            Conversion
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="space-y-4 sm:space-y-6">
@@ -287,7 +301,9 @@ export default function AnalyticsPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg">Top Pages</CardTitle>
-                <CardDescription className="text-sm">Most visited pages this month</CardDescription>
+                <CardDescription className="text-sm">
+                  Most visited pages this month
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-3 sm:space-y-4">
                 {displayData.topPages.map((page, index) => (
@@ -295,12 +311,14 @@ export default function AnalyticsPage() {
                     key={page.path}
                     className="flex items-center justify-between"
                   >
-                    <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
-                      <div className="bg-muted flex h-6 w-6 sm:h-8 sm:w-8 items-center justify-center rounded-lg text-xs sm:text-sm font-medium shrink-0">
+                    <div className="flex min-w-0 items-center space-x-2 sm:space-x-3">
+                      <div className="bg-muted flex h-6 w-6 shrink-0 items-center justify-center rounded-lg text-xs font-medium sm:h-8 sm:w-8 sm:text-sm">
                         {index + 1}
                       </div>
                       <div className="min-w-0">
-                        <p className="text-sm font-medium truncate">{page.path}</p>
+                        <p className="truncate text-sm font-medium">
+                          {page.path}
+                        </p>
                         <p className="text-muted-foreground text-xs">
                           {page.views.toLocaleString()} views
                         </p>
@@ -310,7 +328,7 @@ export default function AnalyticsPage() {
                       variant={
                         page.change.startsWith('+') ? 'default' : 'secondary'
                       }
-                      className="shrink-0 ml-2"
+                      className="ml-2 shrink-0"
                     >
                       {page.change}
                     </Badge>

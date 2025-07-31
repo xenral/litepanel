@@ -18,7 +18,7 @@ export function DashboardOverviewTab() {
   return (
     <div className="grid gap-4 lg:grid-cols-7">
       {/* Left Column - Main Content */}
-      <div className="col-span-full lg:col-span-4 space-y-4">
+      <div className="col-span-full space-y-4 lg:col-span-4">
         <PerformanceAnalyticsCard />
         <DeviceAnalyticsCard />
         <SocialMetricsCard />
@@ -26,7 +26,7 @@ export function DashboardOverviewTab() {
       </div>
 
       {/* Right Column - Sidebar Content */}
-      <div className="col-span-full lg:col-span-3 space-y-4">
+      <div className="col-span-full space-y-4 lg:col-span-3">
         <TeamMembersCard />
         <UpcomingEventsCard />
         <RecentFilesCard />

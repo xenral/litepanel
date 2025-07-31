@@ -20,7 +20,10 @@ interface PerformanceMetricCardProps {
  * Performance Metric Card Component
  * Displays individual performance metrics with animations
  */
-export function PerformanceMetricCard({ metric, index }: PerformanceMetricCardProps) {
+export function PerformanceMetricCard({
+  metric,
+  index,
+}: PerformanceMetricCardProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -29,13 +32,13 @@ export function PerformanceMetricCard({ metric, index }: PerformanceMetricCardPr
     >
       <Card className="transition-all hover:shadow-md">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium truncate">
+          <CardTitle className="truncate text-sm font-medium">
             {metric.title}
           </CardTitle>
           <metric.icon className="text-muted-foreground h-4 w-4 shrink-0" />
         </CardHeader>
         <CardContent>
-          <div className="text-xl md:text-2xl font-bold">{metric.value}</div>
+          <div className="text-xl font-bold md:text-2xl">{metric.value}</div>
           <div className="text-muted-foreground flex items-center space-x-2 text-xs">
             <div className="flex items-center">
               {metric.change > 0 ? (

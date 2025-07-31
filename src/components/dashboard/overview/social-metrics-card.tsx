@@ -25,21 +25,15 @@ export function SocialMetricsCard() {
                   className={`h-2 w-2 rounded-full ${social.color.replace('text-', 'bg-')}`}
                 />
                 <div>
-                  <p className="text-sm font-medium">
-                    {social.platform}
-                  </p>
+                  <p className="text-sm font-medium">{social.platform}</p>
                   <p className="text-muted-foreground text-xs">
                     {social.followers.toLocaleString()} followers
                   </p>
                 </div>
               </div>
               <div className="text-right">
-                <p className="text-sm font-medium">
-                  {social.engagement}%
-                </p>
-                <p className="text-xs text-green-600">
-                  {social.growth}
-                </p>
+                <p className="text-sm font-medium">{social.engagement}%</p>
+                <p className="text-xs text-green-600">{social.growth}</p>
               </div>
             </div>
           ))}

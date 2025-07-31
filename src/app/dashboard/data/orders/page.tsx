@@ -211,27 +211,33 @@ export default function OrdersDataPage() {
       <OrdersStats stats={orderStats} />
 
       {/* Simplified Orders Table - For demonstration */}
-      <div className="rounded-lg border bg-card p-4 sm:p-6">
+      <div className="bg-card rounded-lg border p-4 sm:p-6">
         <div className="mb-4">
           <h3 className="text-lg font-semibold">Recent Orders</h3>
           <p className="text-muted-foreground text-sm">
             Latest customer orders and their status
           </p>
         </div>
-        
+
         {/* Mobile-friendly order cards */}
         <div className="space-y-4">
           {ordersData.slice(0, 5).map((order) => (
             <div key={order.id} className="rounded-lg border p-4">
               <div className="flex flex-col space-y-3 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
                 <div className="space-y-2">
-                  <div className="font-mono text-sm font-medium">{order.id}</div>
+                  <div className="font-mono text-sm font-medium">
+                    {order.id}
+                  </div>
                   <div className="text-sm">{order.customer.name}</div>
-                  <div className="text-muted-foreground text-xs">{formatDate(order.date)}</div>
+                  <div className="text-muted-foreground text-xs">
+                    {formatDate(order.date)}
+                  </div>
                 </div>
                 <div className="flex items-center justify-between sm:flex-col sm:items-end sm:space-y-2">
                   <div className="font-medium">${order.total}</div>
-                  <div className="text-sm text-muted-foreground">{order.items} items</div>
+                  <div className="text-muted-foreground text-sm">
+                    {order.items} items
+                  </div>
                 </div>
               </div>
             </div>

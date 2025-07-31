@@ -1,6 +1,12 @@
 'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
 
@@ -38,7 +44,7 @@ export function PerformanceTabs() {
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <h4 className="text-sm font-medium">Time to First Byte</h4>
-                <div className="text-xl md:text-2xl font-bold">120ms</div>
+                <div className="text-xl font-bold md:text-2xl">120ms</div>
                 <Progress value={75} className="h-2" />
                 <p className="text-muted-foreground text-xs">
                   Server response time is within acceptable range
@@ -46,7 +52,7 @@ export function PerformanceTabs() {
               </div>
               <div className="space-y-2">
                 <h4 className="text-sm font-medium">DOM Content Loaded</h4>
-                <div className="text-xl md:text-2xl font-bold">1.1s</div>
+                <div className="text-xl font-bold md:text-2xl">1.1s</div>
                 <Progress value={65} className="h-2" />
                 <p className="text-muted-foreground text-xs">
                   DOM parsing and loading performance
@@ -59,7 +65,7 @@ export function PerformanceTabs() {
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <h4 className="text-sm font-medium">JavaScript Execution</h4>
-                <div className="text-xl md:text-2xl font-bold">45ms</div>
+                <div className="text-xl font-bold md:text-2xl">45ms</div>
                 <Progress value={80} className="h-2" />
                 <p className="text-muted-foreground text-xs">
                   Time spent executing JavaScript code
@@ -67,7 +73,7 @@ export function PerformanceTabs() {
               </div>
               <div className="space-y-2">
                 <h4 className="text-sm font-medium">Main Thread Blocking</h4>
-                <div className="text-xl md:text-2xl font-bold">23ms</div>
+                <div className="text-xl font-bold md:text-2xl">23ms</div>
                 <Progress value={60} className="h-2" />
                 <p className="text-muted-foreground text-xs">
                   Time main thread was blocked
@@ -80,7 +86,7 @@ export function PerformanceTabs() {
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-2">
                 <h4 className="text-sm font-medium">Total Transfer Size</h4>
-                <div className="text-xl md:text-2xl font-bold">2.1MB</div>
+                <div className="text-xl font-bold md:text-2xl">2.1MB</div>
                 <Progress value={70} className="h-2" />
                 <p className="text-muted-foreground text-xs">
                   Total bytes transferred over network
@@ -88,7 +94,7 @@ export function PerformanceTabs() {
               </div>
               <div className="space-y-2">
                 <h4 className="text-sm font-medium">Resource Load Time</h4>
-                <div className="text-xl md:text-2xl font-bold">1.8s</div>
+                <div className="text-xl font-bold md:text-2xl">1.8s</div>
                 <Progress value={85} className="h-2" />
                 <p className="text-muted-foreground text-xs">
                   Time to load all resources
@@ -101,7 +107,7 @@ export function PerformanceTabs() {
             <div className="space-y-4">
               <div className="space-y-2">
                 <h4 className="text-sm font-medium">Cumulative Layout Shift</h4>
-                <div className="text-xl md:text-2xl font-bold">0.05</div>
+                <div className="text-xl font-bold md:text-2xl">0.05</div>
                 <Progress value={90} className="h-2" />
                 <p className="text-muted-foreground text-xs">
                   Measures visual stability during page load
@@ -109,7 +115,7 @@ export function PerformanceTabs() {
               </div>
               <div className="space-y-2">
                 <h4 className="text-sm font-medium">First Input Delay</h4>
-                <div className="text-xl md:text-2xl font-bold">12ms</div>
+                <div className="text-xl font-bold md:text-2xl">12ms</div>
                 <Progress value={95} className="h-2" />
                 <p className="text-muted-foreground text-xs">
                   Time from first user interaction to browser response

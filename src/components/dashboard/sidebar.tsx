@@ -4,15 +4,15 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  ChevronLeft,
-  ChevronDown,
-  Palette,
-} from 'lucide-react';
+import { ChevronLeft, ChevronDown, Palette } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { useThemeContext } from '@/context/theme-context';
-import { navigationItems, secondaryItems, type NavigationItem } from '@/data/navigation.data';
+import {
+  navigationItems,
+  secondaryItems,
+  type NavigationItem,
+} from '@/data/navigation.data';
 import Image from 'next/image';
 
 interface SidebarProps {
@@ -33,7 +33,7 @@ export function Sidebar({
   className,
 }: SidebarProps) {
   const pathname = usePathname();
-  const { isDark} = useThemeContext();
+  const { isDark } = useThemeContext();
   const [expandedMenus, setExpandedMenus] = useState<Set<string>>(new Set());
   /**
    * Check if a navigation item is currently active
@@ -98,7 +98,13 @@ export function Sidebar({
               className="flex items-center space-x-2"
             >
               <div className=" flex h-8 w-8 items-center justify-center rounded-lg">
-               <Image src="/logo.svg" alt="LitePanel" width={33} height={33}  className={'filter '+isDark?'invert':''}/>
+                <Image
+                  src="/logo.svg"
+                  alt="LitePanel"
+                  width={33}
+                  height={33}
+                  className={'filter ' + isDark ? 'invert' : ''}
+                />
               </div>
               <div className="flex flex-col">
                 <span className="text-sm font-semibold">LitePanel</span>
@@ -384,7 +390,7 @@ export function Sidebar({
               transition={{ duration: 0.2 }}
               className="text-muted-foreground text-center text-xs"
             >
-                              <div className="mb-1">LitePanel</div>
+              <div className="mb-1">LitePanel</div>
               <div className="text-[10px]">v0.1.0</div>
             </motion.div>
           )}

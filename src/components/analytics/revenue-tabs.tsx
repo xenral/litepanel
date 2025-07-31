@@ -1,6 +1,12 @@
 'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
@@ -60,20 +66,18 @@ export function RevenueTabs() {
                 <div key={item.month} className="space-y-2">
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium">{item.month}</span>
-                    <Badge 
+                    <Badge
                       variant={item.growth > 0 ? 'default' : 'secondary'}
                       className="text-xs"
                     >
-                      {item.growth > 0 ? '+' : ''}{item.growth}%
+                      {item.growth > 0 ? '+' : ''}
+                      {item.growth}%
                     </Badge>
                   </div>
-                  <div className="text-xl md:text-2xl font-bold">
+                  <div className="text-xl font-bold md:text-2xl">
                     ${item.revenue.toLocaleString()}
                   </div>
-                  <Progress 
-                    value={Math.abs(item.growth) * 2} 
-                    className="h-2" 
-                  />
+                  <Progress value={Math.abs(item.growth) * 2} className="h-2" />
                 </div>
               ))}
             </div>
@@ -84,20 +88,20 @@ export function RevenueTabs() {
               {productData.map((item) => (
                 <div key={item.name} className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium truncate mr-2">
+                    <span className="mr-2 truncate text-sm font-medium">
                       {item.name}
                     </span>
-                    <div className="text-right shrink-0">
+                    <div className="shrink-0 text-right">
                       <div className="text-sm font-medium">
                         ${item.revenue.toLocaleString()}
                       </div>
-                      <div className="text-xs text-muted-foreground">
+                      <div className="text-muted-foreground text-xs">
                         +{item.growth}%
                       </div>
                     </div>
                   </div>
                   <Progress value={item.percentage} className="h-2" />
-                  <div className="text-xs text-muted-foreground">
+                  <div className="text-muted-foreground text-xs">
                     {item.percentage}% of total revenue
                   </div>
                 </div>
@@ -121,7 +125,7 @@ export function RevenueTabs() {
                     </div>
                   </div>
                   <Progress value={item.percentage} className="h-2" />
-                  <div className="text-xs text-muted-foreground">
+                  <div className="text-muted-foreground text-xs">
                     {item.percentage}% of total revenue
                   </div>
                 </div>

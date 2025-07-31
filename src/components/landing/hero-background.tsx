@@ -19,7 +19,9 @@ interface FloatingElement {
  */
 export function HeroBackground() {
   const { isDark } = useThemeContext();
-  const [floatingElements, setFloatingElements] = React.useState<FloatingElement[]>([]);
+  const [floatingElements, setFloatingElements] = React.useState<
+    FloatingElement[]
+  >([]);
   const [mousePosition, setMousePosition] = React.useState({ x: 50, y: 50 });
 
   // Generate floating elements
@@ -55,7 +57,7 @@ export function HeroBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden">
       {/* Base background with theme-aware gradient */}
-      <div 
+      <div
         className={`absolute inset-0 transition-all duration-700 ${
           isDark
             ? 'bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950'
@@ -82,8 +84,8 @@ export function HeroBackground() {
       <motion.div
         className={`absolute -right-64 -top-64 h-96 w-96 rounded-full blur-3xl transition-all duration-1000 ${
           isDark
-            ? 'bg-gradient-to-br from-blue-500/10 via-purple-500/8 to-transparent'
-            : 'bg-gradient-to-br from-blue-400/15 via-purple-400/12 to-transparent'
+            ? 'via-purple-500/8 bg-gradient-to-br from-blue-500/10 to-transparent'
+            : 'via-purple-400/12 bg-gradient-to-br from-blue-400/15 to-transparent'
         }`}
         animate={{
           x: [0, 50, 0],
@@ -104,8 +106,8 @@ export function HeroBackground() {
       <motion.div
         className={`absolute -bottom-64 -left-64 h-96 w-96 rounded-full blur-3xl transition-all duration-1000 ${
           isDark
-            ? 'bg-gradient-to-tr from-violet-500/8 via-pink-500/6 to-transparent'
-            : 'bg-gradient-to-tr from-violet-400/12 via-pink-400/10 to-transparent'
+            ? 'from-violet-500/8 via-pink-500/6 bg-gradient-to-tr to-transparent'
+            : 'from-violet-400/12 bg-gradient-to-tr via-pink-400/10 to-transparent'
         }`}
         animate={{
           x: [0, -40, 0],
@@ -129,8 +131,8 @@ export function HeroBackground() {
           key={element.id}
           className={`absolute rounded-full transition-all duration-700 ${
             isDark
-              ? 'bg-gradient-to-br from-white/5 to-transparent border border-white/10'
-              : 'bg-gradient-to-br from-slate-900/5 to-transparent border border-slate-900/10'
+              ? 'border border-white/10 bg-gradient-to-br from-white/5 to-transparent'
+              : 'border border-slate-900/10 bg-gradient-to-br from-slate-900/5 to-transparent'
           }`}
           style={{
             left: `${element.x}%`,
@@ -162,7 +164,7 @@ export function HeroBackground() {
         }`}
         style={{
           background: `radial-gradient(circle 400px at ${mousePosition.x}% ${mousePosition.y}%, ${
-            isDark 
+            isDark
               ? 'rgba(100, 116, 139, 0.1) 0%, transparent 70%'
               : 'rgba(148, 163, 184, 0.1) 0%, transparent 70%'
           })`,
@@ -170,7 +172,7 @@ export function HeroBackground() {
       />
 
       {/* Top fade overlay */}
-      <div 
+      <div
         className={`absolute inset-x-0 top-0 h-32 transition-all duration-700 ${
           isDark
             ? 'bg-gradient-to-b from-slate-950/80 to-transparent'
@@ -179,7 +181,7 @@ export function HeroBackground() {
       />
 
       {/* Bottom fade overlay */}
-      <div 
+      <div
         className={`absolute inset-x-0 bottom-0 h-32 transition-all duration-700 ${
           isDark
             ? 'bg-gradient-to-t from-slate-950/60 to-transparent'
@@ -190,7 +192,7 @@ export function HeroBackground() {
       {/* Ambient light streaks */}
       <motion.div
         className={`absolute left-1/4 top-0 h-full w-px transition-all duration-1000 ${
-          isDark 
+          isDark
             ? 'bg-gradient-to-b from-transparent via-blue-400/20 to-transparent'
             : 'bg-gradient-to-b from-transparent via-blue-500/15 to-transparent'
         }`}
@@ -207,7 +209,7 @@ export function HeroBackground() {
 
       <motion.div
         className={`absolute right-1/3 top-0 h-full w-px transition-all duration-1000 ${
-          isDark 
+          isDark
             ? 'bg-gradient-to-b from-transparent via-purple-400/20 to-transparent'
             : 'bg-gradient-to-b from-transparent via-purple-500/15 to-transparent'
         }`}
@@ -223,4 +225,4 @@ export function HeroBackground() {
       />
     </div>
   );
-} 
+}

@@ -1,6 +1,12 @@
 'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 
 interface RevenueBreakdownCardProps {
@@ -18,7 +24,11 @@ interface RevenueBreakdownCardProps {
  * Revenue Breakdown Card Component
  * Shows revenue distribution across categories
  */
-export function RevenueBreakdownCard({ title, description, data }: RevenueBreakdownCardProps) {
+export function RevenueBreakdownCard({
+  title,
+  description,
+  data,
+}: RevenueBreakdownCardProps) {
   return (
     <Card>
       <CardHeader>
@@ -31,26 +41,21 @@ export function RevenueBreakdownCard({ title, description, data }: RevenueBreakd
             <div key={item.category} className="space-y-2">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
-                  <div 
-                    className={`h-3 w-3 rounded-full ${item.color}`}
-                  />
-                  <span className="text-sm font-medium truncate">
+                  <div className={`h-3 w-3 rounded-full ${item.color}`} />
+                  <span className="truncate text-sm font-medium">
                     {item.category}
                   </span>
                 </div>
-                <div className="text-right shrink-0 ml-2">
+                <div className="ml-2 shrink-0 text-right">
                   <div className="text-sm font-medium">
                     ${item.amount.toLocaleString()}
                   </div>
-                  <div className="text-xs text-muted-foreground">
+                  <div className="text-muted-foreground text-xs">
                     {item.percentage}%
                   </div>
                 </div>
               </div>
-              <Progress
-                value={item.percentage}
-                className="h-2"
-              />
+              <Progress value={item.percentage} className="h-2" />
             </div>
           ))}
         </div>

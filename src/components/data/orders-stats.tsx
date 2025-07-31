@@ -1,7 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ShoppingCart, DollarSign, TrendingUp, Clock, Truck, CheckCircle2 } from 'lucide-react';
+import {
+  ShoppingCart,
+  DollarSign,
+  TrendingUp,
+  Clock,
+  Truck,
+  CheckCircle2,
+} from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { ResponsiveGrid } from '@/components/ui/responsive-grid';
 
@@ -76,7 +83,7 @@ export function OrdersStats({ stats }: OrdersStatsProps) {
                   <p className="text-muted-foreground text-sm font-medium">
                     {stat.title}
                   </p>
-                  <p className={`text-xl md:text-2xl font-bold ${stat.color}`}>
+                  <p className={`text-xl font-bold md:text-2xl ${stat.color}`}>
                     {stat.value}
                   </p>
                 </div>
