@@ -155,26 +155,28 @@ export default function RolesManagementPage() {
       </Breadcrumb>
 
       {/* Header */}
-      <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
+      <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Role Management</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Role Management</h1>
+          <p className="text-muted-foreground text-sm md:text-base">
             Define roles and manage permissions for your team members
           </p>
         </div>
         <div className="flex items-center space-x-2">
-          <Button variant="outline">
+          <Button variant="outline" size="sm">
             <Download className="mr-2 h-4 w-4" />
-            Export Roles
+            <span className="hidden sm:inline">Export Roles</span>
+            <span className="sm:hidden">Export</span>
           </Button>
           <Dialog
             open={isCreateDialogOpen}
             onOpenChange={setIsCreateDialogOpen}
           >
             <DialogTrigger asChild>
-              <Button onClick={resetNewRole}>
+              <Button size="sm" onClick={resetNewRole}>
                 <Plus className="mr-2 h-4 w-4" />
-                Create Role
+                <span className="hidden sm:inline">Create Role</span>
+                <span className="sm:hidden">Create</span>
               </Button>
             </DialogTrigger>
             <DialogContent className="max-h-[90vh] max-w-4xl overflow-y-auto">
@@ -356,7 +358,7 @@ export default function RolesManagementPage() {
       </Card>
 
       {/* Roles Grid */}
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {filteredRoles.map((role, index) => (
           <motion.div
             key={role.id}

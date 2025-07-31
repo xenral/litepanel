@@ -123,16 +123,7 @@ web_modules/
 .next
 out
 
-# Nuxt.js build / generate output
-.nuxt
-dist
 
-# Gatsby files
-.cache/
-public
-
-# Vuepress build output
-.vuepress/dist
 
 # Serverless directories
 .serverless/

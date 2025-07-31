@@ -6,6 +6,7 @@ import { HeroBackground } from './hero-background';
 import { HeroFeatures } from './hero-features';
 import { HeroCTA } from './hero-cta';
 import { HeroStats } from './hero-stats';
+import Image from 'next/image';
 
 /**
  * Enhanced hero section component with modular structure
@@ -32,7 +33,7 @@ export function HeroSection() {
             className="flex items-center justify-center space-x-3"
           >
             <motion.div
-              className="from-primary to-accent flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br shadow-lg"
+              className="p-2 bg-white flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br shadow-lg"
               whileHover={{ 
                 scale: 1.1, 
                 rotate: [0, -10, 10, 0],
@@ -44,9 +45,7 @@ export function HeroSection() {
                 boxShadow: { type: 'tween', duration: 0.3 }
               }}
             >
-              <span className="text-primary-foreground text-3xl font-bold">
-                T
-              </span>
+              <Image src="/logo.svg" alt="LitePanel" width={100} height={100} />
             </motion.div>
             <motion.h1
               className="text-gradient bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-5xl font-bold tracking-tight text-transparent md:text-6xl"

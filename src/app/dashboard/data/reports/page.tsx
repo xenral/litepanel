@@ -256,26 +256,28 @@ export default function ReportsDataPage() {
       </Breadcrumb>
 
       {/* Header */}
-      <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
+      <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Data Reports</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Data Reports</h1>
+          <p className="text-muted-foreground text-sm md:text-base">
             Generate, schedule, and export comprehensive data reports
           </p>
         </div>
         <div className="flex items-center space-x-2">
-          <Button variant="outline">
+          <Button variant="outline" size="sm">
             <Settings className="mr-2 h-4 w-4" />
-            Report Settings
+            <span className="hidden sm:inline">Report Settings</span>
+            <span className="sm:hidden">Settings</span>
           </Button>
           <Dialog
             open={isCreateDialogOpen}
             onOpenChange={setIsCreateDialogOpen}
           >
             <DialogTrigger asChild>
-              <Button>
+              <Button size="sm">
                 <Plus className="mr-2 h-4 w-4" />
-                Create Report
+                <span className="hidden sm:inline">Create Report</span>
+                <span className="sm:hidden">Create</span>
               </Button>
             </DialogTrigger>
             <DialogContent className="max-w-2xl">
@@ -407,16 +409,16 @@ export default function ReportsDataPage() {
       </div>
 
       {/* Main Content Tabs */}
-      <Tabs defaultValue="templates" className="space-y-6">
+      <Tabs defaultValue="templates" className="space-y-4 sm:space-y-6">
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="templates">Report Templates</TabsTrigger>
-          <TabsTrigger value="recent">Recent Reports</TabsTrigger>
-          <TabsTrigger value="scheduled">Scheduled Reports</TabsTrigger>
+          <TabsTrigger value="templates" className="text-xs sm:text-sm">Templates</TabsTrigger>
+          <TabsTrigger value="recent" className="text-xs sm:text-sm">Recent</TabsTrigger>
+          <TabsTrigger value="scheduled" className="text-xs sm:text-sm">Scheduled</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="templates" className="space-y-6">
+        <TabsContent value="templates" className="space-y-4 sm:space-y-6">
           {/* Quick Actions */}
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

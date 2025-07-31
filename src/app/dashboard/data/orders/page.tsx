@@ -1,50 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Checkbox } from '@/components/ui/checkbox';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -53,27 +9,17 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { OrdersHeader } from '@/components/data/orders-header';
+import { OrdersStats } from '@/components/data/orders-stats';
+import { ResponsiveContainer } from '@/components/ui/responsive-grid';
 import {
-  ShoppingCart,
-  Package,
-  Search,
-  MoreHorizontal,
-  Eye,
-  Edit,
-  Truck,
-  Download,
-  Filter,
-  Calendar,
-  DollarSign,
-  TrendingUp,
-  AlertCircle,
-  CheckCircle2,
   Clock,
+  Package,
+  Truck,
+  CheckCircle2,
   XCircle,
   RotateCcw,
-  MapPin,
-  User,
+  AlertCircle,
 } from 'lucide-react';
 
 // Mock orders data
@@ -236,40 +182,8 @@ const formatDate = (dateString: string) => {
 };
 
 export default function OrdersDataPage() {
-  const [selectedOrders, setSelectedOrders] = useState<string[]>([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [statusFilter, setStatusFilter] = useState('all');
-  const [selectedOrder, setSelectedOrder] = useState<any>(null);
-
-  const filteredOrders = ordersData.filter((order) => {
-    const matchesSearch =
-      order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.customer.email.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesStatus =
-      statusFilter === 'all' || order.status.toLowerCase() === statusFilter;
-
-    return matchesSearch && matchesStatus;
-  });
-
-  const handleSelectOrder = (orderId: string) => {
-    setSelectedOrders((prev) =>
-      prev.includes(orderId)
-        ? prev.filter((id) => id !== orderId)
-        : [...prev, orderId]
-    );
-  };
-
-  const handleSelectAll = () => {
-    setSelectedOrders(
-      selectedOrders.length === filteredOrders.length
-        ? []
-        : filteredOrders.map((order) => order.id)
-    );
-  };
-
   return (
-    <div className="space-y-6">
+    <ResponsiveContainer>
       {/* Breadcrumb */}
       <Breadcrumb>
         <BreadcrumbList>
@@ -288,454 +202,42 @@ export default function OrdersDataPage() {
       </Breadcrumb>
 
       {/* Header */}
-      <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">
-            Order Management
-          </h1>
-          <p className="text-muted-foreground">
-            Track and manage customer orders and fulfillment
-          </p>
-        </div>
-        <div className="flex items-center space-x-2">
-          <Button variant="outline">
-            <Download className="mr-2 h-4 w-4" />
-            Export Orders
-          </Button>
-          <Button variant="outline">
-            <Calendar className="mr-2 h-4 w-4" />
-            Date Range
-          </Button>
-        </div>
-      </div>
+      <OrdersHeader
+        title="Order Management"
+        description="Track and manage customer orders and fulfillment"
+      />
 
       {/* Stats Cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-muted-foreground text-sm font-medium">
-                    Total Orders
-                  </p>
-                  <p className="text-2xl font-bold">
-                    {orderStats.totalOrders.toLocaleString()}
-                  </p>
-                </div>
-                <ShoppingCart className="text-muted-foreground h-8 w-8" />
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
+      <OrdersStats stats={orderStats} />
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-        >
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-muted-foreground text-sm font-medium">
-                    Revenue
-                  </p>
-                  <p className="text-2xl font-bold">
-                    ${orderStats.totalRevenue.toLocaleString()}
-                  </p>
+      {/* Simplified Orders Table - For demonstration */}
+      <div className="rounded-lg border bg-card p-4 sm:p-6">
+        <div className="mb-4">
+          <h3 className="text-lg font-semibold">Recent Orders</h3>
+          <p className="text-muted-foreground text-sm">
+            Latest customer orders and their status
+          </p>
+        </div>
+        
+        {/* Mobile-friendly order cards */}
+        <div className="space-y-4">
+          {ordersData.slice(0, 5).map((order) => (
+            <div key={order.id} className="rounded-lg border p-4">
+              <div className="flex flex-col space-y-3 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+                <div className="space-y-2">
+                  <div className="font-mono text-sm font-medium">{order.id}</div>
+                  <div className="text-sm">{order.customer.name}</div>
+                  <div className="text-muted-foreground text-xs">{formatDate(order.date)}</div>
                 </div>
-                <DollarSign className="h-8 w-8 text-green-600" />
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.2 }}
-        >
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-muted-foreground text-sm font-medium">
-                    Avg. Order
-                  </p>
-                  <p className="text-2xl font-bold">
-                    ${orderStats.averageOrder}
-                  </p>
+                <div className="flex items-center justify-between sm:flex-col sm:items-end sm:space-y-2">
+                  <div className="font-medium">${order.total}</div>
+                  <div className="text-sm text-muted-foreground">{order.items} items</div>
                 </div>
-                <TrendingUp className="h-8 w-8 text-blue-600" />
               </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.3 }}
-        >
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-muted-foreground text-sm font-medium">
-                    Pending
-                  </p>
-                  <p className="text-2xl font-bold text-yellow-600">
-                    {orderStats.pendingOrders}
-                  </p>
-                </div>
-                <Clock className="h-8 w-8 text-yellow-600" />
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.4 }}
-        >
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-muted-foreground text-sm font-medium">
-                    Shipped
-                  </p>
-                  <p className="text-2xl font-bold text-blue-600">
-                    {orderStats.shippedOrders}
-                  </p>
-                </div>
-                <Truck className="h-8 w-8 text-blue-600" />
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.5 }}
-        >
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-muted-foreground text-sm font-medium">
-                    Delivered
-                  </p>
-                  <p className="text-2xl font-bold text-green-600">
-                    {orderStats.deliveredOrders.toLocaleString()}
-                  </p>
-                </div>
-                <CheckCircle2 className="h-8 w-8 text-green-600" />
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
+            </div>
+          ))}
+        </div>
       </div>
-
-      {/* Orders Table */}
-      <Card>
-        <CardHeader>
-          <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
-            <div>
-              <CardTitle>Orders</CardTitle>
-              <CardDescription>
-                Monitor and manage customer orders ({filteredOrders.length} of{' '}
-                {ordersData.length} orders shown)
-              </CardDescription>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="relative">
-                <Search className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" />
-                <Input
-                  placeholder="Search orders..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-64 pl-9"
-                />
-              </div>
-              <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-40">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Status</SelectItem>
-                  <SelectItem value="pending">Pending</SelectItem>
-                  <SelectItem value="processing">Processing</SelectItem>
-                  <SelectItem value="shipped">Shipped</SelectItem>
-                  <SelectItem value="delivered">Delivered</SelectItem>
-                  <SelectItem value="cancelled">Cancelled</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-        </CardHeader>
-        <CardContent>
-          {selectedOrders.length > 0 && (
-            <div className="bg-muted mb-4 rounded-lg p-3">
-              <div className="flex items-center justify-between">
-                <span className="text-muted-foreground text-sm">
-                  {selectedOrders.length} order
-                  {selectedOrders.length > 1 ? 's' : ''} selected
-                </span>
-                <div className="flex items-center space-x-2">
-                  <Button variant="outline" size="sm">
-                    <Package className="mr-2 h-4 w-4" />
-                    Mark as Shipped
-                  </Button>
-                  <Button variant="outline" size="sm">
-                    <Download className="mr-2 h-4 w-4" />
-                    Export Selected
-                  </Button>
-                  <Button variant="outline" size="sm">
-                    <Edit className="mr-2 h-4 w-4" />
-                    Bulk Update
-                  </Button>
-                </div>
-              </div>
-            </div>
-          )}
-
-          <div className="rounded-md border">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-12">
-                    <Checkbox
-                      checked={selectedOrders.length === filteredOrders.length}
-                      onCheckedChange={handleSelectAll}
-                    />
-                  </TableHead>
-                  <TableHead>Order ID</TableHead>
-                  <TableHead>Customer</TableHead>
-                  <TableHead>Total</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Items</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead className="w-12">Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filteredOrders.map((order, index) => {
-                  const StatusIcon = getStatusIcon(order.status);
-                  return (
-                    <motion.tr
-                      key={order.id}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.02 }}
-                      className="group"
-                    >
-                      <TableCell>
-                        <Checkbox
-                          checked={selectedOrders.includes(order.id)}
-                          onCheckedChange={() => handleSelectOrder(order.id)}
-                        />
-                      </TableCell>
-                      <TableCell>
-                        <div className="font-mono text-sm font-medium">
-                          {order.id}
-                        </div>
-                        {order.trackingNumber && (
-                          <div className="text-muted-foreground text-xs">
-                            Track: {order.trackingNumber}
-                          </div>
-                        )}
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex items-center space-x-3">
-                          <Avatar className="h-8 w-8">
-                            <AvatarImage
-                              src={order.customer.avatar}
-                              alt={order.customer.name}
-                            />
-                            <AvatarFallback>
-                              {order.customer.name
-                                .split(' ')
-                                .map((n) => n[0])
-                                .join('')}
-                            </AvatarFallback>
-                          </Avatar>
-                          <div>
-                            <div className="font-medium">
-                              {order.customer.name}
-                            </div>
-                            <div className="text-muted-foreground text-sm">
-                              {order.customer.email}
-                            </div>
-                          </div>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="font-medium">${order.total}</div>
-                        <div className="text-muted-foreground text-sm">
-                          {order.paymentMethod}
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex items-center space-x-2">
-                          <StatusIcon className="text-muted-foreground h-4 w-4" />
-                          <Badge variant={getStatusColor(order.status)}>
-                            {order.status}
-                          </Badge>
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        <span className="text-sm">
-                          {order.items} item{order.items > 1 ? 's' : ''}
-                        </span>
-                      </TableCell>
-                      <TableCell className="text-muted-foreground text-sm">
-                        {formatDate(order.date)}
-                      </TableCell>
-                      <TableCell>
-                        <DropdownMenu>
-                          <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="sm">
-                              <MoreHorizontal className="h-4 w-4" />
-                            </Button>
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent align="end">
-                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                            <DropdownMenuItem
-                              onClick={() => setSelectedOrder(order)}
-                            >
-                              <Eye className="mr-2 h-4 w-4" />
-                              View Details
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                              <Edit className="mr-2 h-4 w-4" />
-                              Edit Order
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                              <Truck className="mr-2 h-4 w-4" />
-                              Update Shipping
-                            </DropdownMenuItem>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem>
-                              <RotateCcw className="mr-2 h-4 w-4" />
-                              Process Refund
-                            </DropdownMenuItem>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
-                      </TableCell>
-                    </motion.tr>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </div>
-
-          {filteredOrders.length === 0 && (
-            <div className="py-8 text-center">
-              <ShoppingCart className="text-muted-foreground mx-auto h-12 w-12" />
-              <h3 className="mt-2 text-sm font-semibold">No orders found</h3>
-              <p className="text-muted-foreground mt-1 text-sm">
-                Try adjusting your search or filter criteria.
-              </p>
-            </div>
-          )}
-        </CardContent>
-      </Card>
-
-      {/* Order Details Dialog */}
-      <Dialog
-        open={!!selectedOrder}
-        onOpenChange={() => setSelectedOrder(null)}
-      >
-        <DialogContent className="max-w-2xl">
-          <DialogHeader>
-            <DialogTitle>Order Details</DialogTitle>
-            <DialogDescription>
-              Complete information for order {selectedOrder?.id}
-            </DialogDescription>
-          </DialogHeader>
-
-          {selectedOrder && (
-            <div className="space-y-6">
-              <div className="grid gap-4 md:grid-cols-2">
-                <div>
-                  <h4 className="mb-2 font-medium">Customer Information</h4>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex items-center space-x-2">
-                      <User className="text-muted-foreground h-4 w-4" />
-                      <span>{selectedOrder.customer.name}</span>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <span className="text-muted-foreground">Email:</span>
-                      <span>{selectedOrder.customer.email}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <h4 className="mb-2 font-medium">Order Summary</h4>
-                  <div className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Total:</span>
-                      <span className="font-medium">
-                        ${selectedOrder.total}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Items:</span>
-                      <span>{selectedOrder.items}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Payment:</span>
-                      <span>{selectedOrder.paymentMethod}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <h4 className="mb-2 font-medium">Shipping Address</h4>
-                <div className="flex items-start space-x-2 text-sm">
-                  <MapPin className="text-muted-foreground mt-0.5 h-4 w-4" />
-                  <span>{selectedOrder.shippingAddress}</span>
-                </div>
-              </div>
-
-              {selectedOrder.trackingNumber && (
-                <div>
-                  <h4 className="mb-2 font-medium">Tracking Information</h4>
-                  <div className="flex items-center space-x-2 text-sm">
-                    <Truck className="text-muted-foreground h-4 w-4" />
-                    <span className="font-mono">
-                      {selectedOrder.trackingNumber}
-                    </span>
-                    <Button variant="outline" size="sm">
-                      Track Package
-                    </Button>
-                  </div>
-                </div>
-              )}
-
-              <div className="flex justify-end space-x-2">
-                <Button
-                  variant="outline"
-                  onClick={() => setSelectedOrder(null)}
-                >
-                  Close
-                </Button>
-                <Button>Edit Order</Button>
-              </div>
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
-    </div>
+    </ResponsiveContainer>
   );
 }

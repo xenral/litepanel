@@ -126,39 +126,40 @@ const apiKeys = [
  */
 export default function SettingsPage() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-4 sm:space-y-8">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
         <div>
-          <h1 className="text-3xl font-bold">Settings</h1>
-          <p className="text-muted-foreground mt-2">
+          <h1 className="text-2xl md:text-3xl font-bold">Settings</h1>
+          <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base">
             Manage your account settings, preferences, and integrations.
           </p>
         </div>
         <div className="flex items-center space-x-2">
-          <Button variant="outline" className="flex items-center space-x-2">
+          <Button variant="outline" size="sm" className="flex items-center space-x-2">
             <RefreshCw className="h-4 w-4" />
-            <span>Reset</span>
+            <span className="hidden sm:inline">Reset</span>
           </Button>
-          <Button className="flex items-center space-x-2">
+          <Button size="sm" className="flex items-center space-x-2">
             <Save className="h-4 w-4" />
-            <span>Save Changes</span>
+            <span className="hidden sm:inline">Save Changes</span>
+            <span className="sm:hidden">Save</span>
           </Button>
         </div>
       </div>
 
       {/* Settings Tabs */}
-      <Tabs defaultValue="profile" className="space-y-6">
-        <TabsList className="grid w-fit grid-cols-5">
-          <TabsTrigger value="profile">Profile</TabsTrigger>
-          <TabsTrigger value="notifications">Notifications</TabsTrigger>
-          <TabsTrigger value="appearance">Appearance</TabsTrigger>
-          <TabsTrigger value="security">Security</TabsTrigger>
-          <TabsTrigger value="api">API Keys</TabsTrigger>
+      <Tabs defaultValue="profile" className="space-y-4 sm:space-y-6">
+        <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
+          <TabsTrigger value="profile" className="text-xs sm:text-sm">Profile</TabsTrigger>
+          <TabsTrigger value="notifications" className="text-xs sm:text-sm">Notifications</TabsTrigger>
+          <TabsTrigger value="appearance" className="text-xs sm:text-sm">Appearance</TabsTrigger>
+          <TabsTrigger value="security" className="text-xs sm:text-sm">Security</TabsTrigger>
+          <TabsTrigger value="api" className="text-xs sm:text-sm">API Keys</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="profile" className="space-y-6">
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <TabsContent value="profile" className="space-y-4 sm:space-y-6">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-3">
             {/* Profile Information */}
             <Card className="lg:col-span-2">
               <CardHeader>

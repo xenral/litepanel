@@ -182,17 +182,17 @@ export default function AnalyticsPage() {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-4 sm:space-y-8">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
         <div>
-          <h1 className="text-3xl font-bold">Analytics</h1>
-          <p className="text-muted-foreground mt-2">
+          <h1 className="text-2xl md:text-3xl font-bold">Analytics</h1>
+          <p className="text-muted-foreground mt-1 sm:mt-2 text-sm sm:text-base">
             Comprehensive insights into your application performance and user
             behavior.
           </p>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex flex-wrap items-center gap-2">
           <FilterPopover
             categories={DEFAULT_ANALYTICS_FILTERS}
             activeFilters={activeFilters}
@@ -204,36 +204,37 @@ export default function AnalyticsPage() {
             selected={selectedDate}
             onSelect={setSelectedDate}
             placeholder="Select date range"
-            className="w-40"
+            className="w-32 sm:w-40"
           />
-          <Button variant="outline" className="flex items-center space-x-2">
+          <Button variant="outline" size="sm" className="flex items-center space-x-2">
             <RefreshCw className="h-4 w-4" />
-            <span>Refresh</span>
+            <span className="hidden sm:inline">Refresh</span>
           </Button>
           <Button
+            size="sm"
             className="flex items-center space-x-2"
             onClick={() => handleExportData('csv')}
           >
             <Download className="h-4 w-4" />
-            <span>Export</span>
+            <span className="hidden sm:inline">Export</span>
           </Button>
         </div>
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {displayData.summary.map((metric) => (
-          <Card key={metric.title}>
+          <Card key={metric.title} className="transition-all hover:shadow-md">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
+              <CardTitle className="text-sm font-medium truncate">
                 {metric.title}
               </CardTitle>
-              <div className="bg-primary/10 flex h-8 w-8 items-center justify-center rounded-lg">
+              <div className="bg-primary/10 flex h-8 w-8 items-center justify-center rounded-lg shrink-0">
                 <metric.icon className="text-primary h-4 w-4" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{metric.value}</div>
+              <div className="text-xl md:text-2xl font-bold">{metric.value}</div>
               <div className="text-muted-foreground mt-1 flex items-center space-x-2 text-xs">
                 <TrendingUp
                   className={`h-3 w-3 ${
@@ -251,7 +252,10 @@ export default function AnalyticsPage() {
                 >
                   {metric.change}
                 </span>
-                <span>{metric.period}</span>
+                <span className="hidden sm:inline">{metric.period}</span>
+              </div>
+              <div className="text-muted-foreground mt-1 text-xs sm:hidden">
+                {metric.period}
               </div>
             </CardContent>
           </Card>
@@ -259,16 +263,16 @@ export default function AnalyticsPage() {
       </div>
 
       {/* Charts and Tables */}
-      <Tabs defaultValue="overview" className="space-y-6">
-        <TabsList className="grid w-fit grid-cols-4">
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="traffic">Traffic</TabsTrigger>
-          <TabsTrigger value="revenue">Revenue</TabsTrigger>
-          <TabsTrigger value="conversion">Conversion</TabsTrigger>
+      <Tabs defaultValue="overview" className="space-y-4 sm:space-y-6">
+        <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4">
+          <TabsTrigger value="overview" className="text-xs sm:text-sm">Overview</TabsTrigger>
+          <TabsTrigger value="traffic" className="text-xs sm:text-sm">Traffic</TabsTrigger>
+          <TabsTrigger value="revenue" className="text-xs sm:text-sm">Revenue</TabsTrigger>
+          <TabsTrigger value="conversion" className="text-xs sm:text-sm">Conversion</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="overview" className="space-y-6">
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <TabsContent value="overview" className="space-y-4 sm:space-y-6">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-3">
             {/* Revenue Chart */}
             <AreaChartComponent
               title="Revenue Trend"
@@ -282,21 +286,21 @@ export default function AnalyticsPage() {
             {/* Top Pages */}
             <Card>
               <CardHeader>
-                <CardTitle>Top Pages</CardTitle>
-                <CardDescription>Most visited pages this month</CardDescription>
+                <CardTitle className="text-lg">Top Pages</CardTitle>
+                <CardDescription className="text-sm">Most visited pages this month</CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-3 sm:space-y-4">
                 {displayData.topPages.map((page, index) => (
                   <div
                     key={page.path}
                     className="flex items-center justify-between"
                   >
-                    <div className="flex items-center space-x-3">
-                      <div className="bg-muted flex h-8 w-8 items-center justify-center rounded-lg text-sm font-medium">
+                    <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
+                      <div className="bg-muted flex h-6 w-6 sm:h-8 sm:w-8 items-center justify-center rounded-lg text-xs sm:text-sm font-medium shrink-0">
                         {index + 1}
                       </div>
-                      <div>
-                        <p className="text-sm font-medium">{page.path}</p>
+                      <div className="min-w-0">
+                        <p className="text-sm font-medium truncate">{page.path}</p>
                         <p className="text-muted-foreground text-xs">
                           {page.views.toLocaleString()} views
                         </p>
@@ -306,6 +310,7 @@ export default function AnalyticsPage() {
                       variant={
                         page.change.startsWith('+') ? 'default' : 'secondary'
                       }
+                      className="shrink-0 ml-2"
                     >
                       {page.change}
                     </Badge>

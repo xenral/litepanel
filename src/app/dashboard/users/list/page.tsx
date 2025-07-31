@@ -151,30 +151,33 @@ export default function UsersListPage() {
       </Breadcrumb>
 
       {/* Header */}
-      <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
+      <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">User Management</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">User Management</h1>
+          <p className="text-muted-foreground text-sm md:text-base">
             Comprehensive user administration and management
           </p>
         </div>
-        <div className="flex items-center space-x-2">
-          <Button variant="outline">
+        <div className="flex flex-wrap items-center gap-2">
+          <Button variant="outline" size="sm">
             <Upload className="mr-2 h-4 w-4" />
-            Import Users
+            <span className="hidden sm:inline">Import Users</span>
+            <span className="sm:hidden">Import</span>
           </Button>
-          <Button variant="outline">
+          <Button variant="outline" size="sm">
             <Download className="mr-2 h-4 w-4" />
-            Export Data
+            <span className="hidden sm:inline">Export Data</span>
+            <span className="sm:hidden">Export</span>
           </Button>
           <Dialog
             open={isCreateDialogOpen}
             onOpenChange={setIsCreateDialogOpen}
           >
             <DialogTrigger asChild>
-              <Button>
+              <Button size="sm">
                 <UserPlus className="mr-2 h-4 w-4" />
-                Add User
+                <span className="hidden sm:inline">Add User</span>
+                <span className="sm:hidden">Add</span>
               </Button>
             </DialogTrigger>
             <DialogContent className="max-w-2xl">

@@ -500,6 +500,7 @@ export default function PermissionsManagementPage() {
                       >
                         <TableCell>
                           <Badge
+                            className="text-xs"
                             variant={
                               entry.action === 'Permission Granted'
                                 ? 'default'

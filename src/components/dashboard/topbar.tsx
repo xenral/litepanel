@@ -18,6 +18,7 @@ import {
   Keyboard,
   CreditCard,
   UserCircle,
+  Menu,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -40,6 +41,10 @@ import { NotificationPopover } from './notification-popover';
 interface TopbarProps {
   /** Callback to open the command palette */
   onCommandPaletteOpen: () => void;
+  /** Callback to toggle mobile sidebar (mobile only) */
+  onMobileSidebarToggle?: () => void;
+  /** Whether we're on a mobile device */
+  isMobile?: boolean;
   /** Additional CSS classes */
   className?: string;
 }
@@ -87,7 +92,12 @@ const user = {
 /**
  * Topbar component for the dashboard layout
  */
-export function Topbar({ onCommandPaletteOpen, className }: TopbarProps) {
+export function Topbar({
+  onCommandPaletteOpen,
+  onMobileSidebarToggle,
+  isMobile = false,
+  className,
+}: TopbarProps) {
   const [selectedWorkspace, setSelectedWorkspace] = React.useState(
     workspaces[0]
   );
@@ -98,12 +108,24 @@ export function Topbar({ onCommandPaletteOpen, className }: TopbarProps) {
   return (
     <header
       className={cn(
-        'bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40 flex h-16 items-center justify-between border-b px-6 backdrop-blur',
+        'bg-background/95 supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40 flex h-16 items-center justify-between border-b px-4 backdrop-blur md:px-6',
         className
       )}
     >
-      {/* Left Section - Workspace Picker */}
-      <div className="flex items-center space-x-4">
+      {/* Left Section - Mobile Menu + Workspace Picker */}
+      <div className="flex items-center space-x-2 md:space-x-4">
+        {/* Mobile Hamburger Menu */}
+        {isMobile && onMobileSidebarToggle && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onMobileSidebarToggle}
+            className="h-9 w-9 p-0"
+            aria-label="Open navigation menu"
+          >
+            <Menu className="h-5 w-5" />
+          </Button>
+        )}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
@@ -113,7 +135,7 @@ export function Topbar({ onCommandPaletteOpen, className }: TopbarProps) {
               <div className="bg-primary text-primary-foreground flex h-8 w-8 items-center justify-center rounded-lg text-sm font-medium">
                 {selectedWorkspace.avatar}
               </div>
-              <div className="hidden sm:block">
+              <div className="hidden md:block">
                 <div className="text-sm font-medium">
                   {selectedWorkspace.name}
                 </div>
@@ -121,7 +143,7 @@ export function Topbar({ onCommandPaletteOpen, className }: TopbarProps) {
                   {selectedWorkspace.description}
                 </div>
               </div>
-              <ChevronDown className="text-muted-foreground h-4 w-4" />
+              <ChevronDown className="text-muted-foreground hidden h-4 w-4 md:block" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-64">
@@ -157,17 +179,17 @@ export function Topbar({ onCommandPaletteOpen, className }: TopbarProps) {
       </div>
 
       {/* Center Section - Search */}
-      <div className="mx-8 max-w-lg flex-1">
+      <div className={cn('max-w-lg flex-1', isMobile ? 'mx-2 hidden' : 'mx-8')}>
         <Button
           variant="outline"
           className="text-muted-foreground w-full justify-start"
           onClick={onCommandPaletteOpen}
         >
-          <Search className="mr-2 h-4 w-4" />
-          <span className="hidden sm:inline">Search or jump to...</span>
+          <Search className="mr-2 hidden h-4 w-4 md:block" />
+          <span className="hidden sm:inline ">Search or jump to...</span>
           <span className="sm:hidden">Search...</span>
           <div className="ml-auto flex items-center space-x-1">
-            <kbd className="bg-muted text-muted-foreground pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100">
+            <kbd className="bg-muted text-muted-foreground pointer-events-none hidden h-5 select-none items-center gap-1 rounded border px-1.5 font-mono text-[10px] font-medium opacity-100 md:inline-flex">
               <Command className="h-3 w-3" />
               <span>K</span>
             </kbd>
@@ -176,7 +198,7 @@ export function Topbar({ onCommandPaletteOpen, className }: TopbarProps) {
       </div>
 
       {/* Right Section - Actions & User Menu */}
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-1 md:space-x-2">
         {/* Theme Toggle */}
         <Button
           variant="ghost"
