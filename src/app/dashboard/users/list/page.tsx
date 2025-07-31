@@ -313,182 +313,93 @@ export default function UsersListPage() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-muted-foreground text-sm font-medium">
-                    Total Users
-                  </p>
-                  <p className="text-2xl font-bold">
-                    {userStats.totalUsers.toLocaleString()}
-                  </p>
-                </div>
-                <Users className="text-muted-foreground h-8 w-8" />
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-        >
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-muted-foreground text-sm font-medium">
-                    Active
-                  </p>
-                  <p className="text-2xl font-bold text-green-600">
-                    {userStats.activeUsers.toLocaleString()}
-                  </p>
-                </div>
-                <CheckCircle2 className="h-8 w-8 text-green-600" />
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.2 }}
-        >
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-muted-foreground text-sm font-medium">
-                    Pending
-                  </p>
-                  <p className="text-2xl font-bold text-yellow-600">
-                    {userStats.pendingUsers}
-                  </p>
-                </div>
-                <Clock className="h-8 w-8 text-yellow-600" />
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.3 }}
-        >
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-muted-foreground text-sm font-medium">
-                    Suspended
-                  </p>
-                  <p className="text-2xl font-bold text-red-600">
-                    {userStats.suspendedUsers}
-                  </p>
-                </div>
-                <Ban className="h-8 w-8 text-red-600" />
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.4 }}
-        >
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-muted-foreground text-sm font-medium">
-                    Admins
-                  </p>
-                  <p className="text-2xl font-bold text-purple-600">
-                    {userStats.adminUsers}
-                  </p>
-                </div>
-                <Crown className="h-8 w-8 text-purple-600" />
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.5 }}
-        >
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-muted-foreground text-sm font-medium">
-                    This Week
-                  </p>
-                  <p className="text-2xl font-bold text-blue-600">
-                    {userStats.newThisWeek}
-                  </p>
-                </div>
-                <UserPlus className="h-8 w-8 text-blue-600" />
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.6 }}
-        >
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-muted-foreground text-sm font-medium">
-                    This Month
-                  </p>
-                  <p className="text-2xl font-bold text-indigo-600">
-                    {userStats.newThisMonth}
-                  </p>
-                </div>
-                <Calendar className="h-8 w-8 text-indigo-600" />
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.7 }}
-        >
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-muted-foreground text-sm font-medium">
-                    Avg. Performance
-                  </p>
-                  <p className="text-2xl font-bold text-emerald-600">
-                    {userStats.avgPerformance}%
-                  </p>
-                </div>
-                <CheckCircle2 className="h-8 w-8 text-emerald-600" />
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
+      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-8">
+        {[
+          {
+            title: "Total Users",
+            value: userStats.totalUsers.toLocaleString(),
+            icon: Users,
+            color: "text-muted-foreground",
+            delay: 0,
+          },
+          {
+            title: "Active",
+            value: userStats.activeUsers.toLocaleString(),
+            icon: CheckCircle2,
+            color: "text-green-600",
+            delay: 0.1,
+          },
+          {
+            title: "Pending",
+            value: userStats.pendingUsers,
+            icon: Clock,
+            color: "text-yellow-600",
+            delay: 0.2,
+          },
+          {
+            title: "Suspended",
+            value: userStats.suspendedUsers,
+            icon: Ban,
+            color: "text-red-600",
+            delay: 0.3,
+          },
+          {
+            title: "Admins",
+            value: userStats.adminUsers,
+            icon: Crown,
+            color: "text-purple-600",
+            delay: 0.4,
+          },
+          {
+            title: "This Week",
+            value: userStats.newThisWeek,
+            icon: UserPlus,
+            color: "text-blue-600",
+            delay: 0.5,
+          },
+          {
+            title: "This Month",
+            value: userStats.newThisMonth,
+            icon: Calendar,
+            color: "text-indigo-600",
+            delay: 0.6,
+          },
+          {
+            title: "Avg. Performance",
+            value: `${userStats.avgPerformance}%`,
+            icon: CheckCircle2,
+            color: "text-emerald-600",
+            delay: 0.7,
+          },
+        ].map((stat, index) => {
+          const IconComponent = stat.icon;
+          return (
+            <motion.div
+              key={stat.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: stat.delay }}
+            >
+              <Card className="hover:shadow-md transition-shadow">
+                <CardContent className="p-4 lg:p-6">
+                  <div className="flex items-center justify-between">
+                    <div className="min-w-0 flex-1">
+                      <p className="text-muted-foreground text-xs lg:text-sm font-medium truncate">
+                        {stat.title}
+                      </p>
+                      <p className={`text-lg lg:text-2xl font-bold ${stat.color === "text-muted-foreground" ? "" : stat.color} truncate`}>
+                        {stat.value}
+                      </p>
+                    </div>
+                    <div className="flex-shrink-0 ml-2">
+                      <IconComponent className={`h-6 w-6 lg:h-8 lg:w-8 ${stat.color}`} />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          );
+        })}
       </div>
 
       {/* Users Table */}
