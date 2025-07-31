@@ -7,6 +7,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronDown, Palette } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import { useThemeContext } from '@/context/theme-context';
 import {
   navigationItems,
@@ -35,6 +40,19 @@ export function Sidebar({
   const pathname = usePathname();
   const { isDark } = useThemeContext();
   const [expandedMenus, setExpandedMenus] = useState<Set<string>>(new Set());
+  const [openPopover, setOpenPopover] = useState<string | null>(null);
+
+  // Close popover when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = () => {
+      setOpenPopover(null);
+    };
+
+    if (openPopover) {
+      document.addEventListener('click', handleClickOutside);
+      return () => document.removeEventListener('click', handleClickOutside);
+    }
+  }, [openPopover]);
   /**
    * Check if a navigation item is currently active
    */
@@ -65,6 +83,55 @@ export function Sidebar({
       newExpanded.add(href);
     }
     setExpandedMenus(newExpanded);
+  };
+
+  /**
+   * Render collapsed submenu popover content
+   */
+  const renderCollapsedSubmenu = (item: NavigationItem) => {
+    if (!item.submenu || item.submenu.length === 0) return null;
+
+    return (
+      <PopoverContent
+        side="right"
+        className="w-64 border-2 p-1 shadow-lg"
+        sideOffset={12}
+        align="start"
+      >
+        <div className="space-y-1">
+          <div className="text-foreground border-border/50 bg-muted/30 mb-1 rounded-t-md border-b px-3 py-2 text-sm font-semibold">
+            {item.title}
+          </div>
+          <div className="p-1">
+            {item.submenu.map((subItem) => (
+              <Link key={subItem.href} href={subItem.href}>
+                <div
+                  className={cn(
+                    'group flex cursor-pointer items-center rounded-md px-3 py-2.5 text-sm transition-all duration-200',
+                    pathname === subItem.href
+                      ? 'bg-primary text-primary-foreground font-medium shadow-sm'
+                      : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground hover:shadow-sm'
+                  )}
+                  onClick={() => setOpenPopover(null)}
+                >
+                  <div className="flex items-center space-x-2">
+                    <div
+                      className={cn(
+                        'h-1.5 w-1.5 rounded-full transition-colors',
+                        pathname === subItem.href
+                          ? 'bg-primary-foreground'
+                          : 'bg-muted-foreground/40 group-hover:bg-accent-foreground/60'
+                      )}
+                    />
+                    <span>{subItem.title}</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </PopoverContent>
+    );
   };
 
   return (
@@ -103,7 +170,7 @@ export function Sidebar({
                   alt="LitePanel"
                   width={33}
                   height={33}
-                  className={'filter ' + isDark ? 'invert' : ''}
+                  className={isDark ? 'invert filter' : ''}
                 />
               </div>
               <div className="flex flex-col">
@@ -118,9 +185,15 @@ export function Sidebar({
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.2 }}
-              className="bg-primary flex h-8 w-8 items-center justify-center rounded-lg"
+              className=" flex h-8 w-8 items-center justify-center rounded-lg"
             >
-              <Palette className="text-primary-foreground h-5 w-5" />
+              <Image
+                src="/logo.svg"
+                alt="LitePanel"
+                width={33}
+                height={33}
+                className={isDark ? 'invert filter' : ''}
+              />
             </motion.div>
           )}
         </AnimatePresence>
@@ -155,43 +228,77 @@ export function Sidebar({
               <div key={item.href}>
                 {hasSubmenu ? (
                   <>
-                    <button
-                      onClick={() => toggleSubmenu(item.href)}
-                      className={cn(
-                        'group flex w-full items-center rounded-lg text-sm font-medium transition-all duration-200',
-                        isCollapsed
-                          ? 'justify-center px-2 py-3'
-                          : 'justify-start px-3 py-2',
-                        isItemActive || isSubmenuItemActive
-                          ? 'text-[hsl(var(--sidebar-active-foreground))] shadow-sm'
-                          : 'text-foreground'
-                      )}
-                      style={{
-                        backgroundColor:
-                          isItemActive || isSubmenuItemActive
-                            ? 'hsl(var(--sidebar-active))'
-                            : 'transparent',
-                      }}
-                      onMouseEnter={(e) => {
-                        if (!isItemActive && !isSubmenuItemActive) {
-                          e.currentTarget.style.backgroundColor =
-                            'hsl(var(--sidebar-hover))';
+                    {isCollapsed ? (
+                      <Popover
+                        open={openPopover === item.href}
+                        onOpenChange={(open) =>
+                          setOpenPopover(open ? item.href : null)
                         }
-                      }}
-                      onMouseLeave={(e) => {
-                        if (!isItemActive && !isSubmenuItemActive) {
-                          e.currentTarget.style.backgroundColor = 'transparent';
-                        }
-                      }}
-                    >
-                      <item.icon
+                      >
+                        <PopoverTrigger asChild>
+                          <button
+                            className={cn(
+                              'group relative flex w-full items-center justify-center rounded-lg px-2 py-3 text-sm font-medium transition-all duration-200',
+                              isItemActive || isSubmenuItemActive
+                                ? 'text-[hsl(var(--sidebar-active-foreground))] shadow-sm'
+                                : 'text-foreground'
+                            )}
+                            style={{
+                              backgroundColor:
+                                isItemActive || isSubmenuItemActive
+                                  ? 'hsl(var(--sidebar-active))'
+                                  : 'transparent',
+                            }}
+                            onMouseEnter={(e) => {
+                              if (!isItemActive && !isSubmenuItemActive) {
+                                e.currentTarget.style.backgroundColor =
+                                  'hsl(var(--sidebar-hover))';
+                              }
+                            }}
+                            onMouseLeave={(e) => {
+                              if (!isItemActive && !isSubmenuItemActive) {
+                                e.currentTarget.style.backgroundColor =
+                                  'transparent';
+                              }
+                            }}
+                          >
+                            <item.icon className="h-4 w-4 shrink-0" />
+                            {/* Small indicator for submenu */}
+                            <div className="bg-primary/90 absolute -bottom-0.5 -right-0.5 h-1 w-1 rounded-full" />
+                          </button>
+                        </PopoverTrigger>
+                        {renderCollapsedSubmenu(item)}
+                      </Popover>
+                    ) : (
+                      <button
+                        onClick={() => toggleSubmenu(item.href)}
                         className={cn(
-                          'h-4 w-4 shrink-0',
-                          !isCollapsed && 'mr-3'
+                          'group flex w-full items-center justify-start rounded-lg px-3 py-2 text-sm font-medium transition-all duration-200',
+                          isItemActive || isSubmenuItemActive
+                            ? 'text-[hsl(var(--sidebar-active-foreground))] shadow-sm'
+                            : 'text-foreground'
                         )}
-                      />
-                      <AnimatePresence>
-                        {!isCollapsed && (
+                        style={{
+                          backgroundColor:
+                            isItemActive || isSubmenuItemActive
+                              ? 'hsl(var(--sidebar-active))'
+                              : 'transparent',
+                        }}
+                        onMouseEnter={(e) => {
+                          if (!isItemActive && !isSubmenuItemActive) {
+                            e.currentTarget.style.backgroundColor =
+                              'hsl(var(--sidebar-hover))';
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (!isItemActive && !isSubmenuItemActive) {
+                            e.currentTarget.style.backgroundColor =
+                              'transparent';
+                          }
+                        }}
+                      >
+                        <item.icon className="mr-3 h-4 w-4 shrink-0" />
+                        <AnimatePresence>
                           <motion.div
                             initial={{ opacity: 0, width: 0 }}
                             animate={{ opacity: 1, width: 'auto' }}
@@ -214,9 +321,9 @@ export function Sidebar({
                               )}
                             />
                           </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </button>
+                        </AnimatePresence>
+                      </button>
+                    )}
                     <AnimatePresence>
                       {!isCollapsed && isExpanded && (
                         <motion.div
