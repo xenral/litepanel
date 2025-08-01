@@ -18,7 +18,11 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { fetchAllStats, fetchGitHubStats, type StatsData } from '@/lib/stats.api';
+import {
+  fetchAllStats,
+  fetchGitHubStats,
+  type StatsData,
+} from '@/lib/stats.api';
 
 /**
  * Create dynamic stats for the CTA section
@@ -26,13 +30,17 @@ import { fetchAllStats, fetchGitHubStats, type StatsData } from '@/lib/stats.api
 const createStats = (data: StatsData | null, isLoading: boolean) => [
   {
     icon: Github,
-    value: isLoading ? '...' : `${(data?.githubStars || 0) >= 1000 ? `${Math.floor((data?.githubStars || 0) / 1000)}k+` : `${data?.githubStars || 0}+`}`,
+    value: isLoading
+      ? '...'
+      : `${(data?.githubStars || 0) >= 1000 ? `${Math.floor((data?.githubStars || 0) / 1000)}k+` : `${data?.githubStars || 0}+`}`,
     label: 'GitHub Stars',
     description: 'Join our growing community',
   },
   {
     icon: GitFork,
-    value: isLoading ? '...' : `${Math.floor((data?.githubClones || 0) / 1000)}k+`,
+    value: isLoading
+      ? '...'
+      : `${Math.floor((data?.githubClones || 0) / 1000)}k+`,
     label: 'Repository Clones',
     description: 'Total clones this month',
   },
@@ -279,17 +287,17 @@ export function CTASection() {
               transition={{ duration: 0.6, delay: 0.1 * index }}
               className="text-center"
             >
-              <div className="bg-primary/10 mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg relative">
+              <div className="bg-primary/10 relative mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg">
                 <stat.icon className="text-primary h-6 w-6" />
                 {!isLoading && statsData && (
-                  <div className="absolute -top-1 -right-1">
-                    <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+                  <div className="absolute -right-1 -top-1">
+                    <div className="h-2 w-2 animate-pulse rounded-full bg-green-500" />
                   </div>
                 )}
               </div>
               <div className="mb-1 text-2xl font-bold md:text-3xl">
                 {isLoading ? (
-                  <div className="h-8 w-16 animate-pulse rounded bg-muted/50 mx-auto" />
+                  <div className="bg-muted/50 mx-auto h-8 w-16 animate-pulse rounded" />
                 ) : (
                   stat.value
                 )}

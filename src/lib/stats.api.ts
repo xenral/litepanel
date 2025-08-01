@@ -40,20 +40,23 @@ export async function fetchGitHubStats(
   repo: string = 'litepanel'
 ): Promise<{ stars: number; forks: number; watchers: number }> {
   try {
-    const response = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
-      headers: {
-        'Accept': 'application/vnd.github.v3+json',
-      },
-      // Cache for 5 minutes
-      next: { revalidate: 300 }
-    });
+    const response = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}`,
+      {
+        headers: {
+          Accept: 'application/vnd.github.v3+json',
+        },
+        // Cache for 5 minutes
+        next: { revalidate: 300 },
+      }
+    );
 
     if (!response.ok) {
       throw new Error(`GitHub API error: ${response.status}`);
     }
 
     const data: GitHubRepo = await response.json();
-    
+
     return {
       stars: data.stargazers_count,
       forks: data.forks_count,
@@ -82,11 +85,11 @@ export async function fetchGitHubClones(
     // This endpoint requires authentication, so we'll simulate for now
     // In production, you'd use: `https://api.github.com/repos/${owner}/${repo}/traffic/clones`
     // with proper authentication headers
-    
+
     // Simulate clone data based on stars (rough approximation)
     const githubStats = await fetchGitHubStats(owner, repo);
     const estimatedClones = Math.floor(githubStats.stars * 2.5); // Rough estimate
-    
+
     return estimatedClones;
   } catch (error) {
     console.warn('Failed to fetch GitHub clones:', error);
@@ -107,10 +110,10 @@ export async function fetchGitHubContributors(
       `https://api.github.com/repos/${owner}/${repo}/contributors?per_page=100`,
       {
         headers: {
-          'Accept': 'application/vnd.github.v3+json',
+          Accept: 'application/vnd.github.v3+json',
         },
         // Cache for 1 hour
-        next: { revalidate: 3600 }
+        next: { revalidate: 3600 },
       }
     );
 
@@ -147,12 +150,13 @@ export async function fetchPerformanceScore(): Promise<number> {
  */
 export async function fetchAllStats(): Promise<StatsData> {
   try {
-    const [githubStats, githubClones, contributors, performance] = await Promise.all([
-      fetchGitHubStats(),
-      fetchGitHubClones(),
-      fetchGitHubContributors(),
-      fetchPerformanceScore(),
-    ]);
+    const [githubStats, githubClones, contributors, performance] =
+      await Promise.all([
+        fetchGitHubStats(),
+        fetchGitHubClones(),
+        fetchGitHubContributors(),
+        fetchPerformanceScore(),
+      ]);
 
     return {
       githubStars: githubStats.stars,

@@ -2,11 +2,11 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { 
-  highlightCode, 
-  addLineNumbers, 
-  getTheme, 
-  type SyntaxHighlighterProps 
+import {
+  highlightCode,
+  addLineNumbers,
+  getTheme,
+  type SyntaxHighlighterProps,
 } from '@/utils/syntax-highlight.util';
 
 /**
@@ -57,9 +57,9 @@ export function SyntaxHighlighter({
   }
 
   return (
-    <pre 
+    <pre
       className={cn(
-        'font-mono text-sm leading-relaxed overflow-x-auto',
+        'overflow-x-auto font-mono text-sm leading-relaxed',
         showLineNumbers && 'pl-0',
         className
       )}
@@ -96,7 +96,7 @@ export function CodeBlock({
   }, [code, onCopy]);
 
   return (
-    <div className="relative group">
+    <div className="group relative">
       <SyntaxHighlighter
         code={code}
         language={language}
@@ -104,11 +104,11 @@ export function CodeBlock({
         className={className}
         showLineNumbers={showLineNumbers}
       />
-      
+
       {copyable && (
         <button
           onClick={handleCopy}
-          className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 px-2 py-1 text-xs bg-background/80 border rounded hover:bg-accent"
+          className="bg-background/80 hover:bg-accent absolute right-2 top-2 rounded border px-2 py-1 text-xs opacity-0 transition-opacity duration-200 group-hover:opacity-100"
           type="button"
         >
           Copy
