@@ -41,7 +41,7 @@ export function SyntaxHighlighter({
 
       setHighlightedCode(highlighted);
     } catch (error) {
-      console.warn('Failed to highlight code:', error);
+      // Fallback to plain text on highlighting error
       // Fallback to plain text
       setHighlightedCode(code);
     }

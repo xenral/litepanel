@@ -56,14 +56,14 @@ export const useThemeStore = create<ThemeStore>()(
       toggleDarkMode: () => set((state) => ({ isDark: !state.isDark })),
 
       updateCustomization: (updates) => {
-        console.log('Updating customization:', updates);
+    
         set((state) => ({
           customization: { ...state.customization, ...updates },
         }));
       },
 
       resetCustomization: () => {
-        console.log('Resetting customization to defaults');
+    
         set({ customization: DEFAULT_CUSTOMIZATION });
       },
 
@@ -97,7 +97,7 @@ export const useThemeStore = create<ThemeStore>()(
             accentColor: { h: 240, s: 4, l: 16 },
           };
           state.setHasHydrated(true);
-          console.log('Theme store rehydrated with Neutral Pro colors');
+        
         }
       },
     }

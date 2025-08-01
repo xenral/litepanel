@@ -7,22 +7,22 @@ export function QuickActions() {
     {
       icon: Plus,
       label: 'New Project',
-      action: () => console.log('New Project'),
+      action: () => {},
     },
     {
       icon: FileText,
       label: 'New Document',
-      action: () => console.log('New Document'),
+      action: () => {},
     },
     {
       icon: Settings,
       label: 'Settings',
-      action: () => console.log('Settings'),
+      action: () => {},
     },
     {
       icon: Activity,
       label: 'Analytics',
-      action: () => console.log('Analytics'),
+      action: () => {},
     },
   ];
 

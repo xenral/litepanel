@@ -59,7 +59,7 @@ const testimonials = [
     avatar:
       'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face',
     content:
-      'Setting up our admin dashboard used to take weeks. With ThemeCraft Admin, we had a production-ready interface in just a few days. The component library is extensive and well-documented.',
+      'Setting up our admin dashboard used to take weeks. With LitePanel Admin, we had a production-ready interface in just a few days. The component library is extensive and well-documented.',
     rating: 5,
     social: {
       github: 'emilywatson',

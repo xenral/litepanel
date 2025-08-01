@@ -22,7 +22,7 @@ export const themeUtils = {
     setIsDark(true);
     resetCustomization();
 
-    console.log('Theme reset to Neutral Pro Dark with default settings');
+  
   },
 
   /**
@@ -34,7 +34,7 @@ export const themeUtils = {
     const root = document.documentElement;
     const { isDark } = useThemeStore.getState();
 
-    console.log('Force applying Neutral Pro colors...');
+  
 
     // Clear existing classes and attributes
     root.classList.remove('light', 'dark');
@@ -88,7 +88,7 @@ export const themeUtils = {
       root.style.setProperty('--ring', '240 5.9% 10%');
     }
 
-    console.log('Neutral Pro colors force applied successfully');
+  
   },
 
   /**
@@ -171,7 +171,7 @@ export const storeUtils = {
    * Emergency theme fix - force apply correct colors
    */
   emergencyThemeFix: () => {
-    console.log('Applying emergency theme fix...');
+  
     themeUtils.resetToDefault();
     setTimeout(() => {
       themeUtils.forceNeutralProColors();

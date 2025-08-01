@@ -80,7 +80,7 @@ export default function FormsPage() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log('Form submitted:', formData);
+      // Handle form submission
     }
   };
 

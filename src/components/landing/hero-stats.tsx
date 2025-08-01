@@ -31,10 +31,9 @@ export function HeroStats() {
     let isMounted = true;
 
     const loadStats = async () => {
-      try {
-        const data = await fetchAllStats();
-        console.log(data);
-        if (isMounted) {
+              try {
+          const data = await fetchAllStats();
+          if (isMounted) {
           setStatsData(data);
           setIsLoading(false);
         }

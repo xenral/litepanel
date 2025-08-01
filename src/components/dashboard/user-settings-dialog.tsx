@@ -36,7 +36,6 @@ import {
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import {
   User,
-  Mail,
   Bell,
   Shield,
   Globe,
@@ -46,7 +45,6 @@ import {
   Save,
   AlertCircle,
   CheckCircle2,
-  Upload,
   Clock,
   Smartphone,
   MapPin,

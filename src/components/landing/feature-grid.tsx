@@ -195,8 +195,6 @@ export function FeatureGrid() {
                     </p>
                   </div>
 
-                  {/* Hover effect border */}
-                  <div className="from-primary/0 via-primary/5 to-primary/0 pointer-events-none absolute inset-0 rounded-lg bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 </motion.div>
               </Card>
             </motion.div>
