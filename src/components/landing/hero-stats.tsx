@@ -2,8 +2,9 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, Download, Users, Zap } from 'lucide-react';
+import { Star, GitFork, Users, Zap } from 'lucide-react';
 import { Card } from '@/components/ui/card';
+import { fetchAllStats, type StatsData } from '@/lib/stats.api';
 
 interface StatItem {
   icon: React.ReactNode;
@@ -16,32 +17,58 @@ interface StatItem {
  * Animated statistics cards for the hero section
  */
 export function HeroStats() {
-  const [githubStars, setGithubStars] = React.useState<number | null>(null);
+  const [statsData, setStatsData] = React.useState<StatsData | null>(null);
   const [animatedValues, setAnimatedValues] = React.useState({
     stars: 0,
-    downloads: 0,
-    users: 0,
+    clones: 0,
+    contributors: 0,
     performance: 0,
   });
+  const [isLoading, setIsLoading] = React.useState(true);
 
-  // Fetch GitHub stars (simulated for now)
+  // Fetch real-time statistics
   React.useEffect(() => {
-    const timer = setTimeout(() => {
-      setGithubStars(1247);
-    }, 1000);
+    let isMounted = true;
 
-    return () => clearTimeout(timer);
+    const loadStats = async () => {
+      try {
+        const data = await fetchAllStats();
+        console.log(data);
+        if (isMounted) {
+          setStatsData(data);
+          setIsLoading(false);
+        }
+      } catch (error) {
+        if (isMounted) {
+          // Fallback to default values
+          setStatsData({
+            githubStars: 2547,
+            githubClones: 6500,
+            contributors: 24,
+            performance: 98,
+          });
+          setIsLoading(false);
+        }
+      }
+    };
+
+    // Initial load
+    loadStats();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   // Animate numbers counting up
   React.useEffect(() => {
-    if (!githubStars) return;
+    if (!statsData) return;
 
     const targets = {
-      stars: githubStars,
-      downloads: 15600,
-      users: 892,
-      performance: 98,
+      stars: statsData.githubStars,
+      clones: statsData.githubClones,
+      contributors: statsData.contributors,
+      performance: statsData.performance,
     };
 
     const intervals: NodeJS.Timeout[] = [];
@@ -64,7 +91,7 @@ export function HeroStats() {
     });
 
     return () => intervals.forEach(clearInterval);
-  }, [githubStars]);
+  }, [statsData]);
 
   const stats: StatItem[] = [
     {
@@ -74,15 +101,15 @@ export function HeroStats() {
       delay: 0,
     },
     {
-      icon: <Download className="h-5 w-5 text-blue-500" />,
-      value: `${(animatedValues.downloads / 1000).toFixed(1)}k`,
-      label: 'Downloads',
+      icon: <GitFork className="h-5 w-5 text-blue-500" />,
+      value: `${(animatedValues.clones / 1000).toFixed(1)}k`,
+      label: 'Clones',
       delay: 0.1,
     },
     {
       icon: <Users className="h-5 w-5 text-green-500" />,
-      value: animatedValues.users.toLocaleString(),
-      label: 'Active Users',
+      value: animatedValues.contributors.toLocaleString(),
+      label: 'Contributors',
       delay: 0.2,
     },
     {
@@ -126,9 +153,18 @@ export function HeroStats() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.6 + stat.delay }}
               >
-                {stat.value}
+                {isLoading ? (
+                  <div className="h-8 w-16 animate-pulse rounded bg-white/10" />
+                ) : (
+                  stat.value
+                )}
               </motion.div>
               <div className="text-muted-foreground text-sm">{stat.label}</div>
+              {!isLoading && statsData && (
+                <div className="absolute -right-1 -top-1">
+                  <div className="h-2 w-2 animate-pulse rounded-full bg-green-500" />
+                </div>
+              )}
             </div>
 
             {/* Hover gradient effect */}

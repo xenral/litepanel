@@ -60,7 +60,7 @@ export function HeroBackground() {
       <div
         className={`absolute inset-0 transition-all duration-700 ${
           isDark
-            ? 'bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950'
+            ? 'bg-gradient-to-br from-black-950 via-black-900 to-black-950'
             : 'bg-gradient-to-br from-slate-50 via-white to-slate-100'
         }`}
       />

@@ -111,7 +111,7 @@ export function HeroFeatures() {
           >
             <Badge
               variant={feature.highlight ? 'default' : 'secondary'}
-              className={`relative px-3 py-1 text-sm transition-all duration-300 ${
+              className={`relative px-3 py-1 text-sm  transition-all duration-300 ${
                 index === currentFeatureIndex
                   ? 'ring-primary/30 scale-110 ring-2'
                   : ''
@@ -136,9 +136,9 @@ export function HeroFeatures() {
                 <motion.div
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-primary absolute -right-1 -top-1"
+                  className="text-primary absolute -right-1 -top-1 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-black "
                 >
-                  <Check className="h-3 w-3" />
+                  <Check className="h-2.5 w-2.5" />
                 </motion.div>
               )}
             </Badge>

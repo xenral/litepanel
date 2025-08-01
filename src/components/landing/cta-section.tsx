@@ -9,7 +9,7 @@ import {
   ExternalLink,
   ArrowRight,
   Star,
-  Download,
+  GitFork,
   BookOpen,
   Zap,
   Shield,
@@ -18,34 +18,35 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { fetchAllStats, fetchGitHubStats, type StatsData } from '@/lib/stats.api';
 
 /**
- * Quick stats for the CTA section
+ * Create dynamic stats for the CTA section
  */
-const stats = [
+const createStats = (data: StatsData | null, isLoading: boolean) => [
   {
     icon: Github,
-    value: '2.5k+',
+    value: isLoading ? '...' : `${(data?.githubStars || 0) >= 1000 ? `${Math.floor((data?.githubStars || 0) / 1000)}k+` : `${data?.githubStars || 0}+`}`,
     label: 'GitHub Stars',
     description: 'Join our growing community',
   },
   {
-    icon: Download,
-    value: '10k+',
-    label: 'Downloads',
-    description: 'Monthly package downloads',
+    icon: GitFork,
+    value: isLoading ? '...' : `${Math.floor((data?.githubClones || 0) / 1000)}k+`,
+    label: 'Repository Clones',
+    description: 'Total clones this month',
   },
   {
     icon: Users,
-    value: '500+',
-    label: 'Companies',
-    description: 'Using in production',
+    value: isLoading ? '...' : `${data?.contributors || 0}+`,
+    label: 'Contributors',
+    description: 'Active project contributors',
   },
   {
     icon: Shield,
-    value: '99.9%',
-    label: 'Uptime',
-    description: 'Production reliability',
+    value: isLoading ? '...' : `${data?.performance || 0}%`,
+    label: 'Performance',
+    description: 'Lighthouse score',
   },
 ];
 
@@ -82,14 +83,53 @@ const deploymentOptions = [
  */
 export function CTASection() {
   const [githubStars, setGithubStars] = React.useState<number | null>(null);
+  const [statsData, setStatsData] = React.useState<StatsData | null>(null);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
-    // TODO: Replace with actual GitHub API call
-    const timer = setTimeout(() => {
-      setGithubStars(2547); // Simulated star count
-    }, 1000);
-    return () => clearTimeout(timer);
+    let isMounted = true;
+
+    const loadStats = async () => {
+      try {
+        // Load both GitHub stars for the button and all stats for the bottom section
+        const [githubData, allStats] = await Promise.all([
+          fetchGitHubStats(),
+          fetchAllStats(),
+        ]);
+
+        if (isMounted) {
+          setGithubStars(githubData.stars);
+          setStatsData(allStats);
+          setIsLoading(false);
+        }
+      } catch (error) {
+        console.error('Failed to load CTA stats:', error);
+        if (isMounted) {
+          // Fallback values
+          setGithubStars(2547);
+          setStatsData({
+            githubStars: 2547,
+            githubClones: 6500,
+            contributors: 24,
+            performance: 98,
+          });
+          setIsLoading(false);
+        }
+      }
+    };
+
+    loadStats();
+
+    // Refresh every 10 minutes (less frequent than hero stats)
+    const interval = setInterval(loadStats, 10 * 60 * 1000);
+
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
   }, []);
+
+  const stats = createStats(statsData, isLoading);
 
   return (
     <section className="from-background via-muted/20 to-background relative overflow-hidden bg-gradient-to-br py-24">
@@ -239,11 +279,20 @@ export function CTASection() {
               transition={{ duration: 0.6, delay: 0.1 * index }}
               className="text-center"
             >
-              <div className="bg-primary/10 mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg">
+              <div className="bg-primary/10 mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg relative">
                 <stat.icon className="text-primary h-6 w-6" />
+                {!isLoading && statsData && (
+                  <div className="absolute -top-1 -right-1">
+                    <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+                  </div>
+                )}
               </div>
               <div className="mb-1 text-2xl font-bold md:text-3xl">
-                {stat.value}
+                {isLoading ? (
+                  <div className="h-8 w-16 animate-pulse rounded bg-muted/50 mx-auto" />
+                ) : (
+                  stat.value
+                )}
               </div>
               <div className="mb-1 text-sm font-medium">{stat.label}</div>
               <div className="text-muted-foreground text-xs">

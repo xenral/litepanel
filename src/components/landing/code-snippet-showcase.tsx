@@ -17,6 +17,8 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { copyToClipboard } from '@/lib/utils';
+import { SyntaxHighlighter } from '@/components/ui/syntax-highlighter';
+import { useTheme } from 'next-themes';
 
 /**
  * Code examples to showcase
@@ -166,6 +168,7 @@ export function CodeSnippetShowcase() {
   const [copiedStates, setCopiedStates] = React.useState<
     Record<string, boolean>
   >({});
+  const { theme } = useTheme();
 
   /**
    * Handle copying code to clipboard
@@ -375,11 +378,14 @@ export function CodeSnippetShowcase() {
                     transition={{ duration: 0.3 }}
                     className="relative"
                   >
-                    <pre className="bg-background overflow-x-auto p-6 text-sm leading-relaxed">
-                      <code className="text-foreground font-mono">
-                        {currentExample.code}
-                      </code>
-                    </pre>
+                    <div className="bg-background overflow-x-auto p-6">
+                      <SyntaxHighlighter
+                        code={currentExample.code}
+                        language="typescript"
+                        theme={theme === 'dark' ? 'dark' : 'light'}
+                        className="text-sm leading-relaxed"
+                      />
+                    </div>
                   </motion.div>
                 </AnimatePresence>
               </Card>
