@@ -13,24 +13,28 @@ A modern, production-ready Next.js 15 admin dashboard template with **dynamic th
 ## ✨ Key Features
 
 ### 🎨 **Advanced Theme System**
+
 - **3 Professional Themes** - Hot-swappable with instant CSS variable updates
 - **Dark/Light Mode** - System preference detection with manual override
 - **Custom Theme Engine** - Built-in theme store with Zustand state management
 - **CSS Variable Architecture** - Seamless theme transitions with zero flicker
 
 ### 📊 **Real-Time GitHub Integration**
+
 - **Live GitHub Stars** - Real API integration with automatic updates
 - **Repository Clones** - Estimated monthly clone statistics
 - **Contributors Count** - Dynamic contributor tracking
 - **Smart Caching** - 5-minute cache with fallback values
 
 ### 💻 **Lightweight Syntax Highlighting**
+
 - **Ultra-Lightweight** - ~2KB minified vs 50KB+ alternatives
 - **TypeScript/JavaScript** - Optimized for code examples
 - **Theme-Aware** - Adapts to current light/dark theme
 - **Zero Dependencies** - Custom regex-based implementation
 
 ### 🔧 **Production Features**
+
 - **Complete Authentication** - Login/Register with validation
 - **Professional Forms** - React Hook Form + Zod validation
 - **Responsive Design** - Mobile-first with collapsible sidebar
@@ -78,6 +82,7 @@ For testing the authentication system:
 ## 🏗️ What's Implemented
 
 ### ✅ **Landing Page**
+
 - **Hero Section** - Animated background with dynamic stats
 - **Feature Grid** - Interactive feature showcase
 - **Code Examples** - Syntax-highlighted code snippets
@@ -86,6 +91,7 @@ For testing the authentication system:
 - **CTA Section** - Deployment options and community stats
 
 ### ✅ **Dashboard System**
+
 - **Analytics Pages** - Performance, revenue, and traffic analytics
 - **Component Showcase** - Cards, forms, modals, and tables
 - **Data Management** - Orders, products, reports, and users
@@ -93,12 +99,14 @@ For testing the authentication system:
 - **Settings Panel** - User preferences and configurations
 
 ### ✅ **Authentication**
+
 - **Login Page** - Complete validation and error handling
 - **Register Page** - Password confirmation and terms acceptance
 - **Route Protection** - Navigation guards and auth state
 - **Form Validation** - Real-time feedback with Zod schemas
 
 ### ✅ **Component Library**
+
 - **UI Components** - 30+ shadcn/ui components with stories
 - **Form System** - Reusable form components with validation
 - **Data Tables** - Advanced tables with sorting and filtering
@@ -110,27 +118,32 @@ For testing the authentication system:
 ## 🛠️ Technology Stack
 
 ### **Core Framework**
+
 - **Next.js 15** - App Router, React 19, Server Components
 - **TypeScript 5** - Strict mode with comprehensive types
 - **Tailwind CSS 4** - Utility-first styling with custom themes
 
 ### **UI & Components**
+
 - **shadcn/ui** - High-quality components built on Radix UI
 - **Radix UI** - Accessible, unstyled UI primitives
 - **Lucide Icons** - Beautiful, consistent iconography
 - **Framer Motion** - Smooth animations and transitions
 
 ### **State Management**
+
 - **Zustand** - Lightweight state management for themes
 - **React Hook Form** - Performant form state management
 - **Context API** - Theme and authentication contexts
 
 ### **Data & API**
+
 - **GitHub API** - Real-time repository statistics
 - **Custom API Layer** - Centralized data management
 - **SWR Pattern** - Data fetching with caching
 
 ### **Development Tools**
+
 - **Storybook** - Component development and documentation
 - **ESLint + Prettier** - Code quality and formatting
 - **Husky** - Git hooks for quality assurance
@@ -251,6 +264,7 @@ const stats = await fetchAllStats();
 ```
 
 ### **Smart Caching**
+
 - **5-minute cache** for GitHub API calls
 - **Fallback values** for offline scenarios
 - **Loading states** with skeleton animations
@@ -277,7 +291,7 @@ import { SyntaxHighlighter } from '@/components/ui/syntax-highlighter';
   language="typescript"
   theme="dark"
   showLineNumbers
-/>
+/>;
 ```
 
 ---
@@ -384,6 +398,7 @@ npm run storybook
 ### **Development Setup**
 
 1. **Fork & Clone**
+
    ```bash
    git clone https://github.com/xenral/litepanel.git
    cd litepanel
@@ -391,6 +406,7 @@ npm run storybook
    ```
 
 2. **Create Feature Branch**
+
    ```bash
    git checkout -b feature/amazing-feature
    ```
@@ -416,6 +432,7 @@ npm run storybook
 ### **Common Issues**
 
 **Build Errors**
+
 ```bash
 # Clear Next.js cache
 rm -rf .next
@@ -423,6 +440,7 @@ npm run build
 ```
 
 **TypeScript Errors**
+
 ```bash
 # Check types
 npm run type-check
@@ -432,6 +450,7 @@ npm update
 ```
 
 **Theme Issues**
+
 ```bash
 # Reset theme store
 localStorage.clear()

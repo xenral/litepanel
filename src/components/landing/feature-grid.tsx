@@ -194,7 +194,6 @@ export function FeatureGrid() {
                       {feature.description}
                     </p>
                   </div>
-
                 </motion.div>
               </Card>
             </motion.div>

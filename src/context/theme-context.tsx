@@ -37,8 +37,6 @@ interface ThemeProviderProps {
 function applyNeutralProTheme(isDark: boolean = true) {
   if (typeof window === 'undefined') return;
 
-  
-
   const theme = getThemeConfig('neutral-pro');
   const root = document.documentElement;
 
@@ -57,7 +55,6 @@ function applyNeutralProTheme(isDark: boolean = true) {
   if (vars) {
     Object.entries(vars).forEach(([property, value]) => {
       root.style.setProperty(property, value);
-
     });
   }
 
@@ -105,8 +102,6 @@ function applyNeutralProTheme(isDark: boolean = true) {
     root.style.setProperty('--input', '240 5.9% 90%');
     root.style.setProperty('--ring', '240 5.9% 10%');
   }
-
-  
 }
 
 // Apply default theme immediately when module loads

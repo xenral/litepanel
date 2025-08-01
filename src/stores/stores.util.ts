@@ -21,8 +21,6 @@ export const themeUtils = {
     setTheme('neutral-pro');
     setIsDark(true);
     resetCustomization();
-
-  
   },
 
   /**
@@ -33,8 +31,6 @@ export const themeUtils = {
 
     const root = document.documentElement;
     const { isDark } = useThemeStore.getState();
-
-  
 
     // Clear existing classes and attributes
     root.classList.remove('light', 'dark');
@@ -87,8 +83,6 @@ export const themeUtils = {
       root.style.setProperty('--input', '240 5.9% 90%');
       root.style.setProperty('--ring', '240 5.9% 10%');
     }
-
-  
   },
 
   /**
@@ -171,7 +165,6 @@ export const storeUtils = {
    * Emergency theme fix - force apply correct colors
    */
   emergencyThemeFix: () => {
-  
     themeUtils.resetToDefault();
     setTimeout(() => {
       themeUtils.forceNeutralProColors();
